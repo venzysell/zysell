@@ -1,83 +1,68 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zysell - Créez. Vendez. Développez.</title>
+
+    <title>Zysell - Digital Marketplace</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<nav>
-    <div class="logo">Zysell</div>
+<!-- Splash Screen -->
+<div id="splash">
 
-    <ul>
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Fonctionnalités</a></li>
-        <li><a href="#">Tarifs</a></li>
-        <li><a href="#">Connexion</a></li>
-    </ul>
+    <div class="logo">
+        Zysell
+    </div>
 
-    <a href="#" class="btn">Commencer</a>
-</nav>
+</div>
 
-<header class="hero">
+<!-- Home -->
+<section id="home">
 
-    <div class="hero-text">
+    <header>
 
-        <span>Plateforme de vente numérique</span>
-
-        <h1>
-            Vendez vos produits
-            <br>
-            partout dans le monde.
-        </h1>
-
-        <p>
-            Créez votre boutique, partagez vos liens de paiement,
-            recevez votre argent et développez votre activité
-            avec Zysell.
-        </p>
-
-        <div class="buttons">
-            <a href="#" class="btn">Créer un compte</a>
-            <a href="#" class="btn2">Découvrir</a>
+        <div class="logo-nav">
+            Zysell
         </div>
 
-    </div>
+        <div class="language">
 
-</header>
+            <button id="fr">🇫🇷 FR</button>
 
-<section class="features">
+            <button id="en">🇬🇧 EN</button>
 
-    <div class="card">
-        <h3>💳 Paiements</h3>
-        <p>Recevez des paiements rapidement grâce à des liens sécurisés.</p>
-    </div>
+        </div>
 
-    <div class="card">
-        <h3>🛒 Vente</h3>
-        <p>Vendez vos formations, ebooks, vidéos et fichiers numériques.</p>
-    </div>
+    </header>
 
-    <div class="card">
-        <h3>📈 Tableau de bord</h3>
-        <p>Suivez vos ventes, revenus et statistiques en temps réel.</p>
+    <div class="hero">
+
+        <h1 data-lang="title">
+            Bienvenue sur Zysell
+        </h1>
+
+        <p data-lang="subtitle">
+            La plateforme moderne de vente de produits digitaux.
+        </p>
+
+        <button id="startBtn">
+            Commencer
+        </button>
+
     </div>
 
 </section>
 
-<footer>
-
-    © 2026 Zysell • Tous droits réservés.
-
-</footer>
+<script src="lang.js"></script>
+<script src="app.js"></script>
 
 </body>
+
 </html>
