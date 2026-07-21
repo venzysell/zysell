@@ -6,74 +6,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Zysell | Plateforme de vente de produits numériques</title>
+    <title>Zysell | Créez, vendez et développez votre business</title>
 
-    <meta name="description" content="Vendez vos e-books, formations et produits numériques avec Zysell.">
+    <meta name="description"
+        content="La plateforme tout-en-un pour vendre des produits numériques, des formations et des ebooks.">
+
+    <meta name="keywords"
+        content="Zysell, ebooks, formations, paiement, créateur, business, produits numériques">
+
+    <meta name="author" content="Zysell">
+
+    <link rel="icon" href="images/logo.png">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/splash.css">
 
 </head>
 
 <body>
 
-    <!-- HEADER -->
+    <!-- ================= SPLASH SCREEN ================= -->
 
-    <header>
+    <div id="splash-screen">
 
-        <div class="logo">
-            <h2>Zysell</h2>
+        <div class="splash-content">
+
+            <img src="images/logo.png" alt="Logo Zysell" class="splash-logo">
+
+            <h1>Zysell</h1>
+
+            <p>Créez. Vendez. Développez.</p>
+
         </div>
 
-        <nav>
+    </div>
 
-            <a href="index.html">Accueil</a>
+    <!-- ================= HEADER ================= -->
 
-            <a href="#">Fonctionnalités</a>
+    <header class="header">
 
-            <a href="#">Tarifs</a>
+        <div class="container">
 
-            <a href="pages/login.html">Connexion</a>
+            <a href="index.html" class="logo">
 
-            <a href="pages/register.html" class="btn-register">
-                Commencer
+                <img src="images/logo.png" alt="Logo Zysell">
+
+                <span>Zysell</span>
+
             </a>
 
-        </nav>
+            <nav class="navbar">
 
-    </header>
+                <ul>
 
-    <!-- HERO -->
+                    <li><a href="#">Accueil</a></li>
 
-    <section class="hero">
+                    <li><a href="#">Fonctionnalités</a></li>
 
-        <div class="hero-content">
+                    <li><a href="#">Comment ça marche</a></li>
 
-            <h1>
+                    <li><a href="#">Tarifs</a></li>
 
-                Vendez vos e-books,
-                formations et produits numériques
-                depuis une seule plateforme.
+                    <li><a href="#">FAQ</a></li>
 
-            </h1>
+                </ul>
 
-            <p>
+            </nav>
 
-                Zysell permet aux créateurs,
-                formateurs et entrepreneurs
-                de vendre facilement leurs produits
-                et de recevoir leurs paiements.
+            <div class="header-buttons">
 
-            </p>
+                <a href="pages/login.html" class="btn-login">
 
-            <div class="hero-buttons">
+                    Connexion
 
-                <a href="pages/register.html">
+                </a>
 
-                    <button>
+                <a href="pages/register.html" class="btn-primary">
 
-                        Commencer gratuitement
-
-                    </button>
+                    Commencer gratuitement
 
                 </a>
 
@@ -81,46 +91,60 @@
 
         </div>
 
-    </section>
+    </header>
 
-    <!-- AVANTAGES -->
+    <!-- ================= HERO ================= -->
 
-    <section class="features">
+    <section class="hero">
 
-        <h2>Pourquoi choisir Zysell ?</h2>
+        <div class="container hero-content">
 
-        <div class="cards">
+            <div class="hero-left">
 
-            <div class="card">
+                <span class="hero-badge">
 
-                <h3>📚 E-books</h3>
+                    🚀 Plateforme SaaS tout-en-un
+
+                </span>
+
+                <h1>
+
+                    Créez votre boutique numérique.<br>
+                    Vendez partout dans le monde.
+
+                </h1>
 
                 <p>
-                    Vendez vos livres numériques
-                    en quelques clics.
+
+                    Lancez votre activité en quelques minutes.
+                    Vendez des formations, ebooks, fichiers numériques
+                    et recevez vos paiements sur une seule plateforme.
+
                 </p>
+
+                <div class="hero-buttons">
+
+                    <a href="pages/register.html" class="btn-primary">
+
+                        Commencer gratuitement
+
+                    </a>
+
+                    <a href="#" class="btn-secondary">
+
+                        Voir la démonstration
+
+                    </a>
+
+                </div>
 
             </div>
 
-            <div class="card">
+            <div class="hero-right">
 
-                <h3>🎓 Formations</h3>
-
-                <p>
-                    Hébergez et commercialisez
-                    vos cours en ligne.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>💳 Paiements</h3>
-
-                <p>
-                    Recevez vos revenus
-                    rapidement et en toute sécurité.
-                </p>
+                <img src="images/logo.png"
+                     alt="Logo Zysell"
+                     class="hero-logo">
 
             </div>
 
@@ -128,21 +152,39 @@
 
     </section>
 
-    <!-- FOOTER -->
+    <!-- ================= FUTURES SECTIONS ================= -->
+
+    <section id="features"></section>
+
+    <section id="statistics"></section>
+
+    <section id="how-it-works"></section>
+
+    <section id="pricing"></section>
+
+    <section id="faq"></section>
+
+    <section id="contact"></section>
+
+    <!-- ================= FOOTER ================= -->
 
     <footer>
 
-        <p>
+        <div class="container">
 
-            © 2026 Zysell.
-            Tous droits réservés.
+            <p>
 
-        </p>
+                © 2026 Zysell. Tous droits réservés.
+
+            </p>
+
+        </div>
 
     </footer>
 
+    <script src="js/splash.js"></script>
     <script src="js/app.js"></script>
 
 </body>
 
-    </html>
+</html>
