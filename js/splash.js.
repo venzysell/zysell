@@ -1,0 +1,15 @@
+// ==============================
+// ZYSELL SPLASH SCREEN
+// ==============================
+
+window.addEventListener("load", () => {
+
+    const splash = document.getElementById("splash-screen");
+
+    setTimeout(() => {
+
+        splash.classList.add("hide");
+
+    }, 2500);
+
+});
