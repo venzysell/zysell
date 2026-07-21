@@ -1,0 +1,323 @@
+/* ===============================
+   ZYSELL STYLE.CSS V1.0
+================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0f172a;
+    color:#ffffff;
+    overflow-x:hidden;
+}
+
+/*===============================*/
+
+.container{
+    width:90%;
+    max-width:1250px;
+    margin:auto;
+}
+
+/*===============================*/
+
+a{
+    text-decoration:none;
+}
+
+ul{
+    list-style:none;
+}
+
+/*===============================*/
+/* HEADER */
+/*===============================*/
+
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(15,23,42,.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.header .container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:85px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#fff;
+    font-size:1.5rem;
+    font-weight:bold;
+}
+
+.logo img{
+    width:48px;
+    height:48px;
+}
+
+/*===============================*/
+
+.navbar ul{
+    display:flex;
+    gap:35px;
+}
+
+.navbar a{
+    color:#d6d6d6;
+    transition:.3s;
+    font-weight:500;
+}
+
+.navbar a:hover{
+    color:#00d4ff;
+}
+
+/*===============================*/
+
+.header-buttons{
+    display:flex;
+    gap:15px;
+}
+
+/*===============================*/
+
+.btn-login{
+
+    color:#fff;
+    padding:12px 22px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:10px;
+    transition:.3s;
+
+}
+
+.btn-login:hover{
+
+    background:#ffffff15;
+
+}
+
+/*===============================*/
+
+.btn-primary{
+
+    background:#00d4ff;
+    color:#08111f;
+    padding:13px 25px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(0,212,255,.35);
+
+}
+
+/*===============================*/
+
+.btn-secondary{
+
+    color:#fff;
+    border:1px solid rgba(255,255,255,.2);
+    padding:13px 25px;
+    border-radius:10px;
+    transition:.3s;
+
+}
+
+.btn-secondary:hover{
+
+    background:#ffffff15;
+
+}
+
+/*===============================*/
+/* HERO */
+/*===============================*/
+
+.hero{
+
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    background:
+    radial-gradient(circle at top,#12284d 0%,#0f172a 65%);
+
+}
+
+.hero-content{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:70px;
+    padding-top:120px;
+
+}
+
+/*===============================*/
+
+.hero-left{
+
+    flex:1;
+
+}
+
+.hero-badge{
+
+    display:inline-block;
+    background:#123b4a;
+    color:#00d4ff;
+    padding:10px 18px;
+    border-radius:50px;
+    margin-bottom:25px;
+    font-size:.9rem;
+
+}
+
+.hero-left h1{
+
+    font-size:58px;
+    line-height:1.15;
+    margin-bottom:25px;
+
+}
+
+.hero-left p{
+
+    color:#cbd5e1;
+    font-size:20px;
+    line-height:1.8;
+    margin-bottom:35px;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+    gap:18px;
+
+}
+
+/*===============================*/
+
+.hero-right{
+
+    flex:1;
+    display:flex;
+    justify-content:center;
+
+}
+
+.hero-logo{
+
+    width:320px;
+    animation:float 4s ease-in-out infinite;
+    filter:drop-shadow(0 0 40px rgba(0,212,255,.45));
+
+}
+
+/*===============================*/
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+/*===============================*/
+/* FOOTER */
+/*===============================*/
+
+footer{
+
+    border-top:1px solid rgba(255,255,255,.08);
+    padding:30px;
+    text-align:center;
+    color:#94a3b8;
+    background:#08111f;
+
+}
+
+/*===============================*/
+/* RESPONSIVE */
+/*===============================*/
+
+@media(max-width:992px){
+
+.hero-content{
+
+flex-direction:column;
+text-align:center;
+
+}
+
+.navbar{
+
+display:none;
+
+}
+
+.header-buttons{
+
+display:none;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+}
+
+.hero-left h1{
+
+font-size:42px;
+
+}
+
+.hero-logo{
+
+width:220px;
+
+}
+
+}
