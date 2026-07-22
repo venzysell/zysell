@@ -13,7 +13,7 @@
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -25,305 +25,181 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-
 background:#f5f7fc;
-
 color:#222;
-
 }
 
 header{
-
 position:sticky;
-
 top:0;
-
-background:white;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
+background:#fff;
 padding:15px 20px;
-
+display:flex;
+justify-content:space-between;
+align-items:center;
 box-shadow:0 4px 15px rgba(0,0,0,.08);
-
 z-index:1000;
-
 }
 
 .brand{
-
 display:flex;
-
 align-items:center;
-
 gap:12px;
-
 }
 
 .brand img{
-
 width:45px;
-
 height:45px;
-
 object-fit:contain;
-
 }
 
 .brand h2{
-
-font-size:24px;
-
 color:#0057ff;
-
+font-size:24px;
 font-weight:700;
-
 }
 
 .icons{
-
 display:flex;
-
-align-items:center;
-
 gap:18px;
-
 font-size:24px;
-
 cursor:pointer;
-
 }
 
 .container{
-
 max-width:900px;
-
 margin:auto;
-
 padding:20px;
-
 }
 
 .profile-card{
-
-background:white;
-
-border-radius:22px;
-
+background:#fff;
+border-radius:20px;
 padding:25px;
-
 box-shadow:0 8px 25px rgba(0,0,0,.08);
-
-margin-bottom:20px;
-
+margin-bottom:25px;
 }
 
 .profile-top{
-
 display:flex;
-
 align-items:center;
-
 gap:18px;
-
 flex-wrap:wrap;
-
 }
 
 .store-logo{
-
 width:90px;
-
 height:90px;
-
 border-radius:50%;
-
-background:#ddd;
-
 object-fit:cover;
-
+background:#ddd;
 }
 
 .store-info h2{
-
 font-size:28px;
-
 }
 
 .store-info p{
-
+margin-top:5px;
 color:#666;
-
-margin-top:6px;
-
 }
 
 .stats{
-
 display:flex;
-
-gap:20px;
-
+gap:18px;
 flex-wrap:wrap;
-
 margin-top:15px;
-
-font-size:15px;
-
-color:#555;
-
+font-size:14px;
+color:#666;
 }
 
 .buttons{
-
 display:flex;
-
 gap:12px;
-
 flex-wrap:wrap;
-
 margin-top:25px;
-
 }
 
 .btn{
-
 padding:14px 22px;
-
 border:none;
-
 border-radius:30px;
-
 font-size:15px;
-
 font-weight:600;
-
 cursor:pointer;
-
 }
 
 .primary{
-
 background:#0057ff;
-
-color:white;
-
+color:#fff;
 }
 
 .secondary{
-
 background:#eef3ff;
-
 color:#0057ff;
-
 }
 
 .feed-title{
-
 font-size:24px;
-
 font-weight:700;
-
-margin:25px 0 18px;
-
+margin-bottom:20px;
 }
 
 .product{
-
-background:white;
-
-border-radius:20px;
-
+background:#fff;
+border-radius:18px;
 overflow:hidden;
-
 box-shadow:0 8px 25px rgba(0,0,0,.08);
-
-margin-bottom:25px;
-
+margin-bottom:20px;
 }
 
 .product img{
-
 width:100%;
-
-display:block;
-
+height:230px;
+object-fit:cover;
 }
 
 .product-content{
-
 padding:18px;
-
 }
 
 .price{
-
-font-size:25px;
-
+font-size:24px;
 font-weight:700;
-
 color:#0057ff;
-
 margin:10px 0;
-
 }
 
 .fab{
-
 position:fixed;
-
 bottom:25px;
-
 right:25px;
-
 width:65px;
-
 height:65px;
-
 border-radius:50%;
-
 background:#0057ff;
-
-color:white;
-
+color:#fff;
 display:flex;
-
 justify-content:center;
-
 align-items:center;
-
 font-size:40px;
-
 cursor:pointer;
-
-box-shadow:0 12px 25px rgba(0,0,0,.25);
-
+box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
 @media(max-width:700px){
 
 .profile-top{
-
 flex-direction:column;
-
 align-items:flex-start;
-
 }
 
 .buttons{
-
 flex-direction:column;
-
 }
 
 .btn{
-
 width:100%;
-
 }
 
 }
@@ -346,8 +222,6 @@ width:100%;
 
 <span id="menuBtn">☰</span>
 
-<span>🔍</span>
-
 <span>🔔</span>
 
 <span>👤</span>
@@ -362,7 +236,7 @@ width:100%;
 
 <div class="profile-top">
 
-<img src="logo.png" class="store-logo" id="storeLogo" alt="Logo Boutique">
+<img src="logo.png" id="storeLogo" class="store-logo" alt="Logo Boutique">
 
 <div class="store-info">
 
@@ -372,7 +246,7 @@ width:100%;
 
 <div class="stats">
 
-<span>📦 0 Produit</span>
+<span id="productCount">📦 0 Produit</span>
 
 <span>🛒 0 Vente</span>
 
@@ -392,15 +266,15 @@ width:100%;
 
 </button>
 
-<button class="btn secondary">
+<button class="btn secondary" id="shareStore">
 
-🔗 Partager ma boutique
+🔗 Partager
 
 </button>
 
-<button class="btn secondary">
+<button class="btn secondary" id="viewStore">
 
-👀 Voir ma boutique
+🏪 Voir la boutique
 
 </button>
 
@@ -432,7 +306,7 @@ Mes produits
 
 <p>
 
-Vos produits apparaîtront ici dès que vous publierez votre premier article.
+Vos produits apparaîtront automatiquement ici après leur publication.
 
 </p>
 
@@ -452,7 +326,7 @@ Vos produits apparaîtront ici dès que vous publierez votre premier article.
 
 <div id="sidebar" style="position:fixed;left:-280px;top:0;width:280px;height:100%;background:#fff;box-shadow:3px 0 20px rgba(0,0,0,.15);transition:.3s;z-index:2000;padding:25px;overflow-y:auto;">
 
-<h2 style="margin-bottom:25px;color:#0057ff;">
+<h2 style="color:#0057ff;margin-bottom:25px;">
 
 Zysell
 
@@ -462,19 +336,19 @@ Zysell
 
 <p style="padding:12px 0;">🏪 Ma boutique</p>
 
-<p style="padding:12px 0;">➕ Produits</p>
+<p style="padding:12px 0;">➕ Ajouter un produit</p>
 
-<p style="padding:12px 0;">📦 Commandes</p>
+<p style="padding:12px 0;">📦 Mes produits</p>
+
+<p style="padding:12px 0;">🛒 Commandes</p>
 
 <p style="padding:12px 0;">💳 Paiements</p>
 
-<p style="padding:12px 0;">📊 Statistiques</p>
-
-<p style="padding:12px 0;">👥 Clients</p>
+<p style="padding:12px 0;">📈 Statistiques</p>
 
 <p style="padding:12px 0;">⚙️ Paramètres</p>
 
-<p style="padding:12px 0;color:red;">
+<p id="logoutBtn" style="padding:12px 0;color:red;cursor:pointer;">
 
 🚪 Déconnexion
 
@@ -486,7 +360,11 @@ Zysell
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { getAuth,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+getAuth,
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
 getFirestore,
@@ -497,85 +375,146 @@ getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig={
-
 apiKey:"AIzaSyAYuh-EnlgQjlqgBO2HFFeC5Y5uH4TrEds",
-
 authDomain:"zysell-86604.firebaseapp.com",
-
 projectId:"zysell-86604",
-
 storageBucket:"zysell-86604.firebasestorage.app",
-
 messagingSenderId:"567755208394",
-
 appId:"1:567755208394:web:754d1eec59cf8a659b2633"
-
 };
 
 const app=initializeApp(firebaseConfig);
-
 const auth=getAuth(app);
-
 const db=getFirestore(app);
 
-const sidebar=document.getElementById("sidebar");
-
-const overlay=document.getElementById("overlay");
+/* Menu */
 
 menuBtn.onclick=()=>{
-
 sidebar.style.left="0";
-
 overlay.style.display="block";
-
 };
 
 overlay.onclick=()=>{
-
 sidebar.style.left="-280px";
-
 overlay.style.display="none";
-
 };
 
+/* Navigation */
+
 addProduct.onclick=()=>{
-
 location.href="add-product.html";
-
 };
 
 fab.onclick=()=>{
-
 location.href="add-product.html";
-
 };
+
+/* Déconnexion */
+
+logoutBtn.onclick=async()=>{
+await signOut(auth);
+location.href="login.html";
+};
+
+/* Chargement */
 
 onAuthStateChanged(auth,async(user)=>{
 
 if(!user){
-
 location.href="login.html";
+return;
+}
+
+const storeQuery=query(
+collection(db,"stores"),
+where("uid","==",user.uid)
+);
+
+const storeSnap=await getDocs(storeQuery);
+
+if(!storeSnap.empty){
+
+const store=storeSnap.docs[0].data();
+
+storeName.textContent=store.storeName;
+storeUsername.textContent="@"+store.username;
+
+}
+
+const productQuery=query(
+collection(db,"products"),
+where("uid","==",user.uid)
+);
+
+const productSnap=await getDocs(productQuery);
+
+productCount.textContent=
+"📦 "+productSnap.size+
+(productSnap.size>1?" Produits":" Produit");
+
+products.innerHTML="";
+
+if(productSnap.empty){
+
+products.innerHTML=`
+
+<div class="product">
+
+<img src="logo.png">
+
+<div class="product-content">
+
+<h2>Aucun produit</h2>
+
+<p>
+
+Vous n'avez encore publié aucun produit.
+
+</p>
+
+</div>
+
+</div>
+
+`;
 
 return;
 
 }
 
-const q=query(
-collection(db,"stores"),
-where("uid","==",user.uid)
-);
+productSnap.forEach(doc=>{
 
-const snap=await getDocs(q);
+const p=doc.data();
 
-if(!snap.empty){
+products.innerHTML+=`
 
-const store=snap.docs[0].data();
+<div class="product">
 
-storeName.textContent=store.storeName;
+<img src="${p.image || 'logo.png'}" alt="Produit">
 
-storeUsername.textContent="@"+store.username;
+<div class="product-content">
 
-}
+<h2>${p.name}</h2>
+
+<div class="price">
+
+${p.price} FCFA
+
+</div>
+
+<p>${p.description}</p>
+
+<p><strong>Catégorie :</strong> ${p.category}</p>
+
+<p><strong>Stock :</strong> ${p.stock}</p>
+
+</div>
+
+</div>
+
+`;
+
+});
 
 });
 
