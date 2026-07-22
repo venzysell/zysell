@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Accueil | Zysell</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:#eef2ff;
+color:#222;
+
+}
+
+header{
+
+position:sticky;
+top:0;
+z-index:1000;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:15px 20px;
+
+background:white;
+
+box-shadow:0 3px 15px rgba(0,0,0,.08);
+
+}
+
+.left{
+
+display:flex;
+align-items:center;
+gap:15px;
+
+}
+
+.menu{
+
+font-size:28px;
+cursor:pointer;
+
+}
+
+.logo{
+
+height:42px;
+
+}
+
+.right{
+
+display:flex;
+align-items:center;
+gap:20px;
+
+font-size:24px;
+
+}
+
+.icon{
+
+cursor:pointer;
+
+}
+
+.profile{
+
+width:42px;
+height:42px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+background:#ddd;
+
+}
+
+.container{
+
+max-width:900px;
+
+margin:auto;
+
+padding:20px;
+
+}
+
+.store{
+
+background:white;
+
+border-radius:20px;
+
+padding:25px;
+
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+margin-bottom:20px;
+
+}
+
+.store-top{
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+}
+
+.store-logo{
+
+width:90px;
+height:90px;
+
+border-radius:50%;
+
+background:#ddd;
+
+object-fit:cover;
+
+}
+
+.store-info h2{
+
+font-size:28px;
+
+}
+
+.username{
+
+color:#666;
+
+margin-top:4px;
+
+}
+
+.stats{
+
+margin-top:12px;
+
+display:flex;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+font-size:15px;
+
+color:#444;
+
+}
+
+.buttons{
+
+display:flex;
+
+gap:12px;
+
+margin-top:25px;
+
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+padding:14px 24px;
+
+border:none;
+
+border-radius:40px;
+
+font-size:15px;
+
+font-weight:600;
+
+cursor:pointer;
+
+}
+
+.primary{
+
+background:#1d7cff;
+
+color:white;
+
+}
+
+.secondary{
+
+background:#eef2ff;
+
+color:#1d7cff;
+
+}
+
+.feed-title{
+
+font-size:22px;
+
+font-weight:700;
+
+margin:25px 0;
+
+}
+
+.post{
+
+background:white;
+
+border-radius:18px;
+
+overflow:hidden;
+
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+margin-bottom:25px;
+
+}
+
+.post img{
+
+width:100%;
+
+display:block;
+
+}
+
+.post-content{
+
+padding:18px;
+
+}
+
+.price{
+
+font-size:24px;
+
+font-weight:700;
+
+color:#1d7cff;
+
+margin:10px 0;
+
+}
+
+.actions{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:20px;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+}
+
+.action{
+
+padding:10px 18px;
+
+border-radius:30px;
+
+background:#eef2ff;
+
+cursor:pointer;
+
+font-size:14px;
+
+}
+
+.fab{
+
+position:fixed;
+
+bottom:25px;
+
+right:25px;
+
+width:65px;
+
+height:65px;
+
+border-radius:50%;
+
+background:#1d7cff;
+
+color:white;
+
+font-size:38px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+cursor:pointer;
+
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+}
+
+</style>
+
+</head><body>
+
+<header>
+
+<div class="left">
+<div class="menu">☰</div>
+<h2>Zysell</h2>
+</div>
+
+<div class="right">
+<div class="icon">🔍</div>
+<div class="icon">🔔</div>
+<img src="https://via.placeholder.com/100" class="profile">
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="store">
+
+<div class="store-top">
+
+<img src="https://via.placeholder.com/150" class="store-logo">
+
+<div class="store-info">
+
+<h2>Venzy Academy</h2>
+
+<p class="username">@venzyacademy</p>
+
+<div class="stats">
+
+<span>⭐ 4.9</span>
+
+<span>🛍️ 120 ventes</span>
+
+<span>👁️ 2 500 visiteurs</span>
+
+<span>👥 950 abonnés</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<button class="btn primary">
+➕ Ajouter un produit
+</button>
+
+<button class="btn secondary">
+🔗 Partager ma boutique
+</button>
+
+<button class="btn secondary">
+👀 Voir comme un client
+</button>
+
+</div>
+
+</div>
+
+<h2 class="feed-title">
+Mes produits
+</h2>
+
+<div class="post">
+
+<img src="https://via.placeholder.com/800x450" alt="Produit">
+
+<div class="post-content">
+
+<h2>Formation ChatGPT Premium</h2>
+
+<div class="price">
+16 000 FCFA
+</div>
+
+<p>
+Apprenez à créer des films animaliers, automatiser votre travail et développer votre activité grâce à l'IA.
+</p>
+
+<div class="actions">
+
+<div class="action">❤️ Favoris</div>
+
+<div class="action">👁️ 420 vues</div>
+
+<div class="action">🛒 35 ventes</div>
+
+<div class="action">✏️ Modifier</div>
+
+<div class="action">📤 Partager</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="fab">
++
+</div><!-- Menu latéral -->
+<div id="sidebar" style="position:fixed;top:0;left:-280px;width:280px;height:100%;background:#fff;box-shadow:2px 0 20px rgba(0,0,0,.15);padding:25px;transition:.3s;z-index:2000;overflow-y:auto;">
+
+<h2 style="margin-bottom:20px;">Menu</h2>
+
+<p style="padding:12px 0;">🏠 Accueil</p>
+<p style="padding:12px 0;">🏪 Ma boutique</p>
+<p style="padding:12px 0;">➕ Produits</p>
+<p style="padding:12px 0;">📦 Commandes</p>
+<p style="padding:12px 0;">💳 Paiements</p>
+<p style="padding:12px 0;">📊 Statistiques</p>
+<p style="padding:12px 0;">👥 Clients</p>
+<p style="padding:12px 0;">📢 Marketing</p>
+<p style="padding:12px 0;">❤️ Favoris</p>
+<p style="padding:12px 0;">⭐ Avis</p>
+<p style="padding:12px 0;">⚙️ Paramètres</p>
+<p style="padding:12px 0;color:red;">🚪 Déconnexion</p>
+
+</div>
+
+<!-- Fond sombre -->
+<div id="overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);z-index:1500;"></div>
+
+<!-- Produit 2 -->
+<div class="post">
+
+<img src="https://via.placeholder.com/800x450" alt="Produit">
+
+<div class="post-content">
+
+<h2>Pack de prompts IA</h2>
+
+<div class="price">9 900 FCFA</div>
+
+<p>Une bibliothèque complète de prompts professionnels prêts à l'emploi.</p>
+
+<div class="actions">
+<div class="action">❤️ Favoris</div>
+<div class="action">👁️ 180 vues</div>
+<div class="action">🛒 12 ventes</div>
+<div class="action">✏️ Modifier</div>
+<div class="action">📤 Partager</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- Produit 3 -->
+<div class="post">
+
+<img src="https://via.placeholder.com/800x450" alt="Produit">
+
+<div class="post-content">
+
+<h2>E-book Marketing Digital</h2>
+
+<div class="price">5 000 FCFA</div>
+
+<p>Découvrez des stratégies simples pour vendre davantage en ligne.</p>
+
+<div class="actions">
+<div class="action">❤️ Favoris</div>
+<div class="action">👁️ 95 vues</div>
+<div class="action">🛒 8 ventes</div>
+<div class="action">✏️ Modifier</div>
+<div class="action">📤 Partager</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const menu=document.querySelector(".menu");
+const sidebar=document.getElementById("sidebar");
+const overlay=document.getElementById("overlay");
+
+menu.onclick=function(){
+
+sidebar.style.left="0";
+overlay.style.display="block";
+
+}
+
+overlay.onclick=function(){
+
+sidebar.style.left="-280px";
+overlay.style.display="none";
+
+}
+
+document.querySelector(".fab").onclick=function(){
+
+window.location.href="add-product.html";
+
+}
+
+</script>
+
+</body>
+  </html>
