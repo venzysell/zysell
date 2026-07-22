@@ -8,90 +8,495 @@
 
 <title>Créer un compte | Zysell</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+radial-gradient(circle at top,#284cff 0%,#0d1738 45%,#060b18 100%);
+
+overflow:hidden;
+
+color:white;
+
+}
+
+body::before{
+
+content:"";
+
+position:absolute;
+
+width:650px;
+
+height:650px;
+
+border-radius:50%;
+
+background:rgba(0,153,255,.18);
+
+filter:blur(120px);
+
+top:-200px;
+
+right:-150px;
+
+}
+
+body::after{
+
+content:"";
+
+position:absolute;
+
+width:550px;
+
+height:550px;
+
+border-radius:50%;
+
+background:rgba(123,44,255,.18);
+
+filter:blur(120px);
+
+bottom:-200px;
+
+left:-150px;
+
+}
+
+.card{
+
+position:relative;
+
+z-index:2;
+
+width:95%;
+
+max-width:450px;
+
+padding:45px;
+
+border-radius:28px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.15);
+
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+text-align:center;
+
+}
+
+.logo{
+
+width:110px;
+
+margin-bottom:20px;
+
+animation:float 4s infinite ease-in-out;
+
+}
+
+@keyframes float{
+
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
+
+}
+
+h1{
+
+font-size:34px;
+
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+color:#d5d5d5;
+
+margin-bottom:30px;
+
+line-height:1.6;
+
+}
+
+.input-group{
+
+margin-bottom:18px;
+
+text-align:left;
+
+}
+
+.input-group label{
+
+display:block;
+
+margin-bottom:8px;
+
+font-size:14px;
+
+}
+
+.input-group input{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+outline:none;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+font-size:15px;
+
+}
+
+.input-group input::placeholder{
+
+color:#d8d8d8;
+
+}
+
+.password-box{
+
+position:relative;
+
+}
+
+.toggle{
+
+position:absolute;
+
+right:15px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+cursor:pointer;
+
+font-size:14px;
+
+color:#ddd;
+
+}
+
+.create{
+
+width:100%;
+
+padding:17px;
+
+margin-top:<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Créer un compte | Zysell</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-</head>
+<style>
 
-<body>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-<div class="signup-container">
+body{
 
-<div class="signup-card">
+min-height:100vh;
 
-<img src="logo.png" alt="Zysell" class="signup-logo">
+display:flex;
 
-<h1>Créer votre compte</h1>
+justify-content:center;
 
-<p>
-Rejoignez des milliers de créateurs qui vendent leurs produits digitaux.
-</p>
+align-items:center;
 
-<form>
+background:
+radial-gradient(circle at top,#284cff 0%,#0d1738 45%,#060b18 100%);
 
-<input
-type="email"
-placeholder="Adresse e-mail"
-required>
+overflow:hidden;
 
-<input
-type="password"
-placeholder="Mot de passe"
-required>
+color:white;
 
-<input
-type="password"
-placeholder="Confirmer le mot de passe"
-required>
+}
 
-<button
-type="submit"
-class="create-account">
+body::before{
 
-Créer mon compte
+content:"";
 
-</button>
+position:absolute;
 
-</form>
+width:650px;
 
-<div class="separator">
+height:650px;
 
-<span>OU</span>
+border-radius:50%;
 
-</div>
+background:rgba(0,153,255,.18);
 
-<button class="google-btn">
+filter:blur(120px);
 
-<img
-src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-alt="Google">
+top:-200px;
 
-Continuer avec Google
+right:-150px;
 
-</button>
+}
 
-<div class="login">
+body::after{
 
-Vous avez déjà un compte ?
+content:"";
 
-<a href="login.html">
+position:absolute;
 
-Se connecter
+width:550px;
 
-</a>
+height:550px;
 
-</div>
+border-radius:50%;
 
-</div>
+background:rgba(123,44,255,.18);
 
-</div>
+filter:blur(120px);
 
-<script src="app.js"></script>
+bottom:-200px;
 
-</body>
+left:-150px;
 
-</html>
+}
+
+.card{
+
+position:relative;
+
+z-index:2;
+
+width:95%;
+
+max-width:450px;
+
+padding:45px;
+
+border-radius:28px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.15);
+
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+text-align:center;
+
+}
+
+.logo{
+
+width:110px;
+
+margin-bottom:20px;
+
+animation:float 4s infinite ease-in-out;
+
+}
+
+@keyframes float{
+
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
+
+}
+
+h1{
+
+font-size:34px;
+
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+color:#d5d5d5;
+
+margin-bottom:30px;
+
+line-height:1.6;
+
+}
+
+.input-group{
+
+margin-bottom:18px;
+
+text-align:left;
+
+}
+
+.input-group label{
+
+display:block;
+
+margin-bottom:8px;
+
+font-size:14px;
+
+}
+
+.input-group input{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+outline:none;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+font-size:15px;
+
+}
+
+.input-group input::placeholder{
+
+color:#d8d8d8;
+
+}
+
+.password-box{
+
+position:relative;
+
+}
+
+.toggle{
+
+position:absolute;
+
+right:15px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+cursor:pointer;
+
+font-size:14px;
+
+color:#ddd;
+
+}
+
+.create{
+
+width:100%;
+
+padding:17px;
+
+margin-top:8px;
+
+border:none;
+
+border-radius:50px;
+
+background:linear-gradient(90deg,#1d7cff,#7b2cff);
+
+color:white;
+
+font-size:17px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.create:hover{
+
+transform:translateY(-3px);
+
+}
+
+.separator{
+
+display:flex;
+
+align-items:center;
+
+margin:28px 0;
+
+color:#ddd;
+
+}
+
+.separator::before,
+.separator::after{
+
+content:"";
+
+flex:1;
+
+height:1px;
+
+background:rgba(255,255,255,.2);
+
+}
+
+.separator span{
+
+padding:0 15px;
+
+  }
