@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ajouter un produit | Zysell</title>
+<title>Publier un produit - Zysell</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -21,86 +21,72 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:Poppins,sans-serif;
 }
 
 body{
-background:#f5f7fc;
-color:#222;
+background:#f5f7fb;
 }
 
 header{
-background:#fff;
-padding:15px 20px;
+background:#0057ff;
+color:white;
+padding:18px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.brand{
 display:flex;
 align-items:center;
-gap:15px;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
+gap:12px;
 }
 
-header img{
-width:45px;
-height:45px;
-object-fit:contain;
-}
-
-header h2{
-color:#0057ff;
-font-size:24px;
-font-weight:700;
+.brand img{
+width:42px;
+height:42px;
 }
 
 .container{
-max-width:800px;
+max-width:1100px;
 margin:30px auto;
 padding:20px;
 }
 
 .card{
-background:#fff;
-border-radius:20px;
+background:white;
+border-radius:18px;
 padding:25px;
-box-shadow:0 8px 25px rgba(0,0,0,.08);
+margin-bottom:25px;
+box-shadow:0 6px 18px rgba(0,0,0,.08);
 }
 
-.card h1{
+.card h2{
 margin-bottom:20px;
-font-size:28px;
 color:#0057ff;
 }
 
-.upload-box{
-border:2px dashed #0057ff;
-border-radius:18px;
-padding:35px;
-text-align:center;
-cursor:pointer;
-margin-bottom:20px;
-background:#f8fbff;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
 }
 
-.upload-box img{
-width:120px;
-height:120px;
-object-fit:cover;
-display:none;
-margin:auto;
-border-radius:12px;
-}
-
-.upload-box p{
-margin-top:10px;
-color:#666;
+label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+color:#444;
 }
 
 input,
 textarea,
 select{
 width:100%;
-padding:15px;
-margin-top:15px;
+padding:14px;
 border:1px solid #ddd;
-border-radius:12px;
+border-radius:10px;
 font-size:15px;
 outline:none;
 }
@@ -110,30 +96,16 @@ resize:vertical;
 min-height:130px;
 }
 
-button{
-width:100%;
-padding:16px;
-margin-top:25px;
-border:none;
-border-radius:30px;
-background:#0057ff;
-color:#fff;
-font-size:17px;
-font-weight:600;
-cursor:pointer;
-transition:.3s;
+input[type=file]{
+padding:10px;
 }
 
-button:hover{
-transform:scale(1.02);
+@media(max-width:768px){
+
+.container{
+padding:15px;
 }
 
-#loading{
-display:none;
-text-align:center;
-margin-top:15px;
-color:#0057ff;
-font-weight:600;
 }
 
 </style>
@@ -142,9 +114,19 @@ font-weight:600;
 
 <header>
 
+<div class="brand">
+
 <img src="logo.png" alt="Logo Zysell">
 
 <h2>Zysell</h2>
+
+</div>
+
+<button onclick="location.href='home.html'">
+
+🏠 Tableau de bord
+
+</button>
 
 </header>
 
@@ -152,185 +134,284 @@ font-weight:600;
 
 <div class="card">
 
-<h1>Ajouter un produit</h1>
+<h2>📦 Informations générales</h2>
 
-<form id="productForm">
+<div class="grid">
 
-<label class="upload-box">
+<div>
 
-<input type="file" id="productImage" accept="image/*" hidden>
+<label>Nom du produit</label>
 
-<img id="previewImage">
+<input type="text" id="productName" placeholder="Ex : Formation ChatGPT Pro">
 
-<p>📷 Cliquez ici pour choisir une image du produit</p>
+</div>
 
-</label>
+<div>
 
-<input
-type="text"
-id="productName"
-placeholder="Nom du produit"
-required>
+<label>Sous-titre (optionnel)</label>
 
-<input
-type="number"
-id="productPrice"
-placeholder="Prix"
-required>
+<input type="text" id="subtitle" placeholder="Ex : De débutant à expert">
 
-<select id="productCategory" required>
+</div>
 
-<option value="">Choisir une catégorie</option>
+<div>
 
-<option>Électronique</option>
+<label>Catégorie</label>
 
-<option>Mode</option>
+<select id="category">
 
-<option>Beauté</option>
+<option>Formation</option>
 
-<option>Maison</option>
+<option>eBook</option>
 
-<option>Informatique</option>
+<option>PDF</option>
 
-<option>Téléphones</option>
+<option>Vidéo</option>
 
-<option>Sport</option>
+<option>Audio</option>
 
-<option>Automobile</option>
+<option>Logiciel</option>
 
-<option>Alimentation</option>
+<option>Application</option>
+
+<option>Template</option>
+
+<option>Code source</option>
+
+<option>Pack de ressources</option>
 
 <option>Autre</option>
 
 </select>
 
-<input
-type="number"
-id="productStock"
-placeholder="Quantité en stock"
-required>
+</div>
 
-<textarea
-id="productDescription"
-placeholder="Description du produit"
-required></textarea>
+<div>
 
-<button type="submit">
+<label>Prix normal (FCFA)</label>
 
-Publier le produit
+<input type="number" id="price">
+
+</div>
+
+<div>
+
+<label>Prix promotionnel (optionnel)</label>
+
+<input type="number" id="salePrice">
+
+</div>
+
+<div>
+
+<label>Langue</label>
+
+<select id="language">
+
+<option>Français</option>
+
+<option>English</option>
+
+<option>Español</option>
+
+<option>Autre</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📝 Description</h2>
+
+<label>Description courte</label>
+
+<textarea id="shortDescription"
+placeholder="Résumé affiché dans la boutique..."></textarea>
+
+<label>Description complète</label>
+
+<textarea id="description"
+placeholder="Décrivez votre produit en détail..."></textarea>
+
+</div>
+
+<div class="card">
+
+<h2>🖼️ Médias</h2>
+
+<div class="grid">
+
+<div>
+
+<label>Image de couverture</label>
+
+<input type="file"
+id="coverImage"
+accept="image/*">
+
+</div>
+
+<div>
+
+<label>Galerie d'images (optionnel)</label>
+
+<input type="file"
+id="galleryImages"
+accept="image/*"
+multiple>
+
+</div>
+
+<div>
+
+<label>Vidéo de démonstration (optionnel)</label>
+
+<input type="file"
+id="demoVideo"
+accept="video/*">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📁 Produit numérique</h2>
+
+<div class="grid">
+
+<div>
+
+<label>Fichier principal</label>
+
+<input type="file"
+id="productFile">
+
+</div>
+
+<div>
+
+<label>Aperçu gratuit (optionnel)</label>
+
+<input type="file"
+id="previewFile">
+
+</div>
+
+<div>
+
+<label>Fichier bonus (optionnel)</label>
+
+<input type="file"
+id="bonusFile">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>⚙️ Informations complémentaires</h2>
+
+<div class="grid">
+
+<div>
+
+<label>Version</label>
+
+<input type="text"
+id="version"
+placeholder="1.0.0">
+
+</div>
+
+<div>
+
+<label>Compatibilité</label>
+
+<input type="text"
+id="compatibility"
+placeholder="Windows, Android, macOS...">
+
+</div>
+
+<div>
+
+<label>Mots-clés</label>
+
+<input type="text"
+id="keywords"
+placeholder="marketing, IA, vidéo...">
+
+</div>
+
+<div>
+
+<label>URL personnalisée (Slug)</label>
+
+<input type="text"
+id="slug"
+placeholder="formation-chatgpt-pro">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>🚀 Publication</h2>
+
+<div class="grid">
+
+<div>
+
+<label>Statut</label>
+
+<select id="status">
+
+<option value="draft">Brouillon</option>
+
+<option value="published">Publier immédiatement</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>Autoriser les avis</label>
+
+<select id="reviews">
+
+<option value="yes">Oui</option>
+
+<option value="no">Non</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
+
+<button id="publishProduct">
+
+🚀 Publier le produit
 
 </button>
 
-<div id="loading">
-
-Publication en cours...
-
 </div>
 
-</form>
-
 </div>
-
-</div><script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {
-getFirestore,
-collection,
-addDoc,
-serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-apiKey:"AIzaSyAYuh-EnlgQjlqgBO2HFFeC5Y5uH4TrEds",
-authDomain:"zysell-86604.firebaseapp.com",
-projectId:"zysell-86604",
-storageBucket:"zysell-86604.firebasestorage.app",
-messagingSenderId:"567755208394",
-appId:"1:567755208394:web:754d1eec59cf8a659b2633"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-let currentUser = null;
-
-onAuthStateChanged(auth,(user)=>{
-if(!user){
-location.href="login.html";
-return;
-}
-currentUser = user;
-});
-
-productImage.addEventListener("change",()=>{
-
-const file = productImage.files[0];
-
-if(file){
-
-previewImage.src = URL.createObjectURL(file);
-
-previewImage.style.display = "block";
-
-}
-
-});
-
-productForm.addEventListener("submit",async(e)=>{
-
-e.preventDefault();
-
-if(!currentUser){
-
-alert("Veuillez vous reconnecter.");
-
-return;
-
-}
-
-loading.style.display="block";
-
-try{
-
-await addDoc(collection(db,"products"),{
-
-uid:currentUser.uid,
-
-name:productName.value,
-
-price:Number(productPrice.value),
-
-category:productCategory.value,
-
-stock:Number(productStock.value),
-
-description:productDescription.value,
-
-image:"",
-
-createdAt:serverTimestamp()
-
-});
-
-alert("Produit publié avec succès.");
-
-location.href="home.html";
-
-}catch(error){
-
-loading.style.display="none";
-
-alert(error.message);
-
-}
-
-});
-
-</script>
-
-</body>
-
-</html>
