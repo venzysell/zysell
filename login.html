@@ -2,97 +2,296 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Connexion | Zysell</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>Connexion | Zysell</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<body>
+<style>
 
-<div class="signup-container">
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-    <div class="signup-card">
+body{
 
-        <img src="logo.png" alt="Zysell" class="signup-logo">
+min-height:100vh;
 
-        <h1>Connexion</h1>
+display:flex;
 
-        <p>
-            Connectez-vous pour accéder à votre tableau de bord.
-        </p>
+justify-content:center;
 
-        <form>
+align-items:center;
 
-            <input
-                type="email"
-                placeholder="Adresse e-mail"
-                required>
+background:
+radial-gradient(circle at top,#284cff 0%,#0d1738 45%,#060b18 100%);
 
-            <input
-                type="password"
-                placeholder="Mot de passe"
-                required>
+overflow:hidden;
 
-            <button
-                type="submit"
-                class="create-account">
+color:white;
 
-                Se connecter
+}
 
-            </button>
+body::before{
 
-        </form>
+content:"";
 
-        <div class="forgot-password">
+position:absolute;
 
-            <a href="#">
-                Mot de passe oublié ?
-            </a>
+width:650px;
 
-        </div>
+height:650px;
 
-        <div class="separator">
+border-radius:50%;
 
-            <span>OU</span>
+background:rgba(0,153,255,.18);
 
-        </div>
+filter:blur(120px);
 
-        <button class="google-btn">
+top:-200px;
 
-            <img
-                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-                alt="Google">
+right:-150px;
 
-            Continuer avec Google
+}
 
-        </button>
+body::after{
 
-        <div class="login">
+content:"";
 
-            Vous n'avez pas encore de compte ?
+position:absolute;
 
-            <a href="signup.html">
+width:550px;
 
-                Créer un compte
+height:550px;
 
-            </a>
+border-radius:50%;
 
-        </div>
+background:rgba(123,44,255,.18);
 
-    </div>
+filter:blur(120px);
 
-</div>
+bottom:-200px;
 
-<script src="app.js"></script>
+left:-150px;
 
-</body>
+}
 
-</html>
+.card{
+
+position:relative;
+
+z-index:2;
+
+width:95%;
+
+max-width:450px;
+
+padding:45px;
+
+border-radius:28px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.15);
+
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+text-align:center;
+
+}
+
+.logo{
+
+width:110px;
+
+margin-bottom:20px;
+
+animation:float 4s infinite ease-in-out;
+
+}
+
+@keyframes float{
+
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
+
+}
+
+h1{
+
+font-size:34px;
+
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+color:#d5d5d5;
+
+margin-bottom:30px;
+
+line-height:1.6;
+
+}
+
+.input-group{
+
+margin-bottom:18px;
+
+text-align:left;
+
+}
+
+.input-group label{
+
+display:block;
+
+margin-bottom:8px;
+
+font-size:14px;
+
+}
+
+.input-group input{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+outline:none;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+font-size:15px;
+
+}
+
+.input-group input::placeholder{
+
+color:#d8d8d8;
+
+}
+
+.password-box{
+
+position:relative;
+
+}
+
+.toggle{
+
+position:absolute;
+
+right:15px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+cursor:pointer;
+
+font-size:14px;
+
+color:#ddd;
+
+}
+
+.login-btn{
+
+width:100%;
+
+padding:17px;
+
+margin-top:8px;
+
+border:none;
+
+border-radius:50px;
+
+background:linear-gradient(90deg,#1d7cff,#7b2cff);
+
+color:white;
+
+font-size:17px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.login-btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+.forgot{
+
+margin-top:15px;
+
+text-align:right;
+
+}
+
+.forgot a{
+
+color:#8fc5ff;
+
+text-decoration:none;
+
+font-size:14px;
+
+}
+
+.separator{
+
+display:flex;
+
+align-items:center;
+
+margin:28px 0;
+
+color:#ddd;
+
+}
+
+.separator::before,
+.separator::after{
+
+content:"";
+
+flex:1;
+
+height:1px;
+
+background:rgba(255,255,255,.2);
+
+}
+
+.separator span{
+
+padding:0 15px;
+
+}
