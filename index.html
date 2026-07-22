@@ -1,53 +1,338 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zysell - Créez. Vendez. Encaissez.</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>Zysell - Créez. Vendez. Encaissez.</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+    radial-gradient(circle at top,#284cff 0%,#0d1738 45%,#060b18 100%);
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+body::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+
+    height:700px;
+
+    border-radius:50%;
+
+    background:rgba(0,140,255,.18);
+
+    filter:blur(120px);
+
+    top:-220px;
+
+    right:-180px;
+
+}
+
+body::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+
+    height:600px;
+
+    border-radius:50%;
+
+    background:rgba(123,44,255,.18);
+
+    filter:blur(140px);
+
+    bottom:-220px;
+
+    left:-180px;
+
+}
+
+.container{
+
+    position:relative;
+
+    z-index:2;
+
+    width:92%;
+
+    max-width:560px;
+
+    text-align:center;
+
+    padding:50px 35px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:28px;
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+}
+
+.language{
+
+    position:absolute;
+
+    top:20px;
+
+    right:20px;
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.language button{
+
+    border:none;
+
+    background:rgba(255,255,255,.12);
+
+    color:white;
+
+    padding:8px 15px;
+
+    border-radius:25px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.language button:hover{
+
+    background:#3d7cff;
+
+}
+
+.logo{
+
+    width:140px;
+
+    margin-bottom:25px;
+
+    animation:float 4s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%{transform:translateY(0);}
+
+50%{transform:translateY(-12px);}
+
+100%{transform:translateY(0);}
+
+}
+
+h1{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    margin-bottom:18px;
+
+}
+
+p{
+
+    font-size:18px;
+
+    line-height:1.7;
+
+    color:#d8d8d8;
+
+    margin-bottom:40px;
+
+}
+
+.start{
+
+    display:inline-block;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:linear-gradient(90deg,#1d7cff,#7b2cff);
+
+    padding:18px 45px;
+
+    border-radius:50px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.start:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(0,110,255,.35);
+
+}
+
+.footer{
+
+    margin-top:35px;
+
+    color:#cfcfcf;
+
+    font-size:14px;
+
+}
+
+@media(max-width:600px){
+
+.container{
+
+padding:40px 25px;
+
+}
+
+.logo{
+
+width:110px;
+
+}
+
+h1{
+
+font-size:32px;
+
+}
+
+p{
+
+font-size:16px;
+
+}
+
+.start{
+
+width:100%;
+
+}
+
+}
+
+</style></head>
 
 <body>
 
-<div id="splash">
+<div class="container">
 
     <div class="language">
-        <button id="fr">🇫🇷 FR</button>
-        <button id="en">🇬🇧 EN</button>
+        <button onclick="setFrench()">🇫🇷 FR</button>
+        <button onclick="setEnglish()">🇬🇧 EN</button>
     </div>
 
-    <img src="logo.png" alt="Zysell Logo" class="logo">
+    <img src="logo.png" alt="Zysell" class="logo">
 
     <h1 id="title">
-        Bienvenue sur Zysell
+        Créez. Vendez. Encaissez.
     </h1>
 
     <p id="subtitle">
-        La plateforme moderne de vente de produits digitaux.
+        Lancez votre activité digitale avec Zysell.
+        Créez votre boutique, vendez vos produits numériques
+        et recevez vos paiements facilement.
     </p>
 
-    <a href="signup.html" id="startBtn">
+    <a href="signup.html" class="start" id="startButton">
         Commencer
     </a>
 
-</div>
-
-<script src="lang.js"></script>
-<script src="app.js"></script>
-
-</body>
-</html>    </button>
+    <div class="footer">
+        © 2026 Zysell. Tous droits réservés.
+    </div>
 
 </div>
 
-<script src="lang.js"></script>
-<script src="app.js"></script>
+<script>
+
+function setFrench(){
+
+document.documentElement.lang="fr";
+
+document.getElementById("title").innerHTML="Créez. Vendez. Encaissez.";
+
+document.getElementById("subtitle").innerHTML=
+"Lancez votre activité digitale avec Zysell. Créez votre boutique, vendez vos produits numériques et recevez vos paiements facilement.";
+
+document.getElementById("startButton").innerHTML="Commencer";
+
+}
+
+function setEnglish(){
+
+document.documentElement.lang="en";
+
+document.getElementById("title").innerHTML="Create. Sell. Get Paid.";
+
+document.getElementById("subtitle").innerHTML=
+"Launch your digital business with Zysell. Create your store, sell digital products and receive payments easily.";
+
+document.getElementById("startButton").innerHTML="Get Started";
+
+}
+
+if(navigator.language.startsWith("en")){
+    setEnglish();
+}else{
+    setFrench();
+}
+
+</script>
 
 </body>
+
 </html>
