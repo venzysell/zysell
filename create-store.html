@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Créer ma boutique | Zysell</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:
+radial-gradient(circle at top,#284cff 0%,#0d1738 45%,#060b18 100%);
+
+overflow-y:auto;
+padding:40px 20px;
+color:white;
+
+}
+
+body::before{
+
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+border-radius:50%;
+background:rgba(0,153,255,.18);
+filter:blur(120px);
+top:-250px;
+right:-150px;
+
+}
+
+body::after{
+
+content:"";
+position:fixed;
+width:600px;
+height:600px;
+border-radius:50%;
+background:rgba(123,44,255,.18);
+filter:blur(120px);
+bottom:-250px;
+left:-150px;
+
+}
+
+.card{
+
+position:relative;
+z-index:2;
+
+width:100%;
+max-width:700px;
+
+padding:45px;
+
+border-radius:28px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.15);
+
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+}
+
+.logo{
+
+width:100px;
+display:block;
+margin:auto;
+margin-bottom:20px;
+
+}
+
+h1{
+
+text-align:center;
+font-size:34px;
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+text-align:center;
+color:#d8d8d8;
+margin-bottom:35px;
+line-height:1.6;
+
+}
+
+.section-title{
+
+font-size:18px;
+margin:25px 0 15px;
+font-weight:600;
+
+}
+
+.upload-box{
+
+width:140px;
+height:140px;
+
+border:2px dashed rgba(255,255,255,.35);
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+margin:auto;
+
+cursor:pointer;
+
+font-size:45px;
+
+color:#8fc5ff;
+
+overflow:hidden;
+
+}
+
+.upload-box img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+.banner{
+
+width:100%;
+height:180px;
+
+border-radius:18px;
+
+border:2px dashed rgba(255,255,255,.25);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+cursor:pointer;
+
+margin-top:15px;
+
+overflow:hidden;
+
+}
+
+.banner img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+.input-group{
+
+margin-top:18px;
+
+}
+
+.input-group label{
+
+display:block;
+margin-bottom:8px;
+
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+outline:none;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+font-size:15px;
+
+}
+
+textarea{
+
+resize:none;
+height:120px;
+
+}
+
+select option{
+
+color:black;
+
+}
+
+.create{
+
+width:100%;
+
+padding:18px;
+
+margin-top:35px;
+
+border:none;
+
+border-radius:50px;
+
+background:linear-gradient(90deg,#1d7cff,#7b2cff);
+
+color:white;
+
+font-size:18px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.create:hover{
+
+transform:translateY(-3px);
+
+}
+
+.status{
+
+margin-top:8px;
+font-size:14px;
+color:#8fd0ff;
+
+}
+
+@media(max-width:600px){
+
+.card{
+
+padding:30px 20px;
+
+}
+
+h1{
+
+font-size:28px;
+
+}
+
+}
+
+</style>
+
+</head><body>
+
+<div class="card">
+
+<img src="logo.png" class="logo" alt="Zysell">
+
+<h1>Créer votre boutique</h1>
+
+<p class="subtitle">
+Quelques informations suffisent pour commencer à vendre sur Zysell.
+</p>
+
+<form id="storeForm">
+
+<h3 class="section-title">Logo de la boutique</h3>
+
+<label class="upload-box">
+
+<input
+type="file"
+id="storeLogo"
+accept="image/*"
+hidden>
+
+<img id="logoPreview" style="display:none;">
+
+<span id="logoIcon">+</span>
+
+</label>
+
+<h3 class="section-title">
+Bannière
+</h3>
+
+<label class="banner">
+
+<input
+type="file"
+id="storeBanner"
+accept="image/*"
+hidden>
+
+<img id="bannerPreview" style="display:none;">
+
+<span id="bannerIcon">
+Ajouter une bannière
+</span>
+
+</label>
+
+<h3 class="section-title">
+Informations
+</h3>
+
+<div class="input-group">
+
+<label>Nom de la boutique</label>
+
+<input
+type="text"
+id="storeName"
+placeholder="Ex : Venzy Academy"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>Nom d'utilisateur</label>
+
+<input
+type="text"
+id="username"
+placeholder="@venzyacademy"
+required>
+
+<div
+class="status"
+id="usernameStatus">
+
+Le nom sera vérifié automatiquement.
+
+</div>
+
+</div>
+
+<div class="input-group">
+
+<label>Description</label>
+
+<textarea
+id="description"
+placeholder="Présentez votre boutique..."></textarea>
+
+</div>
+
+<div class="input-group">
+
+<label>Catégorie</label>
+
+<select id="category">
+
+<option>Formation</option>
+
+<option>Ebook</option>
+
+<option>Logiciel</option>
+
+<option>Musique</option>
+
+<option>Vidéo</option>
+
+<option>Design</option>
+
+<option>Services</option>
+
+<option>Autres</option>
+
+</select>
+
+</div>
+
+<h3 class="section-title">
+Localisation
+</h3>
+
+<div class="input-group">
+
+<label>Pays</label>
+
+<input
+type="text"
+id="country"
+placeholder="Détection automatique...">
+
+</div>
+
+<div class="input-group">
+
+<label>Devise</label>
+
+<input
+type="text"
+id="currency"
+placeholder="Détection automatique...">
+
+</div>
+
+<button
+type="submit"
+class="create">
+
+Créer ma boutique
+
+</button>
+
+</form></div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+import {
+getFirestore,
+doc,
+setDoc
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+import {
+getAuth
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+const firebaseConfig = {
+
+apiKey:"AIzaSyAYuh-EnlgQjlqgBO2HFFeC5Y5uH4TrEds",
+authDomain:"zysell-86604.firebaseapp.com",
+projectId:"zysell-86604",
+storageBucket:"zysell-86604.firebasestorage.app",
+messagingSenderId:"567755208394",
+appId:"1:567755208394:web:754d1eec59cf8a659b2633"
+
+};
+
+const app=initializeApp(firebaseConfig);
+
+const auth=getAuth(app);
+
+const db=getFirestore(app);
+
+/* Aperçu Logo */
+
+const logoInput=document.getElementById("storeLogo");
+const logoPreview=document.getElementById("logoPreview");
+const logoIcon=document.getElementById("logoIcon");
+
+logoInput.addEventListener("change",()=>{
+
+const file=logoInput.files[0];
+
+if(file){
+
+logoPreview.src=URL.createObjectURL(file);
+logoPreview.style.display="block";
+logoIcon.style.display="none";
+
+}
+
+});
+
+/* Aperçu Bannière */
+
+const bannerInput=document.getElementById("storeBanner");
+const bannerPreview=document.getElementById("bannerPreview");
+const bannerIcon=document.getElementById("bannerIcon");
+
+bannerInput.addEventListener("change",()=>{
+
+const file=bannerInput.files[0];
+
+if(file){
+
+bannerPreview.src=URL.createObjectURL(file);
+bannerPreview.style.display="block";
+bannerIcon.style.display="none";
+
+}
+
+});
+
+/* Détection du pays */
+
+fetch("https://ipapi.co/json/")
+
+.then(res=>res.json())
+
+.then(data=>{
+
+document.getElementById("country").value=data.country_name;
+document.getElementById("currency").value=data.currency;
+
+})
+
+.catch(()=>{});
+
+/* Création boutique */
+
+document.getElementById("storeForm").addEventListener("submit",async(e)=>{
+
+e.preventDefault();
+
+const user=auth.currentUser;
+
+if(!user){
+
+alert("Veuillez vous connecter.");
+
+window.location.href="login.html";
+
+return;
+
+}
+
+await setDoc(doc(db,"stores",user.uid),{
+
+uid:user.uid,
+
+storeName:document.getElementById("storeName").value,
+
+username:document.getElementById("username").value,
+
+description:document.getElementById("description").value,
+
+category:document.getElementById("category").value,
+
+country:document.getElementById("country").value,
+
+currency:document.getElementById("currency").value,
+
+createdAt:new Date()
+
+});
+
+window.location.href="home.html";
+
+});
+
+</script>
+
+</body>
+
+</html>
