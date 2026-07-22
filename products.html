@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mes produits | Zysell</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f5f7fc;
+color:#222;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+background:#fff;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.brand img{
+width:45px;
+height:45px;
+}
+
+.brand h2{
+color:#0057ff;
+font-size:24px;
+font-weight:700;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.top-bar{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+
+.top-bar input{
+flex:1;
+padding:14px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:15px;
+}
+
+.add-btn{
+padding:14px 20px;
+border:none;
+border-radius:30px;
+background:#0057ff;
+color:#fff;
+font-weight:600;
+cursor:pointer;
+}
+
+.product{
+display:flex;
+gap:15px;
+background:#fff;
+padding:15px;
+border-radius:18px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+margin-bottom:18px;
+align-items:center;
+}
+
+.product img{
+width:100px;
+height:100px;
+border-radius:12px;
+object-fit:cover;
+}
+
+.product-info{
+flex:1;
+}
+
+.product-info h3{
+margin-bottom:8px;
+}
+
+.price{
+font-size:22px;
+font-weight:700;
+color:#0057ff;
+margin:8px 0;
+}
+
+.actions{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.actions button{
+padding:10px 15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+}
+
+.edit{
+background:#0057ff;
+color:white;
+}
+
+.delete{
+background:#e53935;
+color:white;
+}
+
+</style>
+
+</head><body>
+
+<header>
+
+<div class="brand">
+
+<img src="logo.png" alt="Logo Zysell">
+
+<h2>Zysell</h2>
+
+</div>
+
+<button class="add-btn" id="addProduct">
+
+➕ Ajouter
+
+</button>
+
+</header>
+
+<div class="container">
+
+<div class="top-bar">
+
+<input
+type="text"
+id="searchProduct"
+placeholder="Rechercher un produit...">
+
+</div>
+
+<div id="productsList">
+
+<div class="product">
+
+<img src="logo.png" alt="Produit">
+
+<div class="product-info">
+
+<h3>Chargement...</h3>
+
+<div class="price">
+
+0 FCFA
+
+</div>
+
+<p>
+
+Vos produits apparaîtront ici automatiquement.
+
+</p>
+
+</div>
+
+<div class="actions">
+
+<button class="edit">
+
+✏️ Modifier
+
+</button>
+
+<button class="delete">
+
+🗑️ Supprimer
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div><script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+query,
+where,
+getDocs,
+deleteDoc,
+doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyAYuh-EnlgQjlqgBO2HFFeC5Y5uH4TrEds",
+authDomain:"zysell-86604.firebaseapp.com",
+projectId:"zysell-86604",
+storageBucket:"zysell-86604.firebasestorage.app",
+messagingSenderId:"567755208394",
+appId:"1:567755208394:web:754d1eec59cf8a659b2633"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+let allProducts=[];
+
+addProduct.onclick=()=>{
+location.href="add-product.html";
+};
+
+onAuthStateChanged(auth,async(user)=>{
+
+if(!user){
+location.href="login.html";
+return;
+}
+
+const q=query(
+collection(db,"products"),
+where("uid","==",user.uid)
+);
+
+const snap=await getDocs(q);
+
+allProducts=[];
+
+snap.forEach(d=>{
+
+allProducts.push({
+id:d.id,
+...d.data()
+});
+
+});
+
+displayProducts(allProducts);
+
+});
+
+function displayProducts(list){
+
+productsList.innerHTML="";
+
+if(list.length===0){
+
+productsList.innerHTML=`
+<div class="product">
+<div class="product-info">
+<h3>Aucun produit</h3>
+<p>Vous n'avez encore publié aucun produit.</p>
+</div>
+</div>
+`;
+
+return;
+
+}
+
+list.forEach(product=>{
+
+productsList.innerHTML+=`
+
+<div class="product">
+
+<img src="${product.image || 'logo.png'}">
+
+<div class="product-info">
+
+<h3>${product.name}</h3>
+
+<div class="price">
+
+${product.price} FCFA
+
+</div>
+
+<p>${product.description}</p>
+
+</div>
+
+<div class="actions">
+
+<button class="edit"
+onclick="editProduct('${product.id}')">
+
+✏️ Modifier
+
+</button>
+
+<button class="delete"
+onclick="removeProduct('${product.id}')">
+
+🗑️ Supprimer
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+searchProduct.oninput=()=>{
+
+const value=searchProduct.value.toLowerCase();
+
+displayProducts(
+
+allProducts.filter(p=>
+
+p.name.toLowerCase().includes(value)
+
+)
+
+);
+
+};
+
+window.removeProduct=async(id)=>{
+
+if(!confirm("Supprimer ce produit ?")) return;
+
+await deleteDoc(doc(db,"products",id));
+
+location.reload();
+
+};
+
+window.editProduct=(id)=>{
+
+location.href="edit-product.html?id="+id;
+
+};
+
+</script>
+
+</body>
+
+</html>
