@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Boutique | Zysell</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f5f7fc;
+color:#222;
+}
+
+header{
+background:#fff;
+padding:15px 20px;
+display:flex;
+align-items:center;
+gap:15px;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+header img{
+width:45px;
+height:45px;
+}
+
+header h2{
+color:#0057ff;
+font-size:24px;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.store-card{
+background:#fff;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+margin-bottom:25px;
+text-align:center;
+}
+
+.store-logo{
+width:120px;
+height:120px;
+border-radius:50%;
+background:#ddd;
+object-fit:cover;
+margin:auto;
+display:block;
+}
+
+.store-card h1{
+margin-top:15px;
+font-size:30px;
+}
+
+.store-card p{
+margin-top:10px;
+color:#666;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+}
+
+.product{
+background:#fff;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.product img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.product-content{
+padding:18px;
+}
+
+.price{
+font-size:24px;
+font-weight:700;
+color:#0057ff;
+margin:10px 0;
+}
+
+.buy-btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:30px;
+background:#0057ff;
+color:#fff;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+margin-top:15px;
+}
+
+</style>
+
+</head><body>
+
+<header>
+
+<img src="logo.png" alt="Logo Zysell">
+
+<h2>Zysell</h2>
+
+</header>
+
+<div class="container">
+
+<div class="store-card">
+
+<img src="logo.png" id="storeLogo" class="store-logo" alt="Logo Boutique">
+
+<h1 id="storeName">Nom de la boutique</h1>
+
+<p id="storeUsername">@username</p>
+
+<p id="storeDescription">
+Bienvenue dans notre boutique Zysell.
+</p>
+
+</div>
+
+<div class="products" id="products">
+
+<div class="product">
+
+<img src="logo.png" alt="Produit">
+
+<div class="product-content">
+
+<h2>Produit exemple</h2>
+
+<div class="price">
+
+0 FCFA
+
+</div>
+
+<p>
+
+Les produits publiés apparaîtront ici automatiquement.
+
+</p>
+
+<button class="buy-btn">
+
+Acheter
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="loading" style="text-align:center;padding:20px;display:none;">
+
+Chargement...
+
+</div><script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+query,
+where,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey:"AIzaSyAYuh-EnlgQjlqgBO2HFFeC5Y5uH4TrEds",
+authDomain:"zysell-86604.firebaseapp.com",
+projectId:"zysell-86604",
+storageBucket:"zysell-86604.firebasestorage.app",
+messagingSenderId:"567755208394",
+appId:"1:567755208394:web:754d1eec59cf8a659b2633"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const params = new URLSearchParams(location.search);
+const username = params.get("user");
+
+if(!username){
+
+document.getElementById("storeName").textContent="Boutique introuvable";
+
+document.getElementById("products").innerHTML="<p>Aucune boutique sélectionnée.</p>";
+
+}else{
+
+loadStore(username);
+
+}
+
+async function loadStore(username){
+
+loading.style.display="block";
+
+const storeQuery=query(
+collection(db,"stores"),
+where("username","==",username)
+);
+
+const storeSnap=await getDocs(storeQuery);
+
+if(storeSnap.empty){
+
+loading.style.display="none";
+
+storeName.textContent="Boutique introuvable";
+
+products.innerHTML="<p>Aucun résultat.</p>";
+
+return;
+
+}
+
+const store=storeSnap.docs[0].data();
+
+storeName.textContent=store.storeName;
+
+storeUsername.textContent="@"+store.username;
+
+storeDescription.textContent=store.description;
+
+const productQuery=query(
+collection(db,"products"),
+where("uid","==",store.uid)
+);
+
+const productSnap=await getDocs(productQuery);
+
+products.innerHTML="";
+
+if(productSnap.empty){
+
+products.innerHTML=`
+
+<div class="product">
+
+<div class="product-content">
+
+<h2>Aucun produit</h2>
+
+<p>Cette boutique n'a encore publié aucun produit.</p>
+
+</div>
+
+</div>
+
+`;
+
+loading.style.display="none";
+
+return;
+
+}
+
+productSnap.forEach(doc=>{
+
+const p=doc.data();
+
+products.innerHTML+=`
+
+<div class="product">
+
+<img src="${p.image || 'logo.png'}" alt="${p.name}">
+
+<div class="product-content">
+
+<h2>${p.name}</h2>
+
+<div class="price">
+
+${p.price} FCFA
+
+</div>
+
+<p>${p.description}</p>
+
+<button class="buy-btn">
+
+Acheter
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+loading.style.display="none";
+
+}
+
+</script>
+
+</body>
+
+</html>
