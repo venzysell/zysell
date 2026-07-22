@@ -1,105 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un compte | Zysell</title>
 
-<title>Créer un compte | Zysell</title>
+    <link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="signup-page">
+<div class="signup-container">
 
-<div class="signup-card">
+    <div class="signup-card">
 
-<img src="logo.png" class="signup-logo" alt="Zysell">
+        <img src="logo.png" class="signup-logo" alt="Zysell">
 
-<h1 id="signupTitle">
-Créer votre compte
-</h1>
+        <h1>Créer votre compte</h1>
 
-<p id="signupSubtitle">
-Commencez à vendre vos produits digitaux en quelques minutes.
-</p>
+        <p>
+            Commencez à vendre vos produits digitaux en quelques minutes.
+        </p>
 
-<form>
+        <form>
 
-<div class="input-group">
+            <input type="text" placeholder="Nom" required>
 
-<input
-type="text"
-placeholder="Nom"
-required>
+            <input type="text" placeholder="Prénom" required>
 
-</div>
+            <input type="email" placeholder="Adresse e-mail" required>
 
-<div class="input-group">
+            <button class="create-account">
+                Créer mon compte
+            </button>
 
-<input
-type="text"
-placeholder="Prénom"
-required>
+        </form>
 
-</div>
+        <div class="separator">
+            <span>OU</span>
+        </div>
 
-<div class="input-group">
+        <button class="google-btn">
 
-<input
-type="email"
-placeholder="Adresse e-mail"
-required>
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
 
-</div>
+            Continuer avec Google
 
-<button
-type="submit"
-class="create-btn">
+        </button>
 
-Créer mon compte
+        <div class="login">
 
-</button>
+            Vous avez déjà un compte ?
 
-</form>
+            <a href="#">Se connecter</a>
 
-<div class="separator">
+        </div>
 
-<span>Ou</span>
-
-</div>
-
-<button class="google-btn">
-
-<img
-src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-alt="Google">
-
-Continuer avec Google
-
-</button>
-
-<p class="login-link">
-
-Vous avez déjà un compte ?
-
-<a href="#">
-
-Se connecter
-
-</a>
-
-</p>
-
-</div>
+    </div>
 
 </div>
 
@@ -107,4 +71,5 @@ Se connecter
 <script src="app.js"></script>
 
 </body>
+
 </html>
