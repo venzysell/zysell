@@ -500,4 +500,116 @@ color:#fff;
     color:#60a5fa;
     text-decoration:none;
     font-weight:600;
-   }
+   }/* ===========================
+   DASHBOARD
+=========================== */
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:260px;
+    background:#10162f;
+    color:#fff;
+    padding:30px 20px;
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    border-right:1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-logo{
+    width:70px;
+    display:block;
+    margin:0 auto 15px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:35px;
+    font-size:26px;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+
+.sidebar li{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.sidebar li:hover,
+.sidebar li.active{
+    background:linear-gradient(90deg,#1d7cff,#7b2cff);
+}
+
+.content{
+    flex:1;
+    margin-left:260px;
+    padding:40px;
+}
+
+.content h1{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.content p{
+    color:#bdbdbd;
+    margin-bottom:35px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-bottom:35px;
+}
+
+.card{
+    background:#141c39;
+    border-radius:18px;
+    padding:25px;
+    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.card h3{
+    color:#b8b8b8;
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+.card h2{
+    font-size:34px;
+}
+
+@media(max-width:900px){
+
+.sidebar{
+    width:100%;
+    height:auto;
+    position:relative;
+}
+
+.content{
+    margin-left:0;
+    padding:25px;
+}
+
+.dashboard{
+    flex-direction:column;
+}
+
+}
