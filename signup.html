@@ -330,6 +330,130 @@ Vous avez déjà un compte ?
 
 <a href="login.html">
 Se connecter
-</a>
+</a></div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+GoogleAuthProvider,
+signInWithPopup
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyAYuh-EnlgQjlqgBO2HFFeC5Y5uH4TrEds",
+
+authDomain: "zysell-86604.firebaseapp.com",
+
+projectId: "zysell-86604",
+
+storageBucket: "zysell-86604.firebasestorage.app",
+
+messagingSenderId: "567755208394",
+
+appId: "1:567755208394:web:754d1eec59cf8a659b2633"
+
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+function togglePassword(id, element){
+
+const input = document.getElementById(id);
+
+if(input.type === "password"){
+input.type = "text";
+element.textContent = "Masquer";
+}else{
+input.type = "password";
+element.textContent = "Afficher";
+}
+
+}
+
+window.togglePassword = togglePassword;
+
+const form = document.getElementById("signupForm");
+const error = document.getElementById("error");
+
+form.addEventListener("submit", async(e)=>{
+
+e.preventDefault();
+
+const email = document.getElementById("email").value.trim();
+const password = document.getElementById("password").value;
+const confirm = document.getElementById("confirmPassword").value;
+
+if(password !== confirm){
+
+error.style.display="block";
+error.textContent="Les mots de passe ne correspondent pas.";
+return;
+
+}
+
+error.style.display="none";
+
+try{
+
+await createUserWithEmailAndPassword(auth,email,password);
+
+window.location.href="dashboard.html";
+
+}catch(err){
+
+error.style.display="block";
+
+switch(err.code){
+
+case "auth/email-already-in-use":
+error.textContent="Cette adresse e-mail est déjà utilisée.";
+break;
+
+case "auth/weak-password":
+error.textContent="Le mot de passe doit contenir au moins 6 caractères.";
+break;
+
+case "auth/invalid-email":
+error.textContent="Adresse e-mail invalide.";
+break;
+
+default:
+error.textContent=err.message;
+
+}
+
+}
+
+});
+
+document.getElementById("googleSignUp").addEventListener("click",async()=>{
+
+try{
+
+await signInWithPopup(auth,provider);
+
+window.location.href="dashboard.html";
+
+}catch(err){
+
+error.style.display="block";
+error.textContent=err.message;
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>
 
 </div>
