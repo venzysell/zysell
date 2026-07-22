@@ -363,4 +363,90 @@ Créer un compte
 
 </div>
 
-</section>
+</section><footer>
+
+<div class="container">
+
+<p id="footerText">
+
+© 2026 Zysell. Tous droits réservés.
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+const translations = {
+
+fr:{
+
+title:"Créez. Vendez. Encaissez.",
+
+subtitle:"La plateforme internationale dédiée à la vente et à l'achat de produits numériques.",
+
+login:"Se connecter",
+
+signup:"Créer un compte",
+
+searchCountry:"🌍 Sélectionnez votre pays",
+
+footer:"© 2026 Zysell. Tous droits réservés."
+
+},
+
+en:{
+
+title:"Create. Sell. Get Paid.",
+
+subtitle:"The international platform for buying and selling digital products.",
+
+login:"Sign In",
+
+signup:"Create Account",
+
+searchCountry:"🌍 Select your country",
+
+footer:"© 2026 Zysell. All rights reserved."
+
+}
+
+};
+
+const language=document.getElementById("language");
+
+language.addEventListener("change",()=>{
+
+const lang=language.value;
+
+localStorage.setItem("language",lang);
+
+document.documentElement.lang=lang;
+
+document.getElementById("title").textContent=translations[lang].title;
+
+document.getElementById("subtitle").textContent=translations[lang].subtitle;
+
+document.querySelector(".btn-primary").textContent=translations[lang].login;
+
+document.querySelector(".btn-outline").textContent=translations[lang].signup;
+
+document.getElementById("countrySearch").placeholder=translations[lang].searchCountry;
+
+document.getElementById("footerText").textContent=translations[lang].footer;
+
+});
+
+const savedLanguage=localStorage.getItem("language")||"fr";
+
+language.value=savedLanguage;
+
+language.dispatchEvent(new Event("change"));
+
+</script>
+
+</body>
+
+</html>
