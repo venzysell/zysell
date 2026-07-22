@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zysell - Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#0f172a;color:#fff}
+.sidebar{position:fixed;left:0;top:0;width:240px;height:100vh;background:#111827;padding:24px}
+.sidebar h2{margin-bottom:24px}
+.sidebar a{display:block;color:#cbd5e1;text-decoration:none;padding:12px 0}
+.main{margin-left:240px;padding:30px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#1e293b;padding:20px;border-radius:16px}
+.btn{display:inline-block;margin-top:24px;background:#2563eb;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none}
+table{width:100%;margin-top:30px;border-collapse:collapse}
+th,td{padding:12px;border-bottom:1px solid #334155;text-align:left}
+@media(max-width:768px){
+.sidebar{position:relative;width:100%;height:auto}
+.main{margin-left:0}
+}
+</style>
+</head>
+<body>
+<div class="sidebar">
+<h2>Zysell</h2>
+<a href="#">🏠 Tableau de bord</a>
+<a href="#">📦 Produits</a>
+<a href="#">🛒 Commandes</a>
+<a href="#">💳 Paiements</a>
+<a href="#">📊 Statistiques</a>
+<a href="#">⚙️ Paramètres</a>
+</div>
+<div class="main">
+<div class="top">
+<h1>Bienvenue sur Zysell</h1>
+<div>👤 Mon compte</div>
+</div>
+<div class="cards">
+<div class="card"><h3>Produits</h3><h2>0</h2></div>
+<div class="card"><h3>Commandes</h3><h2>0</h2></div>
+<div class="card"><h3>Revenus</h3><h2>0 FCFA</h2></div>
+<div class="card"><h3>Clients</h3><h2>0</h2></div>
+</div>
+<a href="#" class="btn">+ Ajouter un produit</a>
+<table>
+<tr><th>Commande</th><th>Client</th><th>Montant</th><th>Statut</th></tr>
+<tr><td colspan="4">Aucune commande pour le moment.</td></tr>
+</table>
+</div>
+</body>
+</html>
