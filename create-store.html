@@ -4,11 +4,13 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Créer ma boutique | Zysell</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,53 +26,85 @@ font-family:'Poppins',sans-serif;
 
 body{
 
-background:linear-gradient(135deg,#0f172a,#1d4ed8,#7c3aed);
+background:linear-gradient(135deg,#0057ff,#4f46e5,#7c3aed);
+
 min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
+
+padding:25px;
 
 }
 
 .container{
 
-width:100%;
-max-width:650px;
+max-width:760px;
+
+margin:auto;
 
 background:white;
 
 border-radius:25px;
 
+overflow:hidden;
+
+box-shadow:0 15px 45px rgba(0,0,0,.18);
+
+}
+
+.header{
+
+background:linear-gradient(135deg,#0057ff,#4f46e5);
+
+padding:35px 25px;
+
+text-align:center;
+
+color:white;
+
+}
+
+.logo{
+
+width:90px;
+
+height:90px;
+
+object-fit:contain;
+
+display:block;
+
+margin:auto;
+
+}
+
+.header h1{
+
+margin-top:18px;
+
+font-size:30px;
+
+font-weight:700;
+
+}
+
+.header p{
+
+margin-top:8px;
+
+opacity:.95;
+
+font-size:16px;
+
+}
+
+.content{
+
 padding:30px;
-
-box-shadow:0 15px 40px rgba(0,0,0,.25);
-
-}
-
-h1{
-
-text-align:center;
-
-margin-bottom:10px;
-
-color:#1d4ed8;
-
-}
-
-.subtitle{
-
-text-align:center;
-
-color:#666;
-
-margin-bottom:30px;
 
 }
 
 .input-group{
 
-margin-bottom:18px;
+margin-bottom:20px;
 
 }
 
@@ -78,9 +112,11 @@ label{
 
 display:block;
 
+margin-bottom:8px;
+
 font-weight:600;
 
-margin-bottom:8px;
+color:#222;
 
 }
 
@@ -94,11 +130,13 @@ padding:15px;
 
 border:1px solid #ddd;
 
-border-radius:12px;
+border-radius:14px;
 
 font-size:16px;
 
 outline:none;
+
+transition:.25s;
 
 }
 
@@ -106,15 +144,57 @@ input:focus,
 textarea:focus,
 select:focus{
 
-border-color:#1d4ed8;
+border-color:#0057ff;
 
 }
 
 textarea{
 
+resize:vertical;
+
 min-height:120px;
 
-resize:vertical;
+}
+
+.upload-box{
+
+border:2px dashed #0057ff;
+
+border-radius:18px;
+
+padding:25px;
+
+text-align:center;
+
+cursor:pointer;
+
+background:#f8faff;
+
+}
+
+.preview{
+
+display:none;
+
+margin-top:15px;
+
+}
+
+.preview img{
+
+width:100%;
+
+border-radius:18px;
+
+}
+
+.row{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:15px;
 
 }
 
@@ -122,15 +202,13 @@ button{
 
 width:100%;
 
-padding:16px;
-
-margin-top:20px;
+padding:18px;
 
 border:none;
 
-border-radius:14px;
+border-radius:15px;
 
-background:#1d4ed8;
+background:linear-gradient(135deg,#0057ff,#4f46e5);
 
 color:white;
 
@@ -139,14 +217,6 @@ font-size:18px;
 font-weight:700;
 
 cursor:pointer;
-
-transition:.3s;
-
-}
-
-button:hover{
-
-background:#155dfc;
 
 }
 
@@ -160,7 +230,23 @@ margin-top:15px;
 
 font-weight:600;
 
-color:#1d4ed8;
+color:#0057ff;
+
+}
+
+@media(max-width:700px){
+
+.row{
+
+grid-template-columns:1fr;
+
+}
+
+.content{
+
+padding:20px;
+
+}
 
 }
 
@@ -170,42 +256,109 @@ color:#1d4ed8;
 
 <div class="container">
 
+<div class="header">
+
+<img src="logo.png" class="logo" alt="Logo Zysell">
+
 <h1>Créer ma boutique</h1>
 
-<p class="subtitle">
-Quelques informations suffisent pour ouvrir votre boutique sur Zysell.
-</p>
+<p>Créez votre boutique et commencez à vendre sur Zysell.</p>
+
+</div>
+
+<div class="content">
 
 <form id="storeForm">
 
 <div class="input-group">
+
+<label>Logo de la boutique</label>
+
+<label class="upload-box">
+
+📷 Cliquez pour choisir un logo
+
+<input
+type="file"
+id="storeLogo"
+accept="image/*"
+hidden>
+
+</label>
+
+<div class="preview" id="logoPreview">
+
+<img id="logoImage" alt="Logo">
+
+</div>
+
+</div>
+
+<div class="input-group">
+
+<label>Bannière de la boutique</label>
+
+<label class="upload-box">
+
+🖼️ Cliquez pour choisir une bannière
+
+<input
+type="file"
+id="storeBanner"
+accept="image/*"
+hidden>
+
+</label>
+
+<div class="preview" id="bannerPreview">
+
+<img id="bannerImage" alt="Bannière">
+
+</div>
+
+</div>
+
+<div class="input-group">
+
 <label>Nom de la boutique</label>
+
 <input
 type="text"
 id="storeName"
 placeholder="Ex : Venzy Academy"
 required>
+
 </div>
 
 <div class="input-group">
+
 <label>Nom d'utilisateur</label>
+
 <input
 type="text"
 id="username"
-placeholder="Ex : venzyacademy"
+placeholder="@venzyacademy"
 required>
+
 </div>
 
 <div class="input-group">
+
 <label>Description</label>
+
 <textarea
 id="description"
 placeholder="Présentez votre boutique..."
 required></textarea>
+
 </div>
 
+<div class="row">
+
 <div class="input-group">
+
 <label>Catégorie</label>
+
 <select id="category" required>
 
 <option value="">Choisir une catégorie</option>
@@ -216,51 +369,62 @@ required></textarea>
 
 <option>Services</option>
 
-<option>Créateur de contenu</option>
-
 <option>Photographie</option>
-
-<option>Musique</option>
 
 <option>Vidéo</option>
 
-<option>Logiciel</option>
+<option>Musique</option>
 
-<option>Design</option>
+<option>Logiciel</option>
 
 <option>Marketing</option>
 
 <option>Autre</option>
 
 </select>
+
 </div>
 
 <div class="input-group">
+
 <label>Pays</label>
+
 <input
 type="text"
 id="country"
-placeholder="Ex : Cameroon"
-required>
+readonly>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="input-group">
+
+<label>Devise</label>
+
+<input
+type="text"
+id="currency"
+readonly>
+
 </div>
 
 <div class="input-group">
-<label>Devise</label>
-<select id="currency">
 
-<option>XAF</option>
+<label>Langue</label>
 
-<option>USD</option>
+<select id="language">
 
-<option>EUR</option>
+<option value="fr">Français</option>
 
-<option>GBP</option>
-
-<option>CDF</option>
-
-<option>NGN</option>
+<option value="en">English</option>
 
 </select>
+
+</div>
+
 </div>
 
 <button type="submit">
@@ -270,18 +434,16 @@ Créer ma boutique
 </button>
 
 <div class="loading" id="loading">
+
 Création de votre boutique...
+
 </div>
 
-</form>
-
-</div><script type="module">
+</form><script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import {
-getAuth
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
 getFirestore,
@@ -290,7 +452,7 @@ addDoc,
 serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const firebaseConfig = {
+const firebaseConfig={
 
 apiKey:"AIzaSyAYuh-EnlgQjlqgBO2HFFeC5Y5uH4TrEds",
 
@@ -312,11 +474,61 @@ const auth=getAuth(app);
 
 const db=getFirestore(app);
 
-document.getElementById("storeForm").addEventListener("submit",async(e)=>{
+/* Aperçu logo */
+
+storeLogo.onchange=()=>{
+
+const file=storeLogo.files[0];
+
+if(file){
+
+logoPreview.style.display="block";
+
+logoImage.src=URL.createObjectURL(file);
+
+}
+
+};
+
+/* Aperçu bannière */
+
+storeBanner.onchange=()=>{
+
+const file=storeBanner.files[0];
+
+if(file){
+
+bannerPreview.style.display="block";
+
+bannerImage.src=URL.createObjectURL(file);
+
+}
+
+};
+
+/* Détection pays */
+
+fetch("https://ipapi.co/json/")
+
+.then(r=>r.json())
+
+.then(data=>{
+
+country.value=data.country_name||"";
+
+currency.value=data.currency||"";
+
+})
+
+.catch(()=>{});
+
+/* Création boutique */
+
+storeForm.addEventListener("submit",async(e)=>{
 
 e.preventDefault();
 
-document.getElementById("loading").style.display="block";
+loading.style.display="block";
 
 const user=auth.currentUser;
 
@@ -324,7 +536,7 @@ if(!user){
 
 alert("Veuillez vous connecter.");
 
-window.location.href="login.html";
+location.href="login.html";
 
 return;
 
@@ -336,17 +548,19 @@ await addDoc(collection(db,"stores"),{
 
 uid:user.uid,
 
-storeName:document.getElementById("storeName").value.trim(),
+storeName:storeName.value,
 
-username:document.getElementById("username").value.trim().toLowerCase(),
+username:username.value.toLowerCase(),
 
-description:document.getElementById("description").value.trim(),
+description:description.value,
 
-category:document.getElementById("category").value,
+category:category.value,
 
-country:document.getElementById("country").value.trim(),
+country:country.value,
 
-currency:document.getElementById("currency").value,
+currency:currency.value,
+
+language:language.value,
 
 createdAt:serverTimestamp()
 
@@ -354,15 +568,13 @@ createdAt:serverTimestamp()
 
 alert("Boutique créée avec succès !");
 
-window.location.href="home.html";
+location.href="home.html";
 
 }catch(error){
 
-document.getElementById("loading").style.display="none";
+loading.style.display="none";
 
-alert("Erreur : "+error.message);
-
-console.error(error);
+alert(error.message);
 
 }
 
@@ -370,5 +582,10 @@ console.error(error);
 
 </script>
 
+</div>
+
+</div>
+
 </body>
+
 </html>
