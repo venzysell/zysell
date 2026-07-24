@@ -7,9 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Zysell | Créez. Vendez. Encaissez.</title>
-
-<meta name="description" content="Zysell est une plateforme internationale permettant de vendre et d'acheter des produits numériques en toute sécurité.">
+<title>Connexion | Zysell</title>
 
 <meta name="theme-color" content="#4F46E5">
 
@@ -32,408 +30,110 @@ box-sizing:border-box;
 font-family:'Inter',sans-serif;
 }
 
-html{
-scroll-behavior:smooth;
-}
-
 body{
 
 background:#F8FAFC;
 
-color:#1E293B;
-
-overflow-x:hidden;
-
-min-height:100vh;
-
-}
-
-a{
-text-decoration:none;
-color:inherit;
-}
-
-button{
-
-border:none;
-
-outline:none;
-
-cursor:pointer;
-
-font-family:inherit;
-
-}
-
-img{
-
-display:block;
-
-max-width:100%;
-
-}
-
-.container{
-
-width:92%;
-
-max-width:1280px;
-
-margin:auto;
-
-}header{
-
-position:sticky;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-background:#FFFFFF;
-
-box-shadow:0 2px 15px rgba(0,0,0,.06);
-
-z-index:1000;
-
-}
-
-nav{
-
-height:80px;
-
 display:flex;
+
+justify-content:center;
 
 align-items:center;
 
-justify-content:space-between;
+min-height:100vh;
 
-gap:20px;
+padding:20px;
+
+}
+
+.login-card{
+
+width:100%;
+
+max-width:430px;
+
+background:#fff;
+
+padding:35px;
+
+border-radius:20px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.08);
 
 }
 
 .logo{
 
-height:50px;
+width:170px;
 
-cursor:pointer;
+margin:0 auto 25px;
 
-}
-
-.nav-right{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
+display:block;
 
 }
 
-.select-box{
-
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
-padding:10px 15px;
-
-background:#F1F5F9;
-
-border-radius:12px;
-
-}
-
-.select-box i{
-
-color:#4F46E5;
-
-font-size:18px;
-
-}
-
-.select-box select{
-
-border:none;
-
-background:transparent;
-
-outline:none;
-
-font-size:15px;
-
-font-weight:600;
-
-cursor:pointer;
-
-}
-
-.hero{
-
-min-height:calc(100vh - 80px);
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
+h1{
 
 text-align:center;
 
-padding:60px 20px;
+font-size:30px;
 
-}
-
-.hero-content{
-
-max-width:760px;
-
-}
-
-.hero-content img{
-
-width:180px;
-
-margin:auto;
-
-margin-bottom:35px;
-
-}
-
-.hero-content h1{
-
-font-size:56px;
-
-font-weight:800;
-
-line-height:1.2;
+margin-bottom:10px;
 
 color:#1E293B;
 
-margin-bottom:20px;
-
 }
 
-.hero-content p{
+.subtitle{
 
-font-size:20px;
-
-line-height:1.8;
+text-align:center;
 
 color:#64748B;
 
-margin-bottom:40px;
+margin-bottom:30px;
+
+font-size:15px;
 
 }
 
-.buttons{
+.input-group{
 
-display:flex;
-
-justify-content:center;
-
-gap:18px;
-
-flex-wrap:wrap;
+margin-bottom:18px;
 
 }
 
-.btn{
+.input-group label{
 
-padding:16px 36px;
+display:block;
 
-border-radius:50px;
+margin-bottom:8px;
 
-font-size:17px;
+font-weight:600;
 
-font-weight:700;
+color:#334155;
+
+}
+
+.input-group input{
+
+width:100%;
+
+padding:15px;
+
+border:1px solid #CBD5E1;
+
+border-radius:12px;
+
+font-size:15px;
+
+outline:none;
 
 transition:.3s;
 
 }
 
-.btn-primary{
+.input-group input:focus{
 
-background:#4F46E5;
-
-color:white;
+border-color:#4F46E5;
 
 }
-
-.btn-primary:hover{
-
-background:#3730A3;
-
-}
-
-.btn-outline{
-
-border:2px solid #4F46E5;
-
-background:white;
-
-color:#4F46E5;
-
-}
-
-.btn-outline:hover{
-
-background:#4F46E5;
-
-color:white;
-
-}
-
-@media(max-width:768px){
-
-nav{
-
-height:auto;
-
-padding:15px 0;
-
-flex-direction:column;
-
-}
-
-.nav-right{
-
-width:100%;
-
-justify-content:center;
-
-flex-wrap:wrap;
-
-}
-
-.hero-content h1{
-
-font-size:38px;
-
-}
-
-.hero-content p{
-
-font-size:17px;
-
-}
-
-.btn{
-
-width:100%;
-
-}
-
-  }</style>
-
-</head>
-
-<body>
-
-<header>
-
-<div class="container">
-
-<nav>
-
-<a href="index.html">
-
-<img src="logo.png" alt="Zysell" class="logo">
-
-</a>
-
-<div class="nav-right">
-
-<div class="select-box">
-
-<i class="fa-solid fa-language"></i>
-
-<select id="language">
-
-<option value="fr">🇫🇷 Français</option>
-
-<option value="en">🇬🇧 English</option>
-
-</select>
-
-</div>
-
-<div class="select-box">
-
-<i class="fa-solid fa-globe"></i>
-
-<select id="country">
-
-<option value="">🌍 Sélectionner un pays</option>
-
-<!-- Les pays seront ajoutés automatiquement en JavaScript
-et classés par ordre alphabétique -->
-
-</select>
-
-</div>
-
-<a href="login.html" class="btn btn-outline">
-
-Se connecter
-
-</a>
-
-<a href="signup.html" class="btn btn-primary">
-
-Créer un compte
-
-</a>
-
-</div>
-
-</nav>
-
-</div>
-
-</header>
-
-<section class="hero">
-
-<div class="container">
-
-<div class="hero-content">
-
-<img src="logo.png" alt="Logo Zysell">
-
-<h1 id="title">
-
-Créez. Vendez. Encaissez.
-
-</h1>
-
-<p id="subtitle">
-
-La plateforme internationale pour acheter et vendre des produits numériques en toute sécurité.
-
-</p>
-
-<div class="buttons">
-
-<a href="signup.html" class="btn btn-primary">
-
-Commencer gratuitement
-
-</a>
-
-<a href="#about" class="btn btn-outline">
-
-Découvrir Zysell
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
