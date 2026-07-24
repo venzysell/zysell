@@ -7,7 +7,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Connexion | Zysell</title>
+<title>Zysell | Créez. Vendez. Encaissez.</title>
+
+<meta name="description" content="La plateforme internationale pour vendre et acheter des produits numériques.">
 
 <meta name="theme-color" content="#4F46E5">
 
@@ -30,247 +32,196 @@ box-sizing:border-box;
 font-family:'Inter',sans-serif;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 
 background:#F8FAFC;
 
-display:flex;
+color:#1E293B;
 
-justify-content:center;
-
-align-items:center;
+overflow-x:hidden;
 
 min-height:100vh;
 
-padding:20px;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+button{
+font-family:inherit;
+cursor:pointer;
+border:none;
+outline:none;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+.container{
+width:92%;
+max-width:1280px;
+margin:auto;
+}header{
+
+position:sticky;
+
+top:0;
+
+z-index:1000;
+
+background:#FFFFFF;
+
+box-shadow:0 2px 15px rgba(0,0,0,.05);
 
 }
 
-.login-card{
+nav{
 
-width:100%;
+height:80px;
 
-max-width:430px;
+display:flex;
 
-background:#fff;
+align-items:center;
 
-padding:35px;
+justify-content:space-between;
 
-border-radius:20px;
-
-box-shadow:0 15px 40px rgba(0,0,0,.08);
+gap:20px;
 
 }
 
 .logo{
 
-width:170px;
-
-margin:0 auto 25px;
-
-display:block;
+height:48px;
 
 }
 
-h1{
-
-text-align:center;
-
-font-size:30px;
-
-margin-bottom:10px;
-
-color:#1E293B;
-
-}
-
-.subtitle{
-
-text-align:center;
-
-color:#64748B;
-
-margin-bottom:30px;
-
-font-size:15px;
-
-}
-
-.input-group{
-
-margin-bottom:18px;
-
-}
-
-.input-group label{
-
-display:block;
-
-margin-bottom:8px;
-
-font-weight:600;
-
-color:#334155;
-
-}
-
-.input-group input{
-
-width:100%;
-
-padding:15px;
-
-border:1px solid #CBD5E1;
-
-border-radius:12px;
-
-font-size:15px;
-
-outline:none;
-
-transition:.3s;
-
-}
-
-.input-group input:focus{
-
-border-color:#4F46E5;
-
-}.password-box{
-
-position:relative;
-
-}
-
-.password-box input{
-
-padding-right:50px;
-
-}
-
-.password-box i{
-
-position:absolute;
-
-right:18px;
-
-top:50%;
-
-transform:translateY(-50%);
-
-cursor:pointer;
-
-color:#64748B;
-
-}
-
-.forgot{
-
-text-align:right;
-
-margin-top:-8px;
-
-margin-bottom:20px;
-
-}
-
-.forgot a{
-
-text-decoration:none;
-
-font-size:14px;
-
-color:#4F46E5;
-
-font-weight:600;
-
-}
-
-.btn{
-
-width:100%;
-
-padding:15px;
-
-border:none;
-
-border-radius:12px;
-
-font-size:16px;
-
-font-weight:700;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-.btn-login{
-
-background:#4F46E5;
-
-color:white;
-
-margin-bottom:15px;
-
-}
-
-.btn-login:hover{
-
-background:#3730A3;
-
-}
-
-.divider{
+.nav-right{
 
 display:flex;
 
 align-items:center;
 
-margin:25px 0;
+gap:15px;
 
-color:#94A3B8;
-
-font-size:14px;
+flex-wrap:wrap;
 
 }
 
-.divider::before,
+.select-box{
 
-.divider::after{
+display:flex;
 
-content:"";
+align-items:center;
 
-flex:1;
+gap:8px;
 
-height:1px;
+background:#F1F5F9;
 
-background:#E2E8F0;
+padding:10px 15px;
 
-}
-
-.divider span{
-
-padding:0 15px;
+border-radius:12px;
 
 }
 
-.google-btn{
+.select-box i{
+
+color:#4F46E5;
+
+}
+
+.select-box select{
+
+background:transparent;
+
+border:none;
+
+outline:none;
+
+font-size:15px;
+
+font-weight:600;
+
+cursor:pointer;
+
+}
+
+.country-search{
+
+position:relative;
+
+}
+
+.country-search input{
+
+width:230px;
+
+padding:12px 15px;
+
+border:1px solid #CBD5E1;
+
+border-radius:12px;
+
+outline:none;
+
+font-size:15px;
+
+background:white;
+
+}
+
+.country-list{
+
+position:absolute;
+
+top:55px;
+
+left:0;
 
 width:100%;
 
-padding:15px;
+max-height:300px;
 
-border:1px solid #CBD5E1;
+overflow-y:auto;
 
 background:white;
 
 border-radius:12px;
 
-font-weight:600;
+box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+display:none;
+
+z-index:1001;
+
+}
+
+.country-item{
+
+padding:12px 15px;
 
 cursor:pointer;
+
+transition:.2s;
+
+font-size:15px;
+
+}
+
+.country-item:hover{
+
+background:#EEF2FF;
+
+}
+
+.hero{
 
 display:flex;
 
@@ -278,128 +229,129 @@ align-items:center;
 
 justify-content:center;
 
-gap:10px;
-
-transition:.3s;
-
-}
-
-.google-btn:hover{
-
-background:#F8FAFC;
-
-}
-
-.signup{
-
 text-align:center;
 
-margin-top:25px;
+min-height:calc(100vh - 80px);
 
-font-size:15px;
-
-color:#64748B;
+padding:60px 20px;
 
 }
 
-.signup a{
+@media(max-width:768px){
 
-color:#4F46E5;
+nav{
 
-font-weight:700;
+flex-direction:column;
 
-text-decoration:none;
+height:auto;
 
-}</style>
+padding:15px 0;
+
+}
+
+.country-search input{
+
+width:100%;
+
+}
+
+.nav-right{
+
+width:100%;
+
+justify-content:center;
+
+}
+
+       }</style>
 
 </head>
 
 <body>
 
-<div class="login-card">
+<header>
 
-<img src="logo.png" alt="Zysell" class="logo">
+<div class="container">
 
-<h1>Connexion</h1>
+<nav>
 
-<p class="subtitle">
+<a href="index.html">
 
-Connectez-vous à votre compte Zysell.
-
-</p>
-
-<form id="loginForm">
-
-<div class="input-group">
-
-<label>Adresse e-mail</label>
-
-<input
-type="email"
-id="email"
-placeholder="Entrez votre adresse e-mail"
-required>
-
-</div>
-
-<div class="input-group">
-
-<label>Mot de passe</label>
-
-<div class="password-box">
-
-<input
-type="password"
-id="password"
-placeholder="Entrez votre mot de passe"
-required>
-
-<i class="fa-solid fa-eye" id="togglePassword"></i>
-
-</div>
-
-</div>
-
-<div class="forgot">
-
-<a href="forgot-password.html">
-
-Mot de passe oublié ?
+<img src="logo.png" class="logo" alt="Zysell Logo">
 
 </a>
 
+<div class="nav-right">
+
+<div class="select-box">
+
+<i class="fa-solid fa-language"></i>
+
+<select id="language">
+
+<option value="fr">🇫🇷 Français</option>
+
+<option value="en">🇬🇧 English</option>
+
+</select>
+
 </div>
 
-<button
-type="submit"
-class="btn btn-login">
+<div class="country-search">
+
+<input
+type="text"
+id="countrySearch"
+placeholder="🌍 Sélectionnez votre pays">
+
+<div class="country-list" id="countryList">
+
+<!-- Tous les pays du monde seront ajoutés automatiquement par JavaScript,
+classés par ordre alphabétique avec recherche instantanée -->
+
+</div>
+
+</div>
+
+</div>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<div class="hero-content">
+
+<img src="logo.png"
+alt="Zysell"
+style="width:180px;margin:auto;margin-bottom:35px;">
+
+<h1 id="title">
+
+Créez. Vendez. Encaissez.
+
+</h1>
+
+<p id="subtitle">
+
+La plateforme internationale dédiée à la vente et à l'achat de produits numériques.
+
+</p>
+
+<div class="buttons">
+
+<a href="login.html" class="btn btn-primary">
 
 Se connecter
 
-</button>
+</a>
 
-<div class="divider">
-
-<span>OU</span>
-
-</div>
-
-<button
-type="button"
-class="google-btn"
-id="googleLogin">
-
-<i class="fa-brands fa-google"></i>
-
-Continuer avec Google
-
-</button>
-
-<div class="signup">
-
-Vous n'avez pas de compte ?
-
-<a href="signup.html">
+<a href="signup.html" class="btn btn-outline">
 
 Créer un compte
 
@@ -407,6 +359,94 @@ Créer un compte
 
 </div>
 
-</form>
+</div>
 
 </div>
+
+</section><footer>
+
+<div class="container">
+
+<p id="footerText">
+
+© 2026 Zysell. Tous droits réservés.
+
+</p>
+
+</div>
+
+</footer>
+
+<script>
+
+const translations = {
+
+fr:{
+
+title:"Créez. Vendez. Encaissez.",
+
+subtitle:"La plateforme internationale dédiée à la vente et à l'achat de produits numériques.",
+
+login:"Se connecter",
+
+signup:"Créer un compte",
+
+searchCountry:"🌍 Sélectionnez votre pays",
+
+footer:"© 2026 Zysell. Tous droits réservés."
+
+},
+
+en:{
+
+title:"Create. Sell. Get Paid.",
+
+subtitle:"The international platform for buying and selling digital products.",
+
+login:"Sign In",
+
+signup:"Create Account",
+
+searchCountry:"🌍 Select your country",
+
+footer:"© 2026 Zysell. All rights reserved."
+
+}
+
+};
+
+const language=document.getElementById("language");
+
+language.addEventListener("change",()=>{
+
+const lang=language.value;
+
+localStorage.setItem("language",lang);
+
+document.documentElement.lang=lang;
+
+document.getElementById("title").textContent=translations[lang].title;
+
+document.getElementById("subtitle").textContent=translations[lang].subtitle;
+
+document.querySelector(".btn-primary").textContent=translations[lang].login;
+
+document.querySelector(".btn-outline").textContent=translations[lang].signup;
+
+document.getElementById("countrySearch").placeholder=translations[lang].searchCountry;
+
+document.getElementById("footerText").textContent=translations[lang].footer;
+
+});
+
+const savedLanguage=localStorage.getItem("language")||"fr";
+
+language.value=savedLanguage;
+
+language.dispatchEvent(new Event("change"));
+
+</script>
+
+</body>
+
+</html>
