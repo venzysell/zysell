@@ -4,12 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Zysell | Créez. Vendez. Encaissez.</title>
+<title>Zysell | Marketplace de produits numériques</title>
 
-<meta name="description" content="La plateforme internationale pour vendre et acheter des produits numériques.">
+<meta name="description" content="Achetez et vendez des produits numériques partout dans le monde avec Zysell.">
 
 <meta name="theme-color" content="#4F46E5">
 
@@ -19,73 +18,167 @@
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
 
 <style>
 
+:root{
+
+--primary:#4F46E5;
+--primary-hover:#4338CA;
+--secondary:#2563EB;
+
+--success:#16A34A;
+--warning:#F59E0B;
+--danger:#DC2626;
+
+--background:#F8FAFC;
+--surface:#FFFFFF;
+
+--text:#0F172A;
+--text-light:#64748B;
+
+--border:#E2E8F0;
+
+--shadow:0 12px 35px rgba(15,23,42,.08);
+
+--radius:18px;
+
+--transition:.30s;
+
+}
+
+[data-theme="dark"]{
+
+--background:#0F172A;
+
+--surface:#1E293B;
+
+--text:#F8FAFC;
+
+--text-light:#CBD5E1;
+
+--border:#334155;
+
+--shadow:0 12px 35px rgba(0,0,0,.45);
+
+}
+
 *{
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
-font-family:'Inter',sans-serif;
+
+font-family:"Inter",sans-serif;
+
 }
 
 html{
+
 scroll-behavior:smooth;
+
 }
 
 body{
 
-background:#F8FAFC;
+background:var(--background);
 
-color:#1E293B;
+color:var(--text);
+
+transition:var(--transition);
 
 overflow-x:hidden;
-
-min-height:100vh;
 
 }
 
 a{
+
 text-decoration:none;
+
 color:inherit;
+
 }
 
 button{
+
 font-family:inherit;
+
 cursor:pointer;
+
 border:none;
+
 outline:none;
+
+transition:var(--transition);
+
+}
+
+input,
+select,
+textarea{
+
+font-family:inherit;
+
+outline:none;
+
 }
 
 img{
-max-width:100%;
+
 display:block;
+
+max-width:100%;
+
 }
 
 .container{
-width:92%;
-max-width:1280px;
+
+width:min(92%,1280px);
+
 margin:auto;
+
 }header{
 
-position:sticky;
+position:fixed;
 
 top:0;
 
+left:0;
+
+width:100%;
+
+height:80px;
+
+display:flex;
+
+align-items:center;
+
+background:rgba(255,255,255,.90);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid var(--border);
+
 z-index:1000;
 
-background:#FFFFFF;
+transition:var(--transition);
 
-box-shadow:0 2px 15px rgba(0,0,0,.05);
+}
+
+[data-theme="dark"] header{
+
+background:rgba(15,23,42,.90);
 
 }
 
 nav{
 
-height:80px;
+width:100%;
 
 display:flex;
 
@@ -99,129 +192,73 @@ gap:20px;
 
 .logo{
 
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-size:28px;
+
+font-weight:800;
+
+color:var(--primary);
+
+}
+
+.logo img{
+
+width:48px;
+
 height:48px;
 
+object-fit:contain;
+
 }
 
-.nav-right{
+.nav-menu{
 
 display:flex;
 
 align-items:center;
 
-gap:15px;
-
-flex-wrap:wrap;
+gap:28px;
 
 }
 
-.select-box{
-
-display:flex;
-
-align-items:center;
-
-gap:8px;
-
-background:#F1F5F9;
-
-padding:10px 15px;
-
-border-radius:12px;
-
-}
-
-.select-box i{
-
-color:#4F46E5;
-
-}
-
-.select-box select{
-
-background:transparent;
-
-border:none;
-
-outline:none;
+.nav-menu a{
 
 font-size:15px;
 
 font-weight:600;
 
-cursor:pointer;
+color:var(--text);
+
+transition:var(--transition);
 
 }
 
-.country-search{
+.nav-menu a:hover{
 
-position:relative;
-
-}
-
-.country-search input{
-
-width:230px;
-
-padding:12px 15px;
-
-border:1px solid #CBD5E1;
-
-border-radius:12px;
-
-outline:none;
-
-font-size:15px;
-
-background:white;
+color:var(--primary);
 
 }
 
-.country-list{
+.nav-actions{
 
-position:absolute;
+display:flex;
 
-top:55px;
+align-items:center;
 
-left:0;
-
-width:100%;
-
-max-height:300px;
-
-overflow-y:auto;
-
-background:white;
-
-border-radius:12px;
-
-box-shadow:0 15px 35px rgba(0,0,0,.12);
-
-display:none;
-
-z-index:1001;
+gap:12px;
 
 }
 
-.country-item{
+.theme-btn{
 
-padding:12px 15px;
+width:48px;
 
-cursor:pointer;
-
-transition:.2s;
-
-font-size:15px;
-
-}
-
-.country-item:hover{
-
-background:#EEF2FF;
-
-}
-
-.hero{
+height:48px;
 
 display:flex;
 
@@ -229,41 +266,201 @@ align-items:center;
 
 justify-content:center;
 
+border-radius:14px;
+
+background:var(--surface);
+
+border:1px solid var(--border);
+
+font-size:18px;
+
+color:var(--text);
+
+box-shadow:var(--shadow);
+
+}
+
+.theme-btn:hover{
+
+background:var(--primary);
+
+color:#fff;
+
+}
+
+.btn{
+
+padding:13px 22px;
+
+border-radius:14px;
+
+font-weight:700;
+
+font-size:15px;
+
+transition:var(--transition);
+
+}
+
+.btn-outline{
+
+background:transparent;
+
+border:1px solid var(--border);
+
+color:var(--text);
+
+}
+
+.btn-outline:hover{
+
+background:var(--surface);
+
+}
+
+.btn-primary{
+
+background:var(--primary);
+
+color:#fff;
+
+}
+
+.btn-primary:hover{
+
+background:var(--primary-hover);
+
+}
+
+.hero{
+
+padding-top:140px;
+
+padding-bottom:90px;
+
+}
+
+.hero-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+align-items:center;
+
+gap:60px;
+
+}
+
+.hero-text h1{
+
+font-size:60px;
+
+line-height:1.1;
+
+margin-bottom:25px;
+
+font-weight:900;
+
+}
+
+.hero-text p{
+
+font-size:19px;
+
+line-height:1.8;
+
+color:var(--text-light);
+
+margin-bottom:35px;
+
+}
+
+.hero-buttons{
+
+display:flex;
+
+gap:18px;
+
+flex-wrap:wrap;
+
+}
+
+.hero-image{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.hero-image img{
+
+width:100%;
+
+max-width:540px;
+
+}
+
+@media(max-width:992px){
+
+.hero-grid{
+
+grid-template-columns:1fr;
+
 text-align:center;
 
-min-height:calc(100vh - 80px);
-
-padding:60px 20px;
-
 }
 
-@media(max-width:768px){
-
-nav{
-
-flex-direction:column;
-
-height:auto;
-
-padding:15px 0;
-
-}
-
-.country-search input{
-
-width:100%;
-
-}
-
-.nav-right{
-
-width:100%;
+.hero-buttons{
 
 justify-content:center;
 
 }
 
-}</style>
+.nav-menu{
+
+display:none;
+
+}
+
+.hero-text h1{
+
+font-size:42px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+header{
+
+height:70px;
+
+}
+
+.hero{
+
+padding-top:120px;
+
+}
+
+.hero-text h1{
+
+font-size:34px;
+
+}
+
+.hero-text p{
+
+font-size:16px;
+
+}
+
+  }</style>
 
 </head>
 
@@ -275,43 +472,45 @@ justify-content:center;
 
 <nav>
 
-<a href="index.html">
+<a href="index.html" class="logo">
 
-<img src="logo.png" class="logo" alt="Zysell Logo">
+<img src="logo.png" alt="Zysell Logo">
+
+<span>Zysell</span>
 
 </a>
 
-<div class="nav-right">
+<div class="nav-menu">
 
-<div class="select-box">
+<a href="#features">Fonctionnalités</a>
 
-<i class="fa-solid fa-language"></i>
+<a href="#categories">Catégories</a>
 
-<select id="language">
+<a href="#how">Comment ça marche</a>
 
-<option value="fr">🇫🇷 Français</option>
-
-<option value="en">🇬🇧 English</option>
-
-</select>
+<a href="#faq">FAQ</a>
 
 </div>
 
-<div class="country-search">
+<div class="nav-actions">
 
-<input
-type="text"
-id="countrySearch"
-placeholder="🌍 Sélectionnez votre pays">
+<button class="theme-btn" id="themeToggle">
 
-<div class="country-list" id="countryList">
+<i class="fa-solid fa-moon"></i>
 
-<!-- Tous les pays du monde seront ajoutés automatiquement par JavaScript,
-classés par ordre alphabétique avec recherche instantanée -->
+</button>
 
-</div>
+<a href="login.html" class="btn btn-outline">
 
-</div>
+Se connecter
+
+</a>
+
+<a href="signup.html" class="btn btn-primary">
+
+Créer un compte
+
+</a>
 
 </div>
 
@@ -325,128 +524,162 @@ classés par ordre alphabétique avec recherche instantanée -->
 
 <div class="container">
 
-<div class="hero-content">
+<div class="hero-grid">
 
-<img src="logo.png"
-alt="Zysell"
-style="width:180px;margin:auto;margin-bottom:35px;">
+<div class="hero-text">
 
-<h1 id="title">
+<h1>
 
-Créez. Vendez. Encaissez.
+Achetez et vendez des produits numériques partout dans le monde.
 
 </h1>
 
-<p id="subtitle">
+<p>
 
-La plateforme internationale dédiée à la vente et à l'achat de produits numériques.
+Zysell est une marketplace moderne permettant aux créateurs, développeurs, designers, auteurs et entrepreneurs de vendre facilement leurs produits numériques à des clients du monde entier.
 
 </p>
 
-<div class="buttons">
+<div class="hero-buttons">
 
-<a href="login.html" class="btn btn-primary">
+<a href="signup.html" class="btn btn-primary">
 
-Se connecter
-
-</a>
-
-<a href="signup.html" class="btn btn-outline">
-
-Créer un compte
+Commencer gratuitement
 
 </a>
 
-</div>
+<a href="#features" class="btn btn-outline">
+
+Découvrir la plateforme
+
+</a>
 
 </div>
 
 </div>
 
-</section><footer>
+<div class="hero-image">
+
+<img src="hero.png" alt="Illustration Zysell">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="features">
 
 <div class="container">
 
-<p id="footerText">
+<h2>
 
-© 2026 Zysell. Tous droits réservés.
+Pourquoi choisir Zysell ?
+
+</h2>
+
+<p>
+
+Une plateforme pensée pour les créateurs numériques avec des outils simples, rapides et sécurisés.
 
 </p>
 
 </div>
 
-</footer>
+</section><section id="categories">
 
-<script>
+<div class="container">
 
-const translations = {
+<h2>Catégories populaires</h2>
 
-fr:{
+<div class="categories">
 
-title:"Créez. Vendez. Encaissez.",
+<div class="card">
+<i class="fa-solid fa-book"></i>
+<h3>E-books</h3>
+<p>Livres numériques et guides.</p>
+</div>
 
-subtitle:"La plateforme internationale dédiée à la vente et à l'achat de produits numériques.",
+<div class="card">
+<i class="fa-solid fa-graduation-cap"></i>
+<h3>Formations</h3>
+<p>Cours et programmes en ligne.</p>
+</div>
 
-login:"Se connecter",
+<div class="card">
+<i class="fa-solid fa-code"></i>
+<h3>Code source</h3>
+<p>Applications, scripts et templates.</p>
+</div>
 
-signup:"Créer un compte",
+<div class="card">
+<i class="fa-solid fa-image"></i>
+<h3>Design</h3>
+<p>Templates, logos et ressources graphiques.</p>
+</div>
 
-searchCountry:"🌍 Sélectionnez votre pays",
+<div class="card">
+<i class="fa-solid fa-music"></i>
+<h3>Audio</h3>
+<p>Musiques, effets sonores et podcasts.</p>
+</div>
 
-footer:"© 2026 Zysell. Tous droits réservés."
+<div class="card">
+<i class="fa-solid fa-video"></i>
+<h3>Vidéos</h3>
+<p>Vidéos, animations et contenus premium.</p>
+</div>
 
-},
+</div>
 
-en:{
+</div>
 
-title:"Create. Sell. Get Paid.",
+</section>
 
-subtitle:"The international platform for buying and selling digital products.",
+<section id="how">
 
-login:"Sign In",
+<div class="container">
 
-signup:"Create Account",
+<h2>Comment ça fonctionne ?</h2>
 
-searchCountry:"🌍 Select your country",
+<div class="steps">
 
-footer:"© 2026 Zysell. All rights reserved."
+<div class="step">
 
-}
+<h3>1. Créez votre compte</h3>
 
-};
+<p>Inscription gratuite en quelques secondes.</p>
 
-const language=document.getElementById("language");
+</div>
 
-language.addEventListener("change",()=>{
+<div class="step">
 
-const lang=language.value;
+<h3>2. Ouvrez votre boutique</h3>
 
-localStorage.setItem("language",lang);
+<p>Personnalisez votre espace vendeur.</p>
 
-document.documentElement.lang=lang;
+</div>
 
-document.getElementById("title").textContent=translations[lang].title;
+<div class="step">
 
-document.getElementById("subtitle").textContent=translations[lang].subtitle;
+<h3>3. Publiez vos produits</h3>
 
-document.querySelector(".btn-primary").textContent=translations[lang].login;
+<p>Importez vos fichiers numériques.</p>
 
-document.querySelector(".btn-outline").textContent=translations[lang].signup;
+</div>
 
-document.getElementById("countrySearch").placeholder=translations[lang].searchCountry;
+<div class="step">
 
-document.getElementById("footerText").textContent=translations[lang].footer;
+<h3>4. Gagnez de l'argent</h3>
 
-});
+<p>Recevez automatiquement vos revenus après chaque vente.</p>
 
-const savedLanguage=localStorage.getItem("language")||"fr";
+</div>
 
-language.value=savedLanguage;
+</div>
 
-language.dispatchEvent(new Event("change"));
+</div>
 
-</script>
-
-</body>
-
-</html>
+</section>
