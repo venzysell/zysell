@@ -4,257 +4,400 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Créer un compte | Zysell</title>
 
+<meta name="theme-color" content="#4F46E5">
+
+<link rel="icon" href="logo.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 <style>
 
 *{
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+
+font-family:'Inter',sans-serif;
+
 }
 
 body{
-min-height:100vh;
+
+background:#F8FAFC;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
-background:
-radial-gradient(circle at top,#284cff 0%,#0d1738 45%,#060b18 100%);
-overflow:hidden;
-color:white;
+
+min-height:100vh;
+
+padding:20px;
+
 }
 
-body::before{
-content:"";
-position:absolute;
-width:650px;
-height:650px;
-border-radius:50%;
-background:rgba(0,153,255,.18);
-filter:blur(120px);
-top:-200px;
-right:-150px;
-}
+.signup-card{
 
-body::after{
-content:"";
-position:absolute;
-width:550px;
-height:550px;
-border-radius:50%;
-background:rgba(123,44,255,.18);
-filter:blur(120px);
-bottom:-200px;
-left:-150px;
-}
+width:100%;
 
-.card{
-position:relative;
-z-index:2;
-width:95%;
-max-width:450px;
-padding:45px;
-border-radius:28px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(18px);
-border:1px solid rgba(255,255,255,.15);
-box-shadow:0 20px 60px rgba(0,0,0,.35);
-text-align:center;
+max-width:500px;
+
+background:#FFFFFF;
+
+padding:35px;
+
+border-radius:20px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+
 }
 
 .logo{
-width:110px;
-margin-bottom:20px;
-animation:float 4s infinite ease-in-out;
-}
 
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-10px);}
-100%{transform:translateY(0);}
+width:170px;
+
+margin:0 auto 25px;
+
+display:block;
+
 }
 
 h1{
-font-size:34px;
+
+text-align:center;
+
+font-size:30px;
+
+color:#1E293B;
+
 margin-bottom:10px;
+
 }
 
 .subtitle{
-color:#d5d5d5;
+
+text-align:center;
+
+font-size:15px;
+
+color:#64748B;
+
 margin-bottom:30px;
-line-height:1.6;
+
 }
 
 .input-group{
+
 margin-bottom:18px;
-text-align:left;
+
 }
 
 .input-group label{
+
 display:block;
+
 margin-bottom:8px;
-font-size:14px;
+
+font-weight:600;
+
+color:#334155;
+
 }
 
-.input-group input{
+.input-group input,
+
+.input-group select{
+
 width:100%;
-padding:16px;
-border:none;
-outline:none;
-border-radius:14px;
-background:rgba(255,255,255,.12);
-color:white;
+
+padding:15px;
+
+border:1px solid #CBD5E1;
+
+border-radius:12px;
+
 font-size:15px;
-}
 
-.input-group input::placeholder{
-color:#d8d8d8;
-}
+outline:none;
 
-.password-box{
-position:relative;
-}
-
-.toggle{
-position:absolute;
-right:15px;
-top:50%;
-transform:translateY(-50%);
-cursor:pointer;
-font-size:14px;
-color:#ddd;
-}
-
-.create{
-width:100%;
-padding:17px;
-margin-top:8px;
-border:none;
-border-radius:50px;
-background:linear-gradient(90deg,#1d7cff,#7b2cff);
-color:white;
-font-size:17px;
-font-weight:700;
-cursor:pointer;
 transition:.3s;
+
 }
 
-.create:hover{
-transform:translateY(-3px);
+.input-group input:focus,
+
+.input-group select:focus{
+
+border-color:#4F46E5;
+
+}.password-box{
+
+position:relative;
+
 }
 
-.separator{
+.password-box input{
+
+padding-right:50px;
+
+}
+
+.password-box i{
+
+position:absolute;
+
+top:50%;
+
+right:18px;
+
+transform:translateY(-50%);
+
+cursor:pointer;
+
+color:#64748B;
+
+}
+
+.checkbox{
+
 display:flex;
+
+align-items:flex-start;
+
+gap:10px;
+
+margin:20px 0;
+
+}
+
+.checkbox input{
+
+margin-top:4px;
+
+}
+
+.checkbox label{
+
+font-size:14px;
+
+color:#475569;
+
+line-height:1.6;
+
+}
+
+.checkbox a{
+
+color:#4F46E5;
+
+text-decoration:none;
+
+font-weight:600;
+
+}
+
+.btn{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:12px;
+
+font-size:16px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.btn-signup{
+
+background:#4F46E5;
+
+color:white;
+
+margin-bottom:15px;
+
+}
+
+.btn-signup:hover{
+
+background:#3730A3;
+
+}
+
+.divider{
+
+display:flex;
+
 align-items:center;
-margin:28px 0;
-color:#ddd;
+
+margin:25px 0;
+
+color:#94A3B8;
+
+font-size:14px;
+
 }
 
-.separator::before,
-.separator::after{
+.divider::before,
+
+.divider::after{
+
 content:"";
+
 flex:1;
+
 height:1px;
-background:rgba(255,255,255,.2);
+
+background:#E2E8F0;
+
 }
 
-.separator span{
+.divider span{
+
 padding:0 15px;
+
 }
 
 .google-btn{
-width:100%;
-padding:16px;
-border:none;
-border-radius:50px;
-background:white;
-color:#222;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-display:flex;
-justify-content:center;
-align-items:center;
-gap:12px;
-transition:.3s;
-}
 
-.google-btn img{
-width:22px;
+width:100%;
+
+padding:15px;
+
+border:1px solid #CBD5E1;
+
+background:#FFFFFF;
+
+border-radius:12px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:10px;
+
+font-size:15px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
 }
 
 .google-btn:hover{
-transform:translateY(-3px);
+
+background:#F8FAFC;
+
 }
 
-.bottom{
-margin-top:30px;
+.login{
+
+text-align:center;
+
+margin-top:25px;
+
 font-size:15px;
-color:#ddd;
+
+color:#64748B;
+
 }
 
-.bottom a{
-color:#57a8ff;
+.login a{
+
+color:#4F46E5;
+
+font-weight:700;
+
 text-decoration:none;
-font-weight:600;
-}
 
-.bottom a:hover{
-text-decoration:underline;
-}
+}</style>
 
-.error{
-margin-top:15px;
-font-size:14px;
-color:#ff8b8b;
-display:none;
-}
+</head>
 
-@media(max-width:600px){
-.card{
-padding:35px 25px;
-}
+<body>
 
-h1{
-font-size:28px;
-}
-}
+<div class="signup-card">
 
-</style>
-
-</head><body>
-
-<div class="card">
-
-<img src="logo.png" class="logo" alt="Zysell">
+<img src="logo.png" alt="Zysell" class="logo">
 
 <h1>Créer un compte</h1>
 
 <p class="subtitle">
-Commencez à vendre vos produits numériques avec Zysell.
+
+Rejoignez Zysell et commencez à vendre ou acheter des produits numériques.
+
 </p>
 
 <form id="signupForm">
 
 <div class="input-group">
-<label>Adresse e-mail</label>
+
+<label>Nom complet</label>
+
 <input
-type="email"
-id="email"
-placeholder="exemple@email.com"
+type="text"
+id="fullname"
+placeholder="Entrez votre nom complet"
 required>
+
 </div>
 
 <div class="input-group">
+
+<label>Adresse e-mail</label>
+
+<input
+type="email"
+id="email"
+placeholder="Entrez votre adresse e-mail"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>Pays</label>
+
+<select id="country" required>
+
+<option value="">Sélectionnez votre pays</option>
+
+<!-- Tous les pays du monde seront ajoutés
+automatiquement par JavaScript -->
+
+</select>
+
+</div>
+
+<div class="input-group">
+
 <label>Mot de passe</label>
 
 <div class="password-box">
@@ -262,16 +405,13 @@ required>
 <input
 type="password"
 id="password"
-placeholder="Votre mot de passe"
+placeholder="Créez un mot de passe"
 required>
 
-<span
-class="toggle"
-onclick="togglePassword('password', this)">
-Afficher
-</span>
+<i class="fa-solid fa-eye" id="togglePassword"></i>
 
 </div>
+
 </div>
 
 <div class="input-group">
@@ -283,170 +423,142 @@ Afficher
 <input
 type="password"
 id="confirmPassword"
-placeholder="Confirmez le mot de passe"
+placeholder="Confirmez votre mot de passe"
 required>
 
-<span
-class="toggle"
-onclick="togglePassword('confirmPassword', this)">
-Afficher
-</span>
+<i class="fa-solid fa-eye" id="toggleConfirmPassword"></i>
 
 </div>
+
 </div>
 
-<div
-class="error"
-id="error">
+<div class="checkbox">
+
+<input
+type="checkbox"
+id="terms"
+required>
+
+<label for="terms">
+
+J'accepte les <a href="#">Conditions d'utilisation</a> et la <a href="#">Politique de confidentialité</a>.
+
+</label>
+
 </div>
 
 <button
 type="submit"
-class="create">
-Créer mon compte
+class="btn btn-signup">
+
+Créer un compte
+
 </button>
 
-</form>
+<div class="divider">
 
-<div class="separator">
 <span>OU</span>
+
 </div>
 
 <button
+type="button"
 class="google-btn"
-id="googleSignUp">
+id="googleSignup">
 
-<img
-src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-alt="Google">
+<i class="fa-brands fa-google"></i>
 
 Continuer avec Google
 
 </button>
 
-<div class="bottom">
+<div class="login">
 
 Vous avez déjà un compte ?
 
 <a href="login.html">
+
 Se connecter
-</a></div>
 
-<script type="module">
+</a>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+</div>
 
-import {
-getAuth,
-createUserWithEmailAndPassword,
-GoogleAuthProvider,
-signInWithPopup
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+</form>
 
-const firebaseConfig = {
+</div><script>
 
-apiKey: "AIzaSyAYuh-EnlgQjlqgBO2HFFeC5Y5uH4TrEds",
+const togglePassword=document.getElementById("togglePassword");
 
-authDomain: "zysell-86604.firebaseapp.com",
+const toggleConfirmPassword=document.getElementById("toggleConfirmPassword");
 
-projectId: "zysell-86604",
+const password=document.getElementById("password");
 
-storageBucket: "zysell-86604.firebasestorage.app",
+const confirmPassword=document.getElementById("confirmPassword");
 
-messagingSenderId: "567755208394",
+togglePassword.onclick=()=>{
 
-appId: "1:567755208394:web:754d1eec59cf8a659b2633"
+password.type=password.type==="password"?"text":"password";
+
+togglePassword.classList.toggle("fa-eye");
+
+togglePassword.classList.toggle("fa-eye-slash");
 
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+toggleConfirmPassword.onclick=()=>{
 
-function togglePassword(id, element){
+confirmPassword.type=confirmPassword.type==="password"?"text":"password";
 
-const input = document.getElementById(id);
+toggleConfirmPassword.classList.toggle("fa-eye");
 
-if(input.type === "password"){
-input.type = "text";
-element.textContent = "Masquer";
-}else{
-input.type = "password";
-element.textContent = "Afficher";
-}
+toggleConfirmPassword.classList.toggle("fa-eye-slash");
 
-}
+};
 
-window.togglePassword = togglePassword;
-
-const form = document.getElementById("signupForm");
-const error = document.getElementById("error");
-
-form.addEventListener("submit", async(e)=>{
+document.getElementById("signupForm").addEventListener("submit",(e)=>{
 
 e.preventDefault();
 
-const email = document.getElementById("email").value.trim();
-const password = document.getElementById("password").value;
-const confirm = document.getElementById("confirmPassword").value;
+if(password.value!==confirmPassword.value){
 
-if(password !== confirm){
+alert("Les mots de passe ne correspondent pas.");
 
-error.style.display="block";
-error.textContent="Les mots de passe ne correspondent pas.";
 return;
 
 }
 
-error.style.display="none";
-
-try{
-
-await createUserWithEmailAndPassword(auth,email,password);
-
-window.location.href="create-store.html";
-
-}catch(err){
-
-error.style.display="block";
-
-switch(err.code){
-
-case "auth/email-already-in-use":
-error.textContent="Cette adresse e-mail est déjà utilisée.";
-break;
-
-case "auth/weak-password":
-error.textContent="Le mot de passe doit contenir au moins 6 caractères.";
-break;
-
-case "auth/invalid-email":
-error.textContent="Adresse e-mail invalide.";
-break;
-
-default:
-error.textContent=err.message;
-
-}
-
-}
+alert("Le formulaire est prêt. L'inscription sera reliée à Firebase dans la prochaine étape.");
 
 });
 
-document.getElementById("googleSignUp").addEventListener("click",async()=>{
+const countries=[
 
-try{
+"Cameroun",
 
-await signInWithPopup(auth,provider);
+"Bénin",
 
-window.location.href="create-store.html";
+"Côte d'Ivoire",
 
-}catch(err){
+"France",
 
-error.style.display="block";
-error.textContent=err.message;
+"Canada",
 
-}
+"États-Unis"
+
+];
+
+const select=document.getElementById("country");
+
+countries.sort().forEach(country=>{
+
+const option=document.createElement("option");
+
+option.value=country;
+
+option.textContent=country;
+
+select.appendChild(option);
 
 });
 
@@ -455,5 +567,3 @@ error.textContent=err.message;
 </body>
 
 </html>
-
-</div>
