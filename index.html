@@ -136,4 +136,277 @@ transition:.3s;
 
 border-color:#4F46E5;
 
+}.password-box{
+
+position:relative;
+
 }
+
+.password-box input{
+
+padding-right:50px;
+
+}
+
+.password-box i{
+
+position:absolute;
+
+right:18px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+cursor:pointer;
+
+color:#64748B;
+
+}
+
+.forgot{
+
+text-align:right;
+
+margin-top:-8px;
+
+margin-bottom:20px;
+
+}
+
+.forgot a{
+
+text-decoration:none;
+
+font-size:14px;
+
+color:#4F46E5;
+
+font-weight:600;
+
+}
+
+.btn{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:12px;
+
+font-size:16px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.btn-login{
+
+background:#4F46E5;
+
+color:white;
+
+margin-bottom:15px;
+
+}
+
+.btn-login:hover{
+
+background:#3730A3;
+
+}
+
+.divider{
+
+display:flex;
+
+align-items:center;
+
+margin:25px 0;
+
+color:#94A3B8;
+
+font-size:14px;
+
+}
+
+.divider::before,
+
+.divider::after{
+
+content:"";
+
+flex:1;
+
+height:1px;
+
+background:#E2E8F0;
+
+}
+
+.divider span{
+
+padding:0 15px;
+
+}
+
+.google-btn{
+
+width:100%;
+
+padding:15px;
+
+border:1px solid #CBD5E1;
+
+background:white;
+
+border-radius:12px;
+
+font-weight:600;
+
+cursor:pointer;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:10px;
+
+transition:.3s;
+
+}
+
+.google-btn:hover{
+
+background:#F8FAFC;
+
+}
+
+.signup{
+
+text-align:center;
+
+margin-top:25px;
+
+font-size:15px;
+
+color:#64748B;
+
+}
+
+.signup a{
+
+color:#4F46E5;
+
+font-weight:700;
+
+text-decoration:none;
+
+}</style>
+
+</head>
+
+<body>
+
+<div class="login-card">
+
+<img src="logo.png" alt="Zysell" class="logo">
+
+<h1>Connexion</h1>
+
+<p class="subtitle">
+
+Connectez-vous à votre compte Zysell.
+
+</p>
+
+<form id="loginForm">
+
+<div class="input-group">
+
+<label>Adresse e-mail</label>
+
+<input
+type="email"
+id="email"
+placeholder="Entrez votre adresse e-mail"
+required>
+
+</div>
+
+<div class="input-group">
+
+<label>Mot de passe</label>
+
+<div class="password-box">
+
+<input
+type="password"
+id="password"
+placeholder="Entrez votre mot de passe"
+required>
+
+<i class="fa-solid fa-eye" id="togglePassword"></i>
+
+</div>
+
+</div>
+
+<div class="forgot">
+
+<a href="forgot-password.html">
+
+Mot de passe oublié ?
+
+</a>
+
+</div>
+
+<button
+type="submit"
+class="btn btn-login">
+
+Se connecter
+
+</button>
+
+<div class="divider">
+
+<span>OU</span>
+
+</div>
+
+<button
+type="button"
+class="google-btn"
+id="googleLogin">
+
+<i class="fa-brands fa-google"></i>
+
+Continuer avec Google
+
+</button>
+
+<div class="signup">
+
+Vous n'avez pas de compte ?
+
+<a href="signup.html">
+
+Créer un compte
+
+</a>
+
+</div>
+
+</form>
+
+</div>
