@@ -9,7 +9,7 @@
 
 <title>Zysell | Créez. Vendez. Encaissez.</title>
 
-<meta name="description" content="La plateforme internationale pour vendre et acheter des produits numériques.">
+<meta name="description" content="Zysell est une plateforme internationale permettant de vendre et d'acheter des produits numériques en toute sécurité.">
 
 <meta name="theme-color" content="#4F46E5">
 
@@ -54,32 +54,48 @@ color:inherit;
 }
 
 button{
-font-family:inherit;
-cursor:pointer;
+
 border:none;
+
 outline:none;
+
+cursor:pointer;
+
+font-family:inherit;
+
 }
 
 img{
-max-width:100%;
+
 display:block;
+
+max-width:100%;
+
 }
 
 .container{
+
 width:92%;
+
 max-width:1280px;
+
 margin:auto;
+
 }header{
 
 position:sticky;
 
 top:0;
 
-z-index:1000;
+left:0;
+
+width:100%;
 
 background:#FFFFFF;
 
-box-shadow:0 2px 15px rgba(0,0,0,.05);
+box-shadow:0 2px 15px rgba(0,0,0,.06);
+
+z-index:1000;
 
 }
 
@@ -99,7 +115,9 @@ gap:20px;
 
 .logo{
 
-height:48px;
+height:50px;
+
+cursor:pointer;
 
 }
 
@@ -111,8 +129,6 @@ align-items:center;
 
 gap:15px;
 
-flex-wrap:wrap;
-
 }
 
 .select-box{
@@ -121,11 +137,11 @@ display:flex;
 
 align-items:center;
 
-gap:8px;
-
-background:#F1F5F9;
+gap:10px;
 
 padding:10px 15px;
+
+background:#F1F5F9;
 
 border-radius:12px;
 
@@ -135,13 +151,15 @@ border-radius:12px;
 
 color:#4F46E5;
 
+font-size:18px;
+
 }
 
 .select-box select{
 
-background:transparent;
-
 border:none;
+
+background:transparent;
 
 outline:none;
 
@@ -153,75 +171,9 @@ cursor:pointer;
 
 }
 
-.country-search{
-
-position:relative;
-
-}
-
-.country-search input{
-
-width:230px;
-
-padding:12px 15px;
-
-border:1px solid #CBD5E1;
-
-border-radius:12px;
-
-outline:none;
-
-font-size:15px;
-
-background:white;
-
-}
-
-.country-list{
-
-position:absolute;
-
-top:55px;
-
-left:0;
-
-width:100%;
-
-max-height:300px;
-
-overflow-y:auto;
-
-background:white;
-
-border-radius:12px;
-
-box-shadow:0 15px 35px rgba(0,0,0,.12);
-
-display:none;
-
-z-index:1001;
-
-}
-
-.country-item{
-
-padding:12px 15px;
-
-cursor:pointer;
-
-transition:.2s;
-
-font-size:15px;
-
-}
-
-.country-item:hover{
-
-background:#EEF2FF;
-
-}
-
 .hero{
+
+min-height:calc(100vh - 80px);
 
 display:flex;
 
@@ -231,9 +183,107 @@ justify-content:center;
 
 text-align:center;
 
-min-height:calc(100vh - 80px);
-
 padding:60px 20px;
+
+}
+
+.hero-content{
+
+max-width:760px;
+
+}
+
+.hero-content img{
+
+width:180px;
+
+margin:auto;
+
+margin-bottom:35px;
+
+}
+
+.hero-content h1{
+
+font-size:56px;
+
+font-weight:800;
+
+line-height:1.2;
+
+color:#1E293B;
+
+margin-bottom:20px;
+
+}
+
+.hero-content p{
+
+font-size:20px;
+
+line-height:1.8;
+
+color:#64748B;
+
+margin-bottom:40px;
+
+}
+
+.buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:18px;
+
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+padding:16px 36px;
+
+border-radius:50px;
+
+font-size:17px;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+.btn-primary{
+
+background:#4F46E5;
+
+color:white;
+
+}
+
+.btn-primary:hover{
+
+background:#3730A3;
+
+}
+
+.btn-outline{
+
+border:2px solid #4F46E5;
+
+background:white;
+
+color:#4F46E5;
+
+}
+
+.btn-outline:hover{
+
+background:#4F46E5;
+
+color:white;
 
 }
 
@@ -241,17 +291,11 @@ padding:60px 20px;
 
 nav{
 
-flex-direction:column;
-
 height:auto;
 
 padding:15px 0;
 
-}
-
-.country-search input{
-
-width:100%;
+flex-direction:column;
 
 }
 
@@ -261,9 +305,29 @@ width:100%;
 
 justify-content:center;
 
+flex-wrap:wrap;
+
 }
 
-}</style>
+.hero-content h1{
+
+font-size:38px;
+
+}
+
+.hero-content p{
+
+font-size:17px;
+
+}
+
+.btn{
+
+width:100%;
+
+}
+
+  }</style>
 
 </head>
 
@@ -277,7 +341,7 @@ justify-content:center;
 
 <a href="index.html">
 
-<img src="logo.png" class="logo" alt="Zysell Logo">
+<img src="logo.png" alt="Zysell" class="logo">
 
 </a>
 
@@ -297,21 +361,32 @@ justify-content:center;
 
 </div>
 
-<div class="country-search">
+<div class="select-box">
 
-<input
-type="text"
-id="countrySearch"
-placeholder="🌍 Sélectionnez votre pays">
+<i class="fa-solid fa-globe"></i>
 
-<div class="country-list" id="countryList">
+<select id="country">
 
-<!-- Tous les pays du monde seront ajoutés automatiquement par JavaScript,
-classés par ordre alphabétique avec recherche instantanée -->
+<option value="">🌍 Sélectionner un pays</option>
+
+<!-- Les pays seront ajoutés automatiquement en JavaScript
+et classés par ordre alphabétique -->
+
+</select>
 
 </div>
 
-</div>
+<a href="login.html" class="btn btn-outline">
+
+Se connecter
+
+</a>
+
+<a href="signup.html" class="btn btn-primary">
+
+Créer un compte
+
+</a>
 
 </div>
 
@@ -327,9 +402,7 @@ classés par ordre alphabétique avec recherche instantanée -->
 
 <div class="hero-content">
 
-<img src="logo.png"
-alt="Zysell"
-style="width:180px;margin:auto;margin-bottom:35px;">
+<img src="logo.png" alt="Logo Zysell">
 
 <h1 id="title">
 
@@ -339,114 +412,28 @@ Créez. Vendez. Encaissez.
 
 <p id="subtitle">
 
-La plateforme internationale dédiée à la vente et à l'achat de produits numériques.
+La plateforme internationale pour acheter et vendre des produits numériques en toute sécurité.
 
 </p>
 
 <div class="buttons">
 
-<a href="login.html" class="btn btn-primary">
+<a href="signup.html" class="btn btn-primary">
 
-Se connecter
-
-</a>
-
-<a href="signup.html" class="btn btn-outline">
-
-Créer un compte
+Commencer gratuitement
 
 </a>
 
-</div>
+<a href="#about" class="btn btn-outline">
+
+Découvrir Zysell
+
+</a>
 
 </div>
 
 </div>
 
-</section><footer>
-
-<div class="container">
-
-<p id="footerText">
-
-© 2026 Zysell. Tous droits réservés.
-
-</p>
-
 </div>
 
-</footer>
-
-<script>
-
-const translations = {
-
-fr:{
-
-title:"Créez. Vendez. Encaissez.",
-
-subtitle:"La plateforme internationale dédiée à la vente et à l'achat de produits numériques.",
-
-login:"Se connecter",
-
-signup:"Créer un compte",
-
-searchCountry:"🌍 Sélectionnez votre pays",
-
-footer:"© 2026 Zysell. Tous droits réservés."
-
-},
-
-en:{
-
-title:"Create. Sell. Get Paid.",
-
-subtitle:"The international platform for buying and selling digital products.",
-
-login:"Sign In",
-
-signup:"Create Account",
-
-searchCountry:"🌍 Select your country",
-
-footer:"© 2026 Zysell. All rights reserved."
-
-}
-
-};
-
-const language=document.getElementById("language");
-
-language.addEventListener("change",()=>{
-
-const lang=language.value;
-
-localStorage.setItem("language",lang);
-
-document.documentElement.lang=lang;
-
-document.getElementById("title").textContent=translations[lang].title;
-
-document.getElementById("subtitle").textContent=translations[lang].subtitle;
-
-document.querySelector(".btn-primary").textContent=translations[lang].login;
-
-document.querySelector(".btn-outline").textContent=translations[lang].signup;
-
-document.getElementById("countrySearch").placeholder=translations[lang].searchCountry;
-
-document.getElementById("footerText").textContent=translations[lang].footer;
-
-});
-
-const savedLanguage=localStorage.getItem("language")||"fr";
-
-language.value=savedLanguage;
-
-language.dispatchEvent(new Event("change"));
-
-</script>
-
-</body>
-
-</html>
+</section>
