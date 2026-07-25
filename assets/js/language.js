@@ -119,7 +119,9 @@ function applyTranslations(){
         }
 
     });
-   // =====================================
+
+}
+// =====================================
 // CHANGER LA LANGUE
 // =====================================
 
@@ -162,8 +164,6 @@ if(languageSelector){
 // =====================================
 
 applyTranslations();
-
-}
 // =====================================
 // FONCTIONS UTILITAIRES
 // =====================================
@@ -208,3 +208,45 @@ export function addTranslations(language, values){
     };
 
 }
+// =====================================
+// DÉTECTION AUTOMATIQUE DE LA LANGUE
+// =====================================
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    // Si aucune langue n'est enregistrée
+    if(!localStorage.getItem("language")){
+
+        const browserLanguage = navigator.language.slice(0,2);
+
+        if(supportedLanguages.includes(browserLanguage)){
+
+            setLanguage(browserLanguage);
+
+        }else{
+
+            setLanguage("fr");
+
+        }
+
+    }else{
+
+        setLanguage(localStorage.getItem("language"));
+
+    }
+
+});
+
+// =====================================
+// SYNCHRONISATION DES ONGLETS
+// =====================================
+
+window.addEventListener("storage", (event) => {
+
+    if(event.key === "language"){
+
+        setLanguage(event.newValue);
+
+    }
+
+});
