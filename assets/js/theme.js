@@ -1,106 +1,93 @@
-/* =======================================================
-   ZYSELL THEME
-======================================================= */
+// =====================================
+// ZYSELL - THEME.JS
+// =====================================
 
-"use strict";
+const themeButton = document.querySelector(".theme-btn");
 
-/* =======================================================
-   ÉLÉMENTS
-======================================================= */
+const savedTheme = localStorage.getItem("theme");
 
-const themeButtons = document.querySelectorAll("#themeBtn, #themeBtnMobile");
-const body = document.body;
-const storageKey = "zysell-theme";
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+if(savedTheme === "dark"){
 
-/* =======================================================
-   APPLIQUER LE THÈME
-======================================================= */
+    document.body.classList.add("dark-theme");
 
-function applyTheme(theme) {
+}
 
-    if (theme === "dark") {
-        body.classList.add("dark");
-    } else {
-        body.classList.remove("dark");
+if(themeButton){
+
+    themeButton.addEventListener("click", toggleTheme);
+
+}
+
+function toggleTheme(){
+
+    document.body.classList.toggle("dark-theme");
+
+    if(document.body.classList.contains("dark-theme")){
+
+        localStorage.setItem("theme","dark");
+
+    }else{
+
+        localStorage.setItem("theme","light");
+
     }
 
-    localStorage.setItem(storageKey, theme);
+}
+// =====================================
+// DÉTECTION AUTOMATIQUE DU THÈME
+// =====================================
 
-    updateThemeIcon(theme);
+if(!localStorage.getItem("theme")){
 
-}/* =======================================================
-   METTRE À JOUR L'ICÔNE
-======================================================= */
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
-function updateThemeIcon(theme) {
+    if(prefersDark.matches){
 
-    themeButtons.forEach(button => {
+        document.body.classList.add("dark-theme");
 
-        if (theme === "dark") {
+    }
 
-            button.innerHTML = "☀️";
-            button.setAttribute("aria-label", "Activer le mode clair");
+    prefersDark.addEventListener("change", (event)=>{
 
-        } else {
+        if(!localStorage.getItem("theme")){
 
-            button.innerHTML = "🌙";
-            button.setAttribute("aria-label", "Activer le mode sombre");
+            document.body.classList.toggle("dark-theme", event.matches);
 
         }
 
     });
 
-}/* =======================================================
-   CHANGER LE THÈME
-======================================================= */
+}
+// =====================================
+// ICÔNE DU THÈME
+// =====================================
 
-themeButtons.forEach(button => {
+const themeIcon = document.querySelector(".theme-btn i");
 
-    button.addEventListener("click", () => {
+function updateThemeIcon(){
 
-        const currentTheme = body.classList.contains("dark")
-            ? "dark"
-            : "light";
+    if(!themeIcon) return;
 
-        const newTheme = currentTheme === "dark"
-            ? "light"
-            : "dark";
+    if(document.body.classList.contains("dark-theme")){
 
-        applyTheme(newTheme);
+        themeIcon.className = "fas fa-sun";
+
+    }else{
+
+        themeIcon.className = "fas fa-moon";
+
+    }
+
+}
+
+updateThemeIcon();
+
+if(themeButton){
+
+    themeButton.addEventListener("click", () => {
+
+        setTimeout(updateThemeIcon, 100);
 
     });
 
-});/* =======================================================
-   INITIALISATION DU THÈME
-======================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const savedTheme = localStorage.getItem(storageKey);
-
-    if (savedTheme) {
-
-        applyTheme(savedTheme);
-
-    } else {
-
-        applyTheme(prefersDark.matches ? "dark" : "light");
-
-    }
-
-});
-
-/* =======================================================
-   CHANGEMENT DE PRÉFÉRENCE SYSTÈME
-======================================================= */
-
-prefersDark.addEventListener("change", (event) => {
-
-    if (!localStorage.getItem(storageKey)) {
-
-        applyTheme(event.matches ? "dark" : "light");
-
-    }
-
-});
+}
