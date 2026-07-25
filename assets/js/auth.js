@@ -5,260 +5,261 @@
 "use strict";
 
 /* =======================================================
-   IMPORT FIREBASE
+   IMPORTS FIREBASE
 ======================================================= */
 
-import{
+import { auth } from "./firebase.js";
 
-auth
-
-}from"./firebase.js";
-
-import{
-
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-signOut,
-onAuthStateChanged,
-sendPasswordResetEmail,
-updateProfile
-
-}from"https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    sendPasswordResetEmail,
+    updateProfile,
+    GoogleAuthProvider,
+    signInWithPopup
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 
 /* =======================================================
-   ÉLÉMENTS
+   ÉLÉMENTS DU DOM
 ======================================================= */
 
-const signupForm=document.getElementById("signupForm");
+const signupForm = document.getElementById("signupForm");
+const loginForm = document.getElementById("loginForm");
+const resetForm = document.getElementById("resetForm");
 
-const loginForm=document.getElementById("loginForm");
-
-const logoutBtn=document.getElementById("logoutBtn");
-
-const resetForm=document.getElementById("resetForm");
+const logoutBtn = document.getElementById("logoutBtn");
+const googleLoginBtn = document.getElementById("googleLoginBtn");
 
 /* =======================================================
-   AFFICHER UN MESSAGE
+   FOURNISSEUR GOOGLE
 ======================================================= */
 
-function showMessage(message,type="success"){
+const googleProvider = new GoogleAuthProvider();/* =======================================================
+   AFFICHAGE DES MESSAGES
+======================================================= */
 
-const alert=document.createElement("div");
+function showMessage(message, type = "success") {
 
-alert.className=`alert ${type}`;
+    const alert = document.createElement("div");
 
-alert.textContent=message;
+    alert.className = `alert ${type}`;
+    alert.textContent = message;
 
-document.body.appendChild(alert);
+    document.body.appendChild(alert);
 
-setTimeout(()=>{
+    requestAnimationFrame(() => {
+        alert.classList.add("show");
+    });
 
-alert.classList.add("show");
+    setTimeout(() => {
+        alert.classList.remove("show");
 
-},50);
+        setTimeout(() => {
+            alert.remove();
+        }, 300);
 
-setTimeout(()=>{
-
-alert.classList.remove("show");
-
-setTimeout(()=>{
-
-alert.remove();
-
-},300);
-
-},3000);
+    }, 3000);
 
 }
 
 /* =======================================================
-   VALIDATION EMAIL
+   VALIDATION
 ======================================================= */
 
-function validEmail(email){
+function validEmail(email) {
 
-return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 }
 
-/* =======================================================
-   VALIDATION MOT DE PASSE
-======================================================= */
-
-function validPassword(password){
-
-return password.length>=8;
-
-}/* =======================================================
+function validPassword(password) {/* =======================================================
    INSCRIPTION
 ======================================================= */
 
-if(signupForm){
+if (signupForm) {
 
-signupForm.addEventListener("submit",async(event)=>{
+    signupForm.addEventListener("submit", async (event) => {
 
-event.preventDefault();
+        event.preventDefault();
 
-const name=signupForm.querySelector("[name='name']").value.trim();
+        const name = signupForm.querySelector("[name='name']").value.trim();
+        const email = signupForm.querySelector("[name='email']").value.trim();
+        const password = signupForm.querySelector("[name='password']").value;
+        const confirmPassword = signupForm.querySelector("[name='confirmPassword']").value;
 
-const email=signupForm.querySelector("[name='email']").value.trim();
+        if (!validEmail(email)) {
+            showMessage("Adresse e-mail invalide.", "error");
+            return;
+        }
 
-const password=signupForm.querySelector("[name='password']").value;
+        if (!validPassword(password)) {
+            showMessage("Le mot de passe doit contenir au moins 8 caractères.", "error");
+            return;
+        }
 
-const confirmPassword=signupForm.querySelector("[name='confirmPassword']").value;
+        if (password !== confirmPassword) {
+            showMessage("Les mots de passe ne correspondent pas.", "error");
+            return;
+        }
 
-if(!validEmail(email)){
+        try {
 
-showMessage("Adresse e-mail invalide.","error");
+            const credential = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
-return;
+            await updateProfile(credential.user, {
+                displayName: name
+            });
 
-}
+            showMessage("Compte créé avec succès.");
 
-if(!validPassword(password)){
+            window.location.href = "dashboard.html";
 
-showMessage("Le mot de passe doit contenir au moins 8 caractères.","error");
+        } catch (error) {
 
-return;
+            showMessage(error.message, "error");
 
-}
+        }
 
-if(password!==confirmPassword){
-
-showMessage("Les mots de passe ne correspondent pas.","error");
-
-return;
-
-}
-
-try{
-
-const credential=await createUserWithEmailAndPassword(
-
-auth,
-
-email,
-
-password
-
-);
-
-await updateProfile(credential.user,{
-
-displayName:name
-
-});
-
-showMessage("Compte créé avec succès.");
-
-window.location.href="dashboard.html";
-
-}catch(error){
-
-showMessage(error.message,"error");
+    });
 
 }
 
-});
+    return password.length >= 8;
 
-}
-
-/* =======================================================
+}/* =======================================================
    CONNEXION
 ======================================================= */
 
-if(loginForm){
+if (loginForm) {
 
-loginForm.addEventListener("submit",async(event)=>{
+    loginForm.addEventListener("submit", async (event) => {
 
-event.preventDefault();
+        event.preventDefault();
 
-const email=loginForm.querySelector("[name='email']").value.trim();
+        const email = loginForm.querySelector("[name='email']").value.trim();
+        const password = loginForm.querySelector("[name='password']").value;
 
-const password=loginForm.querySelector("[name='password']").value;
+        if (!validEmail(email)) {
+            showMessage("Adresse e-mail invalide.", "error");
+            return;
+        }
 
-try{
+        if (!password) {
+            showMessage("Veuillez saisir votre mot de passe.", "error");
+            return;
+        }
 
-await signInWithEmailAndPassword(
+        try {
 
-auth,
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
-email,
+            showMessage("Connexion réussie.");
 
-password
+            window.location.href = "dashboard.html";
 
-);
+        } catch (error) {
 
-showMessage("Connexion réussie.");
+            showMessage(error.message, "error");
 
-window.location.href="dashboard.html";
+        }
 
-}catch(error){
-
-showMessage(error.message,"error");
-
-}
-
-});
+    });
 
 }
 
 /* =======================================================
+   CONNEXION AVEC GOOGLE
+======================================================= */
+
+if (googleLoginBtn) {
+
+    googleLoginBtn.addEventListener("click", async () => {
+
+        try {
+
+            await signInWithPopup(auth, googleProvider);
+
+            showMessage("Connexion Google réussie.");
+
+            window.location.href = "dashboard.html";
+
+        } catch (error) {
+
+            showMessage(error.message, "error");
+
+        }
+
+    });
+
+}/* =======================================================
    RÉINITIALISATION DU MOT DE PASSE
 ======================================================= */
 
-if(resetForm){
+if (resetForm) {
 
-resetForm.addEventListener("submit",async(event)=>{
+    resetForm.addEventListener("submit", async (event) => {
 
-event.preventDefault();
+        event.preventDefault();
 
-const email=resetForm.querySelector("[name='email']").value.trim();
+        const email = resetForm.querySelector("[name='email']").value.trim();
 
-if(!validEmail(email)){
+        if (!validEmail(email)) {
 
-showMessage("Adresse e-mail invalide.","error");
+            showMessage("Adresse e-mail invalide.", "error");
 
-return;
+            return;
 
-}
+        }
 
-try{
+        try {
 
-await sendPasswordResetEmail(auth,email);
+            await sendPasswordResetEmail(auth, email);
 
-showMessage("E-mail de réinitialisation envoyé.");
+            showMessage(
+                "Un e-mail de réinitialisation a été envoyé."
+            );
 
-}catch(error){
+        } catch (error) {
 
-showMessage(error.message,"error");
+            showMessage(error.message, "error");
 
-}
+        }
 
-});
+    });
+
 }/* =======================================================
    DÉCONNEXION
 ======================================================= */
 
-if(logoutBtn){
+if (logoutBtn) {
 
-logoutBtn.addEventListener("click",async()=>{
+    logoutBtn.addEventListener("click", async () => {
 
-try{
+        try {
 
-await signOut(auth);
+            await signOut(auth);
 
-showMessage("Déconnexion réussie.");
+            showMessage("Déconnexion réussie.");
 
-window.location.href="login.html";
+            window.location.href = "login.html";
 
-}catch(error){
+        } catch (error) {
 
-showMessage(error.message,"error");
+            showMessage(error.message, "error");
 
-}
+        }
 
-});
+    });
 
 }
 
@@ -266,94 +267,77 @@ showMessage(error.message,"error");
    SURVEILLANCE DE LA SESSION
 ======================================================= */
 
-onAuthStateChanged(auth,(user)=>{
+onAuthStateChanged(auth, (user) => {
 
-const privatePages=[
+    const privatePages = [
+        "dashboard.html",
+        "profile.html",
+        "orders.html",
+        "downloads.html",
+        "wishlist.html",
+        "settings.html",
+        "create-store.html",
+        "store.html",
+        "admin.html"
+    ];
 
-"dashboard.html",
-"profile.html",
-"orders.html",
-"downloads.html",
-"wishlist.html",
-"settings.html",
-"create-store.html",
-"store.html",
-"admin.html"
+    const page = window.location.pathname.split("/").pop();
 
-];
+    if (!user && privatePages.includes(page)) {
 
-const page=window.location.pathname.split("/").pop();
+        window.location.href = "login.html";
+        return;
 
-if(!user&&privatePages.includes(page)){
+    }
 
-window.location.href="login.html";
+    if (user) {
 
-return;
+        document.querySelectorAll("[data-user-name]").forEach(element => {
+            element.textContent = user.displayName || "Utilisateur";
+        });
 
-}
+        document.querySelectorAll("[data-user-email]").forEach(element => {
+            element.textContent = user.email || "";
+        });
 
-if(user){
+        document.querySelectorAll("[data-user-photo]").forEach(element => {
+            element.src = user.photoURL || "assets/images/default-avatar.png";
+        });
 
-document.querySelectorAll("[data-user-name]").forEach(element=>{
+    }
 
-element.textContent=user.displayName||"Utilisateur";
-
-});
-
-document.querySelectorAll("[data-user-email]").forEach(element=>{
-
-element.textContent=user.email;
-
-});
-
-document.querySelectorAll("[data-user-photo]").forEach(element=>{
-
-element.src=user.photoURL||"assets/images/default-avatar.png";
-
-});
-
-}
-
-});
-
-/* =======================================================
+});/* =======================================================
    UTILITAIRES
 ======================================================= */
 
-function currentUser(){
-
-return auth.currentUser;
-
+function currentUser() {
+    return auth.currentUser;
 }
 
-function isLoggedIn(){
+function isLoggedIn() {
+    return auth.currentUser !== null;
+}
 
-return auth.currentUser!==null;
-
+async function logout() {
+    await signOut(auth);
 }
 
 /* =======================================================
    API GLOBALE
 ======================================================= */
 
-window.ZysellAuth={
-
-currentUser,
-
-isLoggedIn,
-
-logout:()=>signOut(auth)
-
+window.ZysellAuth = {
+    currentUser,
+    isLoggedIn,
+    logout
 };
 
 /* =======================================================
    INITIALISATION
 ======================================================= */
 
-document.addEventListener("DOMContentLoaded",()=>{
-
-console.log("ZYSELL AUTH INITIALISÉ");
-
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("✅ ZySell Auth initialisé.");
 });
 
 /* =======================================================
