@@ -3,908 +3,234 @@
 
 <head>
 
-    <!-- Encodage -->
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Responsive -->
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <title>ZySell | Global Digital Marketplace</title>
 
-    <!-- Compatibilité -->
-    <meta http-equiv="X-UA-Compatible"
-          content="IE=edge">
+    <meta name="description" content="Achetez et vendez des produits numériques partout dans le monde avec ZySell.">
 
-    <!-- SEO -->
-    <title>ZySell — Marketplace de produits numériques</title>
+    <link rel="icon" href="logo.png" type="image/png">
 
-    <meta name="description"
-          content="Achetez et vendez des produits numériques partout dans le monde avec ZySell.">
-
-    <meta name="keywords"
-          content="Marketplace, Produits numériques, Ebook, Formation, IA, Templates">
-
-    <meta name="author"
-          content="ZySell">
-
-    <meta name="theme-color"
-          content="#4F46E5">
-
-    <!-- Icône -->
-    <link rel="icon"
-          href="logo.png">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-    <!-- CSS -->
-    <link rel="stylesheet"
-          href="assets/css/style.css">
-
-    <link rel="stylesheet"
-          href="assets/css/theme.css">
-
-    <link rel="stylesheet"
-          href="assets/css/responsive.css">
-
-    <link rel="stylesheet"
-          href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
 
 </head>
 
 <body>
-      <!-- ========================================= -->
-<!-- HEADER -->
-<!-- ========================================= -->
-
-<header class="header">
+    <header class="header">
 
     <div class="container">
 
+        <a href="index.html" class="logo">
+            <img src="logo.png" alt="ZySell Logo">
+            <span>ZySell</span>
+        </a>
+
         <nav class="navbar">
 
-            <!-- Logo -->
+            <a href="#home" data-i18n="nav.home">Accueil</a>
 
-            <a href="index.html" class="logo">
+            <a href="#categories" data-i18n="nav.categories">Catégories</a>
 
-                <img src="logo.png" alt="ZySell Logo">
+            <a href="#products" data-i18n="nav.products">Produits</a>
 
-                <span>ZySell</span>
+            <a href="#creators" data-i18n="nav.creators">Créateurs</a>
 
-            </a>
+            <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
 
-            <!-- Navigation -->
-
-            <ul class="nav-menu">
-
-                <li>
-                    <a href="index.html"
-                       class="active"
-                       data-i18n="home">
-
-                        Accueil
-
-                    </a>
-                </li>
-
-                <li>
-                    <a href="explore.html"
-                       data-i18n="explore">
-
-                        Explorer
-
-                    </a>
-                </li>
-
-                <li>
-                    <a href="store.html"
-                       data-i18n="stores">
-
-                        Boutiques
-
-                    </a>
-                </li>
-
-                <li>
-                    <a href="pricing.html"
-                       data-i18n="pricing">
-
-                        Tarifs
-
-                    </a>
-                </li>
-
-                <li>
-                    <a href="contact.html"
-                       data-i18n="contact">
-
-                        Contact
-
-                    </a>
-                </li>
-
-            </ul>
-
-            <!-- Actions -->
-
-            <div class="nav-actions">
-
-                <button id="searchBtn"
-                        class="icon-btn"
-                        aria-label="Recherche">
-
-                    <i class="fa-solid fa-magnifying-glass"></i>
-
-                </button>
-
-                <button id="countryBtn"
-                        class="icon-btn"
-                        aria-label="Pays">
-
-                    <span id="countryFlag">🌍</span>
-
-                </button>
-
-                <button id="languageBtn"
-                        class="icon-btn"
-                        aria-label="Langue">
-
-                    FR
-
-                </button>
-
-                <button id="themeBtn"
-                        class="icon-btn"
-                        aria-label="Thème">
-
-                    <i class="fa-solid fa-moon"></i>
-
-                </button>
-
-                <a href="login.html"
-                   class="btn btn-outline"
-                   data-i18n="login">
-
-                    Se connecter
-
-                </a>
-
-                <a href="signup.html"
-                   class="btn btn-primary"
-                   data-i18n="start">
-
-                    Commencer
-
-                </a>
-
-            </div>
-
-            <!-- Bouton menu mobile -->
-
-            <button id="mobileMenuBtn"
-                    class="mobile-menu-btn"
-                    aria-label="Menu">
-
-                <i class="fa-solid fa-bars"></i>
-
-            </button>
+            <a href="#contact" data-i18n="nav.contact">Contact</a>
 
         </nav>
+
+        <div class="header-tools">
+
+            <div id="countryInfo" class="country-info"></div>
+
+            <button id="languageBtn" class="language-btn">
+                🇫🇷 FR
+            </button>
+
+            <button id="themeToggle" class="theme-btn" aria-label="Changer le thème">
+                🌙
+            </button>
+
+            <a href="login.html" class="btn-login" data-i18n="login">
+                Connexion
+            </a>
+
+            <a href="signup.html" class="btn-signup" data-i18n="signup">
+                Commencer
+            </a>
+
+            <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Menu">
+                ☰
+            </button>
+
+        </div>
 
     </div>
 
 </header>
-      <!-- ========================================= -->
-<!-- MENU MOBILE -->
-<!-- ========================================= -->
 
-<div class="mobile-menu" id="mobileMenu">
+<nav id="mobileMenu" class="mobile-menu">
 
-    <ul class="mobile-nav">
+    <a href="#home" data-i18n="nav.home">Accueil</a>
 
-        <li>
-            <a href="index.html" class="active" data-i18n="home">
-                <i class="fa-solid fa-house"></i>
-                <span>Accueil</span>
-            </a>
-        </li>
+    <a href="#categories" data-i18n="nav.categories">Catégories</a>
 
-        <li>
-            <a href="explore.html" data-i18n="explore">
-                <i class="fa-solid fa-compass"></i>
-                <span>Explorer</span>
-            </a>
-        </li>
+    <a href="#products" data-i18n="nav.products">Produits</a>
 
-        <li>
-            <a href="store.html" data-i18n="stores">
-                <i class="fa-solid fa-store"></i>
-                <span>Boutiques</span>
-            </a>
-        </li>
+    <a href="#creators" data-i18n="nav.creators">Créateurs</a>
 
-        <li>
-            <a href="pricing.html" data-i18n="pricing">
-                <i class="fa-solid fa-tags"></i>
-                <span>Tarifs</span>
-            </a>
-        </li>
+    <a href="#pricing" data-i18n="nav.pricing">Tarifs</a>
 
-        <li>
-            <a href="contact.html" data-i18n="contact">
-                <i class="fa-solid fa-envelope"></i>
-                <span>Contact</span>
-            </a>
-        </li>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
 
-    </ul>
+    <hr>
 
-    <div class="mobile-divider"></div>
+    <a href="login.html" data-i18n="login">Connexion</a>
 
-    <div class="mobile-settings">
+    <a href="signup.html" data-i18n="signup">Commencer</a>
 
-        <button class="mobile-option" id="countryBtnMobile">
+</nav>
+<main>
 
-            <i class="fa-solid fa-earth-africa"></i>
-
-            <span id="countryNameMobile">
-
-                Cameroun
-
-            </span>
-
-        </button>
-
-        <button class="mobile-option" id="languageBtnMobile">
-
-            <i class="fa-solid fa-language"></i>
-
-            <span id="languageTextMobile">
-
-                Français
-
-            </span>
-
-        </button>
-
-        <button class="mobile-option" id="themeBtnMobile">
-
-            <i class="fa-solid fa-moon"></i>
-
-            <span data-i18n="darkMode">
-
-                Mode sombre
-
-            </span>
-
-        </button>
-
-    </div>
-
-    <div class="mobile-divider"></div>
-
-    <div class="mobile-auth">
-
-        <a href="login.html"
-           class="btn btn-outline"
-           data-i18n="login">
-
-            Se connecter
-
-        </a>
-
-        <a href="signup.html"
-           class="btn btn-primary"
-           data-i18n="start">
-
-            Commencer
-
-        </a>
-
-    </div>
-
-</div>
-      <!-- ========================================= -->
-<!-- HERO -->
-<!-- ========================================= -->
-
-<section class="hero">
+<section id="home" class="hero">
 
     <div class="container">
 
-        <!-- Contenu -->
+        <div class="hero-left">
 
-        <div class="hero-content">
-
-            <span class="hero-badge"
-                  data-i18n="heroBadge">
-
-                🌍 Le commerce numérique sans frontières
-
+            <span class="hero-badge" data-i18n="hero.badge">
+                🌍 Marketplace mondiale
             </span>
 
-            <h1 data-i18n="heroTitle">
-
-                Achetez, vendez et développez votre activité numérique.
-
+            <h1 data-i18n="hero.title">
+                Achetez et vendez des produits numériques partout dans le monde.
             </h1>
 
-            <p data-i18n="heroSubtitle">
-
-                ZySell est une marketplace moderne permettant aux créateurs, entreprises et entrepreneurs de vendre des produits numériques partout dans le monde.
-
+            <p data-i18n="hero.description">
+                Rejoignez des milliers de créateurs et d'acheteurs sur une plateforme rapide, sécurisée et accessible dans tous les pays.
             </p>
-
-            <!-- Barre de recherche -->
 
             <form class="hero-search">
 
-                <div class="search-box">
+                <input
+                    type="search"
+                    id="searchInput"
+                    data-i18n-placeholder="hero.search"
+                    placeholder="Rechercher un produit...">
 
-                    <i class="fa-solid fa-magnifying-glass"></i>
-
-                    <input
-                        id="heroSearchInput"
-                        type="search"
-                        placeholder="Rechercher un produit..."
-                        data-i18n-placeholder="searchPlaceholder">
-
-                </div>
-
-                <button
-                    class="btn btn-primary"
-                    type="submit"
-                    data-i18n="search">
-
+                <button type="submit" data-i18n="hero.searchButton">
                     Rechercher
-
                 </button>
 
             </form>
 
-            <!-- Boutons -->
-
             <div class="hero-buttons">
 
-                <a href="signup.html"
-                   class="btn btn-primary"
-                   data-i18n="heroStart">
-
-                    Commencer gratuitement
-
-                </a>
-
-                <a href="explore.html"
-                   class="btn btn-outline"
-                   data-i18n="heroExplore">
-
+                <a href="explore.html" class="btn-primary" data-i18n="hero.explore">
                     Explorer
+                </a>
 
+                <a href="signup.html" class="btn-secondary" data-i18n="hero.sell">
+                    Commencer à vendre
                 </a>
 
             </div>
 
-            <!-- Statistiques -->
-
-            <div class="hero-stats">
-
-                <div class="stat-item">
-
-                    <h2>50K+</h2>
-
-                    <span data-i18n="productsCount">
-
-                        Produits numériques
-
-                    </span>
-
-                </div>
-
-                <div class="stat-item">
-
-                    <h2>15K+</h2>
-
-                    <span data-i18n="sellersCount">
-
-                        Vendeurs
-
-                    </span>
-
-                </div>
-
-                <div class="stat-item">
-
-                    <h2>195+</h2>
-
-                    <span data-i18n="countriesCount">
-
-                        Pays
-
-                    </span>
-
-                </div>
-
-                <div class="stat-item">
-
-                    <h2>24/7</h2>
-
-                    <span data-i18n="supportCount">
-
-                        Support
-
-                    </span>
-
-                </div>
-
-            </div>
-
         </div>
 
-        <!-- Image -->
+        <div class="hero-right">
 
-        <div class="hero-image">
-
-            <img
-                src="assets/images/hero.png"
-                alt="ZySell Marketplace">
+            <img src="hero.png" alt="ZySell Marketplace">
 
         </div>
 
     </div>
 
 </section>
-      <!-- ========================================= -->
-<!-- PRODUITS POPULAIRES -->
-<!-- ========================================= -->
-
-<section class="featured-products">
+<section id="categories" class="categories">
 
     <div class="container">
 
-        <!-- En-tête -->
-
         <div class="section-header">
 
-            <div>
+            <span class="section-badge" data-i18n="categories.badge">
+                Explorer
+            </span>
 
-                <span class="section-badge"
-                      data-i18n="bestSales">
+            <h2 data-i18n="categories.title">
+                Parcourez les catégories
+            </h2>
 
-                    🔥 Les meilleures ventes
-
-                </span>
-
-                <h2 data-i18n="popularProducts">
-
-                    Produits populaires
-
-                </h2>
-
-                <p data-i18n="popularProductsDesc">
-
-                    Découvrez les produits numériques les plus populaires sur ZySell.
-
-                </p>
-
-            </div>
-
-            <a href="explore.html"
-               class="view-all"
-               data-i18n="viewAll">
-
-                Voir tout
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
+            <p data-i18n="categories.description">
+                Trouvez rapidement le produit numérique qui correspond à vos besoins.
+            </p>
 
         </div>
-
-        <!-- Produits -->
-
-        <div class="products-grid">
-
-            <!-- Produit 1 -->
-
-            <article class="product-card">
-
-                <img src="assets/images/products/product1.jpg"
-                     alt="Produit">
-
-                <div class="product-content">
-
-                    <span class="product-category">
-
-                        Templates
-
-                    </span>
-
-                    <h3>Pack CV Premium</h3>
-
-                    <p>
-
-                        Plus de 50 modèles de CV professionnels.
-
-                    </p>
-
-                    <div class="product-footer">
-
-                        <strong>9 900 FCFA</strong>
-
-                        <a href="#"
-                           class="btn btn-primary"
-                           data-i18n="buyNow">
-
-                            Acheter
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-            <!-- Produit 2 -->
-
-            <article class="product-card">
-
-                <img src="assets/images/products/product2.jpg"
-                     alt="Produit">
-
-                <div class="product-content">
-
-                    <span class="product-category">
-
-                        Formations
-
-                    </span>
-
-                    <h3>Marketing Digital</h3>
-
-                    <p>
-
-                        Formation complète pour développer vos ventes.
-
-                    </p>
-
-                    <div class="product-footer">
-
-                        <strong>24 900 FCFA</strong>
-
-                        <a href="#"
-                           class="btn btn-primary"
-                           data-i18n="buyNow">
-
-                            Acheter
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-            <!-- Produit 3 -->
-
-            <article class="product-card">
-
-                <img src="assets/images/products/product3.jpg"
-                     alt="Produit">
-
-                <div class="product-content">
-
-                    <span class="product-category">
-
-                        E-books
-
-                    </span>
-
-                    <h3>Business 2026</h3>
-
-                    <p>
-
-                        Les meilleures stratégies pour réussir.
-
-                    </p>
-
-                    <div class="product-footer">
-
-                        <strong>7 500 FCFA</strong>
-
-                        <a href="#"
-                           class="btn btn-primary"
-                           data-i18n="buyNow">
-
-                            Acheter
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-            <!-- Produit 4 -->
-
-            <article class="product-card">
-
-                <img src="assets/images/products/product4.jpg"
-                     alt="Produit">
-
-                <div class="product-content">
-
-                    <span class="product-category">
-
-                        Design
-
-                    </span>
-
-                    <h3>Pack Logos Premium</h3>
-
-                    <p>
-
-                        Plus de 300 logos professionnels.
-
-                    </p>
-
-                    <div class="product-footer">
-
-                        <strong>14 900 FCFA</strong>
-
-                        <a href="#"
-                           class="btn btn-primary"
-                           data-i18n="buyNow">
-
-                            Acheter
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-        </div>
-
-        <!-- Bouton -->
-
-        <div class="products-footer">
-
-            <a href="explore.html"
-               class="btn btn-primary"
-               data-i18n="discoverMoreProducts">
-
-                Découvrir plus de produits
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-      <!-- ========================================= -->
-<!-- CATÉGORIES -->
-<!-- ========================================= -->
-
-<section class="categories">
-
-    <div class="container">
-
-        <!-- En-tête -->
-
-        <div class="section-header">
-
-            <div>
-
-                <span class="section-badge"
-                      data-i18n="categoriesBadge">
-
-                    📂 Parcourir les catégories
-
-                </span>
-
-                <h2 data-i18n="categoriesTitle">
-
-                    Explorez par catégorie
-
-                </h2>
-
-                <p data-i18n="categoriesSubtitle">
-
-                    Retrouvez rapidement les produits numériques correspondant à vos besoins.
-
-                </p>
-
-            </div>
-
-            <a href="categories.html"
-               class="view-all"
-               data-i18n="allCategories">
-
-                Toutes les catégories
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-        </div>
-
-        <!-- Grille -->
 
         <div class="categories-grid">
 
-            <article class="category-card">
-
-                <i class="fa-solid fa-book"></i>
-
-                <h3 data-i18n="ebooks">
-
-                    E-books
-
-                </h3>
-
-                <span data-i18n="ebooksDesc">
-
-                    Livres numériques et guides.
-
-                </span>
-
-            </article>
-
-            <article class="category-card">
-
-                <i class="fa-solid fa-graduation-cap"></i>
-
-                <h3 data-i18n="courses">
-
-                    Formations
-
-                </h3>
-
-                <span data-i18n="coursesDesc">
-
-                    Cours et formations professionnelles.
-
-                </span>
-
-            </article>
-
-            <article class="category-card">
-
-                <i class="fa-solid fa-palette"></i>
-
-                <h3 data-i18n="design">
-
-                    Design & Templates
-
-                </h3>
-
-                <span data-i18n="designDesc">
-
-                    Logos, modèles et ressources graphiques.
-
-                </span>
-
-            </article>
-
-            <article class="category-card">
-
-                <i class="fa-solid fa-laptop-code"></i>
-
-                <h3 data-i18n="software">
-
-                    Logiciels
-
-                </h3>
-
-                <span data-i18n="softwareDesc">
-
-                    Applications, scripts et outils.
-
-                </span>
-
-            </article>
-
-            <article class="category-card">
-
-                <i class="fa-solid fa-robot"></i>
-
-                <h3 data-i18n="aiPrompts">
-
-                    IA & Prompts
-
-                </h3>
-
-                <span data-i18n="aiPromptsDesc">
-
-                    Prompts et ressources IA.
-
-                </span>
-
-            </article>
-
-            <article class="category-card">
-
-                <i class="fa-solid fa-camera"></i>
-
-                <h3 data-i18n="photoVideo">
-
-                    Photos & Vidéos
-
-                </h3>
-
-                <span data-i18n="photoVideoDesc">
-
-                    Ressources photo et vidéo.
-
-                </span>
-
-            </article>
-
-            <article class="category-card">
-
-                <i class="fa-solid fa-music"></i>
-
-                <h3 data-i18n="audioMusic">
-
-                    Audio & Musique
-
-                </h3>
-
-                <span data-i18n="audioMusicDesc">
-
-                    Sons, musiques et podcasts.
-
-                </span>
-
-            </article>
-
-            <article class="category-card">
-
-                <i class="fa-solid fa-file-lines"></i>
-
-                <h3 data-i18n="documents">
-
-                    Documents
-
-                </h3>
-
-                <span data-i18n="documentsDesc">
-
-                    Contrats et documents prêts à utiliser.
-
-                </span>
-
-            </article>
-
-        </div>
-
-        <!-- Bouton -->
-
-        <div class="categories-footer">
-
-            <a href="categories.html"
-               class="btn btn-primary"
-               data-i18n="browseAllCategories">
-
-                Parcourir toutes les catégories
-
+            <a href="#" class="category-card" data-category="ebooks">
+                <span>📚</span>
+                <h3 data-i18n="category.ebooks">E-books</h3>
+            </a>
+
+            <a href="#" class="category-card" data-category="courses">
+                <span>🎓</span>
+                <h3 data-i18n="category.courses">Formations</h3>
+            </a>
+
+            <a href="#" class="category-card" data-category="software">
+                <span>💻</span>
+                <h3 data-i18n="category.software">Logiciels</h3>
+            </a>
+
+            <a href="#" class="category-card" data-category="graphics">
+                <span>🎨</span>
+                <h3 data-i18n="category.graphics">Graphisme</h3>
+            </a>
+
+            <a href="#" class="category-card" data-category="websites">
+                <span>🌐</span>
+                <h3 data-i18n="category.websites">Sites Web</h3>
+            </a>
+
+            <a href="#" class="category-card" data-category="mobileapps">
+                <span>📱</span>
+                <h3 data-i18n="category.mobileapps">Applications</h3>
+            </a>
+
+            <a href="#" class="category-card" data-category="videos">
+                <span>🎬</span>
+                <h3 data-i18n="category.videos">Vidéos</h3>
+            </a>
+
+            <a href="#" class="category-card" data-category="music">
+                <span>🎵</span>
+                <h3 data-i18n="category.music">Musiques</h3>
+            </a>
+
+            <a href="#" class="category-card" data-category="photos">
+                <span>📸</span>
+                <h3 data-i18n="category.photos">Photographies</h3>
+            </a>
+
+            <a href="#" class="category-card" data-category="templates">
+                <span>🧩</span>
+                <h3 data-i18n="category.templates">Templates</h3>
+            </a>
+
+            <a href="#" class="category-card" data-category="ai-prompts">
+                <span>🤖</span>
+                <h3 data-i18n="category.ai">Prompts IA</h3>
+            </a>
+
+            <a href="#" class="category-card" data-category="documents">
+                <span>📄</span>
+                <h3 data-i18n="category.documents">Documents</h3>
             </a>
 
         </div>
@@ -912,347 +238,277 @@
     </div>
 
 </section>
-      <!-- ========================================= -->
-<!-- CRÉATEURS POPULAIRES -->
-<!-- ========================================= -->
-
-<section class="top-creators">
+<section id="products" class="products">
 
     <div class="container">
 
-        <!-- En-tête -->
-
         <div class="section-header">
 
-            <div>
+            <span class="section-badge" data-i18n="products.badge">
+                Populaire
+            </span>
 
-                <span class="section-badge"
-                      data-i18n="creatorsBadge">
+            <h2 data-i18n="products.title">
+                Produits populaires
+            </h2>
 
-                    ⭐ Créateurs vérifiés
-
-                </span>
-
-                <h2 data-i18n="creatorsTitle">
-
-                    Les meilleurs créateurs
-
-                </h2>
-
-                <p data-i18n="creatorsSubtitle">
-
-                    Découvrez les vendeurs les plus performants de la plateforme ZySell.
-
-                </p>
-
-            </div>
-
-            <a href="creators.html"
-               class="view-all"
-               data-i18n="viewCreators">
-
-                Voir tous
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
+            <p data-i18n="products.description">
+                Découvrez les meilleures ventes de la communauté ZySell.
+            </p>
 
         </div>
 
-        <!-- Grille -->
+        <div class="products-grid">
 
-        <div class="creators-grid">
+            <article class="product-card">
 
-            <article class="creator-card">
+                <span class="product-badge">🔥 Best Seller</span>
 
-                <img src="assets/images/creators/creator1.jpg"
-                     alt="Créateur">
+                <img src="product1.jpg" alt="Produit">
 
-                <h3>Venzy Studio</h3>
+                <div class="product-info">
 
-                <span data-i18n="creatorDesigner">
+                    <h3>Formation Marketing Digital</h3>
 
-                    Créateur numérique
+                    <p class="seller">
+                        👤 John Carter
+                    </p>
 
-                </span>
+                    <div class="product-rating">
+                        ⭐⭐⭐⭐⭐ <span>(248)</span>
+                    </div>
 
-                <div class="creator-rating">
+                    <div class="product-footer">
 
-                    ⭐ 4.9
+                        <strong class="price">
+                            29,99 $
+                        </strong>
 
-                </div>
+                        <button class="buy-btn">
+                            Acheter
+                        </button>
 
-                <p data-i18n="creatorSales">
-
-                    Plus de 2 500 ventes réalisées.
-
-                </p>
-
-                <a href="#"
-                   class="btn btn-primary"
-                   data-i18n="visitStore">
-
-                    Visiter la boutique
-
-                </a>
-
-            </article>
-
-            <article class="creator-card">
-
-                <img src="assets/images/creators/creator2.jpg"
-                     alt="Créateur">
-
-                <h3>Digital Pro</h3>
-
-                <span>Marketing</span>
-
-                <div class="creator-rating">
-
-                    ⭐ 4.8
+                    </div>
 
                 </div>
 
-                <p>
-
-                    Plus de 1 900 ventes.
-
-                </p>
-
-                <a href="#"
-                   class="btn btn-primary"
-                   data-i18n="visitStore">
-
-                    Visiter la boutique
-
-                </a>
-
             </article>
 
-            <article class="creator-card">
+            <article class="product-card">
 
-                <img src="assets/images/creators/creator3.jpg"
-                     alt="Créateur">
+                <span class="product-badge new">🆕 Nouveau</span>
 
-                <h3>Design Hub</h3>
+                <img src="product2.jpg" alt="Produit">
 
-                <span>Graphisme</span>
+                <div class="product-info">
 
-                <div class="creator-rating">
+                    <h3>Pack Templates Premium</h3>
 
-                    ⭐ 5.0
+                    <p class="seller">
+                        👤 Sarah Wilson
+                    </p>
+
+                    <div class="product-rating">
+                        ⭐⭐⭐⭐⭐ <span>(96)</span>
+                    </div>
+
+                    <div class="product-footer">
+
+                        <strong class="price">
+                            15,99 $
+                        </strong>
+
+                        <button class="buy-btn">
+                            Acheter
+                        </button>
+
+                    </div>
 
                 </div>
 
-                <p>
-
-                    Plus de 3 400 ventes.
-
-                </p>
-
-                <a href="#"
-                   class="btn btn-primary"
-                   data-i18n="visitStore">
-
-                    Visiter la boutique
-
-                </a>
-
             </article>
 
-            <article class="creator-card">
+            <article class="product-card">
 
-                <img src="assets/images/creators/creator4.jpg"
-                     alt="Créateur">
+                <span class="product-badge sale">💥 Promotion</span>
 
-                <h3>Code Factory</h3>
+                <img src="product3.jpg" alt="Produit">
 
-                <span>Développement</span>
+                <div class="product-info">
 
-                <div class="creator-rating">
+                    <h3>Guide IA 2026</h3>
 
-                    ⭐ 4.9
+                    <p class="seller">
+                        👤 David Brown
+                    </p>
+
+                    <div class="product-rating">
+                        ⭐⭐⭐⭐☆ <span>(61)</span>
+                    </div>
+
+                    <div class="product-footer">
+
+                        <strong class="price">
+                            9,99 $
+                        </strong>
+
+                        <button class="buy-btn">
+                            Acheter
+                        </button>
+
+                    </div>
 
                 </div>
 
-                <p>
-
-                    Plus de 2 100 ventes.
-
-                </p>
-
-                <a href="#"
-                   class="btn btn-primary"
-                   data-i18n="visitStore">
-
-                    Visiter la boutique
-
-                </a>
-
             </article>
+
+        </div>
+
+        <div class="view-all">
+
+            <a href="explore.html" class="btn-primary" data-i18n="products.viewAll">
+                Voir tous les produits
+            </a>
 
         </div>
 
     </div>
 
 </section>
-      <!-- ========================================= -->
-<!-- POURQUOI CHOISIR ZYSELL -->
-<!-- ========================================= -->
-
-<section class="features">
+<section id="why-zysell" class="why-zysell">
 
     <div class="container">
 
-        <!-- En-tête -->
-
         <div class="section-header">
 
-            <div>
+            <span class="section-badge" data-i18n="why.badge">
+                Pourquoi ZySell ?
+            </span>
 
-                <span class="section-badge"
-                      data-i18n="featuresBadge">
+            <h2 data-i18n="why.title">
+                Une plateforme conçue pour réussir
+            </h2>
 
-                    🚀 Pourquoi ZySell ?
-
-                </span>
-
-                <h2 data-i18n="featuresTitle">
-
-                    Une plateforme pensée pour votre réussite
-
-                </h2>
-
-                <p data-i18n="featuresSubtitle">
-
-                    Découvrez les avantages qui font de ZySell une marketplace moderne et performante.
-
-                </p>
-
-            </div>
+            <p data-i18n="why.description">
+                ZySell offre aux créateurs et aux acheteurs une expérience rapide, sécurisée et accessible partout dans le monde.
+            </p>
 
         </div>
-
-        <!-- Grille -->
 
         <div class="features-grid">
 
-            <article class="feature-card">
+            <div class="feature-card">
+                <span class="feature-icon">🌍</span>
+                <h3 data-i18n="why.global.title">Disponible dans le monde entier</h3>
+                <p data-i18n="why.global.desc">Accédez à ZySell depuis n'importe quel pays.</p>
+            </div>
 
-                <i class="fa-solid fa-bolt"></i>
+            <div class="feature-card">
+                <span class="feature-icon">🔒</span>
+                <h3 data-i18n="why.secure.title">Paiements sécurisés</h3>
+                <p data-i18n="why.secure.desc">Des transactions protégées pour les vendeurs et les acheteurs.</p>
+            </div>
 
-                <h3 data-i18n="featureFastTitle">
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3 data-i18n="why.fast.title">Téléchargement instantané</h3>
+                <p data-i18n="why.fast.desc">Recevez vos produits immédiatement après l'achat.</p>
+            </div>
 
-                    Vente instantanée
-
-                </h3>
-
-                <p data-i18n="featureFastDesc">
-
-                    Vos produits sont disponibles immédiatement après l'achat.
-
-                </p>
-
-            </article>
-
-            <article class="feature-card">
-
-                <i class="fa-solid fa-lock"></i>
-
-                <h3 data-i18n="featureSecureTitle">
-
-                    Paiements sécurisés
-
-                </h3>
-
-                <p data-i18n="featureSecureDesc">
-
-                    Des transactions fiables et protégées pour tous.
-
-                </p>
-
-            </article>
-
-            <article class="feature-card">
-
-                <i class="fa-solid fa-globe"></i>
-
-                <h3 data-i18n="featureGlobalTitle">
-
-                    Vente mondiale
-
-                </h3>
-
-                <p data-i18n="featureGlobalDesc">
-
-                    Touchez des clients dans plus de 195 pays.
-
-                </p>
-
-            </article>
-
-            <article class="feature-card">
-
-                <i class="fa-solid fa-chart-line"></i>
-
-                <h3 data-i18n="featureGrowthTitle">
-
-                    Développez votre activité
-
-                </h3>
-
-                <p data-i18n="featureGrowthDesc">
-
-                    Analysez vos ventes et faites évoluer votre business.
-
-                </p>
-
-            </article>
-
-            <article class="feature-card">
-
-                <i class="fa-solid fa-headset"></i>
-
-                <h3 data-i18n="featureSupportTitle">
-
-                    Support 24/7
-
-                </h3>
-
-                <p data-i18n="featureSupportDesc">
-
-                    Notre équipe est disponible à tout moment pour vous aider.
-
-                </p>
-
-            </article>
-
-            <article class="feature-card">
-
-                <i class="fa-solid fa-mobile-screen-button"></i>
-
-                <h3 data-i18n="featureMobileTitle">
-
-                    100 % Responsive
-
-                </h3>
-
-                <p data-i18n="featureMobileDesc">
-
-                    Utilisez ZySell facilement sur ordinateur, tablette et mobile.
-
-                </p>
-
-            </article>
+            <div class="feature-card">
+                <span class="feature-icon">📱</span>
+                <h3 data-i18n="why.mobile.title">Compatible tous les appareils</h3>
+                <p data-i18n="why.mobile.desc">Téléphone, tablette et ordinateur.</p>
+            </div>
 
         </div>
 
     </div>
 
-                      </section>
-      <!-- ========================================= -->
-<!-- TÉMOIGNAGES -->
-<!-- ========================================= -->
+</section>
+
+<section class="statistics">
+
+    <div class="container">
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <h2 id="totalProducts">0</h2>
+                <p data-i18n="stats.products">Produits publiés</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="totalCreators">0</h2>
+                <p data-i18n="stats.creators">Créateurs</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="totalSales">0</h2>
+                <p data-i18n="stats.sales">Ventes réalisées</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="countriesServed">0</h2>
+                <p data-i18n="stats.countries">Pays desservis</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section id="creators" class="featured-creators">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-badge" data-i18n="creators.badge">
+                Créateurs
+            </span>
+
+            <h2 data-i18n="creators.title">
+                Créateurs en vedette
+            </h2>
+
+            <p data-i18n="creators.description">
+                Découvrez les vendeurs les plus performants de la plateforme.
+            </p>
+
+        </div>
+
+        <div class="creators-grid">
+
+            <div class="creator-card">
+                <img src="creator1.jpg" alt="Créateur">
+                <h3>John Carter</h3>
+                <p>Marketing Digital</p>
+            </div>
+
+            <div class="creator-card">
+                <img src="creator2.jpg" alt="Créateur">
+                <h3>Sarah Wilson</h3>
+                <p>Graphisme</p>
+            </div>
+
+            <div class="creator-card">
+                <img src="creator3.jpg" alt="Créateur">
+                <h3>David Brown</h3>
+                <p>Développement Web</p>
+            </div>
+
+            <div class="creator-card">
+                <img src="creator4.jpg" alt="Créateur">
+                <h3>Emma Johnson</h3>
+                <p>Business</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 <section class="testimonials">
 
@@ -1260,301 +516,130 @@
 
         <div class="section-header">
 
-            <div>
+            <span class="section-badge" data-i18n="reviews.badge">
+                Avis
+            </span>
 
-                <span class="section-badge"
-                      data-i18n="testimonialsBadge">
-
-                    ❤️ Ils nous font confiance
-
-                </span>
-
-                <h2 data-i18n="testimonialsTitle">
-
-                    Ce que disent nos utilisateurs
-
-                </h2>
-
-                <p data-i18n="testimonialsSubtitle">
-
-                    Des milliers de créateurs et d'entreprises développent leur activité avec ZySell.
-
-                </p>
-
-            </div>
+            <h2 data-i18n="reviews.title">
+                Ce que disent nos utilisateurs
+            </h2>
 
         </div>
 
         <div class="testimonials-grid">
 
-            <article class="testimonial-card">
+            <div class="testimonial-card">
+                <p>"Une excellente plateforme pour vendre mes formations."</p>
+                <h4>⭐⭐⭐⭐⭐</h4>
+                <span>Michael</span>
+            </div>
 
-                <img src="assets/images/testimonials/user1.jpg"
-                     alt="Utilisateur">
+            <div class="testimonial-card">
+                <p>"Simple, rapide et très sécurisée."</p>
+                <h4>⭐⭐⭐⭐⭐</h4>
+                <span>Sophie</span>
+            </div>
 
-                <h3>Jean Dupont</h3>
-
-                <span>Créateur de contenu</span>
-
-                <p>
-
-                    « ZySell m'a permis de vendre mes formations dans plusieurs pays. Une plateforme simple et efficace. »
-
-                </p>
-
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-
-            </article>
-
-            <article class="testimonial-card">
-
-                <img src="assets/images/testimonials/user2.jpg"
-                     alt="Utilisateur">
-
-                <h3>Sarah K.</h3>
-
-                <span>Graphiste</span>
-
-                <p>
-
-                    « Une excellente expérience. Les paiements sont rapides et la boutique est très professionnelle. »
-
-                </p>
-
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-
-            </article>
-
-            <article class="testimonial-card">
-
-                <img src="assets/images/testimonials/user3.jpg"
-                     alt="Utilisateur">
-
-                <h3>Michael T.</h3>
-
-                <span>Entrepreneur</span>
-
-                <p>
-
-                    « J'ai commencé à vendre mes ebooks en quelques minutes. Je recommande ZySell. »
-
-                </p>
-
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-      <!-- ========================================= -->
-<!-- FAQ -->
-<!-- ========================================= -->
-
-<section class="faq">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <div>
-
-                <span class="section-badge"
-                      data-i18n="faqBadge">
-
-                    ❓ Questions fréquentes
-
-                </span>
-
-                <h2 data-i18n="faqTitle">
-
-                    Besoin d'aide ?
-
-                </h2>
-
-                <p data-i18n="faqSubtitle">
-
-                    Retrouvez les réponses aux questions les plus fréquentes sur ZySell.
-
-                </p>
-
+            <div class="testimonial-card">
+                <p>"J'ai trouvé des ressources de très grande qualité."</p>
+                <h4>⭐⭐⭐⭐⭐</h4>
+                <span>David</span>
             </div>
 
         </div>
 
-        <div class="faq-list">
+    </div>
 
-            <details class="faq-item">
+</section>
 
-                <summary>
+<section class="cta">
 
-                    Comment vendre un produit sur ZySell ?
+    <div class="container">
 
-                </summary>
+        <h2 data-i18n="cta.title">
+            Commencez à vendre vos produits numériques aujourd'hui.
+        </h2>
 
-                <p>
+        <p data-i18n="cta.description">
+            Rejoignez des milliers de créateurs et développez votre activité avec ZySell.
+        </p>
 
-                    Créez un compte vendeur, ajoutez votre produit numérique et publiez votre boutique.
-
-                </p>
-
-            </details>
-
-            <details class="faq-item">
-
-                <summary>
-
-                    Les paiements sont-ils sécurisés ?
-
-                </summary>
-
-                <p>
-
-                    Oui. Toutes les transactions sont protégées grâce à des systèmes de paiement sécurisés.
-
-                </p>
-
-            </details>
-
-            <details class="faq-item">
-
-                <summary>
-
-                    Puis-je vendre dans plusieurs pays ?
-
-                </summary>
-
-                <p>
-
-                    Oui. ZySell permet de vendre vos produits numériques dans le monde entier.
-
-                </p>
-
-            </details>
-
-            <details class="faq-item">
-
-                <summary>
-
-                    Quels types de produits puis-je vendre ?
-
-                </summary>
-
-                <p>
-
-                    Vous pouvez vendre des ebooks, formations, modèles, logiciels, prompts IA, photos, vidéos, musiques et bien d'autres produits numériques.
-
-                </p>
-
-            </details>
-
-        </div>
+        <a href="signup.html" class="btn-primary" data-i18n="cta.button">
+            Créer un compte gratuitement
+        </a>
 
     </div>
 
 </section>
-      <!-- ========================================= -->
-<!-- FOOTER -->
-<!-- ========================================= -->
-
 <footer class="footer">
 
     <div class="container">
 
         <div class="footer-grid">
 
-            <!-- Logo -->
-
             <div class="footer-column">
 
-                <a href="index.html" class="footer-logo">
+                <img src="logo.png" alt="ZySell Logo" class="footer-logo">
 
-                    <img src="logo.png"
-                         alt="ZySell Logo">
-
-                    <span>ZySell</span>
-
-                </a>
-
-                <p data-i18n="footerDescription">
-
-                    ZySell est une marketplace moderne permettant aux créateurs et entreprises de vendre des produits numériques partout dans le monde.
-
+                <p data-i18n="footer.about">
+                    ZySell est une marketplace mondiale permettant aux créateurs de vendre leurs produits numériques en toute simplicité.
                 </p>
 
-                <div class="social-links">
-
-                    <a href="#" class="icon-btn">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-
-                    <a href="#" class="icon-btn">
-                        <i class="fab fa-x-twitter"></i>
-                    </a>
-
-                    <a href="#" class="icon-btn">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-
-                    <a href="#" class="icon-btn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-
-                </div>
-
             </div>
-
-            <!-- Marketplace -->
 
             <div class="footer-column">
 
-                <h3>Marketplace</h3>
+                <h3 data-i18n="footer.marketplace">
+                    Marketplace
+                </h3>
 
                 <ul>
 
-                    <li><a href="explore.html">Explorer</a></li>
+                    <li><a href="explore.html" data-i18n="footer.explore">Explorer</a></li>
 
-                    <li><a href="categories.html">Catégories</a></li>
+                    <li><a href="categories.html" data-i18n="footer.categories">Catégories</a></li>
 
-                    <li><a href="pricing.html">Tarifs</a></li>
+                    <li><a href="become-seller.html" data-i18n="footer.seller">Devenir vendeur</a></li>
+
+                    <li><a href="pricing.html" data-i18n="footer.pricing">Tarification</a></li>
 
                 </ul>
 
             </div>
 
-            <!-- Entreprise -->
-
             <div class="footer-column">
 
-                <h3>Entreprise</h3>
+                <h3 data-i18n="footer.support">
+                    Assistance
+                </h3>
 
                 <ul>
 
-                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="help.html" data-i18n="footer.help">Centre d'aide</a></li>
 
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html" data-i18n="footer.contact">Contact</a></li>
 
-                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+
+                    <li><a href="documentation.html" data-i18n="footer.docs">Documentation</a></li>
 
                 </ul>
 
             </div>
 
-            <!-- Support -->
-
             <div class="footer-column">
 
-                <h3>Support</h3>
+                <h3 data-i18n="footer.legal">
+                    Informations légales
+                </h3>
 
                 <ul>
 
-                    <li><a href="help.html">Centre d'aide</a></li>
+                    <li><a href="terms.html" data-i18n="footer.terms">Conditions d'utilisation</a></li>
 
-                    <li><a href="privacy.html">Confidentialité</a></li>
+                    <li><a href="privacy.html" data-i18n="footer.privacy">Politique de confidentialité</a></li>
 
-                    <li><a href="terms.html">Conditions d'utilisation</a></li>
+                    <li><a href="cookies.html" data-i18n="footer.cookies">Politique des cookies</a></li>
 
                 </ul>
 
@@ -1562,15 +647,42 @@
 
         </div>
 
-        <hr>
-
         <div class="footer-bottom">
 
+            <div class="footer-language">
+
+                <label for="footer-language" data-i18n="footer.language">
+                    Langue
+                </label>
+
+                <select id="footer-language">
+
+                    <option value="fr">Français</option>
+
+                    <option value="en">English</option>
+
+                </select>
+
+            </div>
+
+            <div class="footer-social">
+
+                <a href="#" aria-label="Facebook">Facebook</a>
+
+                <a href="#" aria-label="X">X</a>
+
+                <a href="#" aria-label="Instagram">Instagram</a>
+
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+
             <p>
-
-                © <span id="currentYear"></span> ZySell.
-                Tous droits réservés.
-
+                © <span id="currentYear"></span> ZySell. <span data-i18n="footer.rights">Tous droits réservés.</span>
             </p>
 
         </div>
@@ -1579,35 +691,9 @@
 
 </footer>
 
-<!-- ========================================= -->
-<!-- SCRIPTS -->
-<!-- ========================================= -->
+</main>
 
-<!-- Firebase -->
-<script type="module" src="assets/js/firebase.js"></script>
-
-<!-- Authentification -->
-<script type="module" src="assets/js/auth.js"></script>
-
-<!-- Langues -->
-<script src="assets/js/language.js"></script>
-
-<!-- Pays -->
-<script src="assets/js/countries.js"></script>
-
-<!-- Recherche -->
-<script src="assets/js/search.js"></script>
-
-<!-- Thème -->
-<script src="assets/js/theme.js"></script>
-
-<!-- Application -->
-<script src="assets/js/app.js"></script>
+<script src="app.js"></script>
 
 </body>
-
-                              </html>
-      
-      
-      
-      
+    </html>
