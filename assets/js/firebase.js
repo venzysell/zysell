@@ -96,4 +96,67 @@ window.addEventListener("online", () => {
 
 window.addEventListener("offline", () => {
     console.warn("📴 Connexion Internet perdue.");
-});
+});/* =======================================================
+   GESTION DES ERREURS FIREBASE
+======================================================= */
+
+function firebaseError(error) {
+
+    console.error(error);
+
+    switch (error.code) {
+
+        case "auth/email-already-in-use":
+            return "Cette adresse e-mail est déjà utilisée.";
+
+        case "auth/invalid-email":
+            return "Adresse e-mail invalide.";
+
+        case "auth/user-not-found":
+            return "Utilisateur introuvable.";
+
+        case "auth/wrong-password":
+            return "Mot de passe incorrect.";
+
+        case "auth/invalid-credential":
+            return "Identifiants invalides.";
+
+        case "auth/too-many-requests":
+            return "Trop de tentatives. Réessayez plus tard.";
+
+        case "auth/network-request-failed":
+            return "Vérifiez votre connexion Internet.";
+
+        default:
+            return "Une erreur est survenue.";
+    }
+
+}
+
+/* =======================================================
+   API GLOBALE
+======================================================= */
+
+window.ZysellFirebase = {
+    app,
+    auth,
+    db,
+    storage,
+    analytics,
+    isOnline,
+    isAuthenticated,
+    getCurrentUser,
+    getCurrentUserId,
+    getCurrentUserEmail,
+    firebaseError
+};
+
+/* =======================================================
+   INITIALISATION
+======================================================= */
+
+console.log("✅ ZySell Firebase initialisé avec succès.");
+
+/* =======================================================
+   FIN DU FICHIER
+======================================================= */
