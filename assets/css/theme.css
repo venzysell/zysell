@@ -1,397 +1,70 @@
-/* =======================================================
-   ZYSELL THEME
-======================================================= */
+/* ===========================
+   ADVANCED ANIMATIONS
+=========================== */
 
-/* ==========================
-   MODE CLAIR
-========================== */
+/* Effet lumineux sur les boutons */
 
-:root{
-
---bg-color:#F8FAFC;
-
---surface-color:#FFFFFF;
-
---text-color:#0F172A;
-
---text-secondary:#64748B;
-
---border-color:#E2E8F0;
-
---card-bg:#FFFFFF;
-
---header-bg:rgba(255,255,255,.95);
-
---footer-bg:#0F172A;
-
---footer-text:#CBD5E1;
-
+.btn-primary,
+.btn-secondary,
+.buy-btn{
+    position:relative;
+    overflow:hidden;
 }
 
-/* ==========================
-   MODE SOMBRE
-========================== */
-
-body.dark{
-
---bg-color:#0F172A;
-
---surface-color:#1E293B;
-
---text-color:#F8FAFC;
-
---text-secondary:#CBD5E1;
-
---border-color:#334155;
-
---card-bg:#1E293B;
-
---header-bg:rgba(15,23,42,.95);
-
---footer-bg:#020617;
-
---footer-text:#CBD5E1;
-
+.btn-primary::before,
+.btn-secondary::before,
+.buy-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+    transition:.6s;
 }
 
-/* ==========================
-   APPLICATION DU THÈME
-========================== */
-
-body{
-
-background:var(--bg-color);
-
-color:var(--text-color);
-
-transition:.35s ease;
-
+.btn-primary:hover::before,
+.btn-secondary:hover::before,
+.buy-btn:hover::before{
+    left:120%;
 }
 
-.header{
+/* Apparition douce des sections */
 
-background:var(--header-bg);
-
-}
-
-.product-card,
-.category-card,
-.creator-card,
-.feature-card,
-.testimonial-card,
-.faq-item{
-
-background:var(--card-bg);
-
-border-color:var(--border-color);
-
-}
-
-p,
-span{
-
-color:var(--text-secondary);
-
-}
-
-.footer{
-
-background:var(--footer-bg);
-
-}
-
-.footer p,
-.footer a{
-
-color:var(--footer-text);
-
-}/* =======================================================
-   COMPOSANTS - MODE SOMBRE
-======================================================= */
-
-/* ==========================
-   TITRES
-========================== */
-
-body.dark h1,
-body.dark h2,
-body.dark h3,
-body.dark h4,
-body.dark h5,
-body.dark h6{
-
-color:var(--text-color);
-
-}
-
-/* ==========================
-   NAVIGATION
-========================== */
-
-body.dark .nav-menu a{
-
-color:var(--text-color);
-
-}
-
-body.dark .nav-menu a:hover,
-body.dark .nav-menu a.active{
-
-color:var(--primary);
-
-}
-
-/* ==========================
-   RECHERCHE
-========================== */
-
-body.dark .search-box{
-
-background:var(--surface-color);
-
-border:1px solid var(--border-color);
-
-}
-
-body.dark .search-box input{
-
-background:transparent;
-
-color:var(--text-color);
-
-}
-
-body.dark .search-box input::placeholder{
-
-color:var(--text-secondary);
-
-}
-
-/* ==========================
-   BOUTONS
-========================== */
-
-body.dark .btn-outline{
-
-background:transparent;
-
-border:2px solid var(--border-color);
-
-color:var(--text-color);
-
-}
-
-body.dark .btn-outline:hover{
-
-background:var(--primary);
-
-border-color:var(--primary);
-
-color:#FFFFFF;
-
-}
-
-body.dark .icon-btn{
-
-background:var(--surface-color);
-
-border:1px solid var(--border-color);
-
-color:var(--text-color);
-
-}
-
-body.dark .icon-btn:hover{
-
-background:var(--primary);
-
-color:#FFFFFF;
-
-}
-
-/* ==========================
-   CARTES
-========================== */
-
-body.dark .product-card,
-body.dark .category-card,
-body.dark .creator-card,
-body.dark .feature-card,
-body.dark .testimonial-card,
-body.dark .faq-item{
-
-background:var(--surface-color);
-
-border-color:var(--border-color);
-
-}
-
-/* ==========================
-   CHAMPS DE FORMULAIRE
-========================== */
-
-body.dark input,
-body.dark textarea,
-body.dark select{
-
-background:var(--surface-color);
-
-color:var(--text-color);
-
-border:1px solid var(--border-color);
-
-}
-
-body.dark input::placeholder,
-body.dark textarea::placeholder{
-
-color:var(--text-secondary);
-
-}/* =======================================================
-   HERO - MODE SOMBRE
-======================================================= */
-
-body.dark .hero{
-
-background:linear-gradient(180deg,#0F172A 0%,#111827 100%);
-
-}
-
-body.dark .hero-badge,
-body.dark .section-badge{
-
-background:rgba(79,70,229,.15);
-
-color:#A5B4FC;
-
-}
-
-/* =======================================================
-   STATISTIQUES
-======================================================= */
-
-body.dark .stat-item{
-
-background:var(--surface-color);
-
-border:1px solid var(--border-color);
-
-}
-
-body.dark .stat-item h2{
-
-color:#FFFFFF;
-
-}
-
-body.dark .stat-item span{
-
-color:var(--text-secondary);
-
-}
-
-/* =======================================================
-   FOOTER
-======================================================= */
-
-body.dark .footer{
-
-background:#020617;
-
-}
-
-body.dark .footer-column h3,
-body.dark .footer-logo{
-
-color:#FFFFFF;
-
-}
-
-body.dark .footer-column p,
-body.dark .footer-column a,
-body.dark .footer-bottom p,
-body.dark .footer-links a{
-
-color:#CBD5E1;
-
-}
-
-body.dark .footer-column a:hover,
-body.dark .footer-links a:hover{
-
-color:#FFFFFF;
-
-}
-
-/* =======================================================
-   FAQ
-======================================================= */
-
-body.dark .faq-question{
-
-color:var(--text-color);
-
-}
-
-body.dark .faq-answer{
-
-background:var(--surface-color);
-
-}
-
-body.dark .faq-answer p{
-
-color:var(--text-secondary);
-
-}
-
-/* =======================================================
-   SCROLLBAR
-======================================================= */
-
-body.dark::-webkit-scrollbar-track{
-
-background:#1E293B;
-
-}
-
-body.dark::-webkit-scrollbar-thumb{
-
-background:var(--primary);
-
-}
-
-body.dark::-webkit-scrollbar-thumb:hover{
-
-background:var(--primary-dark);
-
-}
-
-/* =======================================================
-   TRANSITIONS
-======================================================= */
-
-body,
-.header,
 .hero,
-.product-card,
-.category-card,
-.creator-card,
-.feature-card,
-.testimonial-card,
-.faq-item,
-.footer,
-.btn,
-.icon-btn,
-.search-box,
-input,
-textarea,
-select{
+.categories,
+.products,
+.why-zysell,
+.statistics,
+.featured-creators,
+.testimonials,
+.cta,
+.footer{
+    animation:fadeUp .8s ease;
+}
 
-transition:
-background-color .35s ease,
-color .35s ease,
-border-color .35s ease,
-box-shadow .35s ease;
+/* Rotation des icônes */
 
+.language-btn:hover,
+.theme-btn:hover{
+    transform:rotate(180deg);
+}
+
+/* Animation des statistiques */
+
+.stat-card:hover h2{
+    transform:scale(1.1);
+    transition:.3s ease;
+}
+
+/* Animation du footer */
+
+.footer-social a:hover{
+    transform:translateY(-5px);
 }
