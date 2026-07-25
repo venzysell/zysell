@@ -260,3 +260,6 @@ body.dark-theme::-webkit-scrollbar-thumb{
 body.dark-theme::-webkit-scrollbar-thumb:hover{
     background:#6366f1;
        }
+body.dark-theme .nav-links{
+    background:#111827;
+}
