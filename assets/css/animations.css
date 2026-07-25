@@ -1,438 +1,248 @@
-/* =======================================================
-   ZYSELL ANIMATIONS
-======================================================= */
+/* ===========================
+   ZYSELL - ANIMATIONS.CSS
+=========================== */
 
-/* ==========================
-   FADE IN
-========================== */
+/* Transitions générales */
 
-@keyframes fadeIn{
-
-0%{
-
-opacity:0;
-
+a,
+button,
+.category-card,
+.product-card,
+.feature-card,
+.creator-card,
+.testimonial-card,
+.stat-card{
+    transition:all .35s ease;
 }
 
-100%{
+/* Animation d'apparition */
 
-opacity:1;
-
+.fade-up{
+    opacity:0;
+    transform:translateY(40px);
+    animation:fadeUp .8s ease forwards;
 }
-
-}
-
-/* ==========================
-   FADE UP
-========================== */
 
 @keyframes fadeUp{
 
-0%{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
 
-opacity:0;
-
-transform:translateY(40px);
-
-}
-
-100%{
-
-opacity:1;
-
-transform:translateY(0);
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 
 }
 
+/* Animation de zoom */
+
+.zoom-in{
+    animation:zoomIn .6s ease;
 }
-
-/* ==========================
-   FADE DOWN
-========================== */
-
-@keyframes fadeDown{
-
-0%{
-
-opacity:0;
-
-transform:translateY(-40px);
-
-}
-
-100%{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-/* ==========================
-   ZOOM IN
-========================== */
 
 @keyframes zoomIn{
 
-0%{
+    from{
+        opacity:0;
+        transform:scale(.85);
+    }
 
-opacity:0;
-
-transform:scale(.8);
-
-}
-
-100%{
-
-opacity:1;
-
-transform:scale(1);
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 
 }
 
-}
-
-/* ==========================
-   FLOAT
-========================== */
-
-@keyframes float{
-
-0%{
-
-transform:translateY(0);
-
-}
-
-50%{
-
-transform:translateY(-15px);
-
-}
-
-100%{
-
-transform:translateY(0);
-
-}
-
-}/* =======================================================
-   CLASSES D'ANIMATION
-======================================================= */
-
-.fade-in{
-
-animation:fadeIn .8s ease forwards;
-
-}
-
-.fade-up{
-
-animation:fadeUp .8s ease forwards;
-
-}
-
-.fade-down{
-
-animation:fadeDown .8s ease forwards;
-
-}
-
-.zoom-in{
-
-animation:zoomIn .7s ease forwards;
-
-}
+/* Animation flottante */
 
 .float{
 
-animation:float 4s ease-in-out infinite;
+    animation:float 4s ease-in-out infinite;
 
 }
 
-/* =======================================================
-   DÉLAIS D'ANIMATION
-======================================================= */
+@keyframes float{
 
-.delay-1{
+    0%{
+        transform:translateY(0);
+    }
 
-animation-delay:.2s;
+    50%{
+        transform:translateY(-12px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+/* ===========================
+   HOVER EFFECTS
+=========================== */
+
+/* Boutons */
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.buy-btn:hover,
+.login-btn:hover,
+.signup-btn:hover{
+
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(79,70,229,.30);
 
 }
 
-.delay-2{
+/* Cartes */
 
-animation-delay:.4s;
-
-}
-
-.delay-3{
-
-animation-delay:.6s;
-
-}
-
-.delay-4{
-
-animation-delay:.8s;
-
-}
-
-.delay-5{
-
-animation-delay:1s;
-
-}
-
-/* =======================================================
-   ÉTAT INITIAL
-======================================================= */
-
-.fade-in,
-.fade-up,
-.fade-down,
-.zoom-in{
-
-opacity:0;
-
-animation-fill-mode:forwards;
-
-}
-
-/* =======================================================
-   HOVER - CARTES
-======================================================= */
-
-.product-card,
-.category-card,
-.creator-card,
-.feature-card,
-.testimonial-card{
-
-transition:
-transform .35s ease,
-box-shadow .35s ease,
-border-color .35s ease;
-
-}
-
-.product-card:hover,
 .category-card:hover,
-.creator-card:hover,
+.product-card:hover,
 .feature-card:hover,
+.creator-card:hover,
 .testimonial-card:hover{
 
-transform:translateY(-10px);
+    transform:translateY(-10px) scale(1.02);
 
 }
 
-/* =======================================================
-   HOVER - BOUTONS
-======================================================= */
+/* Logo */
 
-.btn{
+.logo img{
 
-transition:
-transform .3s ease,
-box-shadow .3s ease;
+    transition:transform .4s ease;
 
 }
 
-.btn:hover{
+.logo:hover img{
 
-transform:translateY(-3px);
-
-}
-
-.btn:active{
-
-transform:scale(.97);
-
-}/* =======================================================
-   NAVIGATION
-======================================================= */
-
-.nav-menu a{
-
-transition:
-color .3s ease,
-transform .3s ease;
+    transform:rotate(-8deg) scale(1.08);
 
 }
 
-.nav-menu a:hover{
+/* Icônes */
 
-transform:translateY(-2px);
+.feature-icon,
+.category-card span{
 
-}
-
-.logo{
-
-transition:transform .3s ease;
+    transition:transform .35s ease;
 
 }
 
-.logo:hover{
+.feature-card:hover .feature-icon,
+.category-card:hover span{
 
-transform:scale(1.05);
-
-}
-
-/* =======================================================
-   HERO
-======================================================= */
-
-.hero-content{
-
-animation:fadeUp 1s ease;
+    transform:scale(1.15) rotate(8deg);
 
 }
 
-.hero-image img{
+/* Image Hero */
 
-animation:float 5s ease-in-out infinite;
+.hero-image img:hover{
 
-}
-
-/* =======================================================
-   ICÔNES
-======================================================= */
-
-.icon-btn{
-
-transition:
-transform .3s ease,
-background .3s ease,
-color .3s ease;
+    transform:scale(1.03);
 
 }
 
-.icon-btn:hover{
+/* Animation du badge */
 
-transform:rotate(10deg) scale(1.08);
+.product-badge{
 
-}
-
-/* =======================================================
-   IMAGES
-======================================================= */
-
-.product-card img,
-.creator-card img{
-
-transition:
-transform .4s ease;
+    animation:pulse 2s infinite;
 
 }
 
-.product-card:hover img{
+@keyframes pulse{
 
-transform:scale(1.08);
+    0%{
 
-}
+        transform:scale(1);
 
-.creator-card:hover img{
+    }
 
-transform:scale(1.08);
+    50%{
 
-}
+        transform:scale(1.08);
 
-/* =======================================================
-   CHAMPS DE RECHERCHE
-======================================================= */
+    }
 
-.search-box{
+    100%{
 
-transition:
-box-shadow .3s ease,
-border-color .3s ease;
+        transform:scale(1);
+
+    }
 
 }
+/* ===========================
+   ADVANCED ANIMATIONS
+=========================== */
 
-.search-box:focus-within{
+/* Effet lumineux sur les boutons */
 
-border-color:var(--primary);
-
-box-shadow:0 0 0 4px rgba(79,70,229,.15);
-
+.btn-primary,
+.btn-secondary,
+.buy-btn{
+    position:relative;
+    overflow:hidden;
 }
 
-/* =======================================================
-   FAQ
-======================================================= */
-
-.faq-question i{
-
-transition:transform .3s ease;
-
+.btn-primary::before,
+.btn-secondary::before,
+.buy-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+    transition:.6s;
 }
 
-.faq-item.active .faq-question i{
-
-transform:rotate(45deg);
-
+.btn-primary:hover::before,
+.btn-secondary:hover::before,
+.buy-btn:hover::before{
+    left:120%;
 }
 
-/* =======================================================
-   SCROLL REVEAL
-======================================================= */
+/* Apparition douce des sections */
 
-.reveal{
-
-opacity:0;
-
-transform:translateY(40px);
-
-transition:
-opacity .8s ease,
-transform .8s ease;
-
+.hero,
+.categories,
+.products,
+.why-zysell,
+.statistics,
+.featured-creators,
+.testimonials,
+.cta,
+.footer{
+    animation:fadeUp .8s ease;
 }
 
-.reveal.active{
+/* Rotation des icônes */
 
-opacity:1;
-
-transform:translateY(0);
-
+.language-btn:hover,
+.theme-btn:hover{
+    transform:rotate(180deg);
 }
 
-/* =======================================================
-   LOADER
-======================================================= */
+/* Animation des statistiques */
 
-@keyframes spin{
-
-0%{
-
-transform:rotate(0deg);
-
+.stat-card:hover h2{
+    transform:scale(1.1);
+    transition:.3s ease;
 }
 
-100%{
+/* Animation du footer */
 
-transform:rotate(360deg);
-
-}
-
-}
-
-.loader{
-
-width:50px;
-
-height:50px;
-
-border:5px solid #E5E7EB;
-
-border-top-color:var(--primary);
-
-border-radius:50%;
-
-animation:spin 1s linear infinite;
-
-margin:auto;
-
+.footer-social a:hover{
+    transform:translateY(-5px);
 }
