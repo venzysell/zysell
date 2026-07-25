@@ -1,288 +1,243 @@
-/* =======================================================
-   ZYSELL RESPONSIVE
-   Compatible avec le nouveau index.html
-======================================================= */
+/* ===========================
+   RESPONSIVE - TABLETTES
+=========================== */
 
-/* =======================================================
-   TABLETTES (≥768px)
-======================================================= */
+@media (max-width:992px){
 
-@media (min-width:768px){
+    .navbar{
+        min-height:70px;
+    }
 
-.container{
-max-width:720px;
-margin:auto;
-padding:0 24px;
-}
+    .nav-links{
+        gap:18px;
+    }
 
-}
+    .nav-actions{
+        gap:10px;
+    }
 
-/* =======================================================
-   ORDINATEURS (≥992px)
-======================================================= */
+    .hero{
+        padding:80px 0 60px;
+    }
 
-@media (min-width:992px){
+    .hero-content{
+        flex-direction:column;
+        text-align:center;
+    }
 
-.container{
-max-width:960px;
-}
+    .hero-text h1{
+        font-size:42px;
+    }
 
-}
+    .hero-text p{
+        margin:0 auto 30px;
+    }
 
-/* =======================================================
-   GRANDS ÉCRANS (≥1200px)
-======================================================= */
+    .hero-buttons{
+        justify-content:center;
+    }
 
-@media (min-width:1200px){
+    .hero-search{
+        margin:0 auto;
+    }
 
-.container{
-max-width:1140px;
-}
+    .hero-image{
+        margin-top:40px;
+    }
 
-}
+    .section-header h2{
+        font-size:32px;
+    }
 
-/* =======================================================
-   MENU MOBILE
-======================================================= */
+    .products-grid,
+    .categories-grid,
+    .features-grid,
+    .creators-grid,
+    .testimonials-grid,
+    .stats-grid,
+    .footer-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-@media (max-width:767px){
+           }
+/* ===========================
+   RESPONSIVE - SMARTPHONES
+=========================== */
 
-.nav-menu,
-.nav-actions{
-display:none;
-}
+@media (max-width:768px){
 
-.mobile-menu-btn{
-display:flex;
-align-items:center;
-justify-content:center;
-}
+    .menu-toggle{
+        display:block;
+    }
 
-.mobile-menu{
-display:none;
-position:fixed;
-top:72px;
-left:0;
-width:100%;
-background:#fff;
-padding:20px;
-z-index:999;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
+    .nav-links{
+        display:none;
+    }
 
-.mobile-menu.active{
-display:block;
-}
+    .nav-actions{
+        gap:8px;
+    }
 
-}
-/* =======================================================
-   HERO MOBILE
-======================================================= */
+    .login-btn{
+        display:none;
+    }
 
-@media (max-width:767px){
+    .hero{
+        padding:70px 0 50px;
+    }
 
-.hero{
-padding:48px 0;
-}
+    .hero-text h1{
+        font-size:34px;
+        line-height:1.3;
+    }
 
-.hero .container{
-display:flex;
-flex-direction:column;
-align-items:center;
-text-align:center;
-gap:32px;
-}
+    .hero-text p{
+        font-size:16px;
+    }
 
-.hero-content,
-.hero-image{
-width:100%;
-}
+    .hero-buttons{
+        flex-direction:column;
+        gap:15px;
+    }
 
-.hero-image img{
-max-width:420px;
-width:100%;
-height:auto;
-}
+    .btn-primary,
+    .btn-secondary{
+        width:100%;
+    }
 
-.hero h1{
-font-size:2.3rem;
-line-height:1.2;
-}
+    .hero-search{
+        flex-direction:column;
+        gap:10px;
+        padding:15px;
+    }
 
-.hero p{
-font-size:1rem;
-line-height:1.7;
-}
+    .hero-search input{
+        width:100%;
+        padding:14px;
+    }
 
-.hero-search{
-display:flex;
-flex-direction:column;
-gap:16px;
-width:100%;
-}
+    .hero-search button{
+        width:100%;
+    }
 
-.hero-search input,
-.hero-search .btn{
-width:100%;
-min-height:52px;
-}
+    .products-grid,
+    .categories-grid,
+    .features-grid,
+    .creators-grid,
+    .testimonials-grid,
+    .stats-grid,
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
 
-.hero-buttons{
-display:flex;
-flex-direction:column;
-gap:16px;
-width:100%;
-}
-
-.hero-buttons .btn{
-width:100%;
-}
-
-.hero-stats{
-display:grid;
-grid-template-columns:1fr;
-gap:16px;
-}
+    .footer-bottom{
+        flex-direction:column;
+        text-align:center;
+    }
 
 }
-/* =======================================================
-   SECTIONS ET CARTES
-======================================================= */
-
-@media (max-width:767px){
-
-.products-grid,
-.categories-grid,
-.creators-grid,
-.features-grid,
-.testimonials-grid{
-display:grid;
-grid-template-columns:1fr;
-gap:20px;
-}
-
-.product-card,
-.category-card,
-.creator-card,
-.feature-card,
-.testimonial-card{
-width:100%;
-}
-
-.section-header{
-text-align:center;
-margin-bottom:32px;
-}
-
-.view-all{
-display:inline-flex;
-margin-top:16px;
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:1fr;
-gap:24px;
-text-align:center;
-}
-
-.footer-bottom{
-text-align:center;
-}
-
-img{
-max-width:100%;
-height:auto;
-}
-
-}
-
-/* =======================================================
-   PETITS SMARTPHONES
-======================================================= */
+/* ===========================
+   RESPONSIVE - PETITS SMARTPHONES
+=========================== */
 
 @media (max-width:480px){
 
-.container{
-padding:0 16px;
-}
+    .container{
+        width:94%;
+    }
 
-.hero h1{
-font-size:2rem;
-}
+    .navbar{
+        min-height:65px;
+    }
 
-.hero p{
-font-size:.95rem;
-}
+    .logo img{
+        width:40px;
+        height:40px;
+    }
 
-.btn{
-width:100%;
-}
+    .logo h2{
+        font-size:22px;
+    }
 
-}
-/* =======================================================
-   IMPRESSION
-======================================================= */
+    .language-btn,
+    .theme-btn{
+        width:40px;
+        height:40px;
+    }
 
-@media print{
+    .hero{
+        padding:60px 0 40px;
+    }
 
-.header,
-.footer,
-.mobile-menu,
-.mobile-menu-btn,
-.hero-search,
-.btn,
-.icon-btn{
-display:none !important;
-}
+    .hero-text h1{
+        font-size:28px;
+    }
 
-body{
-background:#fff;
-color:#000;
-}
+    .hero-text p{
+        font-size:15px;
+    }
 
-}
+    .section-header h2{
+        font-size:26px;
+    }
 
-/* =======================================================
-   ACCESSIBILITÉ
-======================================================= */
+    .section-header p{
+        font-size:15px;
+    }
 
-@media (prefers-reduced-motion: reduce){
+    .category-card,
+    .product-card,
+    .feature-card,
+    .creator-card,
+    .testimonial-card,
+    .stat-card{
+        padding:20px;
+    }
 
-*,
-*::before,
-*::after{
-animation:none !important;
-transition:none !important;
-scroll-behavior:auto !important;
-}
+    .product-info h3{
+        font-size:20px;
+    }
 
-}
+    .price{
+        font-size:20px;
+    }
 
-/* =======================================================
-   MENU DESKTOP
-======================================================= */
+    .buy-btn{
+        width:100%;
+    }
 
-@media (min-width:768px){
+    .product-footer{
+        flex-direction:column;
+        align-items:stretch;
+    }
 
-.mobile-menu{
-display:none !important;
-}
+    .cta{
+        padding:70px 20px;
+    }
 
-.mobile-menu-btn{
-display:none !important;
-}
+    .cta h2{
+        font-size:30px;
+    }
 
-.nav-menu{
-display:flex !important;
-}
+    .cta p{
+        font-size:16px;
+    }
 
-.nav-actions{
-display:flex !important;
-}
+    .footer{
+        padding:60px 0 25px;
+    }
 
-}
+    .footer-column{
+        text-align:center;
+    }
 
-/* =======================================================
-   FIN DU FICHIER
-======================================================= */
+    .footer-logo{
+        margin:0 auto 20px;
+    }
+
+    .footer-social{
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+   }
