@@ -1,76 +1,133 @@
-/* =======================================================
-   ZYSELL LANGUAGE
-======================================================= */
+// =====================================
+// ZYSELL - LANGUAGE.JS
+// =====================================
 
-"use strict";
+// Langues disponibles
+const supportedLanguages = ["fr", "en"];
 
-/* =======================================================
-   LANGUE PAR DÉFAUT
-======================================================= */
+// Langue par défaut
+let currentLanguage = "fr";
 
-let currentLanguage = localStorage.getItem("language") || "fr";
+// Bouton / Sélecteur de langue
+const languageSelector = document.querySelector(".language-select");
 
-/* =======================================================
-   TRADUCTIONS
-======================================================= */
+// =====================================
+// CHARGER LA LANGUE ENREGISTRÉE
+// =====================================
+
+const savedLanguage = localStorage.getItem("language");
+
+if(savedLanguage && supportedLanguages.includes(savedLanguage)){
+
+    currentLanguage = savedLanguage;
+
+}else{
+
+    const browserLanguage = navigator.language.substring(0,2);
+
+    if(supportedLanguages.includes(browserLanguage)){
+        currentLanguage = browserLanguage;
+    }
+
+}
+
+document.documentElement.lang = currentLanguage;
+
+if(languageSelector){
+    languageSelector.value = currentLanguage;
+}
+// =====================================
+// DICTIONNAIRE DES TRADUCTIONS
+// =====================================
 
 const translations = {
 
     fr: {
 
         home: "Accueil",
-        explore: "Explorer",
         categories: "Catégories",
+        products: "Produits",
         creators: "Créateurs",
-        faq: "FAQ",
-        login: "Connexion",
-        signup: "Créer un compte",
+        contact: "Contact",
 
         heroTitle: "Achetez et vendez des produits numériques",
 
-        heroSubtitle:
-            "La plateforme africaine pour vendre des formations, ebooks, templates, logiciels et bien plus.",
+        heroSubtitle: "La plateforme idéale pour les créateurs, développeurs, designers et entrepreneurs.",
 
-        heroButton: "Commencer",
+        searchPlaceholder: "Rechercher un produit...",
 
-        popularProducts: "Produits populaires",
+        searchButton: "Rechercher",
 
-        whyZySell: "Pourquoi choisir ZySell ?",
+        explore: "Explorer",
 
-        testimonials: "Ils nous font confiance"
+        startSelling: "Commencer à vendre"
 
     },
 
     en: {
 
         home: "Home",
-        explore: "Explore",
         categories: "Categories",
+        products: "Products",
         creators: "Creators",
-        faq: "FAQ",
-        login: "Login",
-        signup: "Create account",
+        contact: "Contact",
 
         heroTitle: "Buy and sell digital products",
 
-        heroSubtitle:
-            "The African marketplace for courses, ebooks, templates, software and much more.",
+        heroSubtitle: "The ideal marketplace for creators, developers, designers and entrepreneurs.",
 
-        heroButton: "Get Started",
+        searchPlaceholder: "Search for a product...",
 
-        popularProducts: "Popular Products",
+        searchButton: "Search",
 
-        whyZySell: "Why Choose ZySell?",
+        explore: "Explore",
 
-        testimonials: "Trusted by our users"
+        startSelling: "Start Selling"
 
     }
 
-};/* =======================================================
-   CHANGER LA LANGUE
-======================================================= */
+};
+// =====================================
+// APPLIQUER LES TRADUCTIONS
+// =====================================
 
-function applyLanguage(language) {
+function applyTranslations(){
+
+    document.querySelectorAll("[data-i18n]").forEach(element => {
+
+        const key = element.dataset.i18n;
+
+        if(translations[currentLanguage] &&
+           translations[currentLanguage][key]){
+
+            element.textContent = translations[currentLanguage][key];
+
+        }
+
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+
+        const key = element.dataset.i18nPlaceholder;
+
+        if(translations[currentLanguage] &&
+           translations[currentLanguage][key]){
+
+            element.placeholder =
+                translations[currentLanguage][key];
+
+        }
+
+    });
+   // =====================================
+// CHANGER LA LANGUE
+// =====================================
+
+function setLanguage(language){
+
+    if(!supportedLanguages.includes(language)){
+        return;
+    }
 
     currentLanguage = language;
 
@@ -78,40 +135,32 @@ function applyLanguage(language) {
 
     document.documentElement.lang = language;
 
-    document.querySelectorAll("[data-lang]").forEach(element => {
+    if(languageSelector){
+        languageSelector.value = language;
+    }
 
-        const key = element.dataset.lang;
+    applyTranslations();
 
-        if (translations[language] && translations[language][key]) {
+}
 
-            element.textContent = translations[language][key];
+// =====================================
+// ÉVÉNEMENT DU SÉLECTEUR
+// =====================================
 
-        }
+if(languageSelector){
 
-    });
+    languageSelector.addEventListener("change", (event)=>{
 
-}/* =======================================================
-   BOUTONS DE LANGUE
-======================================================= */
-
-const languageButtons = document.querySelectorAll("[data-language]");
-
-languageButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        const language = button.dataset.language;
-
-        applyLanguage(language);
+        setLanguage(event.target.value);
 
     });
 
-});/* =======================================================
-   INITIALISATION DE LA LANGUE
-======================================================= */
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+// =====================================
+// INITIALISATION
+// =====================================
 
-    applyLanguage(currentLanguage);
+applyTranslations();
 
-});
+}
