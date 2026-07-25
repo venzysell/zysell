@@ -59,34 +59,32 @@ if(!localStorage.getItem("theme")){
 
 }
 // =====================================
-// ICÔNE DU THÈME
+// MISE À JOUR DE L'ICÔNE DU THÈME
 // =====================================
 
-const themeIcon = document.querySelector(".theme-btn i");
+function updateThemeButton(){
 
-function updateThemeIcon(){
-
-    if(!themeIcon) return;
+    if(!themeButton) return;
 
     if(document.body.classList.contains("dark-theme")){
 
-        themeIcon.className = "fas fa-sun";
+        themeButton.textContent = "☀️";
 
     }else{
 
-        themeIcon.className = "fas fa-moon";
+        themeButton.textContent = "🌙";
 
     }
 
 }
 
-updateThemeIcon();
+updateThemeButton();
 
 if(themeButton){
 
     themeButton.addEventListener("click", () => {
 
-        setTimeout(updateThemeIcon, 100);
+        setTimeout(updateThemeButton, 50);
 
     });
 
