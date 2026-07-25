@@ -1,942 +1,935 @@
-/* =======================================================
-   ZYSELL STYLE
-   Base globale
-======================================================= */
+<!DOCTYPE html>  <html lang="fr">  <head>  <!-- Encodage -->  
+<meta charset="UTF-8">  
 
-:root{
+<!-- Responsive -->  
+<meta name="viewport"  
+      content="width=device-width, initial-scale=1.0">  
 
---primary:#4F46E5;
---primary-dark:#4338CA;
---secondary:#06B6D4;
+<!-- Compatibilité -->  
+<meta http-equiv="X-UA-Compatible"  
+      content="IE=edge">  
 
---background:#F8FAFC;
---surface:#FFFFFF;
+<!-- SEO -->  
+<title>ZySell — Marketplace de produits numériques</title>  
 
---text:#0F172A;
---text-light:#64748B;
+<meta name="description"  
+      content="Achetez et vendez des produits numériques partout dans le monde avec ZySell.">  
 
---border:#E2E8F0;
+<meta name="keywords"  
+      content="Marketplace, Produits numériques, Ebook, Formation, IA, Templates">  
 
---radius:16px;
+<meta name="author"  
+      content="ZySell">  
 
---shadow:0 10px 30px rgba(0,0,0,.08);
+<meta name="theme-color"  
+      content="#4F46E5">  
 
---transition:.3s ease;
+<!-- Icône -->  
+<link rel="icon"  
+      href="logo.png">  
 
---container:1200px;
+<!-- Google Fonts -->  
+<link rel="preconnect"  
+      href="https://fonts.googleapis.com">  
 
-}
+<link rel="preconnect"  
+      href="https://fonts.gstatic.com"  
+      crossorigin>  
 
-/* =======================================================
-   RESET
-======================================================= */
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"  
+      rel="stylesheet">  
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+<!-- Font Awesome -->  
+<link rel="stylesheet"  
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">  
 
-html{
-scroll-behavior:smooth;
-}
+<!-- CSS -->  
+<link rel="stylesheet"  
+      href="assets/css/style.css">  
 
-body{
+<link rel="stylesheet"  
+      href="assets/css/theme.css">  
 
-font-family:"Inter",sans-serif;
+<link rel="stylesheet"  
+      href="assets/css/responsive.css">  
 
-background:var(--background);
+<link rel="stylesheet"  
+      href="assets/css/animations.css">
 
-color:var(--text);
+</head>  <body>  
+    <!-- ========================================= -->  
+<!-- HEADER -->  
+<!-- ========================================= -->  <header class="header">  <div class="container">  
 
-line-height:1.6;
+    <nav class="navbar">  
 
-overflow-x:hidden;
+        <!-- Logo -->  
 
-}
+        <a href="index.html" class="logo">  
 
-/* =======================================================
-   IMAGES
-======================================================= */
+            <img src="logo.png" alt="ZySell Logo">  
 
-img{
-display:block;
-max-width:100%;
-height:auto;
-}
+            <span>ZySell</span>  
 
-/* =======================================================
-   LIENS
-======================================================= */
+        </a>  
 
-a{
+        <!-- Navigation -->  
 
-text-decoration:none;
+        <ul class="nav-menu">  
 
-color:inherit;
+            <li>  
+                <a href="index.html"  
+                   class="active"  
+                   data-i18n="home">  
 
-}
+                    Accueil  
 
-/* =======================================================
-   LISTES
-======================================================= */
+                </a>  
+            </li>  
 
-ul{
+            <li>  
+                <a href="explore.html"  
+                   data-i18n="explore">  
 
-list-style:none;
+                    Explorer  
 
-}
+                </a>  
+            </li>  
 
-/* =======================================================
-   CONTENEUR
-======================================================= */
+            <li>  
+                <a href="store.html"  
+                   data-i18n="stores">  
 
-.container{
+                    Boutiques  
 
-width:min(100% - 32px,var(--container));
+                </a>  
+            </li>  
 
-margin:auto;
+            <li>  
+                <a href="pricing.html"  
+                   data-i18n="pricing">  
 
-}
+                    Tarifs  
 
-/* =======================================================
-   BOUTONS
-======================================================= */
+                </a>  
+            </li>  
 
-.btn{
+            <li>  
+                <a href="contact.html"  
+                   data-i18n="contact">  
 
-display:inline-flex;
+                    Contact  
 
-align-items:center;
+                </a>  
+            </li>  
 
-justify-content:center;
+        </ul>  
 
-gap:10px;
+        <!-- Actions -->  
 
-padding:12px 22px;
+        <div class="nav-actions">  
 
-border:none;
+            <button id="searchBtn"  
+                    class="icon-btn"  
+                    aria-label="Recherche">  
 
-border-radius:12px;
+                <i class="fa-solid fa-magnifying-glass"></i>  
 
-cursor:pointer;
+            </button>  
 
-font-weight:600;
+            <button id="countryBtn"  
+                    class="icon-btn"  
+                    aria-label="Pays">  
 
-transition:var(--transition);
+                <span id="countryFlag">🌍</span>  
 
-}
+            </button>  
 
-.btn-primary{
+            <button id="languageBtn"  
+                    class="icon-btn"  
+                    aria-label="Langue">  
 
-background:var(--primary);
+                FR  
 
-color:#fff;
+            </button>  
 
-}
+            <button id="themeBtn"  
+                    class="icon-btn"  
+                    aria-label="Thème">  
 
-.btn-primary:hover{
+                <i class="fa-solid fa-moon"></i>  
 
-background:var(--primary-dark);
+            </button>  
 
-}
+            <a href="login.html"  
+               class="btn btn-outline"  
+               data-i18n="login">  
 
-.btn-outline{
+                Se connecter  
 
-border:1px solid var(--border);
+            </a>  
 
-background:#fff;
+            <a href="signup.html"  
+               class="btn btn-primary"  
+               data-i18n="start">  
 
-color:var(--text);
+                Commencer  
 
-}
+            </a>  
 
-.icon-btn{
+        </div>  
 
-display:flex;
+        <!-- Bouton menu mobile -->  
 
-align-items:center;
+        <button id="mobileMenuBtn"  
+                class="mobile-menu-btn"  
+                aria-label="Menu">  
 
-justify-content:center;
+            <i class="fa-solid fa-bars"></i>  
 
-width:44px;
+        </button>  
 
-height:44px;
+    </nav>  
 
-border-radius:12px;
+</div>
 
-border:1px solid var(--border);
+</header>  
+<!-- ========================================= -->  
+<!-- MENU MOBILE -->  
+<!-- ========================================= -->  <div class="mobile-menu" id="mobileMenu">  <ul class="mobile-nav">  
 
-background:#fff;
+    <li>  
+        <a href="index.html" class="active" data-i18n="home">  
+            <i class="fa-solid fa-house"></i>  
+            <span>Accueil</span>  
+        </a>  
+    </li>  
 
-cursor:pointer;
+    <li>  
+        <a href="explore.html" data-i18n="explore">  
+            <i class="fa-solid fa-compass"></i>  
+            <span>Explorer</span>  
+        </a>  
+    </li>  
 
-transition:var(--transition);
+    <li>  
+        <a href="store.html" data-i18n="stores">  
+            <i class="fa-solid fa-store"></i>  
+            <span>Boutiques</span>  
+        </a>  
+    </li>  
 
-}
+    <li>  
+        <a href="pricing.html" data-i18n="pricing">  
+            <i class="fa-solid fa-tags"></i>  
+            <span>Tarifs</span>  
+        </a>  
+    </li>  
 
-.icon-btn:hover{
+    <li>  
+        <a href="contact.html" data-i18n="contact">  
+            <i class="fa-solid fa-envelope"></i>  
+            <span>Contact</span>  
+        </a>  
+    </li>  
 
-background:#F1F5F9;
+</ul>  
 
-}
-/* =======================================================
-   HEADER
-======================================================= */
+<div class="mobile-divider"></div>  
 
-.header{
+<div class="mobile-settings">  
 
-position:sticky;
+    <button class="mobile-option" id="countryBtnMobile">  
 
-top:0;
+        <i class="fa-solid fa-earth-africa"></i>  
 
-left:0;
+        <span id="countryNameMobile">  
 
-width:100%;
+            Cameroun  
 
-background:rgba(255,255,255,.95);
+        </span>  
 
-backdrop-filter:blur(12px);
+    </button>  
 
-border-bottom:1px solid var(--border);
+    <button class="mobile-option" id="languageBtnMobile">  
 
-z-index:1000;
+        <i class="fa-solid fa-language"></i>  
 
-}
+        <span id="languageTextMobile">  
 
-.navbar{
+            Français  
 
-display:flex;
+        </span>  
 
-align-items:center;
+    </button>  
 
-justify-content:space-between;
+    <button class="mobile-option" id="themeBtnMobile">  
 
-min-height:72px;
+        <i class="fa-solid fa-moon"></i>  
 
-gap:20px;
+        <span data-i18n="darkMode">  
 
-}
+            Mode sombre  
 
-.logo{
+        </span>  
 
-display:flex;
+    </button>  
 
-align-items:center;
+</div>  
 
-gap:12px;
+<div class="mobile-divider"></div>  
 
-font-size:1.2rem;
+<div class="mobile-auth">  
 
-font-weight:800;
+    <a href="login.html"  
+       class="btn btn-outline"  
+       data-i18n="login">  
 
-color:var(--primary);
+        Se connecter  
 
-}
+    </a>  
 
-.logo img{
+    <a href="signup.html"  
+       class="btn btn-primary"  
+       data-i18n="start">  
 
-width:42px;
+        Commencer  
 
-height:42px;
+    </a>  
 
-object-fit:contain;
+</div>
 
-}
+</div>  
+<!-- ========================================= -->  
+<!-- HERO -->  
+<!-- ========================================= -->  <section class="hero">  <div class="container">  
 
-.nav-menu{
+    <!-- Contenu -->  
 
-display:flex;
+    <div class="hero-content">  
 
-align-items:center;
+        <span class="hero-badge"  
+              data-i18n="heroBadge">  
 
-gap:28px;
+            🌍 Le commerce numérique sans frontières  
 
-}
+        </span>  
 
-.nav-menu a{
+        <h1 data-i18n="heroTitle">  
 
-font-weight:600;
+            Achetez, vendez et développez votre activité numérique.  
 
-color:var(--text-light);
+        </h1>  
 
-transition:var(--transition);
+        <p data-i18n="heroSubtitle">  
 
-}
+            ZySell est une marketplace moderne permettant aux créateurs, entreprises et entrepreneurs de vendre des produits numériques partout dans le monde.  
 
-.nav-menu a:hover,
+        </p>  
 
-.nav-menu a.active{
+        <!-- Barre de recherche -->  
 
-color:var(--primary);
+        <form class="hero-search">  
 
-}
+            <div class="search-box">  
 
-.nav-actions{
+                <i class="fa-solid fa-magnifying-glass"></i>  
 
-display:flex;
+                <input  
+                    id="heroSearchInput"  
+                    type="search"  
+                    placeholder="Rechercher un produit..."  
+                    data-i18n-placeholder="searchPlaceholder">  
 
-align-items:center;
+            </div>  
 
-gap:12px;
+            <button  
+                class="btn btn-primary"  
+                type="submit"  
+                data-i18n="search">  
 
-}
+                Rechercher  
 
-.mobile-menu-btn{
+            </button>  
 
-display:none;
+        </form>  
 
-align-items:center;
+        <!-- Boutons -->  
 
-justify-content:center;
+        <div class="hero-buttons">  
 
-width:44px;
+            <a href="signup.html"  
+               class="btn btn-primary"  
+               data-i18n="heroStart">  
 
-height:44px;
+                Commencer gratuitement  
 
-border:none;
+            </a>  
 
-background:transparent;
+            <a href="explore.html"  
+               class="btn btn-outline"  
+               data-i18n="heroExplore">  
 
-cursor:pointer;
+                Explorer  
 
-font-size:1.3rem;
+            </a>  
 
-}
+        </div>  
 
-/* =======================================================
-   MENU MOBILE
-======================================================= */
+        <!-- Statistiques -->  
 
-.mobile-menu{
+        <div class="hero-stats">  
 
-display:none;
+            <div class="stat-item">  
 
-background:var(--surface);
+                <h2>50K+</h2>  
 
-border-top:1px solid var(--border);
+                <span data-i18n="productsCount">  
 
-box-shadow:var(--shadow);
+                    Produits numériques  
 
-}
+                </span>  
 
-.mobile-nav{
+            </div>  
 
-display:flex;
+            <div class="stat-item">  
 
-flex-direction:column;
+                <h2>15K+</h2>  
 
-}
+                <span data-i18n="sellersCount">  
 
-.mobile-nav a{
+                    Vendeurs  
 
-display:flex;
+                </span>  
 
-align-items:center;
+            </div>  
 
-gap:12px;
+            <div class="stat-item">  
 
-padding:14px 20px;
+                <h2>195+</h2>  
 
-font-weight:600;
+                <span data-i18n="countriesCount">  
 
-}
+                    Pays  
 
-.mobile-divider{
+                </span>  
 
-height:1px;
+            </div>  
 
-background:var(--border);
+            <div class="stat-item">  
 
-margin:12px 0;
+                <h2>24/7</h2>  
 
-}
+                <span data-i18n="supportCount">  
 
-.mobile-settings,
+                    Support  
 
-.mobile-auth{
+                </span>  
 
-display:flex;
+            </div>  
 
-flex-direction:column;
+        </div>  
 
-gap:12px;
+    </div>  
 
-padding:16px 20px;
+    <!-- Image -->  
 
-}
+    <div class="hero-image">  
 
-.mobile-option{
+        <img  
+            src="assets/images/hero.png"  
+            alt="ZySell Marketplace">  
 
-display:flex;
+    </div>  
 
-align-items:center;
+</div>
 
-gap:12px;
+</section>  
+<!-- ========================================= -->  
+<!-- PRODUITS POPULAIRES -->  
+<!-- ========================================= -->  <section class="featured-products">  <div class="container">  
 
-padding:12px;
+    <!-- En-tête -->  
 
-border:1px solid var(--border);
+    <div class="section-header">  
 
-border-radius:12px;
+        <div>  
 
-background:#fff;
+            <span class="section-badge"  
+                  data-i18n="bestSales">  
 
-cursor:pointer;
+                🔥 Les meilleures ventes  
 
-}
-/* =======================================================
-   HERO
-======================================================= */
+            </span>  
 
-.hero{
+            <h2 data-i18n="popularProducts">  
 
-padding:80px 0;
+                Produits populaires  
 
-}
+            </h2>  
 
-.hero .container{
+            <p data-i18n="popularProductsDesc">  
 
-display:grid;
+                Découvrez les produits numériques les plus populaires sur ZySell.  
 
-grid-template-columns:1.1fr .9fr;
+            </p>  
 
-align-items:center;
+        </div>  
 
-gap:60px;
+        <a href="explore.html"  
+           class="view-all"  
+           data-i18n="viewAll">  
 
-}
+            Voir tout  
 
-.hero-badge{
+            <i class="fa-solid fa-arrow-right"></i>  
 
-display:inline-flex;
+        </a>  
 
-align-items:center;
+    </div>  
 
-padding:8px 16px;
+    <!-- Produits -->  
 
-border-radius:999px;
+    <div class="products-grid">  
 
-background:#EEF2FF;
+        <!-- Produit 1 -->  
 
-color:var(--primary);
+        <article class="product-card">  
 
-font-weight:700;
+            <img src="assets/images/products/product1.jpg"  
+                 alt="Produit">  
 
-margin-bottom:20px;
+            <div class="product-content">  
 
-}
+                <span class="product-category">  
 
-.hero h1{
+                    Templates  
 
-font-size:3.2rem;
+                </span>  
 
-line-height:1.1;
+                <h3>Pack CV Premium</h3>  
 
-margin-bottom:20px;
+                <p>  
 
-font-weight:800;
+                    Plus de 50 modèles de CV professionnels.  
 
-}
+                </p>  
 
-.hero p{
+                <div class="product-footer">  
 
-font-size:1.1rem;
+                    <strong>9 900 FCFA</strong>  
 
-color:var(--text-light);
+                    <a href="#"  
+                       class="btn btn-primary"  
+                       data-i18n="buyNow">  
 
-margin-bottom:30px;
+                        Acheter  
 
-}
+                    </a>  
 
-.hero-search{
+                </div>  
 
-display:flex;
+            </div>  
 
-gap:12px;
+        </article>  
 
-margin-bottom:28px;
+        <!-- Produit 2 -->  
 
-}
+        <article class="product-card">  
 
-.search-box{
+            <img src="assets/images/products/product2.jpg"  
+                 alt="Produit">  
 
-flex:1;
+            <div class="product-content">  
 
-display:flex;
+                <span class="product-category">  
 
-align-items:center;
+                    Formations  
 
-gap:12px;
+                </span>  
 
-padding:0 16px;
+                <h3>Marketing Digital</h3>  
 
-background:#fff;
+                <p>  
 
-border:1px solid var(--border);
+                    Formation complète pour développer vos ventes.  
 
-border-radius:14px;
+                </p>  
 
-}
+                <div class="product-footer">  
 
-.search-box input{
+                    <strong>24 900 FCFA</strong>  
 
-flex:1;
+                    <a href="#"  
+                       class="btn btn-primary"  
+                       data-i18n="buyNow">  
 
-height:54px;
+                        Acheter  
 
-border:none;
+                    </a>  
 
-outline:none;
+                </div>  
 
-font-size:1rem;
+            </div>  
 
-background:transparent;
+        </article>  
 
-}
+        <!-- Produit 3 -->  
 
-.hero-buttons{
+        <article class="product-card">  
 
-display:flex;
+            <img src="assets/images/products/product3.jpg"  
+                 alt="Produit">  
 
-gap:16px;
+            <div class="product-content">  
 
-margin-bottom:32px;
+                <span class="product-category">  
 
-}
+                    E-books  
 
-.hero-stats{
+                </span>  
 
-display:grid;
+                <h3>Business 2026</h3>  
 
-grid-template-columns:repeat(4,1fr);
+                <p>  
 
-gap:20px;
+                    Les meilleures stratégies pour réussir.  
 
-margin-top:24px;
+                </p>  
 
-}
+                <div class="product-footer">  
 
-.stat-item{
+                    <strong>7 500 FCFA</strong>  
 
-background:#fff;
+                    <a href="#"  
+                       class="btn btn-primary"  
+                       data-i18n="buyNow">  
 
-padding:20px;
+                        Acheter  
 
-border-radius:16px;
+                    </a>  
 
-text-align:center;
+                </div>  
 
-box-shadow:var(--shadow);
+            </div>  
 
-}
+        </article>  
 
-.stat-item h2{
+        <!-- Produit 4 -->  
 
-color:var(--primary);
+        <article class="product-card">  
 
-font-size:1.8rem;
+            <img src="assets/images/products/product4.jpg"  
+                 alt="Produit">  
 
-margin-bottom:6px;
+            <div class="product-content">  
 
-}
+                <span class="product-category">  
 
-.stat-item span{
+                    Design  
 
-color:var(--text-light);
+                </span>  
 
-font-size:.95rem;
+                <h3>Pack Logos Premium</h3>  
 
-}
+                <p>  
 
-.hero-image{
+                    Plus de 300 logos professionnels.  
 
-display:flex;
+                </p>  
 
-justify-content:center;
+                <div class="product-footer">  
 
-align-items:center;
+                    <strong>14 900 FCFA</strong>  
 
-}
+                    <a href="#"  
+                       class="btn btn-primary"  
+                       data-i18n="buyNow">  
 
-.hero-image img{
+                        Acheter  
 
-max-width:100%;
+                    </a>  
 
-border-radius:20px;
+                </div>  
 
-box-shadow:var(--shadow);
+            </div>  
 
-}
-/* =======================================================
-   SECTIONS
-======================================================= */
+        </article>  
 
-section{
+    </div>  
 
-padding:80px 0;
+    <!-- Bouton -->  
 
-}
+    <div class="products-footer">  
 
-.section-header{
+        <a href="explore.html"  
+           class="btn btn-primary"  
+           data-i18n="discoverMoreProducts">  
 
-display:flex;
+            Découvrir plus de produits  
 
-justify-content:space-between;
+        </a>  
 
-align-items:end;
+    </div>  
 
-gap:24px;
+</div>
 
-margin-bottom:40px;
+</section>  
+<!-- ========================================= -->  
+<!-- CATÉGORIES -->  
+<!-- ========================================= -->  <section class="categories">  <div class="container">  
 
-}
+    <!-- En-tête -->  
 
-.section-badge{
+    <div class="section-header">  
 
-display:inline-flex;
+        <div>  
 
-align-items:center;
+            <span class="section-badge"  
+                  data-i18n="categoriesBadge">  
 
-padding:8px 16px;
+                📂 Parcourir les catégories  
 
-background:#EEF2FF;
+            </span>  
 
-color:var(--primary);
+            <h2 data-i18n="categoriesTitle">  
 
-border-radius:999px;
+                Explorez par catégorie  
 
-font-weight:700;
+            </h2>  
 
-margin-bottom:14px;
+            <p data-i18n="categoriesSubtitle">  
 
-}
+                Retrouvez rapidement les produits numériques correspondant à vos besoins.  
 
-.section-header h2{
+            </p>  
 
-font-size:2.2rem;
+        </div>  
 
-font-weight:800;
+        <a href="categories.html"  
+           class="view-all"  
+           data-i18n="allCategories">  
 
-margin-bottom:12px;
+            Toutes les catégories  
 
-}
+            <i class="fa-solid fa-arrow-right"></i>  
 
-.section-header p{
+        </a>  
 
-color:var(--text-light);
+    </div>  
 
-max-width:650px;
+    <!-- Grille -->  
 
-}
+    <div class="categories-grid">  
 
-.view-all{
+        <article class="category-card">  
 
-display:inline-flex;
+            <i class="fa-solid fa-book"></i>  
 
-align-items:center;
+            <h3 data-i18n="ebooks">  
 
-gap:8px;
+                E-books  
 
-font-weight:700;
+            </h3>  
 
-color:var(--primary);
+            <span data-i18n="ebooksDesc">  
 
-}
+                Livres numériques et guides.  
 
-/* =======================================================
-   GRILLES
-======================================================= */
+            </span>  
 
-.products-grid,
-.categories-grid,
-.creators-grid,
-.features-grid,
-.testimonials-grid{
+        </article>  
 
-display:grid;
+        <article class="category-card">  
 
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            <i class="fa-solid fa-graduation-cap"></i>  
 
-gap:24px;
+            <h3 data-i18n="courses">  
 
-}
+                Formations  
 
-/* =======================================================
-   CARTES
-======================================================= */
+            </h3>  
 
-.product-card,
-.category-card,
-.creator-card,
-.feature-card,
-.testimonial-card{
+            <span data-i18n="coursesDesc">  
 
-background:#fff;
+                Cours et formations professionnelles.  
 
-border:1px solid var(--border);
+            </span>  
 
-border-radius:18px;
+        </article>  
 
-overflow:hidden;
+        <article class="category-card">  
 
-box-shadow:var(--shadow);
+            <i class="fa-solid fa-palette"></i>  
 
-transition:transform .25s ease, box-shadow .25s ease;
+            <h3 data-i18n="design">  
 
-}
+                Design & Templates  
 
-.product-card:hover,
-.category-card:hover,
-.creator-card:hover,
-.feature-card:hover,
-.testimonial-card:hover{
+            </h3>  
 
-transform:translateY(-6px);
+            <span data-i18n="designDesc">  
 
-box-shadow:0 18px 40px rgba(0,0,0,.12);
+                Logos, modèles et ressources graphiques.  
 
-}
+            </span>  
 
-.product-card img{
+        </article>  
 
-width:100%;
+        <article class="category-card">  
 
-aspect-ratio:16/10;
+            <i class="fa-solid fa-laptop-code"></i>  
 
-object-fit:cover;
+            <h3 data-i18n="software">  
 
-}
+                Logiciels  
 
-.product-content{
+            </h3>  
 
-padding:20px;
+            <span data-i18n="softwareDesc">  
 
-}
+                Applications, scripts et outils.  
 
-.product-category{
+            </span>  
 
-display:inline-block;
+        </article>  
 
-padding:6px 12px;
+        <article class="category-card">  
 
-border-radius:999px;
+            <i class="fa-solid fa-robot"></i>  
 
-background:#EEF2FF;
+            <h3 data-i18n="aiPrompts">  
 
-color:var(--primary);
+                IA & Prompts  
 
-font-size:.85rem;
+            </h3>  
 
-font-weight:700;
+            <span data-i18n="aiPromptsDesc">  
 
-margin-bottom:12px;
+                Prompts et ressources IA.  
 
-}
+            </span>  
 
-.product-footer{
+        </article>  
 
-display:flex;
+        <article class="category-card">  
 
-justify-content:space-between;
+            <i class="fa-solid fa-camera"></i>  
 
-align-items:center;
+            <h3 data-i18n="photoVideo">  
 
-margin-top:18px;
+                Photos & Vidéos  
 
-}
+            </h3>  
 
-.category-card,
-.creator-card,
-.feature-card,
-.testimonial-card{
+            <span data-i18n="photoVideoDesc">  
 
-padding:24px;
+                Ressources photo et vidéo.  
 
-text-align:center;
+            </span>  
 
-}
+        </article>  
 
-.category-card i,
-.feature-card i{
+        <article class="category-card">  
 
-font-size:2rem;
+            <i class="fa-solid fa-music"></i>  
 
-color:var(--primary);
+            <h3 data-i18n="audioMusic">  
 
-margin-bottom:16px;
+                Audio & Musique  
 
-}
-/* =======================================================
-   FOOTER
-======================================================= */
+            </h3>  
 
-.footer{
+            <span data-i18n="audioMusicDesc">  
 
-background:#0F172A;
+                Sons, musiques et podcasts.  
 
-color:#fff;
+            </span>  
 
-padding:70px 0 30px;
+        </article>  
 
-margin-top:80px;
+        <article class="category-card">  
 
-}
+            <i class="fa-solid fa-file-lines"></i>  
 
-.footer-grid{
+            <h3 data-i18n="documents">  
 
-display:grid;
+                Documents  
 
-grid-template-columns:2fr 1fr 1fr 1fr;
+            </h3>  
 
-gap:40px;
+            <span data-i18n="documentsDesc">  
 
-}
+                Contrats et documents prêts à utiliser.  
 
-.footer-logo{
+            </span>  
 
-display:flex;
+        </article>  
 
-align-items:center;
+    </div>  
 
-gap:12px;
+    <!-- Bouton -->  
 
-font-size:1.3rem;
+    <div class="categories-footer">  
 
-font-weight:800;
+        <a href="categories.html"  
+           class="btn btn-primary"  
+           data-i18n="browseAllCategories">  
 
-margin-bottom:20px;
+            Parcourir toutes les catégories  
 
-}
+        </a>  
 
-.footer-logo img{
+    </div>  
 
-width:44px;
+</div>
 
-height:44px;
+</section>  
+<!-- ========================================= -->  
+<!-- CRÉATEURS POPULAIRES -->  
+<!-- ========================================= -->  <section class="top-creators">  <div class="container">  
 
-}
+    <!-- En-tête -->  
 
-.footer-column h3{
+    <div class="section-header">  
 
-margin-bottom:18px;
+        <div>  
 
-font-size:1.1rem;
+            <span class="section-badge"  
+                  data-i18n="creatorsBadge">  
 
-}
+                ⭐ Créateurs vérifiés  
 
-.footer-column ul{
+            </span>  
 
-display:flex;
+            <h2 data-i18n="creatorsTitle">  
 
-flex-direction:column;
+                Les meilleurs créateurs  
 
-gap:12px;
+            </h2>  
 
-}
+            <p data-i18n="creatorsSubtitle">  
 
-.footer-column a{
+                Découvrez les vendeurs les plus performants de la plateforme ZySell.  
 
-color:#CBD5E1;
+            </p>  
 
-transition:.3s;
+        </div>  
 
-}
+        <a href="creators.html"  
+           class="view-all"  
+           data-i18n="viewCreators">  
 
-.footer-column a:hover{
+            Voir tous  
 
-color:#fff;
+            <i class="fa-solid fa-arrow-right"></i>  
 
-}
+        </a>  
 
-.social-links{
+    </div>  
 
-display:flex;
+    <!-- Grille -->  
 
-gap:12px;
+    <div class="creators-grid">  
 
-margin-top:20px;
-
-}
-
-.footer hr{
-
-margin:40px 0 20px;
-
-border:none;
-
-height:1px;
-
-background:rgba(255,255,255,.1);
-
-}
-
-.footer-bottom{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-text-align:center;
-
-color:#CBD5E1;
-
-}
-
-/* =======================================================
-   ANIMATIONS
-======================================================= */
-
-.loaded{
-
-animation:fadeIn .5s ease;
-
-}
-
-@keyframes fadeIn{
-
-from{
-
-opacity:0;
-
-transform:translateY(10px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-/* =======================================================
-   UTILITAIRES
-======================================================= */
-
-.text-center{
-
-text-align:center;
-
-}
-
-.hidden{
-
-display:none !important;
-
-}
-
-.show{
-
-display:block !important;
-
-}
-
-/* =======================================================
-   FIN DU FICHIER
-======================================================= */
+        <article class="cr
