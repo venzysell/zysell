@@ -1,5 +1,6 @@
 /* =======================================================
    ZYSELL APP
+   Compatible avec le nouveau index.html
 ======================================================= */
 
 "use strict";
@@ -12,97 +13,108 @@ const body = document.body;
 
 const header = document.querySelector(".header");
 
-const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+const mobileMenu = document.getElementById("mobileMenu");
 
-const navMenu = document.querySelector(".nav-menu");
+const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 
-const faqItems = document.querySelectorAll(".faq-item");
+const themeBtn = document.getElementById("themeBtn");
 
-const revealElements = document.querySelectorAll(".reveal");
+const languageBtn = document.getElementById("languageBtn");
 
-const backToTop = document.querySelector(".back-to-top");
+const countryBtn = document.getElementById("countryBtn");
+
+const heroSearchForm = document.querySelector(".hero-search");
+
+const heroSearchInput = document.getElementById("heroSearchInput");
 
 /* =======================================================
    MENU MOBILE
 ======================================================= */
 
-if(mobileMenuBtn){
+if (mobileMenuBtn && mobileMenu) {
 
-mobileMenuBtn.addEventListener("click",()=>{
+    mobileMenuBtn.addEventListener("click", () => {
 
-navMenu.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
 
-mobileMenuBtn.classList.toggle("active");
+        mobileMenuBtn.classList.toggle("active");
 
-});
+    });
 
 }
-
 /* =======================================================
-   FERMER LE MENU APRÈS UN CLIC
+   FERMER LE MENU MOBILE
 ======================================================= */
 
-document.querySelectorAll(".nav-menu a").forEach(link=>{
+if (mobileMenu) {
 
-link.addEventListener("click",()=>{
+    mobileMenu.querySelectorAll("a").forEach(link => {
 
-if(navMenu){
+        link.addEventListener("click", () => {
 
-navMenu.classList.remove("active");
+            mobileMenu.classList.remove("active");
+
+            mobileMenuBtn?.classList.remove("active");
+
+        });
+
+    });
 
 }
-
-if(mobileMenuBtn){
-
-mobileMenuBtn.classList.remove("active");
-
-}
-
-});
-
-});
 
 /* =======================================================
    HEADER AU SCROLL
 ======================================================= */
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
 
-if(window.scrollY>40){
+    if (window.scrollY > 40) {
 
-header?.classList.add("scrolled");
+        header?.classList.add("scrolled");
 
-}else{
+    } else {
 
-header?.classList.remove("scrolled");
+        header?.classList.remove("scrolled");
 
-}
+    }
 
-});/* =======================================================
-   DÉFILEMENT FLUIDE
+});
+
+/* =======================================================
+   RECHERCHE
 ======================================================= */
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+heroSearchForm?.addEventListener("submit", (event) => {
 
-anchor.addEventListener("click",function(e){
+    event.preventDefault();
 
-const target=document.querySelector(this.getAttribute("href"));
+    const value = heroSearchInput.value.trim();
 
-if(target){
+    if (!value) return;
 
-e.preventDefault();
-
-target.scrollIntoView({
-
-behavior:"smooth",
-
-block:"start"
+    window.location.href =
+        `explore.html?search=${encodeURIComponent(value)}`;
 
 });
+/* =======================================================
+   ANIMATION DES CARTES
+======================================================= */
 
-}
+document.querySelectorAll(
+    ".product-card, .category-card, .creator-card, .feature-card, .testimonial-card"
+).forEach(card => {
 
-});
+    card.addEventListener("mouseenter", () => {
+
+        card.classList.add("hover");
+
+    });
+
+    card.addEventListener("mouseleave", () => {
+
+        card.classList.remove("hover");
+
+    });
 
 });
 
@@ -110,225 +122,58 @@ block:"start"
    BOUTON RETOUR EN HAUT
 ======================================================= */
 
-if(backToTop){
+const backToTop = document.querySelector(".back-to-top");
 
-window.addEventListener("scroll",()=>{
+if (backToTop) {
 
-if(window.scrollY>500){
+    window.addEventListener("scroll", () => {
 
-backToTop.classList.add("show");
+        if (window.scrollY > 500) {
 
-}else{
+            backToTop.classList.add("show");
 
-backToTop.classList.remove("show");
+        } else {
+
+            backToTop.classList.remove("show");
+
+        }
+
+    });
+
+    backToTop.addEventListener("click", () => {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    });
 
 }
-
-});
-
-backToTop.addEventListener("click",()=>{
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-});
-
-}
-
 /* =======================================================
-   SCROLL REVEAL
-======================================================= */
-
-const revealOnScroll=()=>{
-
-revealElements.forEach(element=>{
-
-const windowHeight=window.innerHeight;
-
-const elementTop=element.getBoundingClientRect().top;
-
-const revealPoint=120;
-
-if(elementTop<windowHeight-revealPoint){
-
-element.classList.add("active");
-
-}
-
-});
-
-};
-
-window.addEventListener("scroll",revealOnScroll);
-
-window.addEventListener("load",revealOnScroll);
-
-/* =======================================================
-   ANIMATION DES COMPTEURS
-======================================================= */
-
-const counters=document.querySelectorAll("[data-counter]");
-
-const startCounter=(counter)=>{
-
-const target=Number(counter.dataset.counter);
-
-const duration=2000;
-
-const step=Math.max(1,Math.ceil(target/(duration/16)));
-
-let value=0;
-
-const timer=setInterval(()=>{
-
-value+=step;
-
-if(value>=target){
-
-value=target;
-
-clearInterval(timer);
-
-}
-
-counter.textContent=value.toLocaleString();
-
-},16);
-
-};
-
-const observer=new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-startCounter(entry.target);
-
-observer.unobserve(entry.target);
-
-}
-
-});
-
-},{threshold:0.5});
-
-counters.forEach(counter=>observer.observe(counter));/* =======================================================
    FAQ
 ======================================================= */
 
-faqItems.forEach(item=>{
+document.querySelectorAll(".faq details").forEach(item => {
 
-const question=item.querySelector(".faq-question");
+    item.addEventListener("toggle", () => {
 
-question?.addEventListener("click",()=>{
+        if (!item.open) return;
 
-faqItems.forEach(faq=>{
+        document.querySelectorAll(".faq details").forEach(other => {
 
-if(faq!==item){
+            if (other !== item) {
 
-faq.classList.remove("active");
+                other.open = false;
 
-}
+            }
 
-});
+        });
 
-item.classList.toggle("active");
-
-});
-
-});
-
-/* =======================================================
-   EFFET AU SURVOL DES CARTES
-======================================================= */
-
-const cards=document.querySelectorAll(
-
-".product-card,.category-card,.creator-card,.feature-card,.testimonial-card"
-
-);
-
-cards.forEach(card=>{
-
-card.addEventListener("mouseenter",()=>{
-
-card.classList.add("hover");
-
-});
-
-card.addEventListener("mouseleave",()=>{
-
-card.classList.remove("hover");
-
-});
-
-});
-
-/* =======================================================
-   CHARGEMENT DE LA PAGE
-======================================================= */
-
-window.addEventListener("load",()=>{
-
-body.classList.add("loaded");
-
-const loader=document.querySelector(".loader-wrapper");
-
-if(loader){
-
-setTimeout(()=>{
-
-loader.classList.add("hide");
-
-},400);
-
-}
-
-});
-
-/* =======================================================
-   RACCOURCI CLAVIER
-======================================================= */
-
-document.addEventListener("keydown",event=>{
-
-if(event.key==="Escape"){
-
-navMenu?.classList.remove("active");
-
-mobileMenuBtn?.classList.remove("active");
-
-}
-
-});
-
-/* =======================================================
-   OPTIMISATION REDIMENSIONNEMENT
-======================================================= */
-
-let resizeTimer;
-
-window.addEventListener("resize",()=>{
-
-clearTimeout(resizeTimer);
-
-resizeTimer=setTimeout(()=>{
-
-if(window.innerWidth>768){
-
-navMenu?.classList.remove("active");
-
-mobileMenuBtn?.classList.remove("active");
-
-}
-
-},200);
+    });
 
 });
 
@@ -336,11 +181,11 @@ mobileMenuBtn?.classList.remove("active");
    INITIALISATION
 ======================================================= */
 
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
-console.log("ZYSELL APP INITIALISÉ");
+    console.log("✅ ZySell chargé avec succès.");
 
-revealOnScroll();
+    document.body.classList.add("loaded");
 
 });
 
