@@ -1,312 +1,245 @@
 /* =======================================================
    ZYSELL RESPONSIVE
-   Mobile First
+   Compatible avec le nouveau index.html
 ======================================================= */
 
 /* =======================================================
-   TABLETTES (≥ 768px)
+   TABLETTES (≥768px)
 ======================================================= */
 
-@media (min-width: 768px) {
+@media (min-width:768px){
 
-    .container {
-        max-width: 720px;
-        margin: 0 auto;
-        padding: 0 24px;
-    }
+.container{
+max-width:720px;
+margin:auto;
+padding:0 24px;
+}
 
 }
 
 /* =======================================================
-   ORDINATEURS PORTABLES (≥ 992px)
+   ORDINATEURS (≥992px)
 ======================================================= */
 
-@media (min-width: 992px) {
+@media (min-width:992px){
 
-    .container {
-        max-width: 960px;
-    }
+.container{
+max-width:960px;
+}
 
 }
 
 /* =======================================================
-   GRANDS ÉCRANS (≥ 1200px)
+   GRANDS ÉCRANS (≥1200px)
 ======================================================= */
 
-@media (min-width: 1200px) {
+@media (min-width:1200px){
 
-    .container {
-        max-width: 1140px;
-    }
+.container{
+max-width:1140px;
+}
 
 }
 
 /* =======================================================
-   ÉCRANS XXL (≥ 1400px)
-======================================================= */
-
-@media (min-width: 1400px) {
-
-    .container {
-        max-width: 1320px;
-    }
-
-}/* =======================================================
    MENU MOBILE
 ======================================================= */
 
-@media (max-width: 767px) {
+@media (max-width:767px){
 
-    .navbar {
-        min-height: 72px;
-    }
+.nav-menu,
+.nav-actions{
+display:none;
+}
 
-    .mobile-menu-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.mobile-menu-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+}
 
-    .nav-menu {
-        display: none;
-        position: absolute;
-        top: 72px;
-        left: 0;
-        width: 100%;
-        background: #ffffff;
-        flex-direction: column;
-        align-items: stretch;
-        padding: 20px;
-        gap: 16px;
-        border-top: 1px solid #e5e7eb;
-        box-shadow: 0 12px 24px rgba(0,0,0,.08);
-        z-index: 1000;
-    }
+.mobile-menu{
+display:none;
+position:fixed;
+top:72px;
+left:0;
+width:100%;
+background:#fff;
+padding:20px;
+z-index:999;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
 
-    .nav-menu.active {
-        display: flex;
-    }
+.mobile-menu.active{
+display:block;
+}
 
-    .nav-menu li {
-        width: 100%;
-        list-style: none;
-    }
-
-    .nav-menu a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        min-height: 48px;
-        text-decoration: none;
-    }
-
-    .language-switcher {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin: 8px 0;
-    }
-
-    .icon-btn,
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-}/* =======================================================
+}
+/* =======================================================
    HERO MOBILE
 ======================================================= */
 
-@media (max-width: 767px) {
+@media (max-width:767px){
 
-    .hero {
-        padding: 48px 0;
-    }
+.hero{
+padding:48px 0;
+}
 
-    .hero .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 32px;
-    }
+.hero .container{
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+gap:32px;
+}
 
-    .hero-content {
-        width: 100%;
-    }
+.hero-content,
+.hero-image{
+width:100%;
+}
 
-    .hero h1 {
-        font-size: 2.3rem;
-        line-height: 1.2;
-        margin-bottom: 20px;
-    }
+.hero-image img{
+max-width:420px;
+width:100%;
+height:auto;
+}
 
-    .hero p {
-        font-size: 1rem;
-        line-height: 1.7;
-        margin-bottom: 24px;
-    }
+.hero h1{
+font-size:2.3rem;
+line-height:1.2;
+}
 
-    .hero-search {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-    }
+.hero p{
+font-size:1rem;
+line-height:1.7;
+}
 
-    .hero-search input {
-        width: 100%;
-        min-height: 52px;
-    }
+.hero-search{
+display:flex;
+flex-direction:column;
+gap:16px;
+width:100%;
+}
 
-    .hero-search .btn {
-        width: 100%;
-        min-height: 52px;
-    }
+.hero-search input,
+.hero-search .btn{
+width:100%;
+min-height:52px;
+}
 
-    .hero-image {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
+.hero-buttons{
+display:flex;
+flex-direction:column;
+gap:16px;
+width:100%;
+}
 
-    .hero-image img {
-        width: 100%;
-        max-width: 420px;
-        height: auto;
-    }
+.hero-buttons .btn{
+width:100%;
+}
 
-    .hero-stats {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
-        width: 100%;
-    }
+.hero-stats{
+display:grid;
+grid-template-columns:1fr;
+gap:16px;
+}
 
-}/* =======================================================
-   GRILLES ET CARTES RESPONSIVE
+}
+/* =======================================================
+   SECTIONS ET CARTES
 ======================================================= */
 
-@media (max-width: 767px) {
+@media (max-width:767px){
 
-    .products-grid,
-    .categories-grid,
-    .creators-grid,
-    .features-grid,
-    .testimonials-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
+.products-grid,
+.categories-grid,
+.creators-grid,
+.features-grid,
+.testimonials-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:20px;
+}
 
-    .product-card,
-    .category-card,
-    .creator-card,
-    .feature-card,
-    .testimonial-card {
-        width: 100%;
-        margin: 0;
-    }
+.product-card,
+.category-card,
+.creator-card,
+.feature-card,
+.testimonial-card{
+width:100%;
+}
 
-    .section {
-        padding: 56px 0;
-    }
+.section-header{
+text-align:center;
+margin-bottom:32px;
+}
 
-    .section-header {
-        text-align: center;
-        margin-bottom: 28px;
-    }
+.view-all{
+display:inline-flex;
+margin-top:16px;
+}
 
-    .section-title {
-        font-size: 2rem;
-        line-height: 1.2;
-    }
+.footer-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:24px;
+text-align:center;
+}
 
-    .section-subtitle {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
+.footer-bottom{
+text-align:center;
+}
 
-    .footer-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
-
-    .footer-bottom {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        text-align: center;
-    }
-
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-
-}/* =======================================================
-   PETITS SMARTPHONES
-======================================================= */
-
-@media (max-width: 480px) {
-
-    .container {
-        padding: 0 16px;
-    }
-
-    .hero {
-        padding: 40px 0;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 0.95rem;
-    }
-
-    .section-title {
-        font-size: 1.7rem;
-    }
-
-    .btn {
-        width: 100%;
-        min-height: 50px;
-    }
-
-    input,
-    select,
-    textarea {
-        font-size: 16px;
-    }
+img{
+max-width:100%;
+height:auto;
+}
 
 }
 
+/* =======================================================
+   PETITS SMARTPHONES
+======================================================= */
+
+@media (max-width:480px){
+
+.container{
+padding:0 16px;
+}
+
+.hero h1{
+font-size:2rem;
+}
+
+.hero p{
+font-size:.95rem;
+}
+
+.btn{
+width:100%;
+}
+
+}
 /* =======================================================
    IMPRESSION
 ======================================================= */
 
-@media print {
+@media print{
 
-    .header,
-    .footer,
-    .mobile-menu-btn,
-    .hero-search,
-    .btn,
-    .icon-btn {
-        display: none !important;
-    }
+.header,
+.footer,
+.mobile-menu,
+.mobile-menu-btn,
+.hero-search,
+.btn,
+.icon-btn{
+display:none !important;
+}
 
-    body {
-        background: #fff;
-        color: #000;
-    }
+body{
+background:#fff;
+color:#000;
+}
 
 }
 
@@ -314,15 +247,39 @@
    ACCESSIBILITÉ
 ======================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce){
 
-    *,
-    *::before,
-    *::after {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-    }
+*,
+*::before,
+*::after{
+animation:none !important;
+transition:none !important;
+scroll-behavior:auto !important;
+}
+
+}
+
+/* =======================================================
+   MENU DESKTOP
+======================================================= */
+
+@media (min-width:768px){
+
+.mobile-menu{
+display:none !important;
+}
+
+.mobile-menu-btn{
+display:none !important;
+}
+
+.nav-menu{
+display:flex !important;
+}
+
+.nav-actions{
+display:flex !important;
+}
 
 }
 
