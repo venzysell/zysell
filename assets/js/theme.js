@@ -8,7 +8,7 @@
    ÉLÉMENTS
 ======================================================= */
 
-const themeToggle=document.querySelector(".theme-toggle");
+const themeToggle=document.getElementById("themeBtn");
 
 const body=document.body;
 
