@@ -164,3 +164,47 @@ if(languageSelector){
 applyTranslations();
 
 }
+// =====================================
+// FONCTIONS UTILITAIRES
+// =====================================
+
+// Retourne la langue actuelle
+export function getCurrentLanguage(){
+
+    return currentLanguage;
+
+}
+
+// Traduit une clé
+export function translate(key){
+
+    if(
+        translations[currentLanguage] &&
+        translations[currentLanguage][key]
+    ){
+
+        return translations[currentLanguage][key];
+
+    }
+
+    return key;
+
+}
+
+// Ajouter facilement de nouvelles traductions
+export function addTranslations(language, values){
+
+    if(!translations[language]){
+
+        translations[language] = {};
+
+    }
+
+    translations[language] = {
+
+        ...translations[language],
+        ...values
+
+    };
+
+}
