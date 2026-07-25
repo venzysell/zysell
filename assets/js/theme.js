@@ -8,35 +8,48 @@
    ÉLÉMENTS
 ======================================================= */
 
-const themeButtons=document.querySelectorAll("#themeBtn, #themeBtnMobile");
-
-const body=document.body;
-
-const storageKey="zysell-theme";
+const themeButtons = document.querySelectorAll("#themeBtn, #themeBtnMobile");
+const body = document.body;
+const storageKey = "zysell-theme";
 
 /* =======================================================
    PRÉFÉRENCE SYSTÈME
 ======================================================= */
 
-const prefersDark=window.matchMedia("(prefers-color-scheme: dark)");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
 /* =======================================================
    APPLIQUER LE THÈME
 ======================================================= */
 
-function applyTheme(theme){
+function applyTheme(theme) {
 
-if(theme==="dark"){
+    if (theme === "dark") {
+        body.classList.add("dark");
+    } else {
+        body.classList.remove("dark");
+    }
 
-body.classList.add("dark");
-
-}else{
-
-body.classList.remove("dark");
-
+    updateThemeIcon(theme);
 }
 
-updateThemeIcon(theme);
+/* =======================================================
+   ICÔNE
+======================================================= */
+
+function updateThemeIcon(theme) {
+
+    themeButtons.forEach(button => {
+
+        const icon = button.querySelector("i");
+
+        if (!icon) return;
+
+        icon.className = theme === "dark"
+            ? "fa-solid fa-sun"
+            : "fa-solid fa-moon";
+
+    });
 
 }
 
@@ -44,200 +57,89 @@ updateThemeIcon(theme);
    SAUVEGARDE
 ======================================================= */
 
-function saveTheme(theme){
-
-localStorage.setItem(storageKey,theme);
-
+function saveTheme(theme) {
+    localStorage.setItem(storageKey, theme);
 }
 
 /* =======================================================
    LECTURE
 ======================================================= */
 
-function loadTheme(){
-
-return localStorage.getItem(storageKey);
-
+function loadTheme() {
+    return localStorage.getItem(storageKey);
 }
 
 /* =======================================================
-   ICÔNE
-======================================================= */
-
-function updateThemeIcon(theme){
-
-if(!themeToggle){
-
-return;
-
-}
-
-const icon=themeToggle.querySelector("i");
-
-if(!icon){
-
-return;
-
-}
-
-icon.className=
-
-theme==="dark"
-
-? "fas fa-sun"
-
-: "fas fa-moon";
-
-}/* =======================================================
    BASCULER LE THÈME
 ======================================================= */
 
-function toggleTheme(){
+function toggleTheme() {
 
-const isDark=body.classList.contains("dark");
+    const newTheme = body.classList.contains("dark")
+        ? "light"
+        : "dark";
 
-const newTheme=isDark?"light":"dark";
-
-applyTheme(newTheme);
-
-saveTheme(newTheme);
-
-}
-
-/* =======================================================
-   CHARGER LE THÈME
-======================================================= */
-
-function initializeTheme(){
-
-const savedTheme=loadTheme();
-
-if(savedTheme){
-
-applyTheme(savedTheme);
-
-return;
+    applyTheme(newTheme);
+    saveTheme(newTheme);
 
 }
-
-const systemTheme=prefersDark.matches?"dark":"light";
-
-applyTheme(systemTheme);
-
-}
-
-/* =======================================================
-   CLIC SUR LE BOUTON
-======================================================= */
-
-if(themeToggle){
-
-themeToggle.addEventListener("click",toggleTheme);
-
-}
-
-/* =======================================================
-   CHANGEMENT DE THÈME SYSTÈME
-======================================================= */
-
-prefersDark.addEventListener("change",event=>{
-
-const savedTheme=loadTheme();
-
-if(savedTheme){
-
-return;
-
-}
-
-const theme=event.matches?"dark":"light";
-
-applyTheme(theme);
-
-});
 
 /* =======================================================
    INITIALISATION
 ======================================================= */
 
-document.addEventListener("DOMContentLoaded",()=>{
+function initializeTheme() {
 
-initializeTheme();
+    const savedTheme = loadTheme();
 
-});/* =======================================================
-   SYNCHRONISATION ENTRE ONGLETS
-======================================================= */
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    } else {
+        applyTheme(prefersDark.matches ? "dark" : "light");
+    }
 
-window.addEventListener("storage",(event)=>{
-
-if(event.key!==storageKey){
-
-return;
+    themeButtons.forEach(button => {
+        button.addEventListener("click", toggleTheme);
+    });
 
 }
 
-const theme=event.newValue||"light";
+document.addEventListener("DOMContentLoaded", initializeTheme);
 
-applyTheme(theme);
+/* =======================================================
+   CHANGEMENT DU THÈME SYSTÈME
+======================================================= */
+
+prefersDark.addEventListener("change", (event) => {
+
+    if (!loadTheme()) {
+        applyTheme(event.matches ? "dark" : "light");
+    }
 
 });
 
 /* =======================================================
-   MÉTHODES UTILITAIRES
+   SYNCHRONISATION ENTRE ONGLETS
 ======================================================= */
 
-function setDarkTheme(){
+window.addEventListener("storage", (event) => {
 
-applyTheme("dark");
+    if (event.key === storageKey) {
+        applyTheme(event.newValue || "light");
+    }
 
-saveTheme("dark");
-
-}
-
-function setLightTheme(){
-
-applyTheme("light");
-
-saveTheme("light");
-
-}
-
-function getCurrentTheme(){
-
-return body.classList.contains("dark")
-
-? "dark"
-
-: "light";
-
-}
+});
 
 /* =======================================================
    API GLOBALE
 ======================================================= */
 
-window.ZysellTheme={
+window.ZysellTheme = {
 
-toggle:toggleTheme,
+    toggle: toggleTheme,
 
-setDark:setDarkTheme,
-
-setLight:setLightTheme,
-
-current:getCurrentTheme
+    current: () => body.classList.contains("dark") ? "dark" : "light"
 
 };
 
-/* =======================================================
-   VALIDATION
-======================================================= */
-
-console.log(
-
-`Thème actif : ${getCurrentTheme()}`
-
-);
-
-/* =======================================================
-   FIN DU FICHIER
-======================================================= */
+console.log("Theme chargé :", window.ZysellTheme.current());
