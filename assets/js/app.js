@@ -1,173 +1,181 @@
-/* =======================================================
-   ZYSELL APP
-   Compatible avec le nouveau index.html
-======================================================= */
+// ===========================
+// ZYSELL - APP.JS
+// ===========================
 
-"use strict";
+document.addEventListener("DOMContentLoaded", () => {
 
-/* =======================================================
-   SÉLECTEURS
-======================================================= */
+    // ===========================
+    // Année automatique
+    // ===========================
 
-const body = document.body;
+    const year = document.getElementById("currentYear");
 
-const header = document.querySelector(".header");
+    if(year){
+        year.textContent = new Date().getFullYear();
+    }
 
-const mobileMenu = document.getElementById("mobileMenu");
+    // ===========================
+    // Changement de thème
+    // ===========================
 
-const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const themeButton = document.querySelector(".theme-btn");
 
-const themeBtn = document.getElementById("themeBtn");
+    if(themeButton){
 
-const languageBtn = document.getElementById("languageBtn");
+        const savedTheme = localStorage.getItem("theme");
 
-const countryBtn = document.getElementById("countryBtn");
+        if(savedTheme === "dark"){
+            document.body.classList.add("dark-theme");
+        }
 
-const heroSearchForm = document.querySelector(".hero-search");
+        themeButton.addEventListener("click", () => {
 
-const heroSearchInput = document.getElementById("heroSearchInput");
+            document.body.classList.toggle("dark-theme");
 
-/* =======================================================
-   MENU MOBILE
-======================================================= */
-
-if (mobileMenuBtn && mobileMenu) {
-
-    mobileMenuBtn.addEventListener("click", () => {
-
-        mobileMenu.classList.toggle("active");
-
-        mobileMenuBtn.classList.toggle("active");
-
-    });
-
-}
-/* =======================================================
-   FERMER LE MENU MOBILE
-======================================================= */
-
-if (mobileMenu) {
-
-    mobileMenu.querySelectorAll("a").forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            mobileMenu.classList.remove("active");
-
-            mobileMenuBtn?.classList.remove("active");
+            if(document.body.classList.contains("dark-theme")){
+                localStorage.setItem("theme","dark");
+            }else{
+                localStorage.setItem("theme","light");
+            }
 
         });
-
-    });
-
-}
-
-/* =======================================================
-   HEADER AU SCROLL
-======================================================= */
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 40) {
-
-        header?.classList.add("scrolled");
-
-    } else {
-
-        header?.classList.remove("scrolled");
 
     }
 
 });
+// ===========================
+// MENU MOBILE
+// ===========================
 
-/* =======================================================
-   RECHERCHE
-======================================================= */
+const menuButton = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
 
-heroSearchForm?.addEventListener("submit", (event) => {
+if(menuButton && navLinks){
 
-    event.preventDefault();
+    menuButton.addEventListener("click", () => {
 
-    const value = heroSearchInput.value.trim();
-
-    if (!value) return;
-
-    window.location.href =
-        `explore.html?search=${encodeURIComponent(value)}`;
-
-});
-/* =======================================================
-   ANIMATION DES CARTES
-======================================================= */
-
-document.querySelectorAll(
-    ".product-card, .category-card, .creator-card, .feature-card, .testimonial-card"
-).forEach(card => {
-
-    card.addEventListener("mouseenter", () => {
-
-        card.classList.add("hover");
+        navLinks.classList.toggle("active");
 
     });
 
-    card.addEventListener("mouseleave", () => {
+}
 
-        card.classList.remove("hover");
+// ===========================
+// FERMER LE MENU APRÈS UN CLIC
+// ===========================
+
+const menuItems = document.querySelectorAll(".nav-links a");
+
+menuItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        if(navLinks){
+            navLinks.classList.remove("active");
+        }
 
     });
 
 });
 
-/* =======================================================
-   BOUTON RETOUR EN HAUT
-======================================================= */
+// ===========================
+// HEADER AU DÉFILEMENT
+// ===========================
 
-const backToTop = document.querySelector(".back-to-top");
+const header = document.querySelector(".header");
 
-if (backToTop) {
+window.addEventListener("scroll", () => {
 
-    window.addEventListener("scroll", () => {
+    if(window.scrollY > 50){
 
-        if (window.scrollY > 500) {
+        header.classList.add("scrolled");
 
-            backToTop.classList.add("show");
+    }else{
 
-        } else {
+        header.classList.remove("scrolled");
 
-            backToTop.classList.remove("show");
+    }
+
+});
+// ===========================
+// ANIMATIONS AU DÉFILEMENT
+// ===========================
+
+const animatedElements = document.querySelectorAll(
+    ".category-card, .product-card, .feature-card, .creator-card, .testimonial-card"
+);
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("show");
 
         }
 
     });
 
-    backToTop.addEventListener("click", () => {
+},{
+    threshold:0.2
+});
 
-        window.scrollTo({
+animatedElements.forEach(element => {
 
-            top: 0,
+    observer.observe(element);
 
-            behavior: "smooth"
+});
 
-        });
+// ===========================
+// DÉFILEMENT FLUIDE
+// ===========================
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+    link.addEventListener("click", function(e){
+
+        const target = document.querySelector(this.getAttribute("href"));
+
+        if(target){
+
+            e.preventDefault();
+
+            target.scrollIntoView({
+
+                behavior:"smooth"
+
+            });
+
+        }
 
     });
 
-}
-/* =======================================================
-   FAQ
-======================================================= */
+});
+// ===========================
+// RECHERCHE SIMPLE
+// ===========================
 
-document.querySelectorAll(".faq details").forEach(item => {
+const searchInput = document.querySelector(".search-input");
+const productCards = document.querySelectorAll(".product-card");
 
-    item.addEventListener("toggle", () => {
+if(searchInput){
 
-        if (!item.open) return;
+    searchInput.addEventListener("input", () => {
 
-        document.querySelectorAll(".faq details").forEach(other => {
+        const value = searchInput.value.toLowerCase().trim();
 
-            if (other !== item) {
+        productCards.forEach(card => {
 
-                other.open = false;
+            const text = card.textContent.toLowerCase();
+
+            if(text.includes(value)){
+
+                card.style.display = "";
+
+            }else{
+
+                card.style.display = "none";
 
             }
 
@@ -175,20 +183,138 @@ document.querySelectorAll(".faq details").forEach(item => {
 
     });
 
+}
+
+// ===========================
+// BOUTON RETOUR EN HAUT
+// ===========================
+
+const backToTop = document.querySelector(".back-to-top");
+
+window.addEventListener("scroll", () => {
+
+    if(!backToTop) return;
+
+    if(window.scrollY > 400){
+
+        backToTop.classList.add("show");
+
+    }else{
+
+        backToTop.classList.remove("show");
+
+    }
+
 });
 
-/* =======================================================
-   INITIALISATION
-======================================================= */
+if(backToTop){
 
-document.addEventListener("DOMContentLoaded", () => {
+    backToTop.addEventListener("click", () => {
 
-    console.log("✅ ZySell chargé avec succès.");
+        window.scrollTo({
+
+            top:0,
+            behavior:"smooth"
+
+        });
+
+    });
+
+}
+// ===========================
+// CHANGEMENT DE LANGUE
+// ===========================
+
+const languageSelect = document.querySelector(".language-select");
+
+if(languageSelect){
+
+    const savedLanguage = localStorage.getItem("language") || "fr";
+
+    languageSelect.value = savedLanguage;
+
+    document.documentElement.lang = savedLanguage;
+
+    languageSelect.addEventListener("change", () => {
+
+        const language = languageSelect.value;
+
+        localStorage.setItem("language", language);
+
+        document.documentElement.lang = language;
+
+        updateLanguage(language);
+
+    });
+
+    updateLanguage(savedLanguage);
+
+}
+
+// ===========================
+// TRADUCTIONS
+// ===========================
+
+function updateLanguage(language){
+
+    const elements = document.querySelectorAll("[data-fr][data-en]");
+
+    elements.forEach(element => {
+
+        if(language === "en"){
+
+            element.textContent = element.dataset.en;
+
+        }else{
+
+            element.textContent = element.dataset.fr;
+
+        }
+
+    });
+
+}
+// ===========================
+// INITIALISATION GÉNÉRALE
+// ===========================
+
+window.addEventListener("load", () => {
 
     document.body.classList.add("loaded");
 
 });
 
-/* =======================================================
-   FIN DU FICHIER
-======================================================= */
+// ===========================
+// DÉSACTIVER LE DRAG DES IMAGES
+// ===========================
+
+document.querySelectorAll("img").forEach(image => {
+
+    image.setAttribute("draggable","false");
+
+});
+
+// ===========================
+// PRÉCHARGEMENT DES IMAGES
+// ===========================
+
+document.querySelectorAll("img").forEach(image => {
+
+    const preload = new Image();
+
+    preload.src = image.src;
+
+});
+
+// ===========================
+// MESSAGE DANS LA CONSOLE
+// ===========================
+
+console.log("================================");
+console.log("      Bienvenue sur ZySell");
+console.log(" Marketplace de produits numériques");
+console.log("================================");
+
+// ===========================
+// FIN DU FICHIER
+// ===========================
