@@ -1,333 +1,382 @@
-/* =======================================================
-   ZYSELL COUNTRIES
-======================================================= */
+// =====================================
+// ZYSELL - COUNTRY.JS
+// Gestion mondiale des pays
+// =====================================
 
-"use strict";
+// Pays actuellement détecté
+let currentCountry = null;
 
-/* =======================================================
-   ÉLÉMENTS
-======================================================= */
+// Informations du pays
+let currentCountryData = null;
 
-const countrySelect = document.getElementById("country");
-const phoneCode = document.getElementById("phoneCode");
-const currencyElement = document.getElementById("currency");
-const flagElement = document.getElementById("countryFlag");
+// Devise actuelle
+let currentCurrency = "USD";
 
-/* =======================================================
-   PAYS
-======================================================= */
+// Langue actuelle
+let currentLanguage = "en";
 
-const countries = [
-    { code:"DZ", name:"Algérie", flag:"🇩🇿", phone:"+213", currency:"DZD", symbol:"دج", language:"ar" },
-    { code:"AO", name:"Angola", flag:"🇦🇴", phone:"+244", currency:"AOA", symbol:"Kz", language:"pt" },
-    { code:"BJ", name:"Bénin", flag:"🇧🇯", phone:"+229", currency:"XOF", symbol:"FCFA", language:"fr" },
-    { code:"BW", name:"Botswana", flag:"🇧🇼", phone:"+267", currency:"BWP", symbol:"P", language:"en" },
-    { code:"BF", name:"Burkina Faso", flag:"🇧🇫", phone:"+226", currency:"XOF", symbol:"FCFA", language:"fr" },
-    { code:"BI", name:"Burundi", flag:"🇧🇮", phone:"+257", currency:"BIF", symbol:"FBu", language:"fr" },
-    { code:"CV", name:"Cap-Vert", flag:"🇨🇻", phone:"+238", currency:"CVE", symbol:"$", language:"pt" },
-    { code:"CM", name:"Cameroun", flag:"🇨🇲", phone:"+237", currency:"XAF", symbol:"FCFA", language:"fr" },
-    { code:"CF", name:"République centrafricaine", flag:"🇨🇫", phone:"+236", currency:"XAF", symbol:"FCFA", language:"fr" },
-    { code:"TD", name:"Tchad", flag:"🇹🇩", phone:"+235", currency:"XAF", symbol:"FCFA", language:"fr" },
-    { code:"KM", name:"Comores", flag:"🇰🇲", phone:"+269", currency:"KMF", symbol:"CF", language:"fr" },
-    { code:"CG", name:"République du Congo", flag:"🇨🇬", phone:"+242", currency:"XAF", symbol:"FCFA", language:"fr" },
-    { code:"CD", name:"République démocratique du Congo", flag:"🇨🇩", phone:"+243", currency:"CDF", symbol:"FC", language:"fr" },
-    { code:"CI", name:"Côte d'Ivoire", flag:"🇨🇮", phone:"+225", currency:"XOF", symbol:"FCFA", language:"fr" },
-    { code:"DJ", name:"Djibouti", flag:"🇩🇯", phone:"+253", currency:"DJF", symbol:"Fdj", language:"fr" },
-    { code:"EG", name:"Égypte", flag:"🇪🇬", phone:"+20", currency:"EGP", symbol:"£", language:"ar" },
-    { code:"GQ", name:"Guinée équatoriale", flag:"🇬🇶", phone:"+240", currency:"XAF", symbol:"FCFA", language:"es" },
-    { code:"ER", name:"Érythrée", flag:"🇪🇷", phone:"+291", currency:"ERN", symbol:"Nfk", language:"ti" },
-    { code:"SZ", name:"Eswatini", flag:"🇸🇿", phone:"+268", currency:"SZL", symbol:"E", language:"en" },
-    { code:"ET", name:"Éthiopie", flag:"🇪🇹", phone:"+251", currency:"ETB", symbol:"Br", language:"am" },
-    { code:"GA", name:"Gabon", flag:"🇬🇦", phone:"+241", currency:"XAF", symbol:"FCFA", language:"fr" },
-    { code:"GM", name:"Gambie", flag:"🇬🇲", phone:"+220", currency:"GMD", symbol:"D", language:"en" },
-    { code:"GH", name:"Ghana", flag:"🇬🇭", phone:"+233", currency:"GHS", symbol:"₵", language:"en" }    { code:"GN", name:"Guinée", flag:"🇬🇳", phone:"+224", currency:"GNF", symbol:"FG", language:"fr" },
-    { code:"GW", name:"Guinée-Bissau", flag:"🇬🇼", phone:"+245", currency:"XOF", symbol:"FCFA", language:"pt" },
-    { code:"KE", name:"Kenya", flag:"🇰🇪", phone:"+254", currency:"KES", symbol:"KSh", language:"en" },
-    { code:"LS", name:"Lesotho", flag:"🇱🇸", phone:"+266", currency:"LSL", symbol:"L", language:"en" },
-    { code:"LR", name:"Libéria", flag:"🇱🇷", phone:"+231", currency:"LRD", symbol:"$", language:"en" },
-    { code:"LY", name:"Libye", flag:"🇱🇾", phone:"+218", currency:"LYD", symbol:"LD", language:"ar" },
-    { code:"MG", name:"Madagascar", flag:"🇲🇬", phone:"+261", currency:"MGA", symbol:"Ar", language:"fr" },
-    { code:"MW", name:"Malawi", flag:"🇲🇼", phone:"+265", currency:"MWK", symbol:"MK", language:"en" },
-    { code:"ML", name:"Mali", flag:"🇲🇱", phone:"+223", currency:"XOF", symbol:"FCFA", language:"fr" },
-    { code:"MR", name:"Mauritanie", flag:"🇲🇷", phone:"+222", currency:"MRU", symbol:"UM", language:"ar" },
-    { code:"MU", name:"Maurice", flag:"🇲🇺", phone:"+230", currency:"MUR", symbol:"₨", language:"en" },
-    { code:"MA", name:"Maroc", flag:"🇲🇦", phone:"+212", currency:"MAD", symbol:"DH", language:"ar" },
-    { code:"MZ", name:"Mozambique", flag:"🇲🇿", phone:"+258", currency:"MZN", symbol:"MT", language:"pt" },
-    { code:"NA", name:"Namibie", flag:"🇳🇦", phone:"+264", currency:"NAD", symbol:"$", language:"en" },
-    { code:"NE", name:"Niger", flag:"🇳🇪", phone:"+227", currency:"XOF", symbol:"FCFA", language:"fr" },
-    { code:"NG", name:"Nigeria", flag:"🇳🇬", phone:"+234", currency:"NGN", symbol:"₦", language:"en" },
-    { code:"RW", name:"Rwanda", flag:"🇷🇼", phone:"+250", currency:"RWF", symbol:"FRw", language:"rw" },
-    { code:"ST", name:"Sao Tomé-et-Principe", flag:"🇸🇹", phone:"+239", currency:"STN", symbol:"Db", language:"pt" },
-    { code:"SN", name:"Sénégal", flag:"🇸🇳", phone:"+221", currency:"XOF", symbol:"FCFA", language:"fr" },
-    { code:"SC", name:"Seychelles", flag:"🇸🇨", phone:"+248", currency:"SCR", symbol:"₨", language:"en" },
-    { code:"SL", name:"Sierra Leone", flag:"🇸🇱", phone:"+232", currency:"SLE", symbol:"Le", language:"en" },
-    { code:"SO", name:"Somalie", flag:"🇸🇴", phone:"+252", currency:"SOS", symbol:"Sh", language:"so" },
-    { code:"ZA", name:"Afrique du Sud", flag:"🇿🇦", phone:"+27", currency:"ZAR", symbol:"R", language:"en" },
-    { code:"SS", name:"Soudan du Sud", flag:"🇸🇸", phone:"+211", currency:"SSP", symbol:"£", language:"en" },
-    { code:"SD", name:"Soudan", flag:"🇸🇩", phone:"+249", currency:"SDG", symbol:"£", language:"ar" },
-    { code:"TZ", name:"Tanzanie", flag:"🇹🇿", phone:"+255", currency:"TZS", symbol:"Sh", language:"sw" },
-    { code:"TG", name:"Togo", flag:"🇹🇬", phone:"+228", currency:"XOF", symbol:"FCFA", language:"fr" },
-    { code:"TN", name:"Tunisie", flag:"🇹🇳", phone:"+216", currency:"TND", symbol:"DT", language:"ar" },
-    { code:"UG", name:"Ouganda", flag:"🇺🇬", phone:"+256", currency:"UGX", symbol:"USh", language:"en" },
-    { code:"ZM", name:"Zambie", flag:"🇿🇲", phone:"+260", currency:"ZMW", symbol:"ZK", language:"en" },
-    { code:"ZW", name:"Zimbabwe", flag:"🇿🇼", phone:"+263", currency:"ZiG", symbol:"ZiG", language:"en" },    { code:"AL", name:"Albanie", flag:"🇦🇱", phone:"+355", currency:"ALL", symbol:"L", language:"sq" },
-    { code:"DE", name:"Allemagne", flag:"🇩🇪", phone:"+49", currency:"EUR", symbol:"€", language:"de" },
-    { code:"AD", name:"Andorre", flag:"🇦🇩", phone:"+376", currency:"EUR", symbol:"€", language:"ca" },
-    { code:"AT", name:"Autriche", flag:"🇦🇹", phone:"+43", currency:"EUR", symbol:"€", language:"de" },
-    { code:"BE", name:"Belgique", flag:"🇧🇪", phone:"+32", currency:"EUR", symbol:"€", language:"fr" },
-    { code:"BA", name:"Bosnie-Herzégovine", flag:"🇧🇦", phone:"+387", currency:"BAM", symbol:"KM", language:"bs" },
-    { code:"BG", name:"Bulgarie", flag:"🇧🇬", phone:"+359", currency:"BGN", symbol:"лв", language:"bg" },
-    { code:"HR", name:"Croatie", flag:"🇭🇷", phone:"+385", currency:"EUR", symbol:"€", language:"hr" },
-    { code:"DK", name:"Danemark", flag:"🇩🇰", phone:"+45", currency:"DKK", symbol:"kr", language:"da" },
-    { code:"ES", name:"Espagne", flag:"🇪🇸", phone:"+34", currency:"EUR", symbol:"€", language:"es" },
-    { code:"EE", name:"Estonie", flag:"🇪🇪", phone:"+372", currency:"EUR", symbol:"€", language:"et" },
-    { code:"FI", name:"Finlande", flag:"🇫🇮", phone:"+358", currency:"EUR", symbol:"€", language:"fi" },
-    { code:"FR", name:"France", flag:"🇫🇷", phone:"+33", currency:"EUR", symbol:"€", language:"fr" },
-    { code:"GR", name:"Grèce", flag:"🇬🇷", phone:"+30", currency:"EUR", symbol:"€", language:"el" },
-    { code:"HU", name:"Hongrie", flag:"🇭🇺", phone:"+36", currency:"HUF", symbol:"Ft", language:"hu" },
-    { code:"IE", name:"Irlande", flag:"🇮🇪", phone:"+353", currency:"EUR", symbol:"€", language:"en" },
-    { code:"IS", name:"Islande", flag:"🇮🇸", phone:"+354", currency:"ISK", symbol:"kr", language:"is" },
-    { code:"IT", name:"Italie", flag:"🇮🇹", phone:"+39", currency:"EUR", symbol:"€", language:"it" },
-    { code:"LV", name:"Lettonie", flag:"🇱🇻", phone:"+371", currency:"EUR", symbol:"€", language:"lv" },
-    { code:"LT", name:"Lituanie", flag:"🇱🇹", phone:"+370", currency:"EUR", symbol:"€", language:"lt" },    { code:"LU", name:"Luxembourg", flag:"🇱🇺", phone:"+352", currency:"EUR", symbol:"€", language:"fr" },
-    { code:"MT", name:"Malte", flag:"🇲🇹", phone:"+356", currency:"EUR", symbol:"€", language:"mt" },
-    { code:"MD", name:"Moldavie", flag:"🇲🇩", phone:"+373", currency:"MDL", symbol:"L", language:"ro" },
-    { code:"MC", name:"Monaco", flag:"🇲🇨", phone:"+377", currency:"EUR", symbol:"€", language:"fr" },
-    { code:"ME", name:"Monténégro", flag:"🇲🇪", phone:"+382", currency:"EUR", symbol:"€", language:"sr" },
-    { code:"MK", name:"Macédoine du Nord", flag:"🇲🇰", phone:"+389", currency:"MKD", symbol:"ден", language:"mk" },
-    { code:"NO", name:"Norvège", flag:"🇳🇴", phone:"+47", currency:"NOK", symbol:"kr", language:"no" },
-    { code:"NL", name:"Pays-Bas", flag:"🇳🇱", phone:"+31", currency:"EUR", symbol:"€", language:"nl" },
-    { code:"PL", name:"Pologne", flag:"🇵🇱", phone:"+48", currency:"PLN", symbol:"zł", language:"pl" },
-    { code:"PT", name:"Portugal", flag:"🇵🇹", phone:"+351", currency:"EUR", symbol:"€", language:"pt" },
-    { code:"CZ", name:"République tchèque", flag:"🇨🇿", phone:"+420", currency:"CZK", symbol:"Kč", language:"cs" },
-    { code:"RO", name:"Roumanie", flag:"🇷🇴", phone:"+40", currency:"RON", symbol:"lei", language:"ro" },
-    { code:"GB", name:"Royaume-Uni", flag:"🇬🇧", phone:"+44", currency:"GBP", symbol:"£", language:"en" },
-    { code:"SM", name:"Saint-Marin", flag:"🇸🇲", phone:"+378", currency:"EUR", symbol:"€", language:"it" },
-    { code:"RS", name:"Serbie", flag:"🇷🇸", phone:"+381", currency:"RSD", symbol:"дин.", language:"sr" },
-    { code:"SK", name:"Slovaquie", flag:"🇸🇰", phone:"+421", currency:"EUR", symbol:"€", language:"sk" },
-    { code:"SI", name:"Slovénie", flag:"🇸🇮", phone:"+386", currency:"EUR", symbol:"€", language:"sl" },
-    { code:"SE", name:"Suède", flag:"🇸🇪", phone:"+46", currency:"SEK", symbol:"kr", language:"sv" },
-    { code:"CH", name:"Suisse", flag:"🇨🇭", phone:"+41", currency:"CHF", symbol:"CHF", language:"fr" },
-    { code:"UA", name:"Ukraine", flag:"🇺🇦", phone:"+380", currency:"UAH", symbol:"₴", language:"uk" },
-    { code:"VA", name:"Vatican", flag:"🇻🇦", phone:"+379", currency:"EUR", symbol:"€", language:"it" },    { code:"AF", name:"Afghanistan", flag:"🇦🇫", phone:"+93", currency:"AFN", symbol:"؋", language:"fa" },
-    { code:"SA", name:"Arabie saoudite", flag:"🇸🇦", phone:"+966", currency:"SAR", symbol:"﷼", language:"ar" },
-    { code:"AM", name:"Arménie", flag:"🇦🇲", phone:"+374", currency:"AMD", symbol:"֏", language:"hy" },
-    { code:"AZ", name:"Azerbaïdjan", flag:"🇦🇿", phone:"+994", currency:"AZN", symbol:"₼", language:"az" },
-    { code:"BH", name:"Bahreïn", flag:"🇧🇭", phone:"+973", currency:"BHD", symbol:".د.ب", language:"ar" },
-    { code:"BD", name:"Bangladesh", flag:"🇧🇩", phone:"+880", currency:"BDT", symbol:"৳", language:"bn" },
-    { code:"BT", name:"Bhoutan", flag:"🇧🇹", phone:"+975", currency:"BTN", symbol:"Nu.", language:"dz" },
-    { code:"BN", name:"Brunéi", flag:"🇧🇳", phone:"+673", currency:"BND", symbol:"$", language:"ms" },
-    { code:"KH", name:"Cambodge", flag:"🇰🇭", phone:"+855", currency:"KHR", symbol:"៛", language:"km" },
-    { code:"CN", name:"Chine", flag:"🇨🇳", phone:"+86", currency:"CNY", symbol:"¥", language:"zh" },
-    { code:"KP", name:"Corée du Nord", flag:"🇰🇵", phone:"+850", currency:"KPW", symbol:"₩", language:"ko" },
-    { code:"KR", name:"Corée du Sud", flag:"🇰🇷", phone:"+82", currency:"KRW", symbol:"₩", language:"ko" },
-    { code:"AE", name:"Émirats arabes unis", flag:"🇦🇪", phone:"+971", currency:"AED", symbol:"د.إ", language:"ar" },
-    { code:"GE", name:"Géorgie", flag:"🇬🇪", phone:"+995", currency:"GEL", symbol:"₾", language:"ka" },
-    { code:"IN", name:"Inde", flag:"🇮🇳", phone:"+91", currency:"INR", symbol:"₹", language:"hi" },
-    { code:"ID", name:"Indonésie", flag:"🇮🇩", phone:"+62", currency:"IDR", symbol:"Rp", language:"id" },
-    { code:"IQ", name:"Irak", flag:"🇮🇶", phone:"+964", currency:"IQD", symbol:"ع.د", language:"ar" },
-    { code:"IR", name:"Iran", flag:"🇮🇷", phone:"+98", currency:"IRR", symbol:"﷼", language:"fa" },
-    { code:"IL", name:"Israël", flag:"🇮🇱", phone:"+972", currency:"ILS", symbol:"₪", language:"he" },
-    { code:"JP", name:"Japon", flag:"🇯🇵", phone:"+81", currency:"JPY", symbol:"¥", language:"ja" },    { code:"JO", name:"Jordanie", flag:"🇯🇴", phone:"+962", currency:"JOD", symbol:"JD", language:"ar" },
-    { code:"KZ", name:"Kazakhstan", flag:"🇰🇿", phone:"+7", currency:"KZT", symbol:"₸", language:"kk" },
-    { code:"KW", name:"Koweït", flag:"🇰🇼", phone:"+965", currency:"KWD", symbol:"KD", language:"ar" },
-    { code:"KG", name:"Kirghizistan", flag:"🇰🇬", phone:"+996", currency:"KGS", symbol:"с", language:"ky" },
-    { code:"LA", name:"Laos", flag:"🇱🇦", phone:"+856", currency:"LAK", symbol:"₭", language:"lo" },
-    { code:"LB", name:"Liban", flag:"🇱🇧", phone:"+961", currency:"LBP", symbol:"ل.ل", language:"ar" },
-    { code:"MY", name:"Malaisie", flag:"🇲🇾", phone:"+60", currency:"MYR", symbol:"RM", language:"ms" },
-    { code:"MV", name:"Maldives", flag:"🇲🇻", phone:"+960", currency:"MVR", symbol:"Rf", language:"dv" },
-    { code:"MN", name:"Mongolie", flag:"🇲🇳", phone:"+976", currency:"MNT", symbol:"₮", language:"mn" },
-    { code:"MM", name:"Myanmar", flag:"🇲🇲", phone:"+95", currency:"MMK", symbol:"Ks", language:"my" },
-    { code:"NP", name:"Népal", flag:"🇳🇵", phone:"+977", currency:"NPR", symbol:"₨", language:"ne" },
-    { code:"OM", name:"Oman", flag:"🇴🇲", phone:"+968", currency:"OMR", symbol:"﷼", language:"ar" },
-    { code:"PK", name:"Pakistan", flag:"🇵🇰", phone:"+92", currency:"PKR", symbol:"₨", language:"ur" },
-    { code:"PH", name:"Philippines", flag:"🇵🇭", phone:"+63", currency:"PHP", symbol:"₱", language:"en" },
-    { code:"QA", name:"Qatar", flag:"🇶🇦", phone:"+974", currency:"QAR", symbol:"﷼", language:"ar" },
-    { code:"SG", name:"Singapour", flag:"🇸🇬", phone:"+65", currency:"SGD", symbol:"$", language:"en" },
-    { code:"LK", name:"Sri Lanka", flag:"🇱🇰", phone:"+94", currency:"LKR", symbol:"₨", language:"si" },
-    { code:"SY", name:"Syrie", flag:"🇸🇾", phone:"+963", currency:"SYP", symbol:"£", language:"ar" },
-    { code:"TW", name:"Taïwan", flag:"🇹🇼", phone:"+886", currency:"TWD", symbol:"NT$", language:"zh" },
-    { code:"TH", name:"Thaïlande", flag:"🇹🇭", phone:"+66", currency:"THB", symbol:"฿", language:"th" },
-    { code:"TL", name:"Timor oriental", flag:"🇹🇱", phone:"+670", currency:"USD", symbol:"$", language:"pt" },
-    { code:"TR", name:"Turquie", flag:"🇹🇷", phone:"+90", currency:"TRY", symbol:"₺", language:"tr" },
-    { code:"TM", name:"Turkménistan", flag:"🇹🇲", phone:"+993", currency:"TMT", symbol:"m", language:"tk" },
-    { code:"UZ", name:"Ouzbékistan", flag:"🇺🇿", phone:"+998", currency:"UZS", symbol:"so'm", language:"uz" },
-    { code:"VN", name:"Viêt Nam", flag:"🇻🇳", phone:"+84", currency:"VND", symbol:"₫", language:"vi" },
-    { code:"YE", name:"Yémen", flag:"🇾🇪", phone:"+967", currency:"YER", symbol:"﷼", language:"ar" },    /* =========================
-       AMÉRIQUE DU NORD
-    ========================= */
+// Liste de tous les pays
+const countries = {};
 
-    { code:"AG", name:"Antigua-et-Barbuda", flag:"🇦🇬", phone:"+1-268", currency:"XCD", symbol:"$", language:"en" },
-    { code:"BS", name:"Bahamas", flag:"🇧🇸", phone:"+1-242", currency:"BSD", symbol:"$", language:"en" },
-    { code:"BB", name:"Barbade", flag:"🇧🇧", phone:"+1-246", currency:"BBD", symbol:"$", language:"en" },
-    { code:"BZ", name:"Belize", flag:"🇧🇿", phone:"+501", currency:"BZD", symbol:"$", language:"en" },
-    { code:"CA", name:"Canada", flag:"🇨🇦", phone:"+1", currency:"CAD", symbol:"$", language:"en" },
-    { code:"CR", name:"Costa Rica", flag:"🇨🇷", phone:"+506", currency:"CRC", symbol:"₡", language:"es" },
-    { code:"CU", name:"Cuba", flag:"🇨🇺", phone:"+53", currency:"CUP", symbol:"$", language:"es" },
-    { code:"DM", name:"Dominique", flag:"🇩🇲", phone:"+1-767", currency:"XCD", symbol:"$", language:"en" },
-    { code:"DO", name:"République dominicaine", flag:"🇩🇴", phone:"+1-809", currency:"DOP", symbol:"RD$", language:"es" },
-    { code:"SV", name:"Salvador", flag:"🇸🇻", phone:"+503", currency:"USD", symbol:"$", language:"es" },
-    { code:"US", name:"États-Unis", flag:"🇺🇸", phone:"+1", currency:"USD", symbol:"$", language:"en" },
-    { code:"GD", name:"Grenade", flag:"🇬🇩", phone:"+1-473", currency:"XCD", symbol:"$", language:"en" },
-    { code:"GT", name:"Guatemala", flag:"🇬🇹", phone:"+502", currency:"GTQ", symbol:"Q", language:"es" },
-    { code:"HT", name:"Haïti", flag:"🇭🇹", phone:"+509", currency:"HTG", symbol:"G", language:"fr" },
-    { code:"HN", name:"Honduras", flag:"🇭🇳", phone:"+504", currency:"HNL", symbol:"L", language:"es" },
-    { code:"JM", name:"Jamaïque", flag:"🇯🇲", phone:"+1-876", currency:"JMD", symbol:"J$", language:"en" },
-    { code:"MX", name:"Mexique", flag:"🇲🇽", phone:"+52", currency:"MXN", symbol:"$", language:"es" },
-    { code:"NI", name:"Nicaragua", flag:"🇳🇮", phone:"+505", currency:"NIO", symbol:"C$", language:"es" },
-    { code:"PA", name:"Panama", flag:"🇵🇦", phone:"+507", currency:"PAB", symbol:"B/.", language:"es" },
-    { code:"KN", name:"Saint-Christophe-et-Niévès", flag:"🇰🇳", phone:"+1-869", currency:"XCD", symbol:"$", language:"en" },
-    { code:"LC", name:"Sainte-Lucie", flag:"🇱🇨", phone:"+1-758", currency:"XCD", symbol:"$", language:"en" },
-    { code:"VC", name:"Saint-Vincent-et-les-Grenadines", flag:"🇻🇨", phone:"+1-784", currency:"XCD", symbol:"$", language:"en" },
-    { code:"TT", name:"Trinité-et-Tobago", flag:"🇹🇹", phone:"+1-868", currency:"TTD", symbol:"$", language:"en" },
+// =====================================
+// FONCTIONS UTILITAIRES
+// =====================================
 
-    /* =========================
-       AMÉRIQUE DU SUD
-    ========================= */
+// Retourner le pays actuel
+export function getCurrentCountry(){
 
-    { code:"AR", name:"Argentine", flag:"🇦🇷", phone:"+54", currency:"ARS", symbol:"$", language:"es" },
-    { code:"BO", name:"Bolivie", flag:"🇧🇴", phone:"+591", currency:"BOB", symbol:"Bs", language:"es" },
-    { code:"BR", name:"Brésil", flag:"🇧🇷", phone:"+55", currency:"BRL", symbol:"R$", language:"pt" },
-    { code:"CL", name:"Chili", flag:"🇨🇱", phone:"+56", currency:"CLP", symbol:"$", language:"es" },
-    { code:"CO", name:"Colombie", flag:"🇨🇴", phone:"+57", currency:"COP", symbol:"$", language:"es" },
-    { code:"EC", name:"Équateur", flag:"🇪🇨", phone:"+593", currency:"USD", symbol:"$", language:"es" },
-    { code:"GY", name:"Guyana", flag:"🇬🇾", phone:"+592", currency:"GYD", symbol:"$", language:"en" },
-    { code:"PY", name:"Paraguay", flag:"🇵🇾", phone:"+595", currency:"PYG", symbol:"₲", language:"es" },
-    { code:"PE", name:"Pérou", flag:"🇵🇪", phone:"+51", currency:"PEN", symbol:"S/", language:"es" },
-    { code:"SR", name:"Suriname", flag:"🇸🇷", phone:"+597", currency:"SRD", symbol:"$", language:"nl" },
-    { code:"UY", name:"Uruguay", flag:"🇺🇾", phone:"+598", currency:"UYU", symbol:"$", language:"es" },
-    { code:"VE", name:"Venezuela", flag:"🇻🇪", phone:"+58", currency:"VES", symbol:"Bs.", language:"es" },    /* =========================
-       OCÉANIE
-    ========================= */
-
-    { code:"AU", name:"Australie", flag:"🇦🇺", phone:"+61", currency:"AUD", symbol:"$", language:"en" },
-    { code:"FJ", name:"Fidji", flag:"🇫🇯", phone:"+679", currency:"FJD", symbol:"$", language:"en" },
-    { code:"KI", name:"Kiribati", flag:"🇰🇮", phone:"+686", currency:"AUD", symbol:"$", language:"en" },
-    { code:"MH", name:"Îles Marshall", flag:"🇲🇭", phone:"+692", currency:"USD", symbol:"$", language:"en" },
-    { code:"FM", name:"Micronésie", flag:"🇫🇲", phone:"+691", currency:"USD", symbol:"$", language:"en" },
-    { code:"NR", name:"Nauru", flag:"🇳🇷", phone:"+674", currency:"AUD", symbol:"$", language:"en" },
-    { code:"NZ", name:"Nouvelle-Zélande", flag:"🇳🇿", phone:"+64", currency:"NZD", symbol:"$", language:"en" },
-    { code:"PW", name:"Palaos", flag:"🇵🇼", phone:"+680", currency:"USD", symbol:"$", language:"en" },
-    { code:"PG", name:"Papouasie-Nouvelle-Guinée", flag:"🇵🇬", phone:"+675", currency:"PGK", symbol:"K", language:"en" },
-    { code:"WS", name:"Samoa", flag:"🇼🇸", phone:"+685", currency:"WST", symbol:"T", language:"en" },
-    { code:"SB", name:"Îles Salomon", flag:"🇸🇧", phone:"+677", currency:"SBD", symbol:"$", language:"en" },
-    { code:"TO", name:"Tonga", flag:"🇹🇴", phone:"+676", currency:"TOP", symbol:"T$", language:"en" },
-    { code:"TV", name:"Tuvalu", flag:"🇹🇻", phone:"+688", currency:"AUD", symbol:"$", language:"en" },
-    { code:"VU", name:"Vanuatu", flag:"🇻🇺", phone:"+678", currency:"VUV", symbol:"Vt", language:"fr" }
-
-];/* =======================================================
-   REMPLIR LE SÉLECTEUR
-======================================================= */
-
-function populateCountries() {
-
-    if (!countrySelect) return;
-
-    countrySelect.innerHTML = "";
-
-    countries.forEach(country => {
-
-        const option = document.createElement("option");
-
-        option.value = country.code;
-
-        option.textContent = `${country.flag} ${country.name}`;
-
-        countrySelect.appendChild(option);
-
-    });
+    return currentCountry;
 
 }
 
-/* =======================================================
-   METTRE À JOUR LE PAYS
-======================================================= */
+// Retourner les informations du pays
+export function getCurrentCountryData(){
 
-function updateCountry(code) {
-
-    const country = countries.find(item => item.code === code);
-
-    if (!country) return;
-
-    if (flagElement) {
-        flagElement.textContent = country.flag;
-    }
-
-    if (phoneCode) {
-        phoneCode.textContent = country.phone;
-    }
-
-    if (currencyElement) {
-        currencyElement.textContent =
-            `${country.currency} (${country.symbol})`;
-    }
-
-    localStorage.setItem("zysell-country", country.code);
+    return currentCountryData;
 
 }
 
-/* =======================================================
-   DÉTECTION DU PAYS
-======================================================= */
+// Retourner la devise
+export function getCurrentCurrency(){
 
-function detectCountry() {
-
-    const browserLanguage =
-        (navigator.language || "fr").substring(0, 2).toLowerCase();
-
-    const detected = countries.find(
-        country => country.language === browserLanguage
-    );
-
-    return detected ? detected.code : "CM";
+    return currentCurrency;
 
 }
 
-/* =======================================================
-   INITIALISATION
-======================================================= */
+// Retourner la langue
+export function getCurrentLanguage(){
 
-document.addEventListener("DOMContentLoaded", () => {
+    return currentLanguage;
 
-    populateCountries();
+}
+// =====================================
+// AFRIQUE
+// =====================================
 
-    const savedCountry =
-        localStorage.getItem("zysell-country") || detectCountry();
+Object.assign(countries,{
 
-    if (countrySelect) {
-        countrySelect.value = savedCountry;
-    }
-
-    updateCountry(savedCountry);
-
-    if (countrySelect) {
-
-        countrySelect.addEventListener("change", event => {
-
-            updateCountry(event.target.value);
-
-        });
-
-    }
+    DZ:{name:"Algérie",code:"DZ",currency:"DZD",language:"ar",phone:"+213",continent:"Africa",flag:"🇩🇿"},
+    AO:{name:"Angola",code:"AO",currency:"AOA",language:"pt",phone:"+244",continent:"Africa",flag:"🇦🇴"},
+    BJ:{name:"Bénin",code:"BJ",currency:"XOF",language:"fr",phone:"+229",continent:"Africa",flag:"🇧🇯"},
+    BW:{name:"Botswana",code:"BW",currency:"BWP",language:"en",phone:"+267",continent:"Africa",flag:"🇧🇼"},
+    BF:{name:"Burkina Faso",code:"BF",currency:"XOF",language:"fr",phone:"+226",continent:"Africa",flag:"🇧🇫"},
+    BI:{name:"Burundi",code:"BI",currency:"BIF",language:"fr",phone:"+257",continent:"Africa",flag:"🇧🇮"},
+    CM:{name:"Cameroun",code:"CM",currency:"XAF",language:"fr",phone:"+237",continent:"Africa",flag:"🇨🇲"},
+    CV:{name:"Cap-Vert",code:"CV",currency:"CVE",language:"pt",phone:"+238",continent:"Africa",flag:"🇨🇻"},
+    CF:{name:"République centrafricaine",code:"CF",currency:"XAF",language:"fr",phone:"+236",continent:"Africa",flag:"🇨🇫"},
+    TD:{name:"Tchad",code:"TD",currency:"XAF",language:"fr",phone:"+235",continent:"Africa",flag:"🇹🇩"},
+    KM:{name:"Comores",code:"KM",currency:"KMF",language:"fr",phone:"+269",continent:"Africa",flag:"🇰🇲"},
+    CG:{name:"Congo",code:"CG",currency:"XAF",language:"fr",phone:"+242",continent:"Africa",flag:"🇨🇬"},
+    CD:{name:"République démocratique du Congo",code:"CD",currency:"CDF",language:"fr",phone:"+243",continent:"Africa",flag:"🇨🇩"},
+    CI:{name:"Côte d'Ivoire",code:"CI",currency:"XOF",language:"fr",phone:"+225",continent:"Africa",flag:"🇨🇮"},
+    DJ:{name:"Djibouti",code:"DJ",currency:"DJF",language:"fr",phone:"+253",continent:"Africa",flag:"🇩🇯"},
+    EG:{name:"Égypte",code:"EG",currency:"EGP",language:"ar",phone:"+20",continent:"Africa",flag:"🇪🇬"},
+    GQ:{name:"Guinée équatoriale",code:"GQ",currency:"XAF",language:"es",phone:"+240",continent:"Africa",flag:"🇬🇶"},
+    ER:{name:"Érythrée",code:"ER",currency:"ERN",language:"ti",phone:"+291",continent:"Africa",flag:"🇪🇷"},
+    SZ:{name:"Eswatini",code:"SZ",currency:"SZL",language:"en",phone:"+268",continent:"Africa",flag:"🇸🇿"},
+    ET:{name:"Éthiopie",code:"ET",currency:"ETB",language:"am",phone:"+251",continent:"Africa",flag:"🇪🇹"},
+    GA:{name:"Gabon",code:"GA",currency:"XAF",language:"fr",phone:"+241",continent:"Africa",flag:"🇬🇦"},
+    GM:{name:"Gambie",code:"GM",currency:"GMD",language:"en",phone:"+220",continent:"Africa",flag:"🇬🇲"},
+    GH:{name:"Ghana",code:"GH",currency:"GHS",language:"en",phone:"+233",continent:"Africa",flag:"🇬🇭"},
+    GN:{name:"Guinée",code:"GN",currency:"GNF",language:"fr",phone:"+224",continent:"Africa",flag:"🇬🇳"},
+    GW:{name:"Guinée-Bissau",code:"GW",currency:"XOF",language:"pt",phone:"+245",continent:"Africa",flag:"🇬🇼"},
+    KE:{name:"Kenya",code:"KE",currency:"KES",language:"en",phone:"+254",continent:"Africa",flag:"🇰🇪"},
+    LS:{name:"Lesotho",code:"LS",currency:"LSL",language:"en",phone:"+266",continent:"Africa",flag:"🇱🇸"},
+    LR:{name:"Liberia",code:"LR",currency:"LRD",language:"en",phone:"+231",continent:"Africa",flag:"🇱🇷"},
+    LY:{name:"Libye",code:"LY",currency:"LYD",language:"ar",phone:"+218",continent:"Africa",flag:"🇱🇾"},
+    MG:{name:"Madagascar",code:"MG",currency:"MGA",language:"fr",phone:"+261",continent:"Africa",flag:"🇲🇬"},
+    MW:{name:"Malawi",code:"MW",currency:"MWK",language:"en",phone:"+265",continent:"Africa",flag:"🇲🇼"},
+    ML:{name:"Mali",code:"ML",currency:"XOF",language:"fr",phone:"+223",continent:"Africa",flag:"🇲🇱"},
+    MR:{name:"Mauritanie",code:"MR",currency:"MRU",language:"ar",phone:"+222",continent:"Africa",flag:"🇲🇷"},
+    MU:{name:"Maurice",code:"MU",currency:"MUR",language:"en",phone:"+230",continent:"Africa",flag:"🇲🇺"},
+    MA:{name:"Maroc",code:"MA",currency:"MAD",language:"ar",phone:"+212",continent:"Africa",flag:"🇲🇦"},
+    MZ:{name:"Mozambique",code:"MZ",currency:"MZN",language:"pt",phone:"+258",continent:"Africa",flag:"🇲🇿"},
+    NA:{name:"Namibie",code:"NA",currency:"NAD",language:"en",phone:"+264",continent:"Africa",flag:"🇳🇦"},
+    NE:{name:"Niger",code:"NE",currency:"XOF",language:"fr",phone:"+227",continent:"Africa",flag:"🇳🇪"},
+    NG:{name:"Nigeria",code:"NG",currency:"NGN",language:"en",phone:"+234",continent:"Africa",flag:"🇳🇬"},
+    RW:{name:"Rwanda",code:"RW",currency:"RWF",language:"rw",phone:"+250",continent:"Africa",flag:"🇷🇼"},
+    ST:{name:"Sao Tomé-et-Principe",code:"ST",currency:"STN",language:"pt",phone:"+239",continent:"Africa",flag:"🇸🇹"},
+    SN:{name:"Sénégal",code:"SN",currency:"XOF",language:"fr",phone:"+221",continent:"Africa",flag:"🇸🇳"},
+    SC:{name:"Seychelles",code:"SC",currency:"SCR",language:"en",phone:"+248",continent:"Africa",flag:"🇸🇨"},
+    SL:{name:"Sierra Leone",code:"SL",currency:"SLE",language:"en",phone:"+232",continent:"Africa",flag:"🇸🇱"},
+    SO:{name:"Somalie",code:"SO",currency:"SOS",language:"so",phone:"+252",continent:"Africa",flag:"🇸🇴"},
+    ZA:{name:"Afrique du Sud",code:"ZA",currency:"ZAR",language:"en",phone:"+27",continent:"Africa",flag:"🇿🇦"},
+    SS:{name:"Soudan du Sud",code:"SS",currency:"SSP",language:"en",phone:"+211",continent:"Africa",flag:"🇸🇸"},
+    SD:{name:"Soudan",code:"SD",currency:"SDG",language:"ar",phone:"+249",continent:"Africa",flag:"🇸🇩"},
+    TZ:{name:"Tanzanie",code:"TZ",currency:"TZS",language:"sw",phone:"+255",continent:"Africa",flag:"🇹🇿"},
+    TG:{name:"Togo",code:"TG",currency:"XOF",language:"fr",phone:"+228",continent:"Africa",flag:"🇹🇬"},
+    TN:{name:"Tunisie",code:"TN",currency:"TND",language:"ar",phone:"+216",continent:"Africa",flag:"🇹🇳"},
+    UG:{name:"Ouganda",code:"UG",currency:"UGX",language:"en",phone:"+256",continent:"Africa",flag:"🇺🇬"},
+    ZM:{name:"Zambie",code:"ZM",currency:"ZMW",language:"en",phone:"+260",continent:"Africa",flag:"🇿🇲"},
+    ZW:{name:"Zimbabwe",code:"ZW",currency:"ZiG",language:"en",phone:"+263",continent:"Africa",flag:"🇿🇼"}
 
 });
+// =====================================
+// EUROPE
+// =====================================
 
-/* =======================================================
-   API GLOBALE
-======================================================= */
+Object.assign(countries,{
 
-window.ZysellCountries = {
+    AL:{name:"Albanie",code:"AL",currency:"ALL",language:"sq",phone:"+355",continent:"Europe",flag:"🇦🇱"},
+    AD:{name:"Andorre",code:"AD",currency:"EUR",language:"ca",phone:"+376",continent:"Europe",flag:"🇦🇩"},
+    AT:{name:"Autriche",code:"AT",currency:"EUR",language:"de",phone:"+43",continent:"Europe",flag:"🇦🇹"},
+    BY:{name:"Biélorussie",code:"BY",currency:"BYN",language:"be",phone:"+375",continent:"Europe",flag:"🇧🇾"},
+    BE:{name:"Belgique",code:"BE",currency:"EUR",language:"fr",phone:"+32",continent:"Europe",flag:"🇧🇪"},
+    BA:{name:"Bosnie-Herzégovine",code:"BA",currency:"BAM",language:"bs",phone:"+387",continent:"Europe",flag:"🇧🇦"},
+    BG:{name:"Bulgarie",code:"BG",currency:"BGN",language:"bg",phone:"+359",continent:"Europe",flag:"🇧🇬"},
+    HR:{name:"Croatie",code:"HR",currency:"EUR",language:"hr",phone:"+385",continent:"Europe",flag:"🇭🇷"},
+    CY:{name:"Chypre",code:"CY",currency:"EUR",language:"el",phone:"+357",continent:"Europe",flag:"🇨🇾"},
+    CZ:{name:"République tchèque",code:"CZ",currency:"CZK",language:"cs",phone:"+420",continent:"Europe",flag:"🇨🇿"},
+    DK:{name:"Danemark",code:"DK",currency:"DKK",language:"da",phone:"+45",continent:"Europe",flag:"🇩🇰"},
+    EE:{name:"Estonie",code:"EE",currency:"EUR",language:"et",phone:"+372",continent:"Europe",flag:"🇪🇪"},
+    FI:{name:"Finlande",code:"FI",currency:"EUR",language:"fi",phone:"+358",continent:"Europe",flag:"🇫🇮"},
+    FR:{name:"France",code:"FR",currency:"EUR",language:"fr",phone:"+33",continent:"Europe",flag:"🇫🇷"},
+    DE:{name:"Allemagne",code:"DE",currency:"EUR",language:"de",phone:"+49",continent:"Europe",flag:"🇩🇪"},
+    GR:{name:"Grèce",code:"GR",currency:"EUR",language:"el",phone:"+30",continent:"Europe",flag:"🇬🇷"},
+    HU:{name:"Hongrie",code:"HU",currency:"HUF",language:"hu",phone:"+36",continent:"Europe",flag:"🇭🇺"},
+    IS:{name:"Islande",code:"IS",currency:"ISK",language:"is",phone:"+354",continent:"Europe",flag:"🇮🇸"},
+    IE:{name:"Irlande",code:"IE",currency:"EUR",language:"en",phone:"+353",continent:"Europe",flag:"🇮🇪"},
+    IT:{name:"Italie",code:"IT",currency:"EUR",language:"it",phone:"+39",continent:"Europe",flag:"🇮🇹"},
+    XK:{name:"Kosovo",code:"XK",currency:"EUR",language:"sq",phone:"+383",continent:"Europe",flag:"🇽🇰"},
+    LV:{name:"Lettonie",code:"LV",currency:"EUR",language:"lv",phone:"+371",continent:"Europe",flag:"🇱🇻"},
+    LI:{name:"Liechtenstein",code:"LI",currency:"CHF",language:"de",phone:"+423",continent:"Europe",flag:"🇱🇮"},
+    LT:{name:"Lituanie",code:"LT",currency:"EUR",language:"lt",phone:"+370",continent:"Europe",flag:"🇱🇹"},
+    LU:{name:"Luxembourg",code:"LU",currency:"EUR",language:"fr",phone:"+352",continent:"Europe",flag:"🇱🇺"},
+    MT:{name:"Malte",code:"MT",currency:"EUR",language:"mt",phone:"+356",continent:"Europe",flag:"🇲🇹"},
+    MD:{name:"Moldavie",code:"MD",currency:"MDL",language:"ro",phone:"+373",continent:"Europe",flag:"🇲🇩"},
+    MC:{name:"Monaco",code:"MC",currency:"EUR",language:"fr",phone:"+377",continent:"Europe",flag:"🇲🇨"},
+    ME:{name:"Monténégro",code:"ME",currency:"EUR",language:"sr",phone:"+382",continent:"Europe",flag:"🇲🇪"},
+    NL:{name:"Pays-Bas",code:"NL",currency:"EUR",language:"nl",phone:"+31",continent:"Europe",flag:"🇳🇱"},
+    MK:{name:"Macédoine du Nord",code:"MK",currency:"MKD",language:"mk",phone:"+389",continent:"Europe",flag:"🇲🇰"},
+    NO:{name:"Norvège",code:"NO",currency:"NOK",language:"no",phone:"+47",continent:"Europe",flag:"🇳🇴"},
+    PL:{name:"Pologne",code:"PL",currency:"PLN",language:"pl",phone:"+48",continent:"Europe",flag:"🇵🇱"},
+    PT:{name:"Portugal",code:"PT",currency:"EUR",language:"pt",phone:"+351",continent:"Europe",flag:"🇵🇹"},
+    RO:{name:"Roumanie",code:"RO",currency:"RON",language:"ro",phone:"+40",continent:"Europe",flag:"🇷🇴"},
+    RU:{name:"Russie",code:"RU",currency:"RUB",language:"ru",phone:"+7",continent:"Europe",flag:"🇷🇺"},
+    SM:{name:"Saint-Marin",code:"SM",currency:"EUR",language:"it",phone:"+378",continent:"Europe",flag:"🇸🇲"},
+    RS:{name:"Serbie",code:"RS",currency:"RSD",language:"sr",phone:"+381",continent:"Europe",flag:"🇷🇸"},
+    SK:{name:"Slovaquie",code:"SK",currency:"EUR",language:"sk",phone:"+421",continent:"Europe",flag:"🇸🇰"},
+    SI:{name:"Slovénie",code:"SI",currency:"EUR",language:"sl",phone:"+386",continent:"Europe",flag:"🇸🇮"},
+    ES:{name:"Espagne",code:"ES",currency:"EUR",language:"es",phone:"+34",continent:"Europe",flag:"🇪🇸"},
+    SE:{name:"Suède",code:"SE",currency:"SEK",language:"sv",phone:"+46",continent:"Europe",flag:"🇸🇪"},
+    CH:{name:"Suisse",code:"CH",currency:"CHF",language:"fr",phone:"+41",continent:"Europe",flag:"🇨🇭"},
+    TR:{name:"Turquie",code:"TR",currency:"TRY",language:"tr",phone:"+90",continent:"Europe",flag:"🇹🇷"},
+    UA:{name:"Ukraine",code:"UA",currency:"UAH",language:"uk",phone:"+380",continent:"Europe",flag:"🇺🇦"},
+    GB:{name:"Royaume-Uni",code:"GB",currency:"GBP",language:"en",phone:"+44",continent:"Europe",flag:"🇬🇧"},
+    VA:{name:"Vatican",code:"VA",currency:"EUR",language:"it",phone:"+379",continent:"Europe",flag:"🇻🇦"}
 
-    list: countries,
+});
+// =====================================
+// AMÉRIQUE DU NORD ET CARAÏBES
+// =====================================
 
-    current() {
-        return localStorage.getItem("zysell-country");
-    },
+Object.assign(countries,{
 
-    update: updateCountry,
+    AG:{name:"Antigua-et-Barbuda",code:"AG",currency:"XCD",language:"en",phone:"+1-268",continent:"North America",flag:"🇦🇬"},
+    BS:{name:"Bahamas",code:"BS",currency:"BSD",language:"en",phone:"+1-242",continent:"North America",flag:"🇧🇸"},
+    BB:{name:"Barbade",code:"BB",currency:"BBD",language:"en",phone:"+1-246",continent:"North America",flag:"🇧🇧"},
+    BZ:{name:"Belize",code:"BZ",currency:"BZD",language:"en",phone:"+501",continent:"North America",flag:"🇧🇿"},
+    CA:{name:"Canada",code:"CA",currency:"CAD",language:"en",phone:"+1",continent:"North America",flag:"🇨🇦"},
+    CR:{name:"Costa Rica",code:"CR",currency:"CRC",language:"es",phone:"+506",continent:"North America",flag:"🇨🇷"},
+    CU:{name:"Cuba",code:"CU",currency:"CUP",language:"es",phone:"+53",continent:"North America",flag:"🇨🇺"},
+    DM:{name:"Dominique",code:"DM",currency:"XCD",language:"en",phone:"+1-767",continent:"North America",flag:"🇩🇲"},
+    DO:{name:"République dominicaine",code:"DO",currency:"DOP",language:"es",phone:"+1-809",continent:"North America",flag:"🇩🇴"},
+    SV:{name:"Salvador",code:"SV",currency:"USD",language:"es",phone:"+503",continent:"North America",flag:"🇸🇻"},
+    GD:{name:"Grenade",code:"GD",currency:"XCD",language:"en",phone:"+1-473",continent:"North America",flag:"🇬🇩"},
+    GT:{name:"Guatemala",code:"GT",currency:"GTQ",language:"es",phone:"+502",continent:"North America",flag:"🇬🇹"},
+    HT:{name:"Haïti",code:"HT",currency:"HTG",language:"fr",phone:"+509",continent:"North America",flag:"🇭🇹"},
+    HN:{name:"Honduras",code:"HN",currency:"HNL",language:"es",phone:"+504",continent:"North America",flag:"🇭🇳"},
+    JM:{name:"Jamaïque",code:"JM",currency:"JMD",language:"en",phone:"+1-876",continent:"North America",flag:"🇯🇲"},
+    MX:{name:"Mexique",code:"MX",currency:"MXN",language:"es",phone:"+52",continent:"North America",flag:"🇲🇽"},
+    NI:{name:"Nicaragua",code:"NI",currency:"NIO",language:"es",phone:"+505",continent:"North America",flag:"🇳🇮"},
+    PA:{name:"Panama",code:"PA",currency:"PAB",language:"es",phone:"+507",continent:"North America",flag:"🇵🇦"},
+    KN:{name:"Saint-Christophe-et-Niévès",code:"KN",currency:"XCD",language:"en",phone:"+1-869",continent:"North America",flag:"🇰🇳"},
+    LC:{name:"Sainte-Lucie",code:"LC",currency:"XCD",language:"en",phone:"+1-758",continent:"North America",flag:"🇱🇨"},
+    VC:{name:"Saint-Vincent-et-les-Grenadines",code:"VC",currency:"XCD",language:"en",phone:"+1-784",continent:"North America",flag:"🇻🇨"},
+    TT:{name:"Trinité-et-Tobago",code:"TT",currency:"TTD",language:"en",phone:"+1-868",continent:"North America",flag:"🇹🇹"},
+    US:{name:"États-Unis",code:"US",currency:"USD",language:"en",phone:"+1",continent:"North America",flag:"🇺🇸"}
 
-    detect: detectCountry
+});
+// =====================================
+// AMÉRIQUE DU SUD
+// =====================================
+
+Object.assign(countries,{
+
+    AR:{name:"Argentine",code:"AR",currency:"ARS",language:"es",phone:"+54",continent:"South America",flag:"🇦🇷"},
+    BO:{name:"Bolivie",code:"BO",currency:"BOB",language:"es",phone:"+591",continent:"South America",flag:"🇧🇴"},
+    BR:{name:"Brésil",code:"BR",currency:"BRL",language:"pt",phone:"+55",continent:"South America",flag:"🇧🇷"},
+    CL:{name:"Chili",code:"CL",currency:"CLP",language:"es",phone:"+56",continent:"South America",flag:"🇨🇱"},
+    CO:{name:"Colombie",code:"CO",currency:"COP",language:"es",phone:"+57",continent:"South America",flag:"🇨🇴"},
+    EC:{name:"Équateur",code:"EC",currency:"USD",language:"es",phone:"+593",continent:"South America",flag:"🇪🇨"},
+    GY:{name:"Guyana",code:"GY",currency:"GYD",language:"en",phone:"+592",continent:"South America",flag:"🇬🇾"},
+    PY:{name:"Paraguay",code:"PY",currency:"PYG",language:"es",phone:"+595",continent:"South America",flag:"🇵🇾"},
+    PE:{name:"Pérou",code:"PE",currency:"PEN",language:"es",phone:"+51",continent:"South America",flag:"🇵🇪"},
+    SR:{name:"Suriname",code:"SR",currency:"SRD",language:"nl",phone:"+597",continent:"South America",flag:"🇸🇷"},
+    UY:{name:"Uruguay",code:"UY",currency:"UYU",language:"es",phone:"+598",continent:"South America",flag:"🇺🇾"},
+    VE:{name:"Venezuela",code:"VE",currency:"VES",language:"es",phone:"+58",continent:"South America",flag:"🇻🇪"},
+    GF:{name:"Guyane française",code:"GF",currency:"EUR",language:"fr",phone:"+594",continent:"South America",flag:"🇬🇫"},
+    FK:{name:"Îles Falkland",code:"FK",currency:"FKP",language:"en",phone:"+500",continent:"South America",flag:"🇫🇰"}
+
+});
+// =====================================
+// ASIE
+// =====================================
+
+Object.assign(countries,{
+
+    AF:{name:"Afghanistan",code:"AF",currency:"AFN",language:"fa",phone:"+93",continent:"Asia",flag:"🇦🇫"},
+    AM:{name:"Arménie",code:"AM",currency:"AMD",language:"hy",phone:"+374",continent:"Asia",flag:"🇦🇲"},
+    AZ:{name:"Azerbaïdjan",code:"AZ",currency:"AZN",language:"az",phone:"+994",continent:"Asia",flag:"🇦🇿"},
+    BH:{name:"Bahreïn",code:"BH",currency:"BHD",language:"ar",phone:"+973",continent:"Asia",flag:"🇧🇭"},
+    BD:{name:"Bangladesh",code:"BD",currency:"BDT",language:"bn",phone:"+880",continent:"Asia",flag:"🇧🇩"},
+    BT:{name:"Bhoutan",code:"BT",currency:"BTN",language:"dz",phone:"+975",continent:"Asia",flag:"🇧🇹"},
+    BN:{name:"Brunéi",code:"BN",currency:"BND",language:"ms",phone:"+673",continent:"Asia",flag:"🇧🇳"},
+    KH:{name:"Cambodge",code:"KH",currency:"KHR",language:"km",phone:"+855",continent:"Asia",flag:"🇰🇭"},
+    CN:{name:"Chine",code:"CN",currency:"CNY",language:"zh",phone:"+86",continent:"Asia",flag:"🇨🇳"},
+    GE:{name:"Géorgie",code:"GE",currency:"GEL",language:"ka",phone:"+995",continent:"Asia",flag:"🇬🇪"},
+    HK:{name:"Hong Kong",code:"HK",currency:"HKD",language:"zh",phone:"+852",continent:"Asia",flag:"🇭🇰"},
+    IN:{name:"Inde",code:"IN",currency:"INR",language:"hi",phone:"+91",continent:"Asia",flag:"🇮🇳"},
+    ID:{name:"Indonésie",code:"ID",currency:"IDR",language:"id",phone:"+62",continent:"Asia",flag:"🇮🇩"},
+    IR:{name:"Iran",code:"IR",currency:"IRR",language:"fa",phone:"+98",continent:"Asia",flag:"🇮🇷"},
+    IQ:{name:"Irak",code:"IQ",currency:"IQD",language:"ar",phone:"+964",continent:"Asia",flag:"🇮🇶"},
+    IL:{name:"Israël",code:"IL",currency:"ILS",language:"he",phone:"+972",continent:"Asia",flag:"🇮🇱"},
+    JP:{name:"Japon",code:"JP",currency:"JPY",language:"ja",phone:"+81",continent:"Asia",flag:"🇯🇵"},
+    JO:{name:"Jordanie",code:"JO",currency:"JOD",language:"ar",phone:"+962",continent:"Asia",flag:"🇯🇴"},
+    KZ:{name:"Kazakhstan",code:"KZ",currency:"KZT",language:"kk",phone:"+7",continent:"Asia",flag:"🇰🇿"},
+    KW:{name:"Koweït",code:"KW",currency:"KWD",language:"ar",phone:"+965",continent:"Asia",flag:"🇰🇼"},
+    KG:{name:"Kirghizistan",code:"KG",currency:"KGS",language:"ky",phone:"+996",continent:"Asia",flag:"🇰🇬"},
+    LA:{name:"Laos",code:"LA",currency:"LAK",language:"lo",phone:"+856",continent:"Asia",flag:"🇱🇦"},
+    LB:{name:"Liban",code:"LB",currency:"LBP",language:"ar",phone:"+961",continent:"Asia",flag:"🇱🇧"},
+    MO:{name:"Macao",code:"MO",currency:"MOP",language:"zh",phone:"+853",continent:"Asia",flag:"🇲🇴"},
+    MY:{name:"Malaisie",code:"MY",currency:"MYR",language:"ms",phone:"+60",continent:"Asia",flag:"🇲🇾"},
+    MV:{name:"Maldives",code:"MV",currency:"MVR",language:"dv",phone:"+960",continent:"Asia",flag:"🇲🇻"},
+    MN:{name:"Mongolie",code:"MN",currency:"MNT",language:"mn",phone:"+976",continent:"Asia",flag:"🇲🇳"},
+    MM:{name:"Myanmar",code:"MM",currency:"MMK",language:"my",phone:"+95",continent:"Asia",flag:"🇲🇲"},
+    NP:{name:"Népal",code:"NP",currency:"NPR",language:"ne",phone:"+977",continent:"Asia",flag:"🇳🇵"},
+    KP:{name:"Corée du Nord",code:"KP",currency:"KPW",language:"ko",phone:"+850",continent:"Asia",flag:"🇰🇵"},
+    OM:{name:"Oman",code:"OM",currency:"OMR",language:"ar",phone:"+968",continent:"Asia",flag:"🇴🇲"},
+    PK:{name:"Pakistan",code:"PK",currency:"PKR",language:"ur",phone:"+92",continent:"Asia",flag:"🇵🇰"},
+    PH:{name:"Philippines",code:"PH",currency:"PHP",language:"tl",phone:"+63",continent:"Asia",flag:"🇵🇭"},
+    QA:{name:"Qatar",code:"QA",currency:"QAR",language:"ar",phone:"+974",continent:"Asia",flag:"🇶🇦"},
+    SA:{name:"Arabie saoudite",code:"SA",currency:"SAR",language:"ar",phone:"+966",continent:"Asia",flag:"🇸🇦"},
+    SG:{name:"Singapour",code:"SG",currency:"SGD",language:"en",phone:"+65",continent:"Asia",flag:"🇸🇬"},
+    KR:{name:"Corée du Sud",code:"KR",currency:"KRW",language:"ko",phone:"+82",continent:"Asia",flag:"🇰🇷"},
+    LK:{name:"Sri Lanka",code:"LK",currency:"LKR",language:"si",phone:"+94",continent:"Asia",flag:"🇱🇰"},
+    SY:{name:"Syrie",code:"SY",currency:"SYP",language:"ar",phone:"+963",continent:"Asia",flag:"🇸🇾"},
+    TW:{name:"Taïwan",code:"TW",currency:"TWD",language:"zh",phone:"+886",continent:"Asia",flag:"🇹🇼"},
+    TJ:{name:"Tadjikistan",code:"TJ",currency:"TJS",language:"tg",phone:"+992",continent:"Asia",flag:"🇹🇯"},
+    TH:{name:"Thaïlande",code:"TH",currency:"THB",language:"th",phone:"+66",continent:"Asia",flag:"🇹🇭"},
+    TL:{name:"Timor oriental",code:"TL",currency:"USD",language:"pt",phone:"+670",continent:"Asia",flag:"🇹🇱"},
+    TM:{name:"Turkménistan",code:"TM",currency:"TMT",language:"tk",phone:"+993",continent:"Asia",flag:"🇹🇲"},
+    AE:{name:"Émirats arabes unis",code:"AE",currency:"AED",language:"ar",phone:"+971",continent:"Asia",flag:"🇦🇪"},
+    UZ:{name:"Ouzbékistan",code:"UZ",currency:"UZS",language:"uz",phone:"+998",continent:"Asia",flag:"🇺🇿"},
+    VN:{name:"Vietnam",code:"VN",currency:"VND",language:"vi",phone:"+84",continent:"Asia",flag:"🇻🇳"},
+    YE:{name:"Yémen",code:"YE",currency:"YER",language:"ar",phone:"+967",continent:"Asia",flag:"🇾🇪"}
+
+});
+// =====================================
+// OCÉANIE ET TERRITOIRES
+// =====================================
+
+Object.assign(countries,{
+
+    AU:{name:"Australie",code:"AU",currency:"AUD",language:"en",phone:"+61",continent:"Oceania",flag:"🇦🇺"},
+    NZ:{name:"Nouvelle-Zélande",code:"NZ",currency:"NZD",language:"en",phone:"+64",continent:"Oceania",flag:"🇳🇿"},
+    PG:{name:"Papouasie-Nouvelle-Guinée",code:"PG",currency:"PGK",language:"en",phone:"+675",continent:"Oceania",flag:"🇵🇬"},
+    FJ:{name:"Fidji",code:"FJ",currency:"FJD",language:"en",phone:"+679",continent:"Oceania",flag:"🇫🇯"},
+    SB:{name:"Îles Salomon",code:"SB",currency:"SBD",language:"en",phone:"+677",continent:"Oceania",flag:"🇸🇧"},
+    VU:{name:"Vanuatu",code:"VU",currency:"VUV",language:"fr",phone:"+678",continent:"Oceania",flag:"🇻🇺"},
+    WS:{name:"Samoa",code:"WS",currency:"WST",language:"sm",phone:"+685",continent:"Oceania",flag:"🇼🇸"},
+    TO:{name:"Tonga",code:"TO",currency:"TOP",language:"to",phone:"+676",continent:"Oceania",flag:"🇹🇴"},
+    KI:{name:"Kiribati",code:"KI",currency:"AUD",language:"en",phone:"+686",continent:"Oceania",flag:"🇰🇮"},
+    TV:{name:"Tuvalu",code:"TV",currency:"AUD",language:"en",phone:"+688",continent:"Oceania",flag:"🇹🇻"},
+    NR:{name:"Nauru",code:"NR",currency:"AUD",language:"en",phone:"+674",continent:"Oceania",flag:"🇳🇷"},
+    PW:{name:"Palaos",code:"PW",currency:"USD",language:"en",phone:"+680",continent:"Oceania",flag:"🇵🇼"},
+    FM:{name:"États fédérés de Micronésie",code:"FM",currency:"USD",language:"en",phone:"+691",continent:"Oceania",flag:"🇫🇲"},
+    MH:{name:"Îles Marshall",code:"MH",currency:"USD",language:"en",phone:"+692",continent:"Oceania",flag:"🇲🇭"},
+    CK:{name:"Îles Cook",code:"CK",currency:"NZD",language:"en",phone:"+682",continent:"Oceania",flag:"🇨🇰"},
+    NU:{name:"Niue",code:"NU",currency:"NZD",language:"en",phone:"+683",continent:"Oceania",flag:"🇳🇺"},
+    PF:{name:"Polynésie française",code:"PF",currency:"XPF",language:"fr",phone:"+689",continent:"Oceania",flag:"🇵🇫"},
+    NC:{name:"Nouvelle-Calédonie",code:"NC",currency:"XPF",language:"fr",phone:"+687",continent:"Oceania",flag:"🇳🇨"},
+    WF:{name:"Wallis-et-Futuna",code:"WF",currency:"XPF",language:"fr",phone:"+681",continent:"Oceania",flag:"🇼🇫"},
+    GU:{name:"Guam",code:"GU",currency:"USD",language:"en",phone:"+1-671",continent:"Oceania",flag:"🇬🇺"},
+    MP:{name:"Îles Mariannes du Nord",code:"MP",currency:"USD",language:"en",phone:"+1-670",continent:"Oceania",flag:"🇲🇵"},
+    AS:{name:"Samoa américaines",code:"AS",currency:"USD",language:"en",phone:"+1-684",continent:"Oceania",flag:"🇦🇸"},
+    TK:{name:"Tokelau",code:"TK",currency:"NZD",language:"en",phone:"+690",continent:"Oceania",flag:"🇹🇰"},
+    PN:{name:"Îles Pitcairn",code:"PN",currency:"NZD",language:"en",phone:"+64",continent:"Oceania",flag:"🇵🇳"},
+    NF:{name:"Île Norfolk",code:"NF",currency:"AUD",language:"en",phone:"+672",continent:"Oceania",flag:"🇳🇫"}
+});
+// =====================================
+// DÉTECTION AUTOMATIQUE DU PAYS
+// =====================================
+
+function detectCountry(){
+
+    const locale = Intl.DateTimeFormat()
+        .resolvedOptions()
+        .locale;
+
+    const countryCode = locale.includes("-")
+        ? locale.split("-")[1].toUpperCase()
+        : "US";
+
+    if(countries[countryCode]){
+
+        currentCountry = countryCode;
+        currentCountryData = countries[countryCode];
+        currentCurrency = currentCountryData.currency;
+        currentLanguage = currentCountryData.language;
+
+    }else{
+
+        currentCountry = "US";
+        currentCountryData = countries.US;
+        currentCurrency = "USD";
+        currentLanguage = "en";
+
+    }
+
+    console.log("Pays :", currentCountryData.name);
+    console.log("Devise :", currentCurrency);
+    console.log("Langue :", currentLanguage);
+
+}
+
+// =====================================
+// RECHERCHE D'UN PAYS
+// =====================================
+
+export function getCountry(code){
+
+    return countries[code.toUpperCase()] || null;
+
+}
+
+export function getAllCountries(){
+
+    return Object.values(countries);
+
+}
+
+export function countryExists(code){
+
+    return code.toUpperCase() in countries;
+
+}
+
+// =====================================
+// INITIALISATION
+// =====================================
+
+detectCountry();
+
+export{
+
+    countries,
+    currentCountry,
+    currentCountryData,
+    currentCurrency,
+    currentLanguage
 
 };
-
-console.log(`✅ ${countries.length} pays chargés.`);
