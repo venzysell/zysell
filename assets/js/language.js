@@ -78,8 +78,6 @@ popularProductsDesc:"Découvrez les produits numériques les plus vendus sur Zys
 
 },
 
-},
-
 en:{
 
 home:"Home",
@@ -123,7 +121,11 @@ searchPlaceholder:"Search for a product, store...",
 heroStart:"Get Started Free",
 
 heroExplore:"Explore Products",
+productsCount:"Digital Products",
 
+sellersCount:"Sellers",
+
+countriesCount:"Countries",
 supportCount:"Support",
 
 bestSales:"Best Sellers",
