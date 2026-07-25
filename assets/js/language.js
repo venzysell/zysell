@@ -33,7 +33,11 @@ stores:"Boutiques",
 login:"Connexion",
 
 signup:"Inscription",
+pricing:"Tarifs",
 
+contact:"Contact",
+
+start:"Commencer",
 dashboard:"Tableau de bord",
 
 search:"Rechercher",
@@ -69,6 +73,12 @@ stores:"Stores",
 login:"Login",
 
 signup:"Sign Up",
+
+pricing:"Pricing",
+
+contact:"Contact",
+
+start:"Get Started",
 
 dashboard:"Dashboard",
 
