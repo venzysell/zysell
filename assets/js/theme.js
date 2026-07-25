@@ -11,11 +11,6 @@
 const themeButtons = document.querySelectorAll("#themeBtn, #themeBtnMobile");
 const body = document.body;
 const storageKey = "zysell-theme";
-
-/* =======================================================
-   PRÉFÉRENCE SYSTÈME
-======================================================= */
-
 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
 /* =======================================================
@@ -30,116 +25,82 @@ function applyTheme(theme) {
         body.classList.remove("dark");
     }
 
-    updateThemeIcon(theme);
-}
+    localStorage.setItem(storageKey, theme);
 
-/* =======================================================
-   ICÔNE
+    updateThemeIcon(theme);
+
+}/* =======================================================
+   METTRE À JOUR L'ICÔNE
 ======================================================= */
 
 function updateThemeIcon(theme) {
 
     themeButtons.forEach(button => {
 
-        const icon = button.querySelector("i");
+        if (theme === "dark") {
 
-        if (!icon) return;
+            button.innerHTML = "☀️";
+            button.setAttribute("aria-label", "Activer le mode clair");
 
-        icon.className = theme === "dark"
-            ? "fa-solid fa-sun"
-            : "fa-solid fa-moon";
+        } else {
+
+            button.innerHTML = "🌙";
+            button.setAttribute("aria-label", "Activer le mode sombre");
+
+        }
 
     });
 
-}
-
-/* =======================================================
-   SAUVEGARDE
+}/* =======================================================
+   CHANGER LE THÈME
 ======================================================= */
 
-function saveTheme(theme) {
-    localStorage.setItem(storageKey, theme);
-}
+themeButtons.forEach(button => {
 
-/* =======================================================
-   LECTURE
+    button.addEventListener("click", () => {
+
+        const currentTheme = body.classList.contains("dark")
+            ? "dark"
+            : "light";
+
+        const newTheme = currentTheme === "dark"
+            ? "light"
+            : "dark";
+
+        applyTheme(newTheme);
+
+    });
+
+});/* =======================================================
+   INITIALISATION DU THÈME
 ======================================================= */
 
-function loadTheme() {
-    return localStorage.getItem(storageKey);
-}
+document.addEventListener("DOMContentLoaded", () => {
 
-/* =======================================================
-   BASCULER LE THÈME
-======================================================= */
-
-function toggleTheme() {
-
-    const newTheme = body.classList.contains("dark")
-        ? "light"
-        : "dark";
-
-    applyTheme(newTheme);
-    saveTheme(newTheme);
-
-}
-
-/* =======================================================
-   INITIALISATION
-======================================================= */
-
-function initializeTheme() {
-
-    const savedTheme = loadTheme();
+    const savedTheme = localStorage.getItem(storageKey);
 
     if (savedTheme) {
+
         applyTheme(savedTheme);
+
     } else {
+
         applyTheme(prefersDark.matches ? "dark" : "light");
+
     }
 
-    themeButtons.forEach(button => {
-        button.addEventListener("click", toggleTheme);
-    });
-
-}
-
-document.addEventListener("DOMContentLoaded", initializeTheme);
+});
 
 /* =======================================================
-   CHANGEMENT DU THÈME SYSTÈME
+   CHANGEMENT DE PRÉFÉRENCE SYSTÈME
 ======================================================= */
 
 prefersDark.addEventListener("change", (event) => {
 
-    if (!loadTheme()) {
+    if (!localStorage.getItem(storageKey)) {
+
         applyTheme(event.matches ? "dark" : "light");
+
     }
 
 });
-
-/* =======================================================
-   SYNCHRONISATION ENTRE ONGLETS
-======================================================= */
-
-window.addEventListener("storage", (event) => {
-
-    if (event.key === storageKey) {
-        applyTheme(event.newValue || "light");
-    }
-
-});
-
-/* =======================================================
-   API GLOBALE
-======================================================= */
-
-window.ZysellTheme = {
-
-    toggle: toggleTheme,
-
-    current: () => body.classList.contains("dark") ? "dark" : "light"
-
-};
-
-console.log("Theme chargé :", window.ZysellTheme.current());
