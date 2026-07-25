@@ -68,7 +68,15 @@ sellersCount:"Vendeurs",
 
 countriesCount:"Pays",
 
-supportCount:"Support"
+supportCount:"Support",
+
+bestSales:"Les meilleures ventes",
+
+popularProducts:"Produits populaires",
+
+popularProductsDesc:"Découvrez les produits numériques les plus vendus sur Zysell."
+
+},
 
 },
 
@@ -116,13 +124,13 @@ heroStart:"Get Started Free",
 
 heroExplore:"Explore Products",
 
-productsCount:"Digital Products",
+supportCount:"Support",
 
-sellersCount:"Sellers",
+bestSales:"Best Sellers",
 
-countriesCount:"Countries",
+popularProducts:"Popular Products",
 
-supportCount:"Support"
+popularProductsDesc:"Discover the best-selling digital products on Zysell."
 
 }
 
