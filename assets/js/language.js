@@ -56,7 +56,19 @@ heroTitle:"Achetez et vendez des produits numériques",
 
 heroSubtitle:"Découvrez des milliers de produits numériques créés par des créateurs du monde entier.",
 
-searchPlaceholder:"Rechercher un produit, une boutique..."
+searchPlaceholder:"Rechercher un produit, une boutique...",
+
+heroStart:"Commencer gratuitement",
+
+heroExplore:"Explorer les produits",
+
+productsCount:"Produits numériques",
+
+sellersCount:"Vendeurs",
+
+countriesCount:"Pays",
+
+supportCount:"Support"
 
 },
 
@@ -98,7 +110,19 @@ heroTitle:"Buy and sell digital products",
 
 heroSubtitle:"Discover thousands of digital products created by creators around the world.",
 
-searchPlaceholder:"Search for a product, store..."
+searchPlaceholder:"Search for a product, store...",
+
+heroStart:"Get Started Free",
+
+heroExplore:"Explore Products",
+
+productsCount:"Digital Products",
+
+sellersCount:"Sellers",
+
+countriesCount:"Countries",
+
+supportCount:"Support"
 
 }
 
