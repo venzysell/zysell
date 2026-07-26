@@ -64,13 +64,11 @@
    RESPONSIVE - SMARTPHONES
 =========================== */
 
-@media (max-width:768px){
+.mobile-menu-btn{
+    display:block;
+}
 
-    .menu-toggle{
-        display:block;
-    }
-
-    .nav-links{
+.mobile-menu{
     display:none;
     position:absolute;
     top:70px;
@@ -84,7 +82,7 @@
     z-index:999;
 }
 
-.nav-links.active{
+.mobile-menu.active{
     display:flex;
 }
 
