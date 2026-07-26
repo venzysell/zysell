@@ -61,22 +61,33 @@ if(menuButton && navLinks){
 }
 
 // ===========================
-// FERMER LE MENU APRÈS UN CLIC
+// MENU MOBILE
 // ===========================
 
-const menuItems = document.querySelectorAll(".nav-links a");
+const menuButton = document.getElementById("mobileMenuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
 
-menuItems.forEach(item => {
+if (menuButton && mobileMenu) {
 
-    item.addEventListener("click", () => {
+    menuButton.addEventListener("click", () => {
 
-        if(navLinks){
-            navLinks.classList.remove("active");
-        }
+        mobileMenu.classList.toggle("active");
 
     });
 
-});
+    const menuItems = mobileMenu.querySelectorAll("a");
+
+    menuItems.forEach(item => {
+
+        item.addEventListener("click", () => {
+
+            mobileMenu.classList.remove("active");
+
+        });
+
+    });
+
+}
 
 // ===========================
 // HEADER AU DÉFILEMENT
