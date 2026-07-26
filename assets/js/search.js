@@ -1,342 +1,342 @@
-/* =======================================================
-   ZYSELL SEARCH
-======================================================= */
+// =====================================
+// ZYSELL - SEARCH.JS
+// =====================================
 
-"use strict";
+document.addEventListener("DOMContentLoaded", () => {
 
-/* =======================================================
-   ÉLÉMENTS
-======================================================= */
+    "use strict";
 
-const searchInput = document.getElementById("searchInput");
-const searchResults = document.getElementById("searchResults");
+    // =====================================
+    // ÉLÉMENTS
+    // =====================================
 
-const productCards = document.querySelectorAll(".product-card");
-const creatorCards = document.querySelectorAll(".creator-card");
-const categoryCards = document.querySelectorAll(".category-card");
+    const searchInput = document.getElementById("searchInput");
+    const searchResults = document.getElementById("searchResults");
 
-/* =======================================================
-   NORMALISATION
-======================================================= */
+    const productCards = document.querySelectorAll(".product-card");
+    const creatorCards = document.querySelectorAll(".creator-card");
+    const categoryCards = document.querySelectorAll(".category-card");
 
-function normalize(text) {
+    let selectedIndex = -1;
 
-    return String(text)
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .trim();
+    // =====================================
+    // NORMALISATION
+    // =====================================
 
-}/* =======================================================
-   AFFICHER / MASQUER LES RÉSULTATS
-======================================================= */
+    function normalize(text) {
 
-function showResults() {
-
-    if (searchResults) {
-        searchResults.style.display = "block";
-    }
-
-}
-
-function hideResults() {
-
-    if (!searchResults) return;
-
-    searchResults.style.display = "none";
-    searchResults.innerHTML = "";
-
-}
-
-/* =======================================================
-   CRÉER UN RÉSULTAT
-======================================================= */
-
-function createResult(title, url, type) {
-
-    const item = document.createElement("a");
-
-    item.className = "search-result";
-    item.href = url;
-
-    item.innerHTML = `
-        <div class="search-result-title">${title}</div>
-        <div class="search-result-type">${type}</div>
-    `;
-
-    return item;
-
-}/* =======================================================
-   RECHERCHE
-======================================================= */
-
-function performSearch(query) {
-
-    const keyword = normalize(query);
-
-    hideResults();
-
-    if (keyword.length === 0) {
-
-        resetCards();
-
-        return;
+        return String(text)
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim();
 
     }
 
-    showResults();
+    // =====================================
+    // AFFICHAGE DES RÉSULTATS
+    // =====================================
 
-    let totalResults = 0;
+    function showResults() {
 
-    const collections = [
-
-        {
-            cards: productCards,
-            field: "title",
-            type: "Produit",
-            defaultUrl: "product.html"
-        },
-
-        {
-            cards: creatorCards,
-            field: "name",
-            type: "Créateur",
-            defaultUrl: "store.html"
-        },
-
-        {
-            cards: categoryCards,
-            field: "category",
-            type: "Catégorie",
-            defaultUrl: "explore.html"
+        if (searchResults) {
+            searchResults.style.display = "block";
         }
 
-    ];
+    }
 
-    collections.forEach(collection => {
+    function hideResults() {
 
-        collection.cards.forEach(card => {
+        if (!searchResults) return;
 
-            const value = normalize(card.dataset[collection.field] || "");
-
-            if (value.includes(keyword)) {
-
-                card.style.display = "";
-
-                totalResults++;
-
-                if (searchResults) {
-
-                    searchResults.appendChild(
-
-                        createResult(
-                            card.dataset[collection.field],
-                            card.dataset.url || collection.defaultUrl,
-                            collection.type
-                        )
-
-                    );
-
-                }
-
-            } else {
-
-                card.style.display = "none";
-
-            }
-
-        });
-
-    });
-
-    if (totalResults === 0 && searchResults) {
-
-        searchResults.innerHTML = `
-            <div class="search-empty">
-                Aucun résultat trouvé.
-            </div>
-        `;
+        searchResults.style.display = "none";
+        searchResults.innerHTML = "";
+        selectedIndex = -1;
 
     }
 
-}/* =======================================================
-   RÉINITIALISATION
-======================================================= */
+    // =====================================
+    // CRÉER UN RÉSULTAT
+    // =====================================
 
-function resetCards() {
+    function createResult(title, url, type) {
 
-    [
-        ...productCards,
-        ...creatorCards,
-        ...categoryCards
-    ].forEach(card => {
+        const item = document.createElement("a");
 
-        card.style.display = "";
+        item.className = "search-result";
+        item.href = url;
 
-    });
+        item.innerHTML = `
+            <div class="search-result-title">${title}</div>
+            <div class="search-result-type">${type}</div>
+        `;
 
-    hideResults();
+        return item;
 
-}
+    }
 
-/* =======================================================
-   ÉVÉNEMENT INPUT
-======================================================= */
+    // =====================================
+    // RÉINITIALISER LES CARTES
+    // =====================================
 
-if (searchInput) {
+    function resetCards() {
 
-    searchInput.addEventListener("input", event => {
+        [
+            ...productCards,
+            ...creatorCards,
+            ...categoryCards
+        ].forEach(card => {
 
-        performSearch(event.target.value);
+            card.style.display = "";
 
-    });
-
-}
-
-/* =======================================================
-   FERMETURE DES RÉSULTATS
-======================================================= */
-
-document.addEventListener("click", event => {
-
-    if (
-        searchResults &&
-        searchInput &&
-        !searchResults.contains(event.target) &&
-        event.target !== searchInput
-    ) {
+        });
 
         hideResults();
 
     }
+       // =====================================
+    // RECHERCHE
+    // =====================================
 
-});/* =======================================================
-   DEBOUNCE
-======================================================= */
+    function performSearch(query) {
 
-function debounce(callback, delay = 250) {
+        const keyword = normalize(query);
 
-    let timeout;
+        resetCards();
 
-    return (...args) => {
+        if (keyword.length === 0) {
+            return;
+        }
 
-        clearTimeout(timeout);
+        showResults();
 
-        timeout = setTimeout(() => {
+        let totalResults = 0;
+        selectedIndex = -1;
 
-            callback(...args);
+        const collections = [
 
-        }, delay);
+            {
+                cards: productCards,
+                field: "title",
+                type: "Produit",
+                defaultUrl: "product.html"
+            },
 
-    };
+            {
+                cards: creatorCards,
+                field: "name",
+                type: "Créateur",
+                defaultUrl: "store.html"
+            },
 
-}
+            {
+                cards: categoryCards,
+                field: "category",
+                type: "Catégorie",
+                defaultUrl: "explore.html"
+            }
 
-/* =======================================================
-   RECHERCHE OPTIMISÉE
-======================================================= */
+        ];
 
-if (searchInput) {
+        collections.forEach(collection => {
 
-    const optimizedSearch = debounce(event => {
+            collection.cards.forEach(card => {
 
-        performSearch(event.target.value);
+                const value = normalize(
+                    card.dataset[collection.field] || ""
+                );
 
-    });
+                if (value.includes(keyword)) {
 
-    searchInput.replaceWith(searchInput.cloneNode(true));
+                    card.style.display = "";
 
-    const newSearchInput = document.getElementById("searchInput");
+                    totalResults++;
 
-    if (newSearchInput) {
+                    if (searchResults) {
 
-        newSearchInput.addEventListener("input", optimizedSearch);
+                        searchResults.appendChild(
 
-    }
+                            createResult(
+                                card.dataset[collection.field],
+                                card.dataset.url || collection.defaultUrl,
+                                collection.type
+                            )
 
-}/* =======================================================
-   NAVIGATION CLAVIER
-======================================================= */
+                        );
 
-let selectedIndex = -1;
+                    }
 
-document.addEventListener("keydown", event => {
+                } else {
 
-    if (!searchResults || searchResults.style.display === "none") {
-        return;
-    }
+                    card.style.display = "none";
 
-    const items = searchResults.querySelectorAll(".search-result");
+                }
 
-    if (items.length === 0) {
-        return;
-    }
+            });
 
-    if (event.key === "ArrowDown") {
+        });
 
-        event.preventDefault();
+        if (totalResults === 0 && searchResults) {
 
-        selectedIndex = (selectedIndex + 1) % items.length;
-
-    } else if (event.key === "ArrowUp") {
-
-        event.preventDefault();
-
-        selectedIndex = (selectedIndex - 1 + items.length) % items.length;
-
-    } else if (event.key === "Enter") {
-
-        if (selectedIndex >= 0 && items[selectedIndex]) {
-
-            event.preventDefault();
-            items[selectedIndex].click();
+            searchResults.innerHTML = `
+                <div class="search-empty">
+                    Aucun résultat trouvé.
+                </div>
+            `;
 
         }
 
-    } else {
+    }
 
-        return;
+    // =====================================
+    // DEBOUNCE
+    // =====================================
+
+    function debounce(callback, delay = 250) {
+
+        let timeout;
+
+        return (...args) => {
+
+            clearTimeout(timeout);
+
+            timeout = setTimeout(() => {
+
+                callback(...args);
+
+            }, delay);
+
+        };
 
     }
 
-    items.forEach(item => item.classList.remove("active"));
+    // =====================================
+    // ÉVÉNEMENT DE RECHERCHE
+    // =====================================
 
-    if (selectedIndex >= 0) {
+    if (searchInput) {
 
-        items[selectedIndex].classList.add("active");
+        const optimizedSearch = debounce(event => {
 
-        items[selectedIndex].scrollIntoView({
-            block: "nearest"
+            performSearch(event.target.value);
+
         });
 
+        searchInput.addEventListener(
+            "input",
+            optimizedSearch
+        );
+
     }
+       // =====================================
+    // FERMETURE DES RÉSULTATS
+    // =====================================
 
-});/* =======================================================
-   INITIALISATION
-======================================================= */
+    document.addEventListener("click", event => {
 
-document.addEventListener("DOMContentLoaded", () => {
+        if (
+            searchResults &&
+            searchInput &&
+            !searchResults.contains(event.target) &&
+            event.target !== searchInput
+        ) {
+
+            hideResults();
+
+        }
+
+    });
+
+    // =====================================
+    // NAVIGATION AU CLAVIER
+    // =====================================
+
+    document.addEventListener("keydown", event => {
+
+        if (!searchResults || searchResults.style.display === "none") {
+            return;
+        }
+
+        const items = searchResults.querySelectorAll(".search-result");
+
+        if (items.length === 0) {
+            return;
+        }
+
+        switch (event.key) {
+
+            case "ArrowDown":
+
+                event.preventDefault();
+
+                selectedIndex = (selectedIndex + 1) % items.length;
+
+                break;
+
+            case "ArrowUp":
+
+                event.preventDefault();
+
+                selectedIndex =
+                    (selectedIndex - 1 + items.length) % items.length;
+
+                break;
+
+            case "Enter":
+
+                if (selectedIndex >= 0 && items[selectedIndex]) {
+
+                    event.preventDefault();
+                    items[selectedIndex].click();
+
+                }
+
+                return;
+
+            case "Escape":
+
+                hideResults();
+
+                return;
+
+            default:
+
+                return;
+
+        }
+
+        items.forEach(item => item.classList.remove("active"));
+
+        if (selectedIndex >= 0) {
+
+            items[selectedIndex].classList.add("active");
+
+            items[selectedIndex].scrollIntoView({
+                block: "nearest"
+            });
+
+        }
+
+    });
+
+    // =====================================
+    // INITIALISATION
+    // =====================================
 
     resetCards();
 
     console.log("✅ ZySell Search initialisé.");
 
+    // =====================================
+    // API GLOBALE
+    // =====================================
+
+    window.ZysellSearch = {
+
+        search: performSearch,
+        reset: resetCards,
+        normalize
+
+    };
+
 });
-
-/* =======================================================
-   API GLOBALE
-======================================================= */
-
-window.ZysellSearch = {
-
-    search: performSearch,
-
-    reset: resetCards,
-
-    normalize
-
-};
-
-/* =======================================================
-   FIN DU FICHIER
-======================================================= */
