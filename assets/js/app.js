@@ -1,192 +1,83 @@
-// ===========================
+// =====================================
 // ZYSELL - APP.JS
-// ===========================
+// PARTIE 1 : INITIALISATION
+// =====================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ===========================
-    // Année automatique
-    // ===========================
+    // =====================================
+    // ANNÉE AUTOMATIQUE
+    // =====================================
 
-    const year = document.getElementById("currentYear");
+    const currentYear = document.getElementById("currentYear");
 
-    if(year){
-        year.textContent = new Date().getFullYear();
+    if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
     }
 
-    // ===========================
-    // Changement de thème
-    // ===========================
+    // =====================================
+    // MENU MOBILE
+    // =====================================
 
-    const themeButton = document.querySelector(".theme-btn");
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
 
-    if(themeButton){
+    if (mobileMenuBtn && mobileMenu) {
 
-        const savedTheme = localStorage.getItem("theme");
+        mobileMenuBtn.addEventListener("click", () => {
 
-        if(savedTheme === "dark"){
-            document.body.classList.add("dark-theme");
-        }
-
-        themeButton.addEventListener("click", () => {
-
-            document.body.classList.toggle("dark-theme");
-
-            if(document.body.classList.contains("dark-theme")){
-                localStorage.setItem("theme","dark");
-            }else{
-                localStorage.setItem("theme","light");
-            }
+            mobileMenu.classList.toggle("active");
 
         });
 
-    }
+        mobileMenu.querySelectorAll("a").forEach(link => {
 
-});
-// ===========================
-// MENU MOBILE
-// ===========================
+            link.addEventListener("click", () => {
 
-const menuButton = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
-
-if(menuButton && navLinks){
-
-    menuButton.addEventListener("click", () => {
-
-        navLinks.classList.toggle("active");
-
-    });
-
-}
-
-// ===========================
-// MENU MOBILE
-// ===========================
-
-const menuButton = document.getElementById("mobileMenuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-
-if (menuButton && mobileMenu) {
-
-    menuButton.addEventListener("click", () => {
-
-        mobileMenu.classList.toggle("active");
-
-    });
-
-    const menuItems = mobileMenu.querySelectorAll("a");
-
-    menuItems.forEach(item => {
-
-        item.addEventListener("click", () => {
-
-            mobileMenu.classList.remove("active");
-
-        });
-
-    });
-
-}
-
-// ===========================
-// HEADER AU DÉFILEMENT
-// ===========================
-
-const header = document.querySelector(".header");
-
-window.addEventListener("scroll", () => {
-
-    if(window.scrollY > 50){
-
-        header.classList.add("scrolled");
-
-    }else{
-
-        header.classList.remove("scrolled");
-
-    }
-
-});
-// ===========================
-// ANIMATIONS AU DÉFILEMENT
-// ===========================
-
-const animatedElements = document.querySelectorAll(
-    ".category-card, .product-card, .feature-card, .creator-card, .testimonial-card"
-);
-
-const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("show");
-
-        }
-
-    });
-
-},{
-    threshold:0.2
-});
-
-animatedElements.forEach(element => {
-
-    observer.observe(element);
-
-});
-
-// ===========================
-// DÉFILEMENT FLUIDE
-// ===========================
-
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-
-    link.addEventListener("click", function(e){
-
-        const target = document.querySelector(this.getAttribute("href"));
-
-        if(target){
-
-            e.preventDefault();
-
-            target.scrollIntoView({
-
-                behavior:"smooth"
+                mobileMenu.classList.remove("active");
 
             });
 
-        }
+        });
 
-    });
+    }
+        // =====================================
+    // HEADER AU DÉFILEMENT
+    // =====================================
 
-});
-// ===========================
-// RECHERCHE SIMPLE
-// ===========================
+    const header = document.querySelector(".header");
 
-const searchInput = document.getElementById("searchInput");
-const productCards = document.querySelectorAll(".product-card");
+    if (header) {
 
-if(searchInput){
+        window.addEventListener("scroll", () => {
 
-    searchInput.addEventListener("input", () => {
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
 
-        const value = searchInput.value.toLowerCase().trim();
+        });
 
-        productCards.forEach(card => {
+    }
 
-            const text = card.textContent.toLowerCase();
+    // =====================================
+    // DÉFILEMENT FLUIDE
+    // =====================================
 
-            if(text.includes(value)){
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-                card.style.display = "";
+        link.addEventListener("click", function (e) {
 
-            }else{
+            const target = document.querySelector(this.getAttribute("href"));
 
-                card.style.display = "none";
+            if (target) {
+
+                e.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth"
+                });
 
             }
 
@@ -194,138 +85,129 @@ if(searchInput){
 
     });
 
-}
+    // =====================================
+    // RECHERCHE SIMPLE
+    // =====================================
 
-// ===========================
-// BOUTON RETOUR EN HAUT
-// ===========================
+    const searchInput = document.getElementById("searchInput");
 
-const backToTop = document.querySelector(".back-to-top");
+    if (searchInput) {
 
-window.addEventListener("scroll", () => {
+        const productCards = document.querySelectorAll(".product-card");
 
-    if(!backToTop) return;
+        searchInput.addEventListener("input", () => {
 
-    if(window.scrollY > 400){
+            const value = searchInput.value.trim().toLowerCase();
 
-        backToTop.classList.add("show");
+            productCards.forEach(card => {
 
-    }else{
+                const content = card.textContent.toLowerCase();
 
-        backToTop.classList.remove("show");
+                card.style.display = content.includes(value) ? "" : "none";
 
-    }
-
-});
-
-if(backToTop){
-
-    backToTop.addEventListener("click", () => {
-
-        window.scrollTo({
-
-            top:0,
-            behavior:"smooth"
+            });
 
         });
 
+    }
+        // =====================================
+    // ANIMATIONS AU DÉFILEMENT
+    // =====================================
+
+    const animatedElements = document.querySelectorAll(
+        ".category-card, .product-card, .feature-card, .creator-card, .testimonial-card"
+    );
+
+    if (animatedElements.length > 0) {
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+
+            });
+
+        }, {
+            threshold: 0.2
+        });
+
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
+
+    }
+
+    // =====================================
+    // BOUTON RETOUR EN HAUT
+    // =====================================
+
+    const backToTop = document.querySelector(".back-to-top");
+
+    if (backToTop) {
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 400) {
+                backToTop.classList.add("show");
+            } else {
+                backToTop.classList.remove("show");
+            }
+
+        });
+
+        backToTop.addEventListener("click", () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+    }
+
+    // =====================================
+    // DÉSACTIVER LE GLISSER-DÉPOSER DES IMAGES
+    // =====================================
+
+    document.querySelectorAll("img").forEach(image => {
+        image.setAttribute("draggable", "false");
     });
 
-}
-// ===========================
-// CHANGEMENT DE LANGUE
-// ===========================
+    // =====================================
+    // PRÉCHARGEMENT DES IMAGES
+    // =====================================
 
-const languageSelect = document.querySelector(".language-select");
+    document.querySelectorAll("img").forEach(image => {
 
-if(languageSelect){
+        if (image.src) {
 
-    const savedLanguage = localStorage.getItem("language") || "fr";
-
-    languageSelect.value = savedLanguage;
-
-    document.documentElement.lang = savedLanguage;
-
-    languageSelect.addEventListener("change", () => {
-
-        const language = languageSelect.value;
-
-        localStorage.setItem("language", language);
-
-        document.documentElement.lang = language;
-
-        updateLanguage(language);
-
-    });
-
-    updateLanguage(savedLanguage);
-
-}
-
-// ===========================
-// TRADUCTIONS
-// ===========================
-
-function updateLanguage(language){
-
-    const elements = document.querySelectorAll("[data-fr][data-en]");
-
-    elements.forEach(element => {
-
-        if(language === "en"){
-
-            element.textContent = element.dataset.en;
-
-        }else{
-
-            element.textContent = element.dataset.fr;
+            const preload = new Image();
+            preload.src = image.src;
 
         }
 
     });
 
-}
-// ===========================
-// INITIALISATION GÉNÉRALE
-// ===========================
+    // =====================================
+    // PAGE CHARGÉE
+    // =====================================
 
-window.addEventListener("load", () => {
+    window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+    });
 
-    document.body.classList.add("loaded");
+    // =====================================
+    // MESSAGE DANS LA CONSOLE
+    // =====================================
 
-});
-
-// ===========================
-// DÉSACTIVER LE DRAG DES IMAGES
-// ===========================
-
-document.querySelectorAll("img").forEach(image => {
-
-    image.setAttribute("draggable","false");
+    console.log("================================");
+    console.log("Bienvenue sur ZySell");
+    console.log("Marketplace de produits numériques");
+    console.log("================================");
 
 });
-
-// ===========================
-// PRÉCHARGEMENT DES IMAGES
-// ===========================
-
-document.querySelectorAll("img").forEach(image => {
-
-    const preload = new Image();
-
-    preload.src = image.src;
-
-});
-
-// ===========================
-// MESSAGE DANS LA CONSOLE
-// ===========================
-
-console.log("================================");
-console.log("      Bienvenue sur ZySell");
-console.log(" Marketplace de produits numériques");
-console.log("================================");
-
-// ===========================
-// FIN DU FICHIER
-// ===========================
+    
