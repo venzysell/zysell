@@ -2,66 +2,90 @@
 // ZYSELL - THEME.JS
 // =====================================
 
-const themeButton = document.querySelector(".theme-btn");
+document.addEventListener("DOMContentLoaded", () => {
 
-const savedTheme = localStorage.getItem("theme");
+    const themeButton = document.querySelector(".theme-btn");
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-// Appliquer le thème enregistré
-if(savedTheme === "dark"){
-    document.body.classList.add("dark-theme");
-}
+    // =====================================
+    // APPLIQUER LE THÈME
+    // =====================================
 
-// Détection automatique du thème du système
-if(!savedTheme){
+    function applyTheme(theme) {
 
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+        if (theme === "dark") {
+            document.body.classList.add("dark-theme");
+        } else {
+            document.body.classList.remove("dark-theme");
+        }
 
-    if(prefersDark.matches){
-        document.body.classList.add("dark-theme");
+        updateThemeButton();
+
     }
 
-    prefersDark.addEventListener("change", (event)=>{
+    // =====================================
+    // METTRE À JOUR L'ICÔNE
+    // =====================================
 
-        if(!localStorage.getItem("theme")){
-            document.body.classList.toggle("dark-theme", event.matches);
+    function updateThemeButton() {
+
+        if (!themeButton) return;
+
+        themeButton.textContent =
+            document.body.classList.contains("dark-theme")
+                ? "☀️"
+                : "🌙";
+
+    }
+
+    // =====================================
+    // INITIALISATION
+    // =====================================
+
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+
+        applyTheme(savedTheme);
+
+    } else {
+
+        applyTheme(mediaQuery.matches ? "dark" : "light");
+
+    }
+
+    // =====================================
+    // CHANGEMENT MANUEL
+    // =====================================
+
+    if (themeButton) {
+
+        themeButton.addEventListener("click", () => {
+
+            const isDark = document.body.classList.toggle("dark-theme");
+
+            localStorage.setItem(
+                "theme",
+                isDark ? "dark" : "light"
+            );
+
             updateThemeButton();
-        }
+
+        });
+
+    }
+
+    // =====================================
+    // SUIVRE LE THÈME DU SYSTÈME
+    // (uniquement si aucun choix utilisateur)
+    // =====================================
+
+    mediaQuery.addEventListener("change", (event) => {
+
+        if (localStorage.getItem("theme")) return;
+
+        applyTheme(event.matches ? "dark" : "light");
 
     });
 
-}
-
-// Bouton de changement de thème
-if(themeButton){
-    themeButton.addEventListener("click", toggleTheme);
-}
-
-function toggleTheme(){
-
-    document.body.classList.toggle("dark-theme");
-
-    if(document.body.classList.contains("dark-theme")){
-        localStorage.setItem("theme","dark");
-    }else{
-        localStorage.setItem("theme","light");
-    }
-
-    updateThemeButton();
-
-}
-
-// Mise à jour de l'icône du bouton
-function updateThemeButton(){
-
-    if(!themeButton) return;
-
-    if(document.body.classList.contains("dark-theme")){
-        themeButton.textContent = "☀️";
-    }else{
-        themeButton.textContent = "🌙";
-    }
-
-}
-
-// Initialisation
-updateThemeButton();
+});
