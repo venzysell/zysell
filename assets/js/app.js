@@ -167,7 +167,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 // RECHERCHE SIMPLE
 // ===========================
 
-const searchInput = document.querySelector(".search-input");
+const searchInput = document.getElementById("searchInput");
 const productCards = document.querySelectorAll(".product-card");
 
 if(searchInput){
