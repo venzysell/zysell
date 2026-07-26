@@ -2,251 +2,170 @@
 // ZYSELL - LANGUAGE.JS
 // =====================================
 
-// Langues disponibles
-const supportedLanguages = ["fr", "en"];
+document.addEventListener("DOMContentLoaded", () => {
 
-// Langue par défaut
-let currentLanguage = "fr";
+    // =====================================
+    // CONFIGURATION
+    // =====================================
 
-// Bouton / Sélecteur de langue
-const languageSelector = document.querySelector(".language-select");
+    const supportedLanguages = ["fr", "en"];
+    const languageSelector = document.querySelector(".language-select");
 
-// =====================================
-// CHARGER LA LANGUE ENREGISTRÉE
-// =====================================
+    // =====================================
+    // TRADUCTIONS
+    // =====================================
 
-const savedLanguage = localStorage.getItem("language");
+    const translations = {
 
-if(savedLanguage && supportedLanguages.includes(savedLanguage)){
+        fr: {
 
-    currentLanguage = savedLanguage;
+            home: "Accueil",
+            categories: "Catégories",
+            products: "Produits",
+            creators: "Créateurs",
+            contact: "Contact",
 
-}else{
+            heroTitle: "Achetez et vendez des produits numériques",
 
-    const browserLanguage = navigator.language.substring(0,2);
+            heroSubtitle: "La plateforme idéale pour les créateurs, développeurs, designers et entrepreneurs.",
 
-    if(supportedLanguages.includes(browserLanguage)){
-        currentLanguage = browserLanguage;
-    }
+            searchPlaceholder: "Rechercher un produit...",
 
-}
+            searchButton: "Rechercher",
 
-document.documentElement.lang = currentLanguage;
+            explore: "Explorer",
 
-if(languageSelector){
-    languageSelector.value = currentLanguage;
-}
-// =====================================
-// DICTIONNAIRE DES TRADUCTIONS
-// =====================================
+            startSelling: "Commencer à vendre"
 
-const translations = {
+        },
 
-    fr: {
+        en: {
 
-        home: "Accueil",
-        categories: "Catégories",
-        products: "Produits",
-        creators: "Créateurs",
-        contact: "Contact",
+            home: "Home",
+            categories: "Categories",
+            products: "Products",
+            creators: "Creators",
+            contact: "Contact",
 
-        heroTitle: "Achetez et vendez des produits numériques",
+            heroTitle: "Buy and sell digital products",
 
-        heroSubtitle: "La plateforme idéale pour les créateurs, développeurs, designers et entrepreneurs.",
+            heroSubtitle: "The ideal marketplace for creators, developers, designers and entrepreneurs.",
 
-        searchPlaceholder: "Rechercher un produit...",
+            searchPlaceholder: "Search for a product...",
 
-        searchButton: "Rechercher",
+            searchButton: "Search",
 
-        explore: "Explorer",
+            explore: "Explore",
 
-        startSelling: "Commencer à vendre"
-
-    },
-
-    en: {
-
-        home: "Home",
-        categories: "Categories",
-        products: "Products",
-        creators: "Creators",
-        contact: "Contact",
-
-        heroTitle: "Buy and sell digital products",
-
-        heroSubtitle: "The ideal marketplace for creators, developers, designers and entrepreneurs.",
-
-        searchPlaceholder: "Search for a product...",
-
-        searchButton: "Search",
-
-        explore: "Explore",
-
-        startSelling: "Start Selling"
-
-    }
-
-};
-// =====================================
-// APPLIQUER LES TRADUCTIONS
-// =====================================
-
-function applyTranslations(){
-
-    document.querySelectorAll("[data-i18n]").forEach(element => {
-
-        const key = element.dataset.i18n;
-
-        if(translations[currentLanguage] &&
-           translations[currentLanguage][key]){
-
-            element.textContent = translations[currentLanguage][key];
+            startSelling: "Start Selling"
 
         }
-
-    });
-
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
-
-        const key = element.dataset.i18nPlaceholder;
-
-        if(translations[currentLanguage] &&
-           translations[currentLanguage][key]){
-
-            element.placeholder =
-                translations[currentLanguage][key];
-
-        }
-
-    });
-
-}
-// =====================================
-// CHANGER LA LANGUE
-// =====================================
-
-function setLanguage(language){
-
-    if(!supportedLanguages.includes(language)){
-        return;
-    }
-
-    currentLanguage = language;
-
-    localStorage.setItem("language", language);
-
-    document.documentElement.lang = language;
-
-    if(languageSelector){
-        languageSelector.value = language;
-    }
-
-    applyTranslations();
-
-}
-
-// =====================================
-// ÉVÉNEMENT DU SÉLECTEUR
-// =====================================
-
-if(languageSelector){
-
-    languageSelector.addEventListener("change", (event)=>{
-
-        setLanguage(event.target.value);
-
-    });
-
-}
-
-// =====================================
-// INITIALISATION
-// =====================================
-
-applyTranslations();
-// =====================================
-// FONCTIONS UTILITAIRES
-// =====================================
-
-// Retourne la langue actuelle
-export function getCurrentLanguage(){
-
-    return currentLanguage;
-
-}
-
-// Traduit une clé
-export function translate(key){
-
-    if(
-        translations[currentLanguage] &&
-        translations[currentLanguage][key]
-    ){
-
-        return translations[currentLanguage][key];
-
-    }
-
-    return key;
-
-}
-
-// Ajouter facilement de nouvelles traductions
-export function addTranslations(language, values){
-
-    if(!translations[language]){
-
-        translations[language] = {};
-
-    }
-
-    translations[language] = {
-
-        ...translations[language],
-        ...values
 
     };
 
-}
-// =====================================
-// DÉTECTION AUTOMATIQUE DE LA LANGUE
-// =====================================
+    // =====================================
+    // LANGUE ACTUELLE
+    // =====================================
 
-window.addEventListener("DOMContentLoaded", () => {
+    let currentLanguage = localStorage.getItem("language");
 
-    // Si aucune langue n'est enregistrée
-    if(!localStorage.getItem("language")){
+    if (!supportedLanguages.includes(currentLanguage)) {
 
-        const browserLanguage = navigator.language.slice(0,2);
+        const browserLanguage = navigator.language.slice(0, 2);
 
-        if(supportedLanguages.includes(browserLanguage)){
+        currentLanguage = supportedLanguages.includes(browserLanguage)
+            ? browserLanguage
+            : "fr";
 
-            setLanguage(browserLanguage);
+    }
 
-        }else{
+    // =====================================
+    // APPLIQUER LES TRADUCTIONS
+    // =====================================
 
-            setLanguage("fr");
+    function applyTranslations() {
+
+        document.documentElement.lang = currentLanguage;
+
+        document.querySelectorAll("[data-i18n]").forEach(element => {
+
+            const key = element.dataset.i18n;
+
+            if (translations[currentLanguage][key]) {
+                element.textContent = translations[currentLanguage][key];
+            }
+
+        });
+
+        document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+
+            const key = element.dataset.i18nPlaceholder;
+
+            if (translations[currentLanguage][key]) {
+                element.placeholder = translations[currentLanguage][key];
+            }
+
+        });
+
+        if (languageSelector) {
+            languageSelector.value = currentLanguage;
+        }
+
+    }
+
+    // =====================================
+    // CHANGER LA LANGUE
+    // =====================================
+
+    function setLanguage(language) {
+
+        if (!supportedLanguages.includes(language)) return;
+
+        currentLanguage = language;
+
+        localStorage.setItem("language", language);
+
+        applyTranslations();
+
+    }
+
+    // =====================================
+    // ÉVÉNEMENT DU SÉLECTEUR
+    // =====================================
+
+    if (languageSelector) {
+
+        languageSelector.addEventListener("change", (event) => {
+
+            setLanguage(event.target.value);
+
+        });
+
+    }
+
+    // =====================================
+    // SYNCHRONISATION ENTRE ONGLETS
+    // =====================================
+
+    window.addEventListener("storage", (event) => {
+
+        if (
+            event.key === "language" &&
+            supportedLanguages.includes(event.newValue)
+        ) {
+
+            currentLanguage = event.newValue;
+
+            applyTranslations();
 
         }
 
-    }else{
+    });
 
-        setLanguage(localStorage.getItem("language"));
+    // =====================================
+    // INITIALISATION
+    // =====================================
 
-    }
-
-});
-
-// =====================================
-// SYNCHRONISATION DES ONGLETS
-// =====================================
-
-window.addEventListener("storage", (event) => {
-
-    if(event.key === "language"){
-
-        setLanguage(event.newValue);
-
-    }
+    applyTranslations();
 
 });
