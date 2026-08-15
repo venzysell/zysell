@@ -1,6 +1,6 @@
 /* =========================================================
    ZYSELL — APP.JS
-   Version 1 — Interface
+   Version 1 — Interface principale
 ========================================================= */
 
 "use strict";
@@ -10,7 +10,7 @@
    CONFIGURATION
 ========================================================= */
 
-const ZYSELL = {
+const ZYSELL_CONFIG = {
     defaultLanguage: "fr",
     defaultTheme: "system"
 };
@@ -20,17 +20,21 @@ const ZYSELL = {
    ÉLÉMENTS
 ========================================================= */
 
-const languageFR = document.getElementById("language-fr");
-const languageEN = document.getElementById("language-en");
+const languageFR =
+    document.getElementById("language-fr");
 
-const currentYear = document.getElementById("current-year");
+const languageEN =
+    document.getElementById("language-en");
+
+const currentYear =
+    document.getElementById("current-year");
 
 
 /* =========================================================
    LANGUE
 ========================================================= */
 
-function getSavedLanguage() {
+function getLanguage() {
 
     const savedLanguage =
         localStorage.getItem("zysell-language");
@@ -42,27 +46,43 @@ function getSavedLanguage() {
         return savedLanguage;
     }
 
-    return ZYSELL.defaultLanguage;
+    return ZYSELL_CONFIG.defaultLanguage;
 }
 
 
-function changeLanguage(language) {
+function setLanguage(language) {
 
     if (
         language !== "fr" &&
         language !== "en"
     ) {
-        return;
+        language = ZYSELL_CONFIG.defaultLanguage;
     }
+
+
+    /*
+     * Définit la langue officielle de la page.
+     */
 
     document.documentElement.lang = language;
 
 
-    const translatedElements =
-        document.querySelectorAll("[data-fr][data-en]");
+    /*
+     * Récupère tous les éléments possédant
+     * une traduction française et anglaise.
+     */
+
+    const elements =
+        document.querySelectorAll(
+            "[data-fr][data-en]"
+        );
 
 
-    translatedElements.forEach(function(element) {
+    /*
+     * Une seule langue est affichée.
+     */
+
+    elements.forEach(function(element) {
 
         const frenchText =
             element.getAttribute("data-fr");
@@ -71,13 +91,24 @@ function changeLanguage(language) {
             element.getAttribute("data-en");
 
 
-        element.textContent =
-            language === "fr"
-                ? frenchText
-                : englishText;
+        if (language === "fr") {
+
+            element.textContent =
+                frenchText;
+
+        } else {
+
+            element.textContent =
+                englishText;
+
+        }
 
     });
 
+
+    /*
+     * Mémorise la langue choisie.
+     */
 
     localStorage.setItem(
         "zysell-language",
@@ -89,35 +120,45 @@ function changeLanguage(language) {
 }
 
 
+/* =========================================================
+   BOUTONS FR / EN
+========================================================= */
+
 function updateLanguageButtons(language) {
 
-    if (!languageFR || !languageEN) {
-        return;
+    if (languageFR) {
+
+        languageFR.setAttribute(
+            "aria-pressed",
+            language === "fr"
+                ? "true"
+                : "false"
+        );
+
+        languageFR.classList.toggle(
+            "active",
+            language === "fr"
+        );
+
     }
 
 
-    languageFR.setAttribute(
-        "aria-pressed",
-        language === "fr" ? "true" : "false"
-    );
+    if (languageEN) {
 
+        languageEN.setAttribute(
+            "aria-pressed",
+            language === "en"
+                ? "true"
+                : "false"
+        );
 
-    languageEN.setAttribute(
-        "aria-pressed",
-        language === "en" ? "true" : "false"
-    );
+        languageEN.classList.toggle(
+            "active",
+            language === "en"
+        );
 
+    }
 
-    languageFR.classList.toggle(
-        "active",
-        language === "fr"
-    );
-
-
-    languageEN.classList.toggle(
-        "active",
-        language === "en"
-    );
 }
 
 
@@ -126,7 +167,9 @@ if (languageFR) {
     languageFR.addEventListener(
         "click",
         function() {
-            changeLanguage("fr");
+
+            setLanguage("fr");
+
         }
     );
 
@@ -138,7 +181,9 @@ if (languageEN) {
     languageEN.addEventListener(
         "click",
         function() {
-            changeLanguage("en");
+
+            setLanguage("en");
+
         }
     );
 
@@ -146,7 +191,7 @@ if (languageEN) {
 
 
 /* =========================================================
-   ANNÉE
+   ANNÉE DU FOOTER
 ========================================================= */
 
 function updateYear() {
@@ -155,8 +200,10 @@ function updateYear() {
         return;
     }
 
+
     currentYear.textContent =
         new Date().getFullYear();
+
 }
 
 
@@ -166,64 +213,158 @@ function updateYear() {
 
 function getSystemTheme() {
 
-    return window.matchMedia(
-        "(prefers-color-scheme: dark)"
-    ).matches
+    const darkMode =
+        window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        );
+
+
+    return darkMode.matches
         ? "dark"
         : "light";
 }
 
 
-function getSavedTheme() {
+function getThemePreference() {
 
     const savedTheme =
-        localStorage.getItem("zysell-theme");
+        localStorage.getItem(
+            "zysell-theme"
+        );
+
 
     if (
         savedTheme === "light" ||
         savedTheme === "dark" ||
         savedTheme === "system"
     ) {
+
         return savedTheme;
+
     }
 
-    return ZYSELL.defaultTheme;
+
+    return ZYSELL_CONFIG.defaultTheme;
 }
 
 
-function applyTheme(theme) {
+function applyTheme(preference) {
 
-    let finalTheme = theme;
+    let theme =
+        preference;
 
 
-    if (theme === "system") {
-        finalTheme = getSystemTheme();
+    if (preference === "system") {
+
+        theme =
+            getSystemTheme();
+
     }
 
 
     document.documentElement.setAttribute(
         "data-theme",
-        finalTheme
+        theme
     );
 
 
     document.documentElement.setAttribute(
         "data-theme-preference",
-        theme
+        preference
     );
+
 }
 
 
-function saveTheme(theme) {
+/* =========================================================
+   BOUTON DE THÈME
+========================================================= */
 
-    localStorage.setItem(
-        "zysell-theme",
-        theme
+function createThemeButton() {
+
+    /*
+     * Vérifie qu'un bouton n'existe pas déjà.
+     */
+
+    if (
+        document.getElementById(
+            "theme-toggle"
+        )
+    ) {
+        return;
+    }
+
+
+    const button =
+        document.createElement(
+            "button"
+        );
+
+
+    button.type = "button";
+
+    button.id = "theme-toggle";
+
+    button.className =
+        "theme-toggle";
+
+
+    button.setAttribute(
+        "aria-label",
+        "Changer le thème"
     );
 
-    applyTheme(theme);
+
+    button.innerHTML =
+        '<span aria-hidden="true">◐</span>';
+
+
+    button.addEventListener(
+        "click",
+        function() {
+
+            toggleTheme();
+
+        }
+    );
+
+
+    /*
+     * Place le bouton dans la zone
+     * des langues du header.
+     */
+
+    const header =
+        document.querySelector(
+            "header"
+        );
+
+
+    if (!header) {
+        return;
+    }
+
+
+    const languageContainer =
+        document.getElementById(
+            "language-fr"
+        )?.parentElement;
+
+
+    if (languageContainer) {
+
+        languageContainer.prepend(
+            button
+        );
+
+    }
+
 }
 
+
+/* =========================================================
+   CHANGEMENT DE THÈME
+========================================================= */
 
 function toggleTheme() {
 
@@ -239,70 +380,19 @@ function toggleTheme() {
             : "dark";
 
 
-    saveTheme(nextTheme);
-}
-
-
-/* =========================================================
-   BOUTON THÈME
-========================================================= */
-
-function createThemeButton() {
-
-    const button =
-        document.createElement("button");
-
-
-    button.type = "button";
-
-    button.id = "theme-toggle";
-
-    button.className = "theme-toggle";
-
-    button.setAttribute(
-        "aria-label",
-        "Changer le thème"
+    localStorage.setItem(
+        "zysell-theme",
+        nextTheme
     );
 
 
-    button.innerHTML = `
-        <span aria-hidden="true">◐</span>
-    `;
-
-
-    button.addEventListener(
-        "click",
-        toggleTheme
-    );
-
-
-    const header =
-        document.querySelector("header");
-
-
-    if (header) {
-
-        const firstControls =
-            header.querySelector(
-                "div"
-            );
-
-
-        if (firstControls) {
-
-            firstControls.prepend(
-                button
-            );
-
-        }
-
-    }
+    applyTheme(nextTheme);
 
 }
 
 
 /* =========================================================
-   THÈME DU SYSTÈME
+   CHANGEMENT AUTOMATIQUE DU SYSTÈME
 ========================================================= */
 
 const systemTheme =
@@ -321,8 +411,13 @@ systemTheme.addEventListener(
             );
 
 
-        if (preference === "system") {
+        if (
+            preference === "system" ||
+            !preference
+        ) {
+
             applyTheme("system");
+
         }
 
     }
@@ -330,152 +425,60 @@ systemTheme.addEventListener(
 
 
 /* =========================================================
-   MENU MOBILE
-========================================================= */
-
-function createMobileMenu() {
-
-    const header =
-        document.querySelector("header");
-
-
-    const navigation =
-        header
-            ? header.querySelector("nav")
-            : null;
-
-
-    if (!header || !navigation) {
-        return;
-    }
-
-
-    const menuButton =
-        document.createElement("button");
-
-
-    menuButton.type = "button";
-
-    menuButton.className =
-        "mobile-menu-button";
-
-    menuButton.setAttribute(
-        "aria-label",
-        "Menu"
-    );
-
-    menuButton.setAttribute(
-        "aria-expanded",
-        "false"
-    );
-
-
-    menuButton.innerHTML = `
-        <span></span>
-        <span></span>
-        <span></span>
-    `;
-
-
-    header.appendChild(menuButton);
-
-
-    menuButton.addEventListener(
-        "click",
-        function() {
-
-            const isOpen =
-                header.classList.toggle(
-                    "mobile-menu-open"
-                );
-
-
-            menuButton.setAttribute(
-                "aria-expanded",
-                isOpen ? "true" : "false"
-            );
-
-        }
-    );
-
-
-    navigation
-        .querySelectorAll("a")
-        .forEach(function(link) {
-
-            link.addEventListener(
-                "click",
-                function() {
-
-                    header.classList.remove(
-                        "mobile-menu-open"
-                    );
-
-
-                    menuButton.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                }
-            );
-
-        });
-
-}
-
-
-/* =========================================================
-   SCROLL DOUX
+   NAVIGATION FLUIDE
 ========================================================= */
 
 function enableSmoothNavigation() {
 
-    document
-        .querySelectorAll(
+    const links =
+        document.querySelectorAll(
             'a[href^="#"]'
-        )
-        .forEach(function(link) {
-
-            link.addEventListener(
-                "click",
-                function(event) {
-
-                    const targetID =
-                        link.getAttribute("href");
+        );
 
 
-                    if (
-                        !targetID ||
-                        targetID === "#"
-                    ) {
-                        return;
-                    }
+    links.forEach(function(link) {
+
+        link.addEventListener(
+            "click",
+            function(event) {
+
+                const targetID =
+                    link.getAttribute(
+                        "href"
+                    );
 
 
-                    const target =
-                        document.querySelector(
-                            targetID
-                        );
-
-
-                    if (!target) {
-                        return;
-                    }
-
-
-                    event.preventDefault();
-
-
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
+                if (
+                    !targetID ||
+                    targetID === "#"
+                ) {
+                    return;
                 }
-            );
 
-        });
+
+                const target =
+                    document.querySelector(
+                        targetID
+                    );
+
+
+                if (!target) {
+                    return;
+                }
+
+
+                event.preventDefault();
+
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+    });
 
 }
 
@@ -486,23 +489,43 @@ function enableSmoothNavigation() {
 
 function initializeZySell() {
 
-    const language =
-        getSavedLanguage();
+    /*
+     * Langue
+     */
 
+    const language =
+        getLanguage();
+
+    setLanguage(language);
+
+
+    /*
+     * Thème
+     */
 
     const theme =
-        getSavedTheme();
-
-
-    changeLanguage(language);
+        getThemePreference();
 
     applyTheme(theme);
 
+
+    /*
+     * Année
+     */
+
     updateYear();
+
+
+    /*
+     * Bouton thème
+     */
 
     createThemeButton();
 
-    createMobileMenu();
+
+    /*
+     * Navigation
+     */
 
     enableSmoothNavigation();
 
@@ -519,7 +542,8 @@ function initializeZySell() {
 ========================================================= */
 
 if (
-    document.readyState === "loading"
+    document.readyState ===
+    "loading"
 ) {
 
     document.addEventListener(
@@ -531,4 +555,4 @@ if (
 
     initializeZySell();
 
-      }
+       }
