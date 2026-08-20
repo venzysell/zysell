@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZySell | Politique des cookies</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+.info-page{min-height:100vh;background:#fff;color:#111318;padding:110px 20px 60px}
+.info-shell{width:min(100%,860px);margin:auto}
+.info-back{display:inline-flex;align-items:center;gap:8px;color:#1976ff;text-decoration:none;font-weight:700;margin-bottom:28px}
+.info-title{font-size:clamp(38px,7vw,64px);line-height:1;letter-spacing:-.045em;margin:0 0 16px;font-weight:850}
+.info-updated{color:#7a7e87;font-size:13px;margin-bottom:40px}
+.info-content{font-size:16px;line-height:1.8;color:#5f646d}
+.info-content h2{color:#111318;font-size:24px;line-height:1.2;margin:38px 0 12px}
+.info-content h3{color:#111318;font-size:18px;margin:28px 0 8px}
+.info-content p{margin:0 0 16px}
+.info-content ul{padding-left:22px}
+.info-content li{margin:8px 0}
+.info-note{padding:16px 18px;border:1px solid #e5e7eb;border-radius:14px;background:#f8f9fb;margin:22px 0}
+.info-footer{margin-top:55px;padding-top:24px;border-top:1px solid #e5e7eb;color:#888d96;font-size:13px}
+body.dark .info-page{background:#07090d;color:#f7f8fa}
+body.dark .info-title,body.dark .info-content h2,body.dark .info-content h3{color:#f7f8fa}
+body.dark .info-content{color:#aeb3bd}
+body.dark .info-note{background:#11141a;border-color:#2b3038}
+body.dark .info-footer{border-color:#2b3038}
+body.dark .info-updated{color:#9298a3}
+@media(max-width:600px){.info-page{padding:90px 18px 45px}.info-content{font-size:15px}.info-content h2{font-size:21px}}
+</style>
+
+</head>
+<body>
+<main class="info-page">
+<section class="info-shell">
+<a class="info-back" href="index.html">← <span data-fr="Retour à ZySell" data-en="Back to ZySell">Retour à ZySell</span></a>
+
+<h1 class="info-title" data-fr="Politique des cookies" data-en="Cookie policy">Politique des cookies</h1>
+
+<p class="info-updated"
+   data-fr="Dernière mise à jour : 20 août 2026"
+   data-en="Last updated: August 20, 2026">
+   Dernière mise à jour : 20 août 2026
+</p>
+
+<div class="info-content">
+<div class="lang-fr-content" data-fr-block>
+
+<h2>1. Qu'est-ce qu'un cookie ?</h2>
+<p>Un cookie est un petit fichier ou mécanisme similaire permettant à un site de mémoriser certaines informations sur un navigateur ou un appareil.</p>
+
+<h2>2. Utilisation par ZySell</h2>
+<p>ZySell peut utiliser des mécanismes de stockage nécessaires au fonctionnement du site, notamment pour mémoriser certaines préférences comme la langue ou le thème clair/sombre.</p>
+
+<h2>3. Services tiers</h2>
+<p>Des services tiers peuvent utiliser leurs propres mécanismes de stockage lorsque leurs fonctionnalités sont intégrées à ZySell, par exemple pour l'authentification ou les paiements.</p>
+
+<h2>4. Contrôle</h2>
+<p>Les utilisateurs peuvent contrôler ou supprimer les données stockées par leur navigateur à travers les paramètres de celui-ci. La désactivation de certains mécanismes nécessaires peut affecter le fonctionnement de ZySell.</p>
+
+<h2>5. Évolution</h2>
+<p>Cette politique sera mise à jour si ZySell ajoute des outils d'analyse, de publicité ou d'autres technologies nécessitant un consentement spécifique.</p>
+
+</div>
+<div class="lang-en-content" data-en-block style="display:none">
+
+<h2>1. What is a cookie?</h2>
+<p>A cookie is a small file or similar mechanism that allows a website to remember information on a browser or device.</p>
+<h2>2. ZySell usage</h2>
+<p>ZySell may use storage mechanisms required for the website to function, including remembering preferences such as language or light/dark theme.</p>
+<h2>3. Third-party services</h2>
+<p>Third-party services may use their own storage mechanisms when their features are integrated into ZySell, such as authentication or payments.</p>
+<h2>4. Controls</h2>
+<p>Users can control or delete browser storage through their browser settings. Disabling certain necessary mechanisms may affect ZySell functionality.</p>
+<h2>5. Changes</h2>
+<p>This policy will be updated if ZySell adds analytics, advertising or other technologies requiring specific consent.</p>
+
+</div>
+</div>
+
+<footer class="info-footer">
+© 2026 ZySell. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span>
+</footer>
+</section>
+</main>
+
+<script>
+(function() {
+    const lang = localStorage.getItem("zysell-language") || "fr";
+    const theme = localStorage.getItem("zysell-theme") || "light";
+
+    document.documentElement.lang = lang;
+    document.body.classList.toggle("dark", theme === "dark");
+
+    document.querySelectorAll("[data-fr][data-en]").forEach(el => {
+        el.textContent = lang === "en" ? el.dataset.en : el.dataset.fr;
+    });
+
+    const fr = document.querySelector("[data-fr-block]");
+    const en = document.querySelector("[data-en-block]");
+    if (fr && en) {
+        fr.style.display = lang === "en" ? "none" : "block";
+        en.style.display = lang === "en" ? "block" : "none";
+    }
+})();
+</script>
+</body>
+</html>
