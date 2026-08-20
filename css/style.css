@@ -1,1179 +1,808 @@
-/* =========================================================
-   ZYSELL — STYLE PRINCIPAL
-   Étape 3 : Design responsive professionnel
-========================================================= */
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="ZySell — Créez votre boutique numérique, vendez vos produits et recevez vos paiements."
+    >
+
+    <meta
+        name="theme-color"
+        content="#ffffff"
+    >
+
+    <title>ZySell — Créez. Vendez. Encaissez.</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="logo.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="header-container">
+
+        <a
+            href="#accueil"
+            class="logo"
+            aria-label="ZySell"
+        >
+            <img
+                src="logo.png"
+                alt="ZySell"
+            >
+        </a>
+
+
+        <nav class="main-nav">
 
-:root {
-    --blue: #1478ff;
-    --blue-dark: #075fd8;
-    --blue-light: #eef6ff;
-
-    --black: #0b0d10;
-    --dark: #15181d;
-    --text: #17191d;
-    --muted: #69717c;
-
-    --white: #ffffff;
-    --border: #e5e9ef;
+            <a
+                href="#fonctionnalites"
+                data-fr="Fonctionnalités"
+                data-en="Features"
+            >
+                Fonctionnalités
+            </a>
 
-    --radius: 22px;
-    --radius-small: 12px;
+            <a
+                href="#produits"
+                data-fr="Produits"
+                data-en="Products"
+            >
+                Produits
+            </a>
 
-    --shadow: 0 20px 60px rgba(20, 120, 255, 0.10);
-    --container: 1180px;
+            <a
+                href="#comment-ca-marche"
+                data-fr="Comment ça marche"
+                data-en="How it works"
+            >
+                Comment ça marche
+            </a>
 
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
-}
+            <a
+                href="#faq"
+                data-fr="FAQ"
+                data-en="FAQ"
+            >
+                FAQ
+            </a>
 
+        </nav>
 
-/* =========================================================
-   RESET
-========================================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        <div class="header-actions">
 
-html {
-    scroll-behavior: smooth;
-}
+            <div class="language-switcher">
 
-body {
-    min-height: 100vh;
-    background: var(--white);
-    color: var(--text);
-    font-family: inherit;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
+                <button
+                    id="language-fr"
+                    type="button"
+                    aria-pressed="true"
+                >
+                    FR
+                </button>
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
+                <button
+                    id="language-en"
+                    type="button"
+                    aria-pressed="false"
+                >
+                    EN
+                </button>
 
-button {
-    font: inherit;
-}
+            </div>
 
-section {
-    width: min(var(--container), calc(100% - 40px));
-    margin: 0 auto;
-}
 
+            <button
+                id="theme-toggle"
+                class="theme-toggle"
+                type="button"
+                aria-label="Changer le thème"
+            >
+                🌙
+            </button>
 
-/* =========================================================
-   HEADER
-========================================================= */
 
-header {
-    width: 100%;
-    min-height: 78px;
+            <a
+                href="#connexion"
+                class="login-link"
+                data-fr="Se connecter"
+                data-en="Log in"
+            >
+                Se connecter
+            </a>
 
-    display: flex;
-    align-items: center;
 
-    padding: 14px max(20px, calc((100% - 1280px) / 2));
+            <a
+                href="#inscription"
+                class="header-cta"
+                data-fr="Créer un compte"
+                data-en="Create an account"
+            >
+                Créer un compte
+            </a>
 
-    background: rgba(255, 255, 255, 0.92);
+        </div>
 
-    border-bottom: 1px solid var(--border);
+    </div>
 
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+</header>
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-}
 
 
-/* Logo */
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
-header > a:first-child {
-    flex-shrink: 0;
-}
+<main>
+
 
-header img {
-    width: 88px;
-    height: auto;
-    object-fit: contain;
-}
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section
+    id="accueil"
+    class="hero"
+>
 
+    <div class="hero-container">
 
-/* Navigation */
 
-header nav {
-    display: flex;
-    align-items: center;
-    gap: 28px;
+        <div class="hero-content">
 
-    margin-left: auto;
-    margin-right: 28px;
-}
+            <div
+                class="eyebrow"
+                data-fr="LA PLATEFORME NUMÉRIQUE POUR CRÉATEURS"
+                data-en="THE DIGITAL PLATFORM FOR CREATORS"
+            >
+                LA PLATEFORME NUMÉRIQUE POUR CRÉATEURS
+            </div>
 
-header nav a {
-    font-size: 13px;
-    font-weight: 600;
-    color: #3f454d;
 
-    transition:
-        color 0.2s ease,
-        transform 0.2s ease;
-}
+            <h1>
 
-header nav a:hover {
-    color: var(--blue);
-    transform: translateY(-1px);
-}
+                <span
+                    data-fr="Votre création."
+                    data-en="Your creation."
+                >
+                    Votre création.
+                </span>
 
+                <span
+                    data-fr="Votre boutique."
+                    data-en="Your store."
+                >
+                    Votre boutique.
+                </span>
 
-/* Language buttons */
+                <strong
+                    data-fr="Votre marché."
+                    data-en="Your market."
+                >
+                    Votre marché.
+                </strong>
 
-header > div:nth-of-type(1) {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-right: 22px;
-}
+            </h1>
 
-#language-fr,
-#language-en {
-    border: 1px solid var(--border);
-    background: var(--white);
 
-    color: var(--text);
+            <p
+                class="hero-description"
+                data-fr="Créez votre espace professionnel, vendez vos produits numériques et recevez vos paiements depuis une seule plateforme."
+                data-en="Create your professional space, sell your digital products and receive payments from one platform."
+            >
+                Créez votre espace professionnel, vendez vos produits
+                numériques et recevez vos paiements depuis une seule plateforme.
+            </p>
 
-    min-width: 42px;
-    height: 38px;
 
-    padding: 0 10px;
+            <div class="hero-buttons">
 
-    border-radius: 10px;
+                <a
+                    href="#inscription"
+                    class="btn btn-primary"
+                    data-fr="Commencer gratuitement"
+                    data-en="Start for free"
+                >
+                    Commencer gratuitement
+                </a>
 
-    font-size: 12px;
-    font-weight: 800;
 
-    cursor: pointer;
+                <a
+                    href="#fonctionnalites"
+                    class="btn btn-secondary"
+                    data-fr="Découvrir ZySell"
+                    data-en="Discover ZySell"
+                >
+                    Découvrir ZySell
+                </a>
 
-    transition: all 0.2s ease;
-}
+            </div>
 
-#language-fr[aria-pressed="true"],
-#language-en[aria-pressed="true"] {
-    background: var(--black);
-    color: var(--white);
-    border-color: var(--black);
-}
 
+            <div class="hero-benefits">
 
-/* Authentication */
+                <span
+                    data-fr="✓ Création gratuite"
+                    data-en="✓ Free account"
+                >
+                    ✓ Création gratuite
+                </span>
 
-header > div:nth-of-type(2) {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
+                <span
+                    data-fr="✓ Produits numériques"
+                    data-en="✓ Digital products"
+                >
+                    ✓ Produits numériques
+                </span>
 
-header > div:nth-of-type(2) a {
-    font-size: 13px;
-    font-weight: 700;
-}
+                <span
+                    data-fr="✓ Paiements"
+                    data-en="✓ Payments"
+                >
+                    ✓ Paiements
+                </span>
 
-header > div:nth-of-type(2) a:last-child {
-    background: var(--black);
-    color: var(--white);
+            </div>
 
-    padding: 12px 18px;
-    border-radius: 10px;
+        </div>
 
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-}
 
-header > div:nth-of-type(2) a:last-child:hover {
-    background: var(--blue);
-    transform: translateY(-2px);
-}
 
+        <!-- Dashboard -->
 
-/* =========================================================
-   HERO
-========================================================= */
+        <div class="hero-dashboard">
 
-#accueil {
-    min-height: 720px;
+            <div class="dashboard-card">
 
-    display: grid;
-    grid-template-columns: 1fr 0.9fr;
+                <div class="dashboard-top">
 
-    align-items: center;
+                    <div>
 
-    gap: 70px;
+                        <small
+                            data-fr="Votre espace"
+                            data-en="Your space"
+                        >
+                            Votre espace
+                        </small>
 
-    padding-top: 70px;
-    padding-bottom: 90px;
+                        <strong>ZySell</strong>
 
-    position: relative;
-}
+                    </div>
 
 
-/* Decorative glow */
+                    <div class="verified-check">
+                        ✓
+                    </div>
 
-#accueil::before {
-    content: "";
+                </div>
 
-    position: absolute;
 
-    width: 420px;
-    height: 420px;
+                <div class="dashboard-revenue">
 
-    right: -120px;
-    top: 80px;
+                    <small
+                        data-fr="Revenus"
+                        data-en="Revenue"
+                    >
+                        Revenus
+                    </small>
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(20, 120, 255, 0.16) 0%,
-            rgba(20, 120, 255, 0.05) 38%,
-            transparent 72%
-        );
+                    <strong>
+                        485 000
+                        <small>FCFA</small>
+                    </strong>
 
-    filter: blur(10px);
+                </div>
 
-    pointer-events: none;
 
-    z-index: -1;
-}
+                <div class="dashboard-stats">
 
+                    <div>
+                        <strong>128</strong>
 
-/* Hero content */
+                        <span
+                            data-fr="Ventes"
+                            data-en="Sales"
+                        >
+                            Ventes
+                        </span>
+                    </div>
 
-.hero-content {
-    max-width: 610px;
-}
 
-.hero-content > p:first-child {
-    display: inline-flex;
-    align-items: center;
+                    <div>
+                        <strong>12</strong>
 
-    margin-bottom: 24px;
+                        <span
+                            data-fr="Produits"
+                            data-en="Products"
+                        >
+                            Produits
+                        </span>
+                    </div>
 
-    color: var(--blue);
 
-    font-size: 12px;
-    font-weight: 800;
+                    <div>
+                        <strong>3.8K</strong>
 
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-}
+                        <span
+                            data-fr="Visiteurs"
+                            data-en="Visitors"
+                        >
+                            Visiteurs
+                        </span>
+                    </div>
 
-.hero-content > p:first-child::before {
-    content: "✦";
-    margin-right: 9px;
-}
+                </div>
 
 
-/* Main title */
+                <div class="dashboard-chart">
 
-.hero-content h1 {
-    margin-bottom: 28px;
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
 
-    font-size: clamp(52px, 6vw, 86px);
+                </div>
 
-    line-height: 0.98;
-    letter-spacing: -0.055em;
+            </div>
 
-    font-weight: 900;
-}
+        </div>
 
-.hero-content h1 strong {
-    color: var(--blue);
-    font-weight: 900;
-}
+    </div>
 
+</section>
 
-/* Description */
 
-.hero-content > p:nth-of-type(2) {
-    max-width: 570px;
 
-    margin-bottom: 34px;
+<!-- =====================================================
+     TRUST / NUMBERS
+===================================================== -->
 
-    color: var(--muted);
+<section class="trust-section">
 
-    font-size: 18px;
-    line-height: 1.7;
-}
+    <div class="section-container">
 
+        <div class="trust-intro">
 
-/* Hero buttons */
+            <span
+                data-fr="UNE PLATEFORME PENSÉE POUR GRANDIR"
+                data-en="A PLATFORM BUILT TO GROW"
+            >
+                UNE PLATEFORME PENSÉE POUR GRANDIR
+            </span>
 
-.hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+            <h2
+                data-fr="Tout ce qu'il vous faut pour développer votre activité."
+                data-en="Everything you need to grow your business."
+            >
+                Tout ce qu'il vous faut pour développer votre activité.
+            </h2>
 
-    flex-wrap: wrap;
-}
+        </div>
 
-.hero-actions a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
 
-    min-height: 52px;
+        <div class="trust-grid">
 
-    padding: 0 24px;
+            <div>
+                <strong>24/7</strong>
 
-    border-radius: 12px;
+                <span
+                    data-fr="Votre boutique disponible"
+                    data-en="Your store available"
+                >
+                    Votre boutique disponible
+                </span>
+            </div>
 
-    font-size: 14px;
-    font-weight: 800;
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
-}
+            <div>
+                <strong>∞</strong>
 
-.hero-actions a:first-child {
-    background: var(--black);
-    color: var(--white);
-}
+                <span
+                    data-fr="Possibilités de création"
+                    data-en="Creative possibilities"
+                >
+                    Possibilités de création
+                </span>
+            </div>
 
-.hero-actions a:first-child:hover {
-    background: var(--blue);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(20, 120, 255, 0.22);
-}
 
-.hero-actions a:last-child {
-    background: var(--white);
-    border: 1px solid #cfd5dc;
-}
+            <div>
+                <strong>1</strong>
 
-.hero-actions a:last-child:hover {
-    border-color: var(--blue);
-    color: var(--blue);
-    transform: translateY(-2px);
-}
+                <span
+                    data-fr="Plateforme pour tout gérer"
+                    data-en="Platform to manage everything"
+                >
+                    Plateforme pour tout gérer
+                </span>
+            </div>
 
 
-/* =========================================================
-   HERO VISUAL / DASHBOARD CARD
-========================================================= */
+            <div>
+                <strong>100%</strong>
 
-.hero-visual {
-    min-height: 520px;
+                <span
+                    data-fr="Pensé pour le numérique"
+                    data-en="Built for digital"
+                >
+                    Pensé pour le numérique
+                </span>
+            </div>
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        </div>
 
-    position: relative;
-}
+    </div>
 
+</section>
 
-/* Background glow */
 
-.hero-visual::before {
-    content: "";
 
-    position: absolute;
+<!-- =====================================================
+     FONCTIONNALITÉS
+===================================================== -->
 
-    width: 360px;
-    height: 360px;
+<section
+    id="fonctionnalites"
+    class="features-section"
+>
 
-    border-radius: 50%;
+    <div class="section-container">
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(20, 120, 255, 0.18),
-            rgba(20, 120, 255, 0.03) 55%,
-            transparent 72%
-        );
+        <div class="section-heading">
 
-    filter: blur(5px);
-}
+            <span
+                data-fr="FONCTIONNALITÉS"
+                data-en="FEATURES"
+            >
+                FONCTIONNALITÉS
+            </span>
 
+            <h2
+                data-fr="Une seule plateforme. Tout votre business."
+                data-en="One platform. Your entire business."
+            >
+                Une seule plateforme. Tout votre business.
+            </h2>
 
-/* Card */
+            <p
+                data-fr="ZySell rassemble les outils essentiels pour créer, vendre et gérer votre activité numérique."
+                data-en="ZySell brings together the essential tools to create, sell and manage your digital business."
+            >
+                ZySell rassemble les outils essentiels pour créer,
+                vendre et gérer votre activité numérique.
+            </p>
 
-.hero-card {
-    width: min(430px, 100%);
+        </div>
 
-    min-height: 430px;
 
-    padding: 38px;
+        <div class="features-grid">
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.98),
-            rgba(244,248,255,0.96)
-        );
 
-    border: 1px solid rgba(20, 120, 255, 0.14);
+            <article class="feature-card">
 
-    border-radius: 28px;
+                <div class="feature-icon">▣</div>
 
-    box-shadow:
-        0 30px 80px rgba(18, 52, 86, 0.12),
-        0 0 60px rgba(20, 120, 255, 0.08);
+                <h3
+                    data-fr="Votre boutique"
+                    data-en="Your store"
+                >
+                    Votre boutique
+                </h3>
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+                <p
+                    data-fr="Créez votre espace professionnel et présentez vos produits à vos clients."
+                    data-en="Create your professional space and showcase your products to customers."
+                >
+                    Créez votre espace professionnel et présentez
+                    vos produits à vos clients.
+                </p>
 
-    text-align: center;
+            </article>
 
-    position: relative;
-    z-index: 1;
 
-    transform: rotate(0deg);
+            <article class="feature-card">
 
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease;
-}
+                <div class="feature-icon">↗</div>
 
-.hero-card:hover {
-    transform: translateY(-8px);
-    box-shadow:
-        0 40px 90px rgba(18, 52, 86, 0.15),
-        0 0 70px rgba(20, 120, 255, 0.12);
-}
+                <h3
+                    data-fr="Vendez en ligne"
+                    data-en="Sell online"
+                >
+                    Vendez en ligne
+                </h3>
 
+                <p
+                    data-fr="Mettez vos produits numériques en vente et partagez facilement votre boutique."
+                    data-en="Put your digital products on sale and easily share your store."
+                >
+                    Mettez vos produits numériques en vente et partagez
+                    facilement votre boutique.
+                </p>
 
-/* Z logo inside card */
+            </article>
 
-.hero-card > span {
-    width: 125px;
-    height: 125px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            <article class="feature-card">
 
-    margin-bottom: 25px;
+                <div class="feature-icon">⌁</div>
 
-    border-radius: 50%;
+                <h3
+                    data-fr="Lien de paiement"
+                    data-en="Payment link"
+                >
+                    Lien de paiement
+                </h3>
 
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #edf5ff
-        );
+                <p
+                    data-fr="Créez un lien et permettez à vos clients de vous payer simplement."
+                    data-en="Create a link and let your customers pay you easily."
+                >
+                    Créez un lien et permettez à vos clients
+                    de vous payer simplement.
+                </p>
 
-    border: 1px solid #dce8f8;
+            </article>
 
-    color: var(--blue);
 
-    font-size: 78px;
-    font-weight: 900;
+            <article class="feature-card">
 
-    line-height: 1;
+                <div class="feature-icon">◈</div>
 
-    box-shadow:
-        0 15px 35px rgba(20, 120, 255, 0.10);
-}
+                <h3
+                    data-fr="Wallet ZySell"
+                    data-en="ZySell Wallet"
+                >
+                    Wallet ZySell
+                </h3>
 
-.hero-card strong {
-    font-size: 30px;
-    font-weight: 900;
+                <p
+                    data-fr="Centralisez les fonds issus de votre activité dans votre espace ZySell."
+                    data-en="Centralize funds from your business in your ZySell space."
+                >
+                    Centralisez les fonds issus de votre activité
+                    dans votre espace ZySell.
+                </p>
 
-    margin-bottom: 5px;
-}
+            </article>
 
-.hero-card small {
-    color: var(--muted);
 
-    font-size: 11px;
-    font-weight: 600;
-}
+            <article class="feature-card">
 
+                <div class="feature-icon">◫</div>
 
-/* =========================================================
-   GENERAL SECTIONS
-========================================================= */
+                <h3
+                    data-fr="Statistiques"
+                    data-en="Analytics"
+                >
+                    Statistiques
+                </h3>
 
-#explorer,
-#produits,
-#entreprises,
-#verification,
-#paiement,
-#wallet,
-#inscription {
-    padding-top: 110px;
-    padding-bottom: 110px;
+                <p
+                    data-fr="Suivez vos ventes, vos produits et les performances de votre activité."
+                    data-en="Track your sales, products and business performance."
+                >
+                    Suivez vos ventes, vos produits et les performances
+                    de votre activité.
+                </p>
 
-    border-top: 1px solid var(--border);
-}
+            </article>
 
 
-/* Section labels */
+            <article class="feature-card">
 
-#explorer > p:first-child,
-#produits > p:first-child,
-#entreprises > p:first-child,
-#verification > p:first-child,
-#paiement > p:first-child,
-#wallet > p:first-child {
-    color: var(--blue);
+                <div class="feature-icon">✓</div>
 
-    font-size: 12px;
-    font-weight: 900;
+                <h3
+                    data-fr="Vérification"
+                    data-en="Verification"
+                >
+                    Vérification
+                </h3>
 
-    letter-spacing: 0.14em;
-}
+                <p
+                    data-fr="Renforcez la confiance avec une entreprise vérifiée et un badge visible."
+                    data-en="Build trust with a verified business and visible badge."
+                >
+                    Renforcez la confiance avec une entreprise vérifiée
+                    et un badge visible.
+                </p>
 
+            </article>
 
-/* Headings */
+        </div>
 
-section h2 {
-    max-width: 780px;
+    </div>
 
-    margin-top: 15px;
-    margin-bottom: 20px;
+</section>
 
-    font-size: clamp(38px, 5vw, 64px);
 
-    line-height: 1.03;
 
-    letter-spacing: -0.045em;
+<!-- =====================================================
+     PRODUITS
+===================================================== -->
 
-    font-weight: 900;
-}
+<section
+    id="produits"
+    class="products-section"
+>
 
-section > p {
-    color: var(--muted);
-}
+    <div class="section-container">
 
-section h2 + p {
-    max-width: 700px;
+        <div class="section-heading">
 
-    font-size: 17px;
-    line-height: 1.7;
+            <span
+                data-fr="CE QUE VOUS POUVEZ VENDRE"
+                data-en="WHAT YOU CAN SELL"
+            >
+                CE QUE VOUS POUVEZ VENDRE
+            </span>
 
-    margin-bottom: 35px;
-}
+            <h2
+                data-fr="Votre contenu. Votre prix. Votre business."
+                data-en="Your content. Your price. Your business."
+            >
+                Votre contenu. Votre prix. Votre business.
+            </h2>
 
+        </div>
 
-/* =========================================================
-   EXPLORER
-========================================================= */
 
-#explorer > div {
-    display: grid;
+        <div class="products-grid">
 
-    grid-template-columns:
-        repeat(4, 1fr);
+            <article>
+                <span>01</span>
+                <h3 data-fr="eBooks" data-en="eBooks">eBooks</h3>
+                <p
+                    data-fr="Livres, guides et documents."
+                    data-en="Books, guides and documents."
+                >
+                    Livres, guides et documents.
+                </p>
+            </article>
 
-    gap: 14px;
 
-    margin-top: 45px;
-}
+            <article>
+                <span>02</span>
+                <h3 data-fr="Formations" data-en="Courses">Formations</h3>
+                <p
+                    data-fr="Cours et contenus éducatifs."
+                    data-en="Courses and educational content."
+                >
+                    Cours et contenus éducatifs.
+                </p>
+            </article>
 
-#explorer > div a {
-    min-height: 150px;
 
-    padding: 24px;
+            <article>
+                <span>03</span>
+                <h3 data-fr="Vidéos" data-en="Videos">Vidéos</h3>
+                <p
+                    data-fr="Contenus vidéo et accès privés."
+                    data-en="Video content and private access."
+                >
+                    Contenus vidéo et accès privés.
+                </p>
+            </article>
 
-    display: flex;
-    align-items: flex-end;
 
-    border: 1px solid var(--border);
+            <article>
+                <span>04</span>
+                <h3 data-fr="Logiciels" data-en="Software">Logiciels</h3>
+                <p
+                    data-fr="Applications et fichiers numériques."
+                    data-en="Applications and digital files."
+                >
+                    Applications et fichiers numériques.
+                </p>
+            </article>
 
-    border-radius: var(--radius);
 
-    background: #fbfcfe;
+            <article>
+                <span>05</span>
+                <h3 data-fr="Musique" data-en="Music">Musique</h3>
+                <p
+                    data-fr="Titres, albums et contenus audio."
+                    data-en="Tracks, albums and audio content."
+                >
+                    Titres, albums et contenus audio.
+                </p>
+            </article>
 
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-}
 
-#explorer > div a:hover {
-    transform: translateY(-5px);
+            <article>
+                <span>06</span>
+                <h3
+                    data-fr="Templates"
+                    data-en="Templates"
+                >
+                    Templates
+                </h3>
+                <p
+                    data-fr="Ressources prêtes à utiliser."
+                    data-en="Ready-to-use resources."
+                >
+                    Ressources prêtes à utiliser.
+                </p>
+            </article>
 
-    border-color: rgba(20, 120, 255, 0.35);
+        </div>
 
-    box-shadow: var(--shadow);
-}
+    </div>
 
-#explorer strong {
-    font-size: 18px;
-}
+</section>
 
 
-/* =========================================================
-   PRODUITS
-========================================================= */
 
-#produits > div {
-    display: grid;
+<!-- =====================================================
+     COMMENT ÇA MARCHE
+===================================================== -->
 
-    grid-template-columns:
-        repeat(3, 1fr);
+<section
+    id="comment-ca-marche"
+    class="steps-section"
+>
 
-    gap: 18px;
+    <div class="section-container">
 
-    margin-top: 45px;
-}
+        <div class="section-heading">
 
-#produits article {
-    padding: 30px;
+            <span
+                data-fr="COMMENT ÇA MARCHE"
+                data-en="HOW IT WORKS"
+            >
+                COMMENT ÇA MARCHE
+            </span>
 
-    min-height: 230px;
+            <h2
+                data-fr="Commencez à vendre en quelques étapes."
+                data-en="Start selling in a few simple steps."
+            >
+                Commencez à vendre en quelques étapes.
+            </h2>
 
-    border: 1px solid var(--border);
+        </div>
 
-    border-radius: var(--radius);
 
-    background: #ffffff;
+        <div class="steps-grid">
 
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
-}
 
-#produits article:hover {
-    transform: translateY(-5px);
+            <article>
+                <span>01</span>
 
-    border-color: rgba(20, 120, 255, 0.25);
+                <h3
+                    data-fr="Créez votre compte"
+                    data-en="Create your account"
+                >
+                    Créez votre compte
+                </h3>
 
-    box-shadow: var(--shadow);
-}
-
-#produits h3 {
-    font-size: 22px;
-    font-weight: 900;
-
-    margin-bottom: 12px;
-}
-
-#produits article p {
-    color: var(--muted);
-
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   CTA SECTIONS
-========================================================= */
-
-#entreprises,
-#verification,
-#paiement,
-#inscription {
-    background:
-        linear-gradient(
-            180deg,
-            #ffffff 0%,
-            #f7faff 100%
-        );
-}
-
-#entreprises a,
-#verification a,
-#paiement a,
-#inscription a {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    min-height: 50px;
-
-    padding: 0 24px;
-
-    margin-top: 10px;
-
-    border-radius: 11px;
-
-    background: var(--black);
-
-    color: var(--white);
-
-    font-size: 14px;
-    font-weight: 800;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-#entreprises a:hover,
-#verification a:hover,
-#paiement a:hover,
-#inscription a:hover {
-    background: var(--blue);
-    transform: translateY(-2px);
-}
-
-
-/* =========================================================
-   VERIFICATION
-========================================================= */
-
-#verification > p:nth-of-type(2) {
-    max-width: 650px;
-
-    margin-top: 20px;
-
-    padding: 18px 20px;
-
-    border-left: 3px solid var(--blue);
-
-    background: var(--blue-light);
-
-    border-radius: 0 12px 12px 0;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-    width: 100%;
-
-    padding: 70px max(20px, calc((100% - 1180px) / 2));
-
-    background: var(--black);
-
-    color: var(--white);
-}
-
-footer a {
-    color: #cdd2da;
-}
-
-footer a:hover {
-    color: var(--white);
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 1000px) {
-
-    header nav {
-        gap: 16px;
-        margin-right: 15px;
-    }
-
-    header nav a {
-        font-size: 11px;
-    }
-
-    #accueil {
-        grid-template-columns: 1fr;
-
-        text-align: center;
-
-        gap: 45px;
-
-        padding-top: 80px;
-    }
-
-    .hero-content {
-        max-width: 760px;
-        margin: 0 auto;
-    }
-
-    .hero-content > p:nth-of-type(2) {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-actions {
-        justify-content: center;
-    }
-
-    .hero-visual {
-        min-height: 430px;
-    }
-
-    #explorer > div {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    #produits > div {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    :root {
-        --container: 100%;
-    }
-
-    section {
-        width: calc(100% - 32px);
-    }
-
-
-    /* Header */
-
-    header {
-        min-height: 70px;
-
-        padding: 11px 16px;
-
-        flex-wrap: wrap;
-
-        gap: 10px;
-    }
-
-    header img {
-        width: 72px;
-    }
-
-    header nav {
-        order: 4;
-
-        width: 100%;
-
-        margin: 5px 0 0;
-
-        padding-top: 10px;
-
-        border-top: 1px solid var(--border);
-
-        justify-content: space-between;
-
-        overflow-x: auto;
-
-        gap: 18px;
-    }
-
-    header nav a {
-        white-space: nowrap;
-
-        font-size: 11px;
-    }
-
-    header > div:nth-of-type(1) {
-        margin-left: auto;
-        margin-right: 0;
-    }
-
-    #language-fr,
-    #language-en {
-        min-width: 36px;
-        height: 34px;
-
-        padding: 0 8px;
-
-        font-size: 11px;
-    }
-
-    header > div:nth-of-type(2) {
-        gap: 8px;
-    }
-
-    header > div:nth-of-type(2) a:first-child {
-        display: none;
-    }
-
-    header > div:nth-of-type(2) a:last-child {
-        padding: 10px 12px;
-
-        font-size: 11px;
-    }
-
-
-    /* Hero */
-
-    #accueil {
-        min-height: auto;
-
-        padding-top: 65px;
-        padding-bottom: 75px;
-
-        gap: 35px;
-
-        text-align: center;
-    }
-
-    #accueil::before {
-        width: 300px;
-        height: 300px;
-
-        right: -150px;
-        top: 100px;
-    }
-
-    .hero-content > p:first-child {
-        font-size: 9px;
-
-        letter-spacing: 0.11em;
-
-        margin-bottom: 20px;
-    }
-
-    .hero-content h1 {
-        font-size: clamp(48px, 14vw, 70px);
-
-        line-height: 0.97;
-
-        letter-spacing: -0.06em;
-
-        margin-bottom: 24px;
-    }
-
-    .hero-content > p:nth-of-type(2) {
-        font-size: 15px;
-
-        line-height: 1.65;
-
-        margin-bottom: 27px;
-    }
-
-    .hero-actions {
-        width: 100%;
-
-        flex-direction: column;
-
-        gap: 10px;
-    }
-
-    .hero-actions a {
-        width: 100%;
-
-        min-height: 54px;
-    }
-
-
-    /* Hero visual */
-
-    .hero-visual {
-        min-height: 340px;
-
-        width: 100%;
-    }
-
-    .hero-visual::before {
-        width: 280px;
-        height: 280px;
-    }
-
-    .hero-card {
-        width: min(330px, 90vw);
-
-        min-height: 330px;
-
-        padding: 25px;
-
-        border-radius: 24px;
-    }
-
-    .hero-card > span {
-        width: 95px;
-        height: 95px;
-
-        font-size: 58px;
-
-        margin-bottom: 20px;
-    }
-
-    .hero-card strong {
-        font-size: 25px;
-    }
-
-
-    /* Sections */
-
-    #explorer,
-    #produits,
-    #entreprises,
-    #verification,
-    #paiement,
-    #wallet,
-    #inscription {
-        padding-top: 75px;
-        padding-bottom: 75px;
-    }
-
-    section h2 {
-        font-size: 40px;
-
-        letter-spacing: -0.045em;
-    }
-
-    section h2 + p {
-        font-size: 15px;
-    }
-
-
-    /* Explorer */
-
-    #explorer > div {
-        grid-template-columns: 1fr;
-
-        gap: 10px;
-
-        margin-top: 30px;
-    }
-
-    #explorer > div a {
-        min-height: 105px;
-
-        padding: 20px;
-    }
-
-
-    /* Products */
-
-    #produits > div {
-        grid-template-columns: 1fr;
-
-        gap: 12px;
-
-        margin-top: 30px;
-    }
-
-    #produits article {
-        min-height: 180px;
-
-        padding: 25px;
-    }
-
-
-    /* CTA */
-
-    #entreprises a,
-    #verification a,
-    #paiement a,
-    #inscription a {
-        width: 100%;
-    }
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
-
-@media (max-width: 380px) {
-
-    header img {
-        width: 65px;
-    }
-
-    header > div:nth-of-type(2) a:last-child {
-        padding: 9px 10px;
-        font-size: 10px;
-    }
-
-    .hero-content h1 {
-        font-size: 45px;
-    }
-
-    .hero-card {
-        width: 290px;
-        min-height: 290px;
-    }
-
-    section h2 {
-        font-size: 34px;
-    }
-}
-
-
-/* =========================================================
-   DARK MODE — PRÉPARATION
-========================================================= */
-
-body.dark-mode {
-    background: #080a0d;
-    color: #f5f7fa;
-}
-
-body.dark-mode header {
-    background: rgba(8, 10, 13, 0.92);
-    border-color: #242932;
-}
-
-body.dark-mode header nav a {
-    color: #c8cdd5;
-}
-
-body.dark-mode #language-fr,
-body.dark-mode #language-en {
-    background: #11151a;
-    color: #ffffff;
-    border-color: #303640;
-}
-
-body.dark-mode #language-fr[aria-pressed="true"],
-body.dark-mode #language-en[aria-pressed="true"] {
-    background: #ffffff;
-    color: #080a0d;
-}
-
-body.dark-mode header > div:nth-of-type(2) a:last-child,
-body.dark-mode .hero-actions a:first-child {
-    background: #ffffff;
-    color: #080a0d;
-}
-
-body.dark-mode .hero-content > p:nth-of-type(2),
-body.dark-mode section > p,
-body.dark-mode #produits article p {
-    color: #aab1bb;
-}
-
-body.dark-mode .hero-card,
-body.dark-mode #explorer > div a,
-body.dark-mode #produits article {
-    background: #11151a;
-    border-color: #292f38;
-}
-
-body.dark-mode #entreprises,
-body.dark-mode #verification,
-body.dark-mode #paiement,
-body.dark-mode #inscription {
-    background:
-        linear-gradient(
-            180deg,
-            #080a0d,
-            #0e131a
-        );
-}
-
-body.dark-mode {
-    --border: #292f38;
-                      }
+                <p
+                    data-fr="Inscrivez-vous gratuitement et créez votre espace."
+                    data-en="Sign up for free and create your 
