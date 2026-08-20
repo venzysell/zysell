@@ -12,7 +12,7 @@
 
     <meta
         name="description"
-        content="ZySell — Créez votre boutique numérique, vendez vos produits et recevez vos paiements partout dans le monde."
+        content="ZySell est une plateforme numérique permettant aux créateurs et aux entreprises de vendre leurs produits numériques, recevoir des paiements et développer leur activité."
     >
 
     <meta
@@ -20,22 +20,36 @@
         content="#ffffff"
     >
 
-    <meta
-        name="robots"
-        content="index, follow"
-    >
-
-    <title>ZySell — Vendez vos produits numériques</title>
+    <title>ZySell — Créez. Vendez. Encaissez.</title>
 
     <link
         rel="icon"
-        type="image/png"
         href="logo.png"
+        type="image/png"
+    >
+
+    <!-- ==============================
+         STYLES
+    =============================== -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
     >
 
     <link
         rel="stylesheet"
-        href="css/style.css"
+        href="assets/css/responsive.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/animations.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/theme.css"
     >
 
 </head>
@@ -48,14 +62,15 @@
      HEADER
 ========================================================= -->
 
-<header class="site-header">
+<header class="header">
 
-    <div class="container header-inner">
+    <div class="container header-container">
+
 
         <!-- LOGO -->
 
         <a
-            href="#accueil"
+            href="#home"
             class="logo"
             aria-label="ZySell"
         >
@@ -65,44 +80,42 @@
                 alt="ZySell"
             >
 
+            <span>ZySell</span>
+
         </a>
 
 
-        <!-- NAVIGATION DESKTOP -->
+        <!-- NAVIGATION PRINCIPALE -->
 
         <nav
-            class="main-nav"
+            class="navbar"
             aria-label="Navigation principale"
         >
 
             <a
-                href="#fonctionnalites"
-                data-fr="Fonctionnalités"
-                data-en="Features"
+                href="#features"
+                data-i18n="nav.features"
             >
                 Fonctionnalités
             </a>
 
             <a
-                href="#produits"
-                data-fr="Produits"
-                data-en="Products"
+                href="#products"
+                data-i18n="nav.products"
             >
                 Produits
             </a>
 
             <a
-                href="#tarifs"
-                data-fr="Tarifs"
-                data-en="Pricing"
+                href="#pricing"
+                data-i18n="nav.pricing"
             >
                 Tarifs
             </a>
 
             <a
                 href="#faq"
-                data-fr="FAQ"
-                data-en="FAQ"
+                data-i18n="nav.faq"
             >
                 FAQ
             </a>
@@ -110,53 +123,32 @@
         </nav>
 
 
-        <!-- ACTIONS -->
+        <!-- OUTILS -->
 
-        <div class="header-actions">
+        <div class="header-tools">
+
 
             <!-- LANGUE -->
 
-            <div class="language-switcher">
-
-                <button
-                    type="button"
-                    id="language-fr"
-                    class="language-btn active"
-                    aria-label="Français"
-                    aria-pressed="true"
-                >
-                    FR
-                </button>
-
-                <button
-                    type="button"
-                    id="language-en"
-                    class="language-btn"
-                    aria-label="English"
-                    aria-pressed="false"
-                >
-                    EN
-                </button>
-
-            </div>
+            <button
+                id="languageBtn"
+                class="language-btn"
+                type="button"
+                aria-label="Changer de langue"
+            >
+                FR
+            </button>
 
 
-            <!-- MODE SOMBRE -->
+            <!-- THEME -->
 
             <button
+                id="themeToggle"
+                class="theme-btn"
                 type="button"
-                id="theme-toggle"
-                class="theme-toggle"
-                aria-label="Changer de thème"
+                aria-label="Changer le thème"
             >
-
-                <span
-                    class="theme-icon"
-                    aria-hidden="true"
-                >
-                    🌙
-                </span>
-
+                🌙
             </button>
 
 
@@ -164,9 +156,8 @@
 
             <a
                 href="login.html"
-                class="login-link"
-                data-fr="Se connecter"
-                data-en="Log in"
+                class="btn-login"
+                data-i18n="login"
             >
                 Se connecter
             </a>
@@ -176,9 +167,8 @@
 
             <a
                 href="signup.html"
-                class="btn btn-dark header-cta"
-                data-fr="Créer un compte"
-                data-en="Create an account"
+                class="btn-signup"
+                data-i18n="signup"
             >
                 Créer un compte
             </a>
@@ -187,9 +177,9 @@
             <!-- MENU MOBILE -->
 
             <button
+                id="mobileMenuBtn"
+                class="mobile-menu-btn"
                 type="button"
-                id="mobile-menu-toggle"
-                class="mobile-menu-toggle"
                 aria-label="Ouvrir le menu"
                 aria-expanded="false"
             >
@@ -200,153 +190,140 @@
 
     </div>
 
-
-    <!-- MENU MOBILE -->
-
-    <nav
-        id="mobile-menu"
-        class="mobile-menu"
-        aria-label="Navigation mobile"
-        hidden
-    >
-
-        <a
-            href="#fonctionnalites"
-            data-fr="Fonctionnalités"
-            data-en="Features"
-        >
-            Fonctionnalités
-        </a>
-
-        <a
-            href="#produits"
-            data-fr="Produits"
-            data-en="Products"
-        >
-            Produits
-        </a>
-
-        <a
-            href="#tarifs"
-            data-fr="Tarifs"
-            data-en="Pricing"
-        >
-            Tarifs
-        </a>
-
-        <a
-            href="#faq"
-            data-fr="FAQ"
-            data-en="FAQ"
-        >
-            FAQ
-        </a>
-
-        <a
-            href="login.html"
-            data-fr="Se connecter"
-            data-en="Log in"
-        >
-            Se connecter
-        </a>
-
-        <a
-            href="signup.html"
-            class="mobile-cta"
-            data-fr="Créer un compte"
-            data-en="Create an account"
-        >
-            Créer un compte
-        </a>
-
-    </nav>
-
 </header>
 
 
 
 <!-- =========================================================
-     MAIN
+     MENU MOBILE
 ========================================================= -->
 
-<main id="accueil">
+<nav
+    id="mobileMenu"
+    class="mobile-menu"
+    aria-label="Menu mobile"
+>
+
+    <a
+        href="#features"
+        data-i18n="nav.features"
+    >
+        Fonctionnalités
+    </a>
+
+    <a
+        href="#products"
+        data-i18n="nav.products"
+    >
+        Produits
+    </a>
+
+    <a
+        href="#pricing"
+        data-i18n="nav.pricing"
+    >
+        Tarifs
+    </a>
+
+    <a
+        href="#faq"
+        data-i18n="nav.faq"
+    >
+        FAQ
+    </a>
+
+    <div class="mobile-menu-divider"></div>
+
+    <a
+        href="login.html"
+        data-i18n="login"
+    >
+        Se connecter
+    </a>
+
+    <a
+        href="signup.html"
+        data-i18n="signup"
+    >
+        Créer un compte
+    </a>
+
+</nav>
+
+
+
+<!-- =========================================================
+     CONTENU PRINCIPAL
+========================================================= -->
+
+<main>
+
 
 
 <!-- =========================================================
      HERO
 ========================================================= -->
 
-<section class="hero">
+<section
+    id="home"
+    class="hero"
+>
 
-    <div class="container hero-grid">
+    <div class="container hero-container">
 
 
         <!-- TEXTE -->
 
         <div class="hero-content">
 
-            <div
-                class="eyebrow"
-                data-fr="LA PLATEFORME POUR VENDRE EN LIGNE"
-                data-en="THE PLATFORM TO SELL ONLINE"
+
+            <span
+                class="hero-eyebrow"
+                data-i18n="hero.eyebrow"
             >
-                LA PLATEFORME POUR VENDRE EN LIGNE
-            </div>
+                LA PLATEFORME NUMÉRIQUE POUR CRÉER ET VENDRE
+            </span>
 
 
-            <h1>
+            <h1 data-i18n="hero.title">
 
-                <span
-                    data-fr="Créez."
-                    data-en="Create."
-                >
-                    Créez.
-                </span>
+                Votre création.
+                <br>
 
-                <span
-                    data-fr="Vendez."
-                    data-en="Sell."
-                >
-                    Vendez.
-                </span>
+                Votre boutique.
+                <br>
 
-                <strong
-                    data-fr="Développez."
-                    data-en="Grow."
-                >
-                    Développez.
-                </strong>
+                <strong>Votre marché.</strong>
 
             </h1>
 
 
             <p
                 class="hero-description"
-                data-fr="Créez votre boutique numérique, vendez vos produits et recevez vos paiements depuis une seule plateforme."
-                data-en="Create your digital store, sell your products and receive payments from one platform."
+                data-i18n="hero.description"
             >
-                Créez votre boutique numérique, vendez vos produits
-                et recevez vos paiements depuis une seule plateforme.
+                Créez votre espace professionnel, vendez vos produits
+                numériques et recevez vos paiements depuis une seule
+                plateforme.
             </p>
 
+
+            <!-- ACTIONS -->
 
             <div class="hero-actions">
 
                 <a
                     href="signup.html"
-                    class="btn btn-primary"
-                    data-fr="Créer ma boutique gratuitement"
-                    data-en="Create my free store"
+                    class="btn-primary"
+                    data-i18n="hero.primary"
                 >
                     Créer ma boutique gratuitement
                 </a>
 
-
                 <a
-                    href="#fonctionnalites"
-                    class="btn btn-outline"
-                    data-fr="Découvrir ZySell"
-                    data-en="Discover ZySell"
+                    href="#features"
+                    class="btn-secondary"
+                    data-i18n="hero.secondary"
                 >
                     Découvrir ZySell
                 </a>
@@ -354,128 +331,134 @@
             </div>
 
 
-            <div class="hero-trust">
+            <!-- AVANTAGES RAPIDES -->
 
-                <span
-                    data-fr="✓ Création gratuite"
-                    data-en="✓ Free account"
-                >
-                    ✓ Création gratuite
+            <div class="hero-benefits">
+
+                <span data-i18n="hero.benefit1">
+                    Création gratuite
                 </span>
 
-                <span
-                    data-fr="✓ Produits numériques"
-                    data-en="✓ Digital products"
-                >
-                    ✓ Produits numériques
+                <span data-i18n="hero.benefit2">
+                    Produits numériques
                 </span>
 
-                <span
-                    data-fr="✓ Paiements sécurisés"
-                    data-en="✓ Secure payments"
-                >
-                    ✓ Paiements sécurisés
+                <span data-i18n="hero.benefit3">
+                    Paiements sécurisés
                 </span>
 
             </div>
 
         </div>
+
 
 
         <!-- VISUEL -->
 
         <div class="hero-visual">
 
-            <div class="store-preview">
+            <div class="dashboard-preview">
 
-                <div class="store-top">
+
+                <div class="preview-top">
 
                     <div>
 
                         <small
-                            data-fr="Votre boutique"
-                            data-en="Your store"
+                            data-i18n="preview.store"
                         >
                             Votre boutique
                         </small>
 
-                        <strong>ZySell</strong>
+                        <strong>
+                            ZySell
+                        </strong>
 
                     </div>
 
 
-                    <span class="verified-badge">
+                    <span
+                        class="verified-badge"
+                        aria-label="Entreprise vérifiée"
+                    >
                         ✓
                     </span>
 
                 </div>
 
 
-                <div class="store-balance">
+                <div class="preview-line"></div>
+
+
+                <div class="preview-main">
 
                     <small
-                        data-fr="Revenus"
-                        data-en="Revenue"
+                        data-i18n="preview.revenue"
                     >
-                        Revenus
+                        Votre activité
                     </small>
 
-                    <strong>
-                        485 000
-                        <small>FCFA</small>
-                    </strong>
+                    <h3
+                        data-i18n="preview.title"
+                    >
+                        Vendez vos produits numériques
+                    </h3>
+
+                    <p
+                        data-i18n="preview.description"
+                    >
+                        Une boutique professionnelle,
+                        vos produits et vos paiements au même endroit.
+                    </p>
 
                 </div>
 
 
-                <div class="store-stats">
+                <div class="preview-items">
 
                     <div>
-                        <strong>128</strong>
+
+                        <strong>
+                            ✓
+                        </strong>
 
                         <span
-                            data-fr="Ventes"
-                            data-en="Sales"
+                            data-i18n="preview.item1"
                         >
-                            Ventes
+                            Boutique
                         </span>
+
                     </div>
 
 
                     <div>
-                        <strong>12</strong>
+
+                        <strong>
+                            ✓
+                        </strong>
 
                         <span
-                            data-fr="Produits"
-                            data-en="Products"
+                            data-i18n="preview.item2"
                         >
-                            Produits
+                            Paiements
                         </span>
+
                     </div>
 
 
                     <div>
-                        <strong>3.8K</strong>
+
+                        <strong>
+                            ✓
+                        </strong>
 
                         <span
-                            data-fr="Visiteurs"
-                            data-en="Visitors"
+                            data-i18n="preview.item3"
                         >
-                            Visiteurs
+                            Wallet
                         </span>
+
                     </div>
-
-                </div>
-
-
-                <div class="chart">
-
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
 
                 </div>
 
@@ -490,36 +473,16 @@
 
 
 <!-- =========================================================
-     SOCIAL PROOF / INTRODUCTION
+     CONFIANCE
 ========================================================= -->
 
-<section class="intro">
+<section class="trust-bar">
 
-    <div class="container intro-content">
+    <div class="container">
 
-        <p
-            class="eyebrow"
-            data-fr="TOUT CE DONT VOUS AVEZ BESOIN"
-            data-en="EVERYTHING YOU NEED"
-        >
-            TOUT CE DONT VOUS AVEZ BESOIN
-        </p>
-
-
-        <h2
-            data-fr="Votre activité numérique. Une seule plateforme."
-            data-en="Your digital business. One platform."
-        >
-            Votre activité numérique. Une seule plateforme.
-        </h2>
-
-
-        <p
-            data-fr="ZySell réunit les outils essentiels pour créer, vendre, encaisser et développer votre activité numérique."
-            data-en="ZySell brings together the essential tools to create, sell, get paid and grow your digital business."
-        >
-            ZySell réunit les outils essentiels pour créer, vendre,
-            encaisser et développer votre activité numérique.
+        <p data-i18n="trust.text">
+            Une plateforme pensée pour les créateurs,
+            entrepreneurs et entreprises numériques.
         </p>
 
     </div>
@@ -529,145 +492,190 @@
 
 
 <!-- =========================================================
-     FONCTIONNALITÉS
+     POURQUOI ZYSELL
 ========================================================= -->
 
 <section
-    id="fonctionnalites"
-    class="features section"
+    id="features"
+    class="features"
 >
 
     <div class="container">
 
 
-        <div class="section-heading">
+        <div class="section-header">
 
-            <p
-                class="eyebrow"
-                data-fr="POUR LES CRÉATEURS"
-                data-en="FOR CREATORS"
+            <span
+                class="section-eyebrow"
+                data-i18n="features.eyebrow"
             >
-                POUR LES CRÉATEURS
-            </p>
+                POURQUOI ZYSELL ?
+            </span>
 
 
             <h2
-                data-fr="Tout pour vendre. Rien de compliqué."
-                data-en="Everything you need to sell. Nothing complicated."
+                data-i18n="features.title"
             >
-                Tout pour vendre. Rien de compliqué.
+                Tout ce qu'il vous faut pour développer votre activité.
             </h2>
 
 
             <p
-                data-fr="Des outils simples pour transformer votre audience en clients."
-                data-en="Simple tools to turn your audience into customers."
+                data-i18n="features.description"
             >
-                Des outils simples pour transformer votre audience
-                en clients.
+                ZySell réunit les outils essentiels pour créer,
+                vendre et recevoir vos paiements simplement.
             </p>
 
         </div>
 
 
+
         <div class="features-grid">
 
 
+            <!-- BOUTIQUE -->
+
             <article class="feature-card">
 
-                <div class="feature-icon">
-                    🛍️
-                </div>
+                <span class="feature-number">
+                    01
+                </span>
 
                 <h3
-                    data-fr="Votre boutique"
-                    data-en="Your store"
+                    data-i18n="feature.store.title"
                 >
-                    Votre boutique
+                    Votre boutique numérique
                 </h3>
 
                 <p
-                    data-fr="Créez un espace professionnel pour présenter vos produits et votre marque."
-                    data-en="Create a professional space to showcase your products and brand."
+                    data-i18n="feature.store.description"
                 >
                     Créez un espace professionnel pour présenter
-                    vos produits et votre marque.
+                    vos produits et développer votre marque.
                 </p>
 
             </article>
 
+
+            <!-- PRODUITS -->
 
             <article class="feature-card">
 
-                <div class="feature-icon">
-                    💳
-                </div>
+                <span class="feature-number">
+                    02
+                </span>
 
                 <h3
-                    data-fr="Paiements"
-                    data-en="Payments"
+                    data-i18n="feature.products.title"
                 >
-                    Paiements
+                    Vendez vos produits
                 </h3>
 
                 <p
-                    data-fr="Recevez les paiements de vos clients et centralisez vos revenus."
-                    data-en="Receive customer payments and centralize your revenue."
+                    data-i18n="feature.products.description"
                 >
-                    Recevez les paiements de vos clients
-                    et centralisez vos revenus.
+                    Vendez vos eBooks, formations, vidéos,
+                    logiciels, fichiers, musiques et bien plus.
                 </p>
 
             </article>
 
+
+            <!-- PAIEMENT -->
 
             <article class="feature-card">
 
-                <div class="feature-icon">
-                    📦
-                </div>
+                <span class="feature-number">
+                    03
+                </span>
 
                 <h3
-                    data-fr="Livraison numérique"
-                    data-en="Digital delivery"
+                    data-i18n="feature.payment.title"
                 >
-                    Livraison numérique
+                    Paiement par lien
                 </h3>
 
                 <p
-                    data-fr="Donnez automatiquement accès aux produits numériques après l'achat."
-                    data-en="Automatically give customers access to digital products after purchase."
+                    data-i18n="feature.payment.description"
                 >
-                    Donnez automatiquement accès aux produits
-                    numériques après l'achat.
+                    Créez un lien de paiement et partagez-le
+                    directement avec vos clients ou vos proches.
                 </p>
 
             </article>
 
+
+            <!-- WALLET -->
 
             <article class="feature-card">
 
-                <div class="feature-icon">
-                    📊
-                </div>
+                <span class="feature-number">
+                    04
+                </span>
 
                 <h3
-                    data-fr="Statistiques"
-                    data-en="Analytics"
+                    data-i18n="feature.wallet.title"
                 >
-                    Statistiques
+                    Wallet ZySell
                 </h3>
 
                 <p
-                    data-fr="Suivez vos ventes, vos produits et votre activité depuis votre tableau de bord."
-                    data-en="Track your sales, products and activity from your dashboard."
+                    data-i18n="feature.wallet.description"
                 >
-                    Suivez vos ventes, vos produits et votre activité
-                    depuis votre tableau de bord.
+                    Retrouvez vos revenus et vos paiements
+                    centralisés dans votre espace ZySell.
                 </p>
 
             </article>
 
+
+            <!-- VERIFICATION -->
+
+            <article class="feature-card">
+
+                <span class="feature-number">
+                    05
+                </span>
+
+                <h3
+                    data-i18n="feature.verification.title"
+                >
+                    Vérification
+                </h3>
+
+                <p
+                    data-i18n="feature.verification.description"
+                >
+                    Les entreprises vérifiées peuvent afficher
+                    un badge bleu directement devant leur nom.
+                </p>
+
+            </article>
+
+
+            <!-- INTERNATIONAL -->
+
+            <article class="feature-card">
+
+                <span class="feature-number">
+                    06
+                </span>
+
+                <h3
+                    data-i18n="feature.global.title"
+                >
+                    Une plateforme internationale
+                </h3>
+
+                <p
+                    data-i18n="feature.global.description"
+                >
+                    Présentez vos produits à des clients
+                    au-delà de votre marché local.
+                </p>
+
+            </article>
 
         </div>
 
@@ -682,129 +690,175 @@
 ========================================================= -->
 
 <section
-    id="produits"
-    class="products section section-soft"
+    id="products"
+    class="products"
 >
 
     <div class="container">
 
 
-        <div class="section-heading">
+        <div class="section-header">
 
-            <p
-                class="eyebrow"
-                data-fr="CE QUE VOUS POUVEZ VENDRE"
-                data-en="WHAT YOU CAN SELL"
+            <span
+                class="section-eyebrow"
+                data-i18n="products.eyebrow"
             >
-                CE QUE VOUS POUVEZ VENDRE
-            </p>
+                PRODUITS NUMÉRIQUES
+            </span>
 
 
             <h2
-                data-fr="Vendez ce que vous créez."
-                data-en="Sell what you create."
+                data-i18n="products.title"
             >
-                Vendez ce que vous créez.
+                Vendez presque tout ce qui peut être livré en ligne.
             </h2>
 
 
             <p
-                data-fr="Des produits numériques, des formations et bien plus encore."
-                data-en="Digital products, courses and much more."
+                data-i18n="products.description"
             >
-                Des produits numériques, des formations
-                et bien plus encore.
+                Une seule plateforme pour différents types
+                de contenus et de produits numériques.
             </p>
 
         </div>
 
 
-        <div class="products-grid">
+
+        <div class="categories-grid">
 
 
-            <article class="product-card">
+            <a
+                href="explore.html?category=ebooks"
+                class="category-card"
+            >
 
-                <span>📚</span>
+                <span class="category-icon">
+                    01
+                </span>
 
-                <h3
-                    data-fr="eBooks & documents"
-                    data-en="eBooks & documents"
-                >
-                    eBooks & documents
+                <h3 data-i18n="category.ebooks">
+                    eBooks
                 </h3>
 
-            </article>
+                <p data-i18n="category.ebooks.desc">
+                    Livres, guides et documents.
+                </p>
+
+            </a>
 
 
-            <article class="product-card">
+            <a
+                href="explore.html?category=courses"
+                class="category-card"
+            >
 
-                <span>🎓</span>
+                <span class="category-icon">
+                    02
+                </span>
 
-                <h3
-                    data-fr="Formations"
-                    data-en="Courses"
-                >
+                <h3 data-i18n="category.courses">
                     Formations
                 </h3>
 
-            </article>
+                <p data-i18n="category.courses.desc">
+                    Cours et contenus éducatifs.
+                </p>
+
+            </a>
 
 
-            <article class="product-card">
+            <a
+                href="explore.html?category=software"
+                class="category-card"
+            >
 
-                <span>🎬</span>
+                <span class="category-icon">
+                    03
+                </span>
 
-                <h3
-                    data-fr="Vidéos"
-                    data-en="Videos"
-                >
+                <h3 data-i18n="category.software">
+                    Logiciels
+                </h3>
+
+                <p data-i18n="category.software.desc">
+                    Applications et outils numériques.
+                </p>
+
+            </a>
+
+
+            <a
+                href="explore.html?category=graphics"
+                class="category-card"
+            >
+
+                <span class="category-icon">
+                    04
+                </span>
+
+                <h3 data-i18n="category.graphics">
+                    Design
+                </h3>
+
+                <p data-i18n="category.graphics.desc">
+                    Templates, graphiques et ressources créatives.
+                </p>
+
+            </a>
+
+
+            <a
+                href="explore.html?category=videos"
+                class="category-card"
+            >
+
+                <span class="category-icon">
+                    05
+                </span>
+
+                <h3 data-i18n="category.videos">
                     Vidéos
                 </h3>
 
-            </article>
+                <p data-i18n="category.videos.desc">
+                    Films, contenus vidéo et avant-premières.
+                </p>
+
+            </a>
 
 
-            <article class="product-card">
+            <a
+                href="explore.html?category=music"
+                class="category-card"
+            >
 
-                <span>💻</span>
+                <span class="category-icon">
+                    06
+                </span>
 
-                <h3
-                    data-fr="Logiciels & applications"
-                    data-en="Software & apps"
-                >
-                    Logiciels & applications
+                <h3 data-i18n="category.music">
+                    Musique
                 </h3>
 
-            </article>
+                <p data-i18n="category.music.desc">
+                    Titres, albums et contenus audio.
+                </p>
+
+            </a>
+
+        </div>
 
 
-            <article class="product-card">
+        <div class="section-action">
 
-                <span>🎵</span>
-
-                <h3
-                    data-fr="Musique & audio"
-                    data-en="Music & audio"
-                >
-                    Musique & audio
-                </h3>
-
-            </article>
-
-
-            <article class="product-card">
-
-                <span>🎨</span>
-
-                <h3
-                    data-fr="Templates & créations"
-                    data-en="Templates & creations"
-                >
-                    Templates & créations
-                </h3>
-
-            </article>
-
+            <a
+                href="explore.html"
+                class="btn-secondary"
+                data-i18n="products.explore"
+            >
+                Explorer les produits
+            </a>
 
         </div>
 
@@ -815,67 +869,93 @@
 
 
 <!-- =========================================================
-     BOUTIQUE
+     VENDEURS / CRÉATEURS
 ========================================================= -->
 
-<section class="store-section section">
+<section
+    id="creators"
+    class="creators"
+>
 
-    <div class="container two-column">
-
-
-        <div class="section-text">
-
-            <p
-                class="eyebrow"
-                data-fr="VOTRE ESPACE"
-                data-en="YOUR SPACE"
-            >
-                VOTRE ESPACE
-            </p>
+    <div class="container">
 
 
-            <h2
-                data-fr="Une boutique qui vous ressemble."
-                data-en="A store that looks like you."
-            >
-                Une boutique qui vous ressemble.
-            </h2>
+        <div class="creator-content">
 
 
-            <p
-                data-fr="Présentez votre marque, vos produits et votre univers dans un espace professionnel conçu pour vendre."
-                data-en="Showcase your brand, products and identity in a professional space designed to sell."
-            >
-                Présentez votre marque, vos produits et votre univers
-                dans un espace professionnel conçu pour vendre.
-            </p>
+            <div>
 
-
-            <a
-                href="signup.html"
-                class="btn btn-primary"
-                data-fr="Créer ma boutique"
-                data-en="Create my store"
-            >
-                Créer ma boutique
-            </a>
-
-        </div>
-
-
-        <div class="visual-card store-mockup">
-
-            <div class="mockup-header">
-
-                <strong>ZySell</strong>
-
-                <span>
-                    ●
+                <span
+                    class="section-eyebrow"
+                    data-i18n="creator.eyebrow"
+                >
+                    POUR LES CRÉATEURS
                 </span>
+
+
+                <h2
+                    data-i18n="creator.title"
+                >
+                    Transformez votre audience en véritable activité.
+                </h2>
+
+
+                <p
+                    data-i18n="creator.description"
+                >
+                    Que vous soyez créateur, formateur,
+                    artiste, développeur ou entrepreneur,
+                    ZySell vous donne les outils pour vendre
+                    directement à votre audience.
+                </p>
+
+
+                <a
+                    href="signup.html"
+                    class="btn-primary"
+                    data-i18n="creator.button"
+                >
+                    Commencer à vendre
+                </a>
 
             </div>
 
 
-            <div class="mockup-product">
+            <div class="creator-points">
 
-  
+
+                <div>
+
+                    <strong>
+                        01
+                    </strong>
+
+                    <span
+                        data-i18n="creator.point1"
+                    >
+                        Créez votre espace professionnel.
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        02
+                    </strong>
+
+                    <span
+                        data-i18n="creator.point2"
+                    >
+                        Ajoutez vos produits numériques.
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        03
+        
