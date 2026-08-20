@@ -1,94 +1,39 @@
 /* =========================================================
    ZYSELL — APP.JS
-   Gestion globale de la langue et du thème
+   Langue FR / EN
+   Mode clair / sombre
+   Menu mobile
 ========================================================= */
-
-"use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================================
-       CONFIGURATION
-    ===================================================== */
+       1. TRADUCTION FR / EN
+    ====================================================== */
 
-    const LANGUAGE_KEY = "zysell-language";
-    const THEME_KEY = "zysell-theme";
+    const languageFR = document.getElementById("language-fr");
+    const languageEN = document.getElementById("language-en");
 
-    const DEFAULT_LANGUAGE = "fr";
-    const DEFAULT_THEME = "light";
-
-
-    /* =====================================================
-       ÉLÉMENTS
-    ===================================================== */
-
-    const languageFR =
-        document.getElementById("language-fr");
-
-    const languageEN =
-        document.getElementById("language-en");
-
-    const themeToggle =
-        document.getElementById("theme-toggle");
+    const translatableElements =
+        document.querySelectorAll("[data-fr][data-en]");
 
 
-    /* =====================================================
-       LANGUE
-    ===================================================== */
+    function setLanguage(language) {
 
-    function changeLanguage(language) {
+        translatableElements.forEach(element => {
 
-        if (
-            language !== "fr" &&
-            language !== "en"
-        ) {
-            language = DEFAULT_LANGUAGE;
-        }
+            const translation =
+                element.getAttribute(`data-${language}`);
 
+            if (!translation) return;
 
-        const elements =
-            document.querySelectorAll(
-                "[data-fr][data-en]"
-            );
-
-
-        elements.forEach((element) => {
-
-            const text =
-                element.getAttribute(
-                    `data-${language}`
-                );
-
-
-            if (text !== null) {
-
-                element.innerHTML = text;
-
-            }
+            element.textContent = translation;
 
         });
 
 
-        document.documentElement.lang =
-            language;
+        document.documentElement.lang = language;
 
-
-        updateLanguageButtons(language);
-
-
-        localStorage.setItem(
-            LANGUAGE_KEY,
-            language
-        );
-
-    }
-
-
-    /* =====================================================
-       BOUTONS DE LANGUE
-    ===================================================== */
-
-    function updateLanguageButtons(language) {
 
         if (languageFR) {
 
@@ -100,10 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             languageFR.setAttribute(
                 "aria-pressed",
                 language === "fr"
-                    ? "true"
-                    : "false"
             );
-
         }
 
 
@@ -117,132 +59,100 @@ document.addEventListener("DOMContentLoaded", () => {
             languageEN.setAttribute(
                 "aria-pressed",
                 language === "en"
-                    ? "true"
-                    : "false"
             );
-
         }
 
+
+        localStorage.setItem(
+            "zysell-language",
+            language
+        );
     }
 
-
-    /* =====================================================
-       FRANÇAIS
-    ===================================================== */
 
     if (languageFR) {
 
         languageFR.addEventListener(
             "click",
-            () => {
-
-                changeLanguage("fr");
-
-            }
+            () => setLanguage("fr")
         );
-
     }
 
-
-    /* =====================================================
-       ENGLISH
-    ===================================================== */
 
     if (languageEN) {
 
         languageEN.addEventListener(
             "click",
-            () => {
-
-                changeLanguage("en");
-
-            }
+            () => setLanguage("en")
         );
-
     }
 
 
     /* =====================================================
-       THÈME
-    ===================================================== */
+       2. LANGUE SAUVEGARDÉE
+    ====================================================== */
 
-    function changeTheme(theme) {
+    const savedLanguage =
+        localStorage.getItem("zysell-language") || "fr";
 
-        if (
-            theme !== "light" &&
-            theme !== "dark"
-        ) {
-            theme = DEFAULT_THEME;
-        }
+    setLanguage(savedLanguage);
 
 
-        document.body.classList.toggle(
-            "dark-mode",
-            theme === "dark"
-        );
+    /* =====================================================
+       3. MODE CLAIR / SOMBRE
+    ====================================================== */
+
+    const themeToggle =
+        document.getElementById("theme-toggle");
+
+    const themeIcon =
+        document.querySelector(".theme-icon");
 
 
-        updateThemeButton(theme);
+    function updateThemeIcon() {
 
+        if (!themeIcon) return;
 
-        localStorage.setItem(
-            THEME_KEY,
-            theme
-        );
+        const darkMode =
+            document.body.classList.contains("dark");
 
-
-        updateThemeColor(theme);
+        themeIcon.textContent =
+            darkMode ? "☀️" : "🌙";
 
     }
 
 
-    /* =====================================================
-       BOUTON THÈME
-    ===================================================== */
-
-    function updateThemeButton(theme) {
-
-        if (!themeToggle) {
-            return;
-        }
-
+    function setTheme(theme) {
 
         if (theme === "dark") {
 
-            themeToggle.textContent = "☀️";
+            document.body.classList.add("dark");
 
-            themeToggle.setAttribute(
-                "aria-label",
-                "Activer le mode clair"
-            );
-
-            themeToggle.setAttribute(
-                "title",
-                "Mode clair"
+            document.documentElement.setAttribute(
+                "data-theme",
+                "dark"
             );
 
         } else {
 
-            themeToggle.textContent = "🌙";
+            document.body.classList.remove("dark");
 
-            themeToggle.setAttribute(
-                "aria-label",
-                "Activer le mode sombre"
+            document.documentElement.setAttribute(
+                "data-theme",
+                "light"
             );
-
-            themeToggle.setAttribute(
-                "title",
-                "Mode sombre"
-            );
-
         }
 
+
+        localStorage.setItem(
+            "zysell-theme",
+            theme
+        );
+
+
+        updateThemeIcon();
     }
 
-
-    /* =====================================================
-       BOUTON MODE SOMBRE
-    ===================================================== */
 
     if (themeToggle) {
 
@@ -251,73 +161,262 @@ document.addEventListener("DOMContentLoaded", () => {
             () => {
 
                 const isDark =
-                    document.body.classList.contains(
-                        "dark-mode"
-                    );
+                    document.body.classList.contains("dark");
 
-
-                changeTheme(
-                    isDark
-                        ? "light"
-                        : "dark"
+                setTheme(
+                    isDark ? "light" : "dark"
                 );
 
             }
         );
-
     }
 
 
     /* =====================================================
-       COULEUR DU NAVIGATEUR
-    ===================================================== */
-
-    function updateThemeColor(theme) {
-
-        const meta =
-            document.querySelector(
-                'meta[name="theme-color"]'
-            );
-
-
-        if (!meta) {
-            return;
-        }
-
-
-        meta.setAttribute(
-            "content",
-            theme === "dark"
-                ? "#0c0f14"
-                : "#ffffff"
-        );
-
-    }
-
-
-    /* =====================================================
-       CHARGEMENT INITIAL
-    ===================================================== */
-
-    const savedLanguage =
-        localStorage.getItem(
-            LANGUAGE_KEY
-        );
-
+       4. THÈME SAUVEGARDÉ
+    ====================================================== */
 
     const savedTheme =
-        localStorage.getItem(
-            THEME_KEY
+        localStorage.getItem("zysell-theme");
+
+
+    if (savedTheme) {
+
+        setTheme(savedTheme);
+
+    } else {
+
+        setTheme("light");
+
+    }
+
+
+    /* =====================================================
+       5. MENU MOBILE
+    ====================================================== */
+
+    const mobileMenuToggle =
+        document.querySelector(
+            ".mobile-menu-toggle"
+        );
+
+    const mobileMenu =
+        document.querySelector(
+            ".mobile-menu"
         );
 
 
-    changeLanguage(
-        savedLanguage || DEFAULT_LANGUAGE
+    if (
+        mobileMenuToggle &&
+        mobileMenu
+    ) {
+
+        mobileMenuToggle.addEventListener(
+            "click",
+            () => {
+
+                const isOpen =
+                    !mobileMenu.hasAttribute("hidden");
+
+
+                if (isOpen) {
+
+                    mobileMenu.setAttribute(
+                        "hidden",
+                        ""
+                    );
+
+                    mobileMenuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                } else {
+
+                    mobileMenu.removeAttribute(
+                        "hidden"
+                    );
+
+                    mobileMenuToggle.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+                }
+
+            }
+        );
+
+
+        /* Fermer après avoir cliqué sur un lien */
+
+        const mobileLinks =
+            mobileMenu.querySelectorAll("a");
+
+
+        mobileLinks.forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    mobileMenu.setAttribute(
+                        "hidden",
+                        ""
+                    );
+
+                    mobileMenuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       6. FERMER LE MENU EN CLIQUANT À L'EXTÉRIEUR
+    ====================================================== */
+
+    document.addEventListener(
+        "click",
+        event => {
+
+            if (
+                !mobileMenu ||
+                !mobileMenuToggle
+            ) return;
+
+
+            const clickedInsideMenu =
+                mobileMenu.contains(event.target);
+
+            const clickedButton =
+                mobileMenuToggle.contains(event.target);
+
+
+            if (
+                !clickedInsideMenu &&
+                !clickedButton
+            ) {
+
+                mobileMenu.setAttribute(
+                    "hidden",
+                    ""
+                );
+
+                mobileMenuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+            }
+
+        }
     );
 
 
-    changeTheme(
-        savedTheme || DEFAULT_THEME
+    /* =====================================================
+       7. FERMER LE MENU AVEC ESC
+    ====================================================== */
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (event.key !== "Escape") return;
+
+            if (!mobileMenu) return;
+
+
+            mobileMenu.setAttribute(
+                "hidden",
+                ""
+            );
+
+
+            if (mobileMenuToggle) {
+
+                mobileMenuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       8. ANNÉE AUTOMATIQUE DU FOOTER
+    ====================================================== */
+
+    const yearElements =
+        document.querySelectorAll(
+            "[data-current-year]"
+        );
+
+
+    yearElements.forEach(element => {
+
+        element.textContent =
+            new Date().getFullYear();
+
+    });
+
+
+    /* =====================================================
+       9. LIENS ANCRES — SCROLL DOUX
+    ====================================================== */
+
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+
+                    const targetId =
+                        link.getAttribute("href");
+
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) return;
+
+
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
+
+
+                    if (!target) return;
+
+
+                    event.preventDefault();
+
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+            );
+
+        });
+
+
+    /* =====================================================
+       10. INITIALISATION
+    ====================================================== */
+
+    console.log(
+        "ZySell — Application initialisée."
     );
 
 });
