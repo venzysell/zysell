@@ -12,12 +12,12 @@
 
     <meta
         name="description"
-        content="ZySell — Plateforme internationale de vente de produits numériques et digitaux."
+        content="ZySell — Créez votre entreprise numérique, vendez vos produits et recevez vos paiements partout dans le monde."
     >
 
     <meta
         name="theme-color"
-        content="#000000"
+        content="#ffffff"
     >
 
     <title>ZySell — Créez. Vendez. Encaissez.</title>
@@ -28,7 +28,6 @@
         href="logo.png"
     >
 
-    <!-- CSS ZySell -->
     <link
         rel="stylesheet"
         href="css/style.css"
@@ -40,46 +39,45 @@
 <body>
 
 
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
+<!-- =====================================================
+     HEADER
+====================================================== -->
 
-    <header>
+<header class="site-header">
 
-        <!-- Logo -->
+    <div class="header-inner">
+
+
+        <!-- LOGO -->
 
         <a
             href="#accueil"
+            class="logo-link"
             aria-label="ZySell"
         >
 
             <img
                 src="logo.png"
                 alt="ZySell"
+                class="logo"
             >
 
         </a>
 
 
-        <!-- Navigation -->
+        <!-- NAVIGATION -->
 
-        <nav aria-label="Navigation principale">
-
-            <a
-                href="#explorer"
-                data-fr="Explorer"
-                data-en="Explore"
-            >
-                Explorer
-            </a>
-
+        <nav
+            class="main-nav"
+            aria-label="Navigation principale"
+        >
 
             <a
-                href="#entreprises"
-                data-fr="Entreprises"
-                data-en="Businesses"
+                href="#fonctionnalites"
+                data-fr="Fonctionnalités"
+                data-en="Features"
             >
-                Entreprises
+                Fonctionnalités
             </a>
 
 
@@ -93,48 +91,83 @@
 
 
             <a
-                href="#paiement"
-                data-fr="Paiement par lien"
-                data-en="Payment link"
+                href="#comment-ca-marche"
+                data-fr="Comment ça marche"
+                data-en="How it works"
             >
-                Paiement par lien
+                Comment ça marche
+            </a>
+
+
+            <a
+                href="#faq"
+                data-fr="FAQ"
+                data-en="FAQ"
+            >
+                FAQ
             </a>
 
         </nav>
 
 
-        <!-- Langue -->
+        <!-- ACTIONS -->
 
-        <div>
+        <div class="header-actions">
+
+
+            <!-- LANGUE -->
+
+            <div class="language-switcher">
+
+                <button
+                    type="button"
+                    id="language-fr"
+                    class="language-button active"
+                    aria-label="Français"
+                    aria-pressed="true"
+                >
+                    FR
+                </button>
+
+
+                <button
+                    type="button"
+                    id="language-en"
+                    class="language-button"
+                    aria-label="English"
+                    aria-pressed="false"
+                >
+                    EN
+                </button>
+
+            </div>
+
+
+            <!-- THÈME -->
 
             <button
                 type="button"
-                id="language-fr"
-                aria-label="Français"
-                aria-pressed="true"
+                id="theme-toggle"
+                class="theme-toggle"
+                aria-label="Changer de thème"
+                title="Changer de thème"
             >
-                FR
+
+                <span
+                    id="theme-icon"
+                    aria-hidden="true"
+                >
+                    🌙
+                </span>
+
             </button>
 
 
-            <button
-                type="button"
-                id="language-en"
-                aria-label="English"
-                aria-pressed="false"
-            >
-                EN
-            </button>
-
-        </div>
-
-
-        <!-- Authentification -->
-
-        <div>
+            <!-- CONNEXION -->
 
             <a
                 href="#connexion"
+                class="login-button"
                 data-fr="Se connecter"
                 data-en="Log in"
             >
@@ -142,8 +175,11 @@
             </a>
 
 
+            <!-- INSCRIPTION -->
+
             <a
                 href="#inscription"
+                class="signup-button"
                 data-fr="Créer un compte"
                 data-en="Create an account"
             >
@@ -152,641 +188,703 @@
 
         </div>
 
-    </header>
+    </div>
+
+</header>
 
 
 
-    <!-- =====================================================
-         CONTENU PRINCIPAL
-    ====================================================== -->
+<!-- =====================================================
+     MAIN
+====================================================== -->
 
-    <main>
-
-
-        <!-- =================================================
-             HERO
-        ================================================== -->
-
-        <section id="accueil">
+<main>
 
 
-            <div class="hero-content">
+<!-- =====================================================
+     HERO
+====================================================== -->
 
-                <p
-                    data-fr="LA PLATEFORME INTERNATIONALE DU NUMÉRIQUE"
-                    data-en="THE INTERNATIONAL DIGITAL PLATFORM"
-                >
-                    LA PLATEFORME INTERNATIONALE DU NUMÉRIQUE
-                </p>
+<section
+    id="accueil"
+    class="hero"
+>
 
 
-                <h1>
+    <div class="hero-content">
 
-                    <span
-                        data-fr="Créez."
-                        data-en="Create."
+
+        <div class="hero-badge">
+
+            <span>✦</span>
+
+            <span
+                data-fr="LA PLATEFORME NUMÉRIQUE INTERNATIONALE"
+                data-en="THE INTERNATIONAL DIGITAL PLATFORM"
+            >
+                LA PLATEFORME NUMÉRIQUE INTERNATIONALE
+            </span>
+
+        </div>
+
+
+        <h1>
+
+            <span
+                data-fr="Votre création."
+                data-en="Your creation."
+            >
+                Votre création.
+            </span>
+
+
+            <span
+                data-fr="Votre entreprise."
+                data-en="Your business."
+            >
+                Votre entreprise.
+            </span>
+
+
+            <strong
+                data-fr="Votre marché."
+                data-en="Your market."
+            >
+                Votre marché.
+            </strong>
+
+        </h1>
+
+
+        <p
+            class="hero-description"
+            data-fr="ZySell permet aux créateurs et aux entreprises de vendre leurs produits numériques, de créer leur espace professionnel et de recevoir des paiements depuis le monde entier."
+            data-en="ZySell helps creators and businesses sell digital products, build their professional presence and receive payments from around the world."
+        >
+            ZySell permet aux créateurs et aux entreprises de vendre leurs
+            produits numériques, de créer leur espace professionnel et de
+            recevoir des paiements depuis le monde entier.
+        </p>
+
+
+        <div class="hero-actions">
+
+
+            <a
+                href="#inscription"
+                class="primary-button"
+                data-fr="Commencer gratuitement"
+                data-en="Start for free"
+            >
+                Commencer gratuitement
+            </a>
+
+
+            <a
+                href="#fonctionnalites"
+                class="secondary-button"
+                data-fr="Découvrir ZySell"
+                data-en="Discover ZySell"
+            >
+                Découvrir ZySell
+            </a>
+
+        </div>
+
+
+        <div class="hero-trust">
+
+
+            <span
+                data-fr="✓ Création de compte gratuite"
+                data-en="✓ Free account creation"
+            >
+                ✓ Création de compte gratuite
+            </span>
+
+
+            <span
+                data-fr="✓ Vendez vos produits numériques"
+                data-en="✓ Sell your digital products"
+            >
+                ✓ Vendez vos produits numériques
+            </span>
+
+
+            <span
+                data-fr="✓ Accessible partout"
+                data-en="✓ Accessible everywhere"
+            >
+                ✓ Accessible partout
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- VISUEL -->
+
+    <div class="hero-visual">
+
+
+        <div class="hero-dashboard-card">
+
+
+            <div class="dashboard-top">
+
+                <div>
+
+                    <small
+                        data-fr="Votre entreprise"
+                        data-en="Your business"
                     >
-                        Créez.
-                    </span>
-
-                    <br>
-
-                    <span
-                        data-fr="Vendez."
-                        data-en="Sell."
-                    >
-                        Vendez.
-                    </span>
-
-                    <br>
-
-                    <strong
-                        data-fr="Encaissez."
-                        data-en="Get paid."
-                    >
-                        Encaissez.
-                    </strong>
-
-                </h1>
-
-
-                <p
-                    data-fr="ZySell est une plateforme internationale permettant aux créateurs et aux entreprises de vendre leurs produits numériques et digitaux."
-                    data-en="ZySell is an international platform that helps creators and businesses sell their digital products and services."
-                >
-                    ZySell est une plateforme internationale permettant
-                    aux créateurs et aux entreprises de vendre leurs
-                    produits numériques et digitaux.
-                </p>
-
-
-                <div class="hero-actions">
-
-                    <a
-                        href="#explorer"
-                        data-fr="Explorer ZySell"
-                        data-en="Explore ZySell"
-                    >
-                        Explorer ZySell
-                    </a>
-
-
-                    <a
-                        href="#entreprises"
-                        data-fr="Créer une entreprise"
-                        data-en="Create a business"
-                    >
-                        Créer une entreprise
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- Illustration / espace visuel -->
-
-            <div class="hero-visual">
-
-                <div class="hero-card">
-
-                    <span>Z</span>
+                        Votre entreprise
+                    </small>
 
                     <strong>ZySell</strong>
 
-                    <small
-                        data-fr="Créez. Vendez. Encaissez."
-                        data-en="Create. Sell. Get paid."
+                </div>
+
+
+                <div class="verified-mini">
+                    ✓
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-balance">
+
+                <small
+                    data-fr="Revenus"
+                    data-en="Revenue"
+                >
+                    Revenus
+                </small>
+
+
+                <strong>
+                    485 000
+                    <small>FCFA</small>
+                </strong>
+
+            </div>
+
+
+            <div class="dashboard-stats">
+
+
+                <div>
+
+                    <strong>128</strong>
+
+                    <span
+                        data-fr="Ventes"
+                        data-en="Sales"
                     >
-                        Créez. Vendez. Encaissez.
-                    </small>
+                        Ventes
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>12</strong>
+
+                    <span
+                        data-fr="Produits"
+                        data-en="Products"
+                    >
+                        Produits
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>3.8K</strong>
+
+                    <span
+                        data-fr="Visiteurs"
+                        data-en="Visitors"
+                    >
+                        Visiteurs
+                    </span>
 
                 </div>
 
             </div>
 
 
-        </section>
+            <div class="dashboard-line">
 
-
-
-        <!-- =================================================
-             EXPLORER
-        ================================================== -->
-
-        <section id="explorer">
-
-            <p
-                data-fr="EXPLORER"
-                data-en="EXPLORE"
-            >
-                EXPLORER
-            </p>
-
-
-            <h2
-                data-fr="Découvrez les produits numériques."
-                data-en="Discover digital products."
-            >
-                Découvrez les produits numériques.
-            </h2>
-
-
-            <p
-                data-fr="Trouvez des contenus, outils et expériences numériques créés par des entreprises et des créateurs du monde entier."
-                data-en="Discover digital content, tools and experiences created by businesses and creators around the world."
-            >
-                Trouvez des contenus, outils et expériences numériques
-                créés par des entreprises et des créateurs du monde entier.
-            </p>
-
-
-            <div>
-
-
-                <a href="#ebooks">
-
-                    <strong
-                        data-fr="eBooks"
-                        data-en="eBooks"
-                    >
-                        eBooks
-                    </strong>
-
-                </a>
-
-
-                <a href="#formations">
-
-                    <strong
-                        data-fr="Formations"
-                        data-en="Courses"
-                    >
-                        Formations
-                    </strong>
-
-                </a>
-
-
-                <a href="#videos">
-
-                    <strong
-                        data-fr="Vidéos"
-                        data-en="Videos"
-                    >
-                        Vidéos
-                    </strong>
-
-                </a>
-
-
-                <a href="#logiciels">
-
-                    <strong
-                        data-fr="Logiciels"
-                        data-en="Software"
-                    >
-                        Logiciels
-                    </strong>
-
-                </a>
-
-
-                <a href="#applications">
-
-                    <strong
-                        data-fr="Applications"
-                        data-en="Apps"
-                    >
-                        Applications
-                    </strong>
-
-                </a>
-
-
-                <a href="#musique">
-
-                    <strong
-                        data-fr="Musique"
-                        data-en="Music"
-                    >
-                        Musique
-                    </strong>
-
-                </a>
-
-
-                <a href="#films">
-
-                    <strong
-                        data-fr="Films & avant-premières"
-                        data-en="Films & premieres"
-                    >
-                        Films & avant-premières
-                    </strong>
-
-                </a>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
 
             </div>
 
-        </section>
+        </div>
+
+    </div>
+
+</section>
 
 
 
-        <!-- =================================================
-             PRODUITS
-        ================================================== -->
+<!-- =====================================================
+     POURQUOI ZYSELL
+====================================================== -->
 
-        <section id="produits">
+<section
+    id="fonctionnalites"
+    class="section features-section"
+>
+
+
+    <div class="section-heading">
+
+
+        <span
+            class="section-label"
+            data-fr="POURQUOI ZYSELL ?"
+            data-en="WHY ZYSELL?"
+        >
+            POURQUOI ZYSELL ?
+        </span>
+
+
+        <h2
+            data-fr="Tout ce dont vous avez besoin pour développer votre activité numérique."
+            data-en="Everything you need to grow your digital business."
+        >
+            Tout ce dont vous avez besoin pour développer
+            votre activité numérique.
+        </h2>
+
+
+        <p
+            data-fr="ZySell réunit dans une seule plateforme les outils essentiels pour créer, vendre et développer votre activité."
+            data-en="ZySell brings together the essential tools you need to create, sell and grow your business."
+        >
+            ZySell réunit dans une seule plateforme les outils essentiels
+            pour créer, vendre et développer votre activité.
+        </p>
+
+    </div>
+
+
+    <div class="features-grid">
+
+
+        <article class="feature-card">
+
+            <span class="feature-icon">◈</span>
+
+            <h3
+                data-fr="Votre entreprise numérique"
+                data-en="Your digital business"
+            >
+                Votre entreprise numérique
+            </h3>
 
             <p
-                data-fr="PRODUITS NUMÉRIQUES"
-                data-en="DIGITAL PRODUCTS"
+                data-fr="Créez un espace professionnel pour présenter votre activité et vos produits."
+                data-en="Create a professional space to showcase your business and products."
             >
-                PRODUITS NUMÉRIQUES
+                Créez un espace professionnel pour présenter votre
+                activité et vos produits.
             </p>
 
+        </article>
 
-            <h2
-                data-fr="Tout ce que vous pouvez vendre sur ZySell."
-                data-en="Everything you can sell on ZySell."
+
+        <article class="feature-card">
+
+            <span class="feature-icon">↗</span>
+
+            <h3
+                data-fr="Vendez vos produits"
+                data-en="Sell your products"
             >
-                Tout ce que vous pouvez vendre sur ZySell.
-            </h2>
-
-
-            <div>
-
-
-                <article id="ebooks">
-
-                    <h3
-                        data-fr="eBooks"
-                        data-en="eBooks"
-                    >
-                        eBooks
-                    </h3>
-
-
-                    <p
-                        data-fr="Vendez vos livres numériques, guides, documents et ressources."
-                        data-en="Sell your digital books, guides, documents and resources."
-                    >
-                        Vendez vos livres numériques, guides,
-                        documents et ressources.
-                    </p>
-
-                </article>
-
-
-
-                <article id="formations">
-
-                    <h3
-                        data-fr="Formations"
-                        data-en="Courses"
-                    >
-                        Formations
-                    </h3>
-
-
-                    <p
-                        data-fr="Vendez vos formations et contenus éducatifs numériques."
-                        data-en="Sell your courses and digital educational content."
-                    >
-                        Vendez vos formations et contenus
-                        éducatifs numériques.
-                    </p>
-
-                </article>
-
-
-
-                <article id="videos">
-
-                    <h3
-                        data-fr="Vidéos"
-                        data-en="Videos"
-                    >
-                        Vidéos
-                    </h3>
-
-
-                    <p
-                        data-fr="Donnez accès à vos vidéos après achat."
-                        data-en="Give customers access to your videos after purchase."
-                    >
-                        Donnez accès à vos vidéos après achat.
-                    </p>
-
-                </article>
-
-
-
-                <article id="logiciels">
-
-                    <h3
-                        data-fr="Logiciels"
-                        data-en="Software"
-                    >
-                        Logiciels
-                    </h3>
-
-
-                    <p
-                        data-fr="Vendez vos logiciels et fichiers numériques."
-                        data-en="Sell your software and digital files."
-                    >
-                        Vendez vos logiciels et fichiers numériques.
-                    </p>
-
-                </article>
-
-
-
-                <article id="applications">
-
-                    <h3
-                        data-fr="Applications"
-                        data-en="Applications"
-                    >
-                        Applications
-                    </h3>
-
-
-                    <p
-                        data-fr="Distribuez vos applications et vos produits digitaux."
-                        data-en="Distribute your applications and digital products."
-                    >
-                        Distribuez vos applications et vos produits digitaux.
-                    </p>
-
-                </article>
-
-
-
-                <article id="musique">
-
-                    <h3
-                        data-fr="Musique"
-                        data-en="Music"
-                    >
-                        Musique
-                    </h3>
-
-
-                    <p
-                        data-fr="Vendez vos morceaux, albums et contenus audio."
-                        data-en="Sell your tracks, albums and audio content."
-                    >
-                        Vendez vos morceaux, albums et contenus audio.
-                    </p>
-
-                </article>
-
-
-
-                <article id="films">
-
-                    <h3
-                        data-fr="Films & avant-premières"
-                        data-en="Films & premieres"
-                    >
-                        Films & avant-premières
-                    </h3>
-
-
-                    <p
-                        data-fr="Proposez un accès payant à vos films et avant-premières numériques."
-                        data-en="Offer paid access to your films and digital premieres."
-                    >
-                        Proposez un accès payant à vos films
-                        et avant-premières numériques.
-                    </p>
-
-                </article>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             ENTREPRISE
-        ================================================== -->
-
-        <section id="entreprises">
+                Vendez vos produits
+            </h3>
 
             <p
-                data-fr="POUR LES CRÉATEURS"
-                data-en="FOR CREATORS"
+                data-fr="Vendez eBooks, formations, vidéos, musique, logiciels, applications et autres produits numériques."
+                data-en="Sell eBooks, courses, videos, music, software, apps and other digital products."
             >
-                POUR LES CRÉATEURS
+                Vendez eBooks, formations, vidéos, musique, logiciels,
+                applications et autres produits numériques.
             </p>
 
+        </article>
 
-            <h2
-                data-fr="Transformez votre créativité en entreprise."
-                data-en="Turn your creativity into a business."
+
+        <article class="feature-card">
+
+            <span class="feature-icon">⌁</span>
+
+            <h3
+                data-fr="Paiement par lien"
+                data-en="Payment links"
             >
-                Transformez votre créativité en entreprise.
-            </h2>
-
+                Paiement par lien
+            </h3>
 
             <p
-                data-fr="Créez votre entreprise ZySell et commencez à vendre vos produits numériques à des clients partout dans le monde."
-                data-en="Create your ZySell business and start selling your digital products to customers around the world."
+                data-fr="Créez simplement un lien pour recevoir de l'argent sans avoir besoin de créer un produit."
+                data-en="Create a simple link to receive money without having to create a product."
             >
-                Créez votre entreprise ZySell et commencez à vendre
-                vos produits numériques à des clients partout dans le monde.
+                Créez simplement un lien pour recevoir de l'argent
+                sans avoir besoin de créer un produit.
             </p>
 
+        </article>
 
-            <a
-                href="#inscription"
-                data-fr="Créer une entreprise"
-                data-en="Create a business"
+
+        <article class="feature-card">
+
+            <span class="feature-icon">▣</span>
+
+            <h3
+                data-fr="Wallet ZySell"
+                data-en="ZySell Wallet"
             >
-                Créer une entreprise
-            </a>
-
-        </section>
-
-
-
-        <!-- =================================================
-             VERIFICATION
-        ================================================== -->
-
-        <section id="verification">
+                Wallet ZySell
+            </h3>
 
             <p
-                data-fr="CONFIANCE & SÉCURITÉ"
-                data-en="TRUST & SECURITY"
+                data-fr="Centralisez les revenus issus de vos ventes et des paiements reçus."
+                data-en="Centralize revenue from your sales and received payments."
             >
-                CONFIANCE & SÉCURITÉ
+                Centralisez les revenus issus de vos ventes
+                et des paiements reçus.
             </p>
 
+        </article>
 
-            <h2
-                data-fr="Des entreprises vérifiées."
-                data-en="Verified businesses."
+
+        <article class="feature-card">
+
+            <span class="feature-icon">◎</span>
+
+            <h3
+                data-fr="Vente internationale"
+                data-en="Global selling"
             >
-                Des entreprises vérifiées.
-            </h2>
-
+                Vente internationale
+            </h3>
 
             <p
-                data-fr="Les créateurs peuvent demander la vérification de leur entreprise afin de renforcer la confiance sur ZySell."
-                data-en="Creators can request business verification to build trust on ZySell."
+                data-fr="Présentez vos produits à des clients partout dans le monde."
+                data-en="Showcase your products to customers around the world."
             >
-                Les créateurs peuvent demander la vérification
-                de leur entreprise afin de renforcer la confiance sur ZySell.
+                Présentez vos produits à des clients partout dans le monde.
             </p>
 
+        </article>
+
+
+        <article class="feature-card">
+
+            <span class="feature-icon">✓</span>
+
+            <h3
+                data-fr="ZySell Verified"
+                data-en="ZySell Verified"
+            >
+                ZySell Verified
+            </h3>
 
             <p
-                data-fr="Une entreprise vérifiée reçoit un badge bleu directement devant son nom."
-                data-en="A verified business receives a blue badge directly next to its name."
+                data-fr="Les entreprises vérifiées peuvent afficher un badge bleu directement devant leur nom."
+                data-en="Verified businesses can display a blue badge directly next to their name."
             >
-                Une entreprise vérifiée reçoit un badge bleu
-                directement devant son nom.
+                Les entreprises vérifiées peuvent afficher un badge bleu
+                directement devant leur nom.
             </p>
 
+        </article>
 
-            <a
-                href="#inscription"
-                data-fr="Demander la vérification"
-                data-en="Request verification"
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PRODUITS
+====================================================== -->
+
+<section
+    id="produits"
+    class="section products-section"
+>
+
+
+    <div class="section-heading">
+
+
+        <span
+            class="section-label"
+            data-fr="CE QUE VOUS POUVEZ VENDRE"
+            data-en="WHAT YOU CAN SELL"
+        >
+            CE QUE VOUS POUVEZ VENDRE
+        </span>
+
+
+        <h2
+            data-fr="Votre contenu devient votre produit."
+            data-en="Turn your content into a product."
+        >
+            Votre contenu devient votre produit.
+        </h2>
+
+
+        <p
+            data-fr="Publiez et vendez différents types de contenus numériques depuis votre entreprise ZySell."
+            data-en="Publish and sell different types of digital content from your ZySell business."
+        >
+            Publiez et vendez différents types de contenus numériques
+            depuis votre entreprise ZySell.
+        </p>
+
+    </div>
+
+
+    <div class="products-grid">
+
+
+        <article>
+
+            <span>01</span>
+
+            <h3
+                data-fr="eBooks"
+                data-en="eBooks"
             >
-                Demander la vérification
-            </a>
-
-        </section>
-
-
-
-        <!-- =================================================
-             PAIEMENT PAR LIEN
-        ================================================== -->
-
-        <section id="paiement">
+                eBooks
+            </h3>
 
             <p
-                data-fr="LIEN DE PAIEMENT"
-                data-en="PAYMENT LINK"
+                data-fr="Livres, guides et documents numériques."
+                data-en="Books, guides and digital documents."
             >
-                LIEN DE PAIEMENT
+                Livres, guides et documents numériques.
             </p>
 
+        </article>
 
-            <h2
-                data-fr="Recevez de l'argent avec un simple lien."
-                data-en="Receive money with a simple link."
+
+        <article>
+
+            <span>02</span>
+
+            <h3
+                data-fr="Formations"
+                data-en="Courses"
             >
-                Recevez de l'argent avec un simple lien.
-            </h2>
-
+                Formations
+            </h3>
 
             <p
-                data-fr="Créez un lien de paiement et envoyez-le à une personne. Elle pourra vous envoyer de l'argent avec un moyen de paiement disponible dans sa région."
-                data-en="Create a payment link and send it to someone. They can send you money using a payment method available in their region."
+                data-fr="Cours et contenus éducatifs numériques."
+                data-en="Courses and digital educational content."
             >
-                Créez un lien de paiement et envoyez-le à une personne.
-                Elle pourra vous envoyer de l'argent avec un moyen
-                de paiement disponible dans sa région.
+                Cours et contenus éducatifs numériques.
             </p>
 
+        </article>
+
+
+        <article>
+
+            <span>03</span>
+
+            <h3
+                data-fr="Vidéos"
+                data-en="Videos"
+            >
+                Vidéos
+            </h3>
 
             <p
-                data-fr="Les fonds reçus sont crédités sur votre Wallet ZySell."
-                data-en="Received funds are credited to your ZySell Wallet."
+                data-fr="Vidéos et contenus accessibles après achat."
+                data-en="Videos and content accessible after purchase."
             >
-                Les fonds reçus sont crédités sur votre Wallet ZySell.
+                Vidéos et contenus accessibles après achat.
             </p>
 
+        </article>
 
-            <a
-                href="#connexion"
-                data-fr="Créer un lien"
-                data-en="Create a link"
+
+        <article>
+
+            <span>04</span>
+
+            <h3
+                data-fr="Musique"
+                data-en="Music"
             >
-                Créer un lien
-            </a>
-
-        </section>
-
-
-
-        <!-- =================================================
-             WALLET
-        ================================================== -->
-
-        <section id="wallet">
+                Musique
+            </h3>
 
             <p
-                data-fr="WALLET"
-                data-en="WALLET"
+                data-fr="Morceaux, albums et contenus audio."
+                data-en="Tracks, albums and audio content."
             >
-                WALLET
+                Morceaux, albums et contenus audio.
             </p>
 
+        </article>
 
-            <h2
-                data-fr="Votre activité financière au même endroit."
-                data-en="Your financial activity in one place."
+
+        <article>
+
+            <span>05</span>
+
+            <h3
+                data-fr="Logiciels"
+                data-en="Software"
             >
-                Votre activité financière au même endroit.
-            </h2>
-
+                Logiciels
+            </h3>
 
             <p
-                data-fr="Les ventes de produits numériques et les paiements reçus via vos liens pourront être centralisés dans votre Wallet ZySell."
-                data-en="Digital product sales and payments received through your links can be centralized in your ZySell Wallet."
+                data-fr="Logiciels et fichiers numériques."
+                data-en="Software and digital files."
             >
-                Les ventes de produits numériques et les paiements
-                reçus via vos liens pourront être centralisés
-                dans votre Wallet ZySell.
+                Logiciels et fichiers numériques.
             </p>
 
-        </section>
+        </article>
 
 
+        <article>
 
-        <!-- =================================================
-             INSCRIPTION
-        ================================================== -->
+            <span>06</span>
 
-        <section id="inscription">
-
-            <h2
-                data-fr="Commencez avec ZySell."
-                data-en="Get started with ZySell."
+            <h3
+                data-fr="Films & avant-premières"
+                data-en="Films & premieres"
             >
-                Commencez avec ZySell.
-            </h2>
-
+                Films & avant-premières
+            </h3>
 
             <p
-                data-fr="Créez votre compte gratuitement."
-                data-en="Create your account for free."
+                data-fr="Donnez un accès payant à vos films et avant-premières."
+                data-en="Offer paid access to your films and premieres."
             >
-                Créez votre compte gratuitement.
+                Donnez un accès payant à vos films et avant-premières.
             </p>
 
+        </article>
 
-            <a
-                href="#connexion"
-                data-fr="Créer mon compte"
-                data-en="Create my account"
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     COMMENT ÇA MARCHE
+====================================================== -->
+
+<section
+    id="comment-ca-marche"
+    class="section steps-section"
+>
+
+
+    <div class="section-heading">
+
+
+        <span
+            class="section-label"
+            data-fr="COMMENT ÇA MARCHE ?"
+            data-en="HOW IT WORKS"
+        >
+            COMMENT ÇA MARCHE ?
+        </span>
+
+
+        <h2
+            data-fr="Commencez à vendre en quelques étapes."
+            data-en="Start selling in a few simple steps."
+        >
+            Commencez à vendre en quelques étapes.
+        </h2>
+
+    </div>
+
+
+    <div class="steps-grid">
+
+
+        <article>
+
+            <span>01</span>
+
+            <h3
+                data-fr="Créez votre compte"
+                data-en="Create your account"
             >
-                Créer mon compte
-            </a>
+                Créez votre compte
+            </h3>
 
-        </section>
+            <p
+                data-fr="Inscrivez-vous gratuitement et créez votre profil."
+                data-en="Sign up for free and create your profile."
+            >
+                Inscrivez-vous gratuitement et créez votre profil.
+            </p>
+
+        </article>
 
 
+        <article>
 
-        <!-- ============================
+            <span>02</span>
+
+            <h3
+                data-fr="Créez votre entreprise"
+                data-en="Create your business"
+            >
+                Créez votre entreprise
+            </h3>
+
+            <p
+                data-fr="Présentez votre activité et préparez votre espace professionnel."
+                data-en="Set up your business and prepare your professional space."
+            >
+                Présentez votre activité et préparez votre espace professionnel.
+            </p>
+
+        </article>
+
+
+        <article>
+
+            <span>03</span>
+
+            <h3
+                data-fr="Ajoutez vos produits"
+                data-en="Add your products"
+            >
+                Ajoutez vos produits
+            </h3>
+
+            <p
+                data-fr="Publiez vos contenus numériques et définissez vos prix."
+                data-en="Publish your digital content and set your prices."
+            >
+                Publiez vos contenus numériques et définissez vos pri
