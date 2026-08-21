@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZySell | Connexion</title>
+    <meta name="description" content="Connectez-vous à votre compte ZySell.">
+
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* ================================
+           ZYSELL — LOGIN
+           ================================ */
+
+        .auth-page {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 32px 20px;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(37, 115, 255, .10), transparent 38%),
+                var(--bg, #ffffff);
+        }
+
+        .auth-shell {
+            width: min(100%, 460px);
+        }
+
+        .auth-top {
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        .auth-logo {
+            width: 74px;
+            height: 74px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 18px;
+        }
+
+        .auth-brand {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: #1976ff;
+            margin: 0 0 10px;
+        }
+
+        .auth-title {
+            margin: 0;
+            font-size: clamp(32px, 7vw, 46px);
+            line-height: 1.02;
+            letter-spacing: -.045em;
+            font-weight: 850;
+            color: #101114;
+        }
+
+        .auth-subtitle {
+            max-width: 390px;
+            margin: 14px auto 0;
+            color: #737780;
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        .auth-card {
+            background: rgba(255,255,255,.92);
+            border: 1px solid #e7e8ec;
+            border-radius: 26px;
+            padding: 28px;
+            box-shadow: 0 22px 70px rgba(16, 17, 20, .10);
+            backdrop-filter: blur(14px);
+        }
+
+        .auth-form {
+            display: grid;
+            gap: 17px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+
+        .field label {
+            font-size: 13px;
+            font-weight: 750;
+            color: #24262b;
+        }
+
+        .field input {
+            width: 100%;
+            min-height: 54px;
+            padding: 0 16px;
+            border: 1px solid #dfe1e6;
+            border-radius: 14px;
+            background: #fff;
+            color: #111318;
+            font: inherit;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+            box-sizing: border-box;
+        }
+
+        .field input:focus {
+            border-color: #1976ff;
+            box-shadow: 0 0 0 4px rgba(25,118,255,.10);
+        }
+
+        .password-wrap {
+            position: relative;
+        }
+
+        .password-wrap input {
+            padding-right: 54px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border: 0;
+            border-radius: 10px;
+            background: transparent;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .auth-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: -2px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #737780;
+            font-size: 13px;
+        }
+
+        .remember input {
+            accent-color: #1976ff;
+        }
+
+        .forgot {
+            color: #1976ff;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        .auth-submit,
+        .google-btn {
+            width: 100%;
+            min-height: 54px;
+            border-radius: 14px;
+            font: inherit;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform .15s, opacity .15s, background .2s;
+        }
+
+        .auth-submit {
+            border: 0;
+            color: #fff;
+            background: #0d0e11;
+        }
+
+        .auth-submit:hover,
+        .google-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .auth-submit:disabled,
+        .google-btn:disabled {
+            opacity: .55;
+            cursor: wait;
+            transform: none;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #a0a3aa;
+            font-size: 12px;
+            margin: 20px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: #e7e8ec;
+        }
+
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+            border: 1px solid #dfe1e6;
+            background: #fff;
+            color: #16171a;
+        }
+
+        .google-icon {
+            width: 19px;
+            height: 19px;
+        }
+
+        .message {
+            display: none;
+            margin-bottom: 16px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.error {
+            color: #a51d2d;
+            background: #fff0f2;
+            border: 1px solid #ffd0d6;
+        }
+
+        .message.success {
+            color: #166534;
+            background: #effdf4;
+            border: 1px solid #bbf7d0;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 22px;
+            color: #777b83;
+            font-size: 14px;
+        }
+
+        .auth-footer a {
+            color: #1976ff;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .auth-back {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #777b83;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .auth-back:hover {
+            color: #1976ff;
+        }
+
+        /* Mode sombre : compatible avec le body.dark déjà utilisé par ZySell. */
+        body.dark .auth-page {
+            --bg: #07090d;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(37, 115, 255, .14), transparent 38%),
+                #07090d;
+        }
+
+        body.dark .auth-title {
+            color: #f7f8fa;
+        }
+
+        body.dark .auth-subtitle,
+        body.dark .auth-footer,
+        body.dark .auth-back {
+            color: #a5aab4;
+        }
+
+        body.dark .auth-card {
+            background: rgba(15,17,22,.94);
+            border-color: #282c34;
+            box-shadow: 0 24px 80px rgba(0,0,0,.30);
+        }
+
+        body.dark .field label {
+            color: #e8eaf0;
+        }
+
+        body.dark .field input {
+            background: #0b0d12;
+            border-color: #30343d;
+            color: #f7f8fa;
+        }
+
+        body.dark .google-btn {
+            background: #11141a;
+            border-color: #30343d;
+            color: #f7f8fa;
+        }
+
+        body.dark .divider::before,
+        body.dark .divider::after {
+            background: #30343d;
+        }
+
+        @media (max-width: 520px) {
+            .auth-page {
+                padding: 22px 16px;
+            }
+
+            .auth-card {
+                padding: 22px 18px;
+                border-radius: 22px;
+            }
+
+            .auth-title {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="auth-page">
+        <section class="auth-shell" aria-labelledby="loginTitle">
+
+            <div class="auth-top">
+                <img class="auth-logo" src="assets/logo.png" alt="ZySell">
+                <p class="auth-brand" data-fr="ZySell" data-en="ZySell">ZySell</p>
+
+                <h1 id="loginTitle"
+                    class="auth-title"
+                    data-fr="Bon retour."
+                    data-en="Welcome back.">
+                    Bon retour.
+                </h1>
+
+                <p class="auth-subtitle"
+                   data-fr="Connectez-vous à votre espace ZySell et retrouvez votre boutique, vos produits et vos ventes."
+                   data-en="Sign in to your ZySell space and access your store, products and sales.">
+                    Connectez-vous à votre espace ZySell et retrouvez votre boutique,
+                    vos produits et vos ventes.
+                </p>
+            </div>
+
+            <div class="auth-card">
+
+                <div id="authMessage" class="message" role="alert"></div>
+
+                <form id="loginForm" class="auth-form">
+
+                    <div class="field">
+                        <label for="email"
+                               data-fr="Adresse e-mail"
+                               data-en="Email address">
+                            Adresse e-mail
+                        </label>
+
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            autocomplete="email"
+                            required
+                            placeholder="vous@exemple.com">
+                    </div>
+
+                    <div class="field">
+                        <label for="password"
+                               data-fr="Mot de passe"
+                               data-en="Password">
+                            Mot de passe
+                        </label>
+
+                        <div class="password-wrap">
+                            <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                autocomplete="current-password"
+                                required
+                                minlength="6"
+                                placeholder="Votre mot de passe">
+
+                            <button
+                                type="button"
+                                id="passwordToggle"
+                                class="password-toggle"
+                                aria-label="Afficher le mot de passe">
+                                ◉
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="auth-row">
+                        <label class="remember">
+                            <input id="rememberMe" type="checkbox" checked>
+                            <span data-fr="Rester connecté"
+                                  data-en="Keep me signed in">
+                                Rester connecté
+                            </span>
+                        </label>
+
+                        <a href="#" id="forgotPassword" class="forgot"
+                           data-fr="Mot de passe oublié ?"
+                           data-en="Forgot password?">
+                            Mot de passe oublié ?
+                        </a>
+                    </div>
+
+                    <button id="loginButton" class="auth-submit" type="submit"
+                            data-fr="Se connecter"
+                            data-en="Sign in">
+                        Se connecter
+                    </button>
+                </form>
+
+                <div class="divider">
+                    <span data-fr="ou continuer avec" data-en="or continue with">
+                        ou continuer avec
+                    </span>
+                </div>
+
+                <button id="googleButton" class="google-btn" type="button">
+                    <svg class="google-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="#4285F4" d="M21.35 12.23c0-.79-.07-1.55-.23-2.23H12v4.22h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.14c1.84-1.69 2.91-4.18 2.91-7.38z"/>
+                        <path fill="#34A853" d="M12 21.5c2.63 0 4.84-.87 6.45-2.36l-3.14-2.45c-.87.58-1.98.92-3.31.92-2.54 0-4.69-1.72-5.46-4.03H3.3v2.53A9.74 9.74 0 0 0 12 21.5z"/>
+                        <path fill="#FBBC05" d="M6.54 13.58A5.85 5.85 0 0 1 6.23 12c0-.55.11-1.08.31-1.58V7.89H3.3A9.5 9.5 0 0 0 2.25 12c0 1.53.37 2.98 1.05 4.11l3.24-2.53z"/>
+                        <path fill="#EA4335" d="M12 6.39c1.43 0 2.72.49 3.73 1.46l2.8-2.8C16.84 3.47 14.63 2.5 12 2.5A9.74 9.74 0 0 0 3.3 7.89l3.24 2.53C7.31 8.11 9.46 6.39 12 6.39z"/>
+                    </svg>
+
+                    <span data-fr="Continuer avec Google"
+                          data-en="Continue with Google">
+                        Continuer avec Google
+                    </span>
+                </button>
+
+                <p class="auth-footer">
+                    <span data-fr="Vous n'avez pas encore de compte ?"
+                          data-en="Don't have an account yet?">
+                        Vous n'avez pas encore de compte ?
+                    </span>
+                    <a href="signup.html"
+                       data-fr="Créer un compte"
+                       data-en="Create an account">
+                        Créer un compte
+                    </a>
+                </p>
+            </div>
+
+            <a class="auth-back" href="index.html"
+               data-fr="← Retour à ZySell"
+               data-en="← Back to ZySell">
+                ← Retour à ZySell
+            </a>
+
+        </section>
+    </main>
+
+    <!-- Firebase Web SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+        import {
+            getAuth,
+            setPersistence,
+            browserLocalPersistence,
+            browserSessionPersistence,
+            signInWithEmailAndPassword,
+            GoogleAuthProvider,
+            signInWithPopup,
+            sendPasswordResetEmail
+        } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCN2KKYwu_vTuxQ37O1aJWkQ_v-Dj_wRNs",
+            authDomain: "zysell-4dccf.firebaseapp.com",
+            projectId: "zysell-4dccf",
+            storageBucket: "zysell-4dccf.firebasestorage.app",
+            messagingSenderId: "471869632233",
+            appId: "1:471869632233:web:fbcef0190964790a434a78",
+            measurementId: "G-P19LD5WPCY"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        const loginForm = document.getElementById("loginForm");
+        const loginButton = document.getElementById("loginButton");
+        const googleButton = document.getElementById("googleButton");
+        const forgotPassword = document.getElementById("forgotPassword");
+        const passwordToggle = document.getElementById("passwordToggle");
+        const passwordInput = document.getElementById("password");
+        const rememberMe = document.getElementById("rememberMe");
+        const messageBox = document.getElementById("authMessage");
+
+        let currentLanguage = localStorage.getItem("zysell-language") || "fr";
+
+        function t(fr, en) {
+            return currentLanguage === "en" ? en : fr;
+        }
+
+        function showMessage(type, fr, en) {
+            messageBox.className = `message show ${type}`;
+            messageBox.textContent = t(fr, en);
+        }
+
+        function clearMessage() {
+            messageBox.className = "message";
+            messageBox.textContent = "";
+        }
+
+        function setLoading(button, loading, frText, enText) {
+            button.disabled = loading;
+            button.textContent = loading
+                ? t("Connexion...", "Signing in...")
+                : t(frText, enText);
+        }
+
+        function applyLanguage() {
+            currentLanguage = localStorage.getItem("zysell-language") || "fr";
+
+            document.querySelectorAll("[data-fr][data-en]").forEach((element) => {
+                element.textContent =
+                    currentLanguage === "en"
+                        ? element.dataset.en
+                        : element.dataset.fr;
+            });
+
+            document.documentElement.lang = currentLanguage;
+        }
+
+        function getFirebaseError(error) {
+            const code = error?.code || "";
+
+            const errors = {
+                "auth/invalid-credential": [
+                    "Adresse e-mail ou mot de passe incorrect.",
+                    "Incorrect email address or password."
+                ],
+                "auth/invalid-email": [
+                    "L'adresse e-mail n'est pas valide.",
+                    "The email address is not valid."
+                ],
+                "auth/user-not-found": [
+                    "Aucun compte ne correspond à cette adresse e-mail.",
+                    "No account matches this email address."
+                ],
+                "auth/wrong-password": [
+                    "Mot de passe incorrect.",
+                    "Incorrect password."
+                ],
+                "auth/too-many-requests": [
+                    "Trop de tentatives. Réessayez plus tard.",
+                    "Too many attempts. Please try again later."
+                ],
+                "auth/network-request-failed": [
+                    "Problème de connexion Internet.",
+                    "Network connection problem."
+                ],
+                "auth/popup-blocked": [
+                    "La connexion Google a été bloquée par le navigateur.",
+                    "Google sign-in was blocked by the browser."
+                ]
+            };
+
+            return errors[code] || [
+                "Impossible de vous connecter pour le moment.",
+                "Unable to sign you in right now."
+            ];
+        }
+
+        /* Connexion e-mail / mot de passe */
+        loginForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            clearMessage();
+
+            const email = document.getElementById("email").value.trim();
+            const password = passwordInput.value;
+
+            if (!email || !password) {
+                showMessage(
+                    "error",
+                    "Veuillez remplir tous les champs.",
+                    "Please fill in all fields."
+                );
+                return;
+            }
+
+            try {
+                await setPersistence(
+                    auth,
+                    rememberMe.checked
+                        ? browserLocalPersistence
+                        : browserSessionPersistence
+                );
+
+                setLoading(loginButton, true, "Se connecter", "Sign in");
+
+                await signInWithEmailAndPassword(auth, email, password);
+
+                showMessage(
+                    "success",
+                    "Connexion réussie. Redirection...",
+                    "Signed in successfully. Redirecting..."
+                );
+
+                setTimeout(() => {
+                    window.location.replace("dashboard.html");
+                }, 500);
+
+            } catch (error) {
+                const [fr, en] = getFirebaseError(error);
+                showMessage("error", fr, en);
+                setLoading(loginButton, false, "Se connecter", "Sign in");
+            }
+        });
+
+        /* Connexion Google avec fenêtre popup.
+           Évite le problème de sessionStorage rencontré avec le redirect. */
+        googleButton.addEventListener("click", async () => {
+            clearMessage();
+            googleButton.disabled = true;
+
+            try {
+                await setPersistence(
+                    auth,
+                    rememberMe.checked
+                        ? browserLocalPersistence
+                        : browserSessionPersistence
+                );
+
+                const result = await signInWithPopup(auth, googleProvider);
+
+                if (result?.user) {
+                    showMessage(
+                        "success",
+                        "Connexion Google réussie. Ouverture de votre espace...",
+                        "Google sign-in successful. Opening your workspace..."
+                    );
+
+                    window.location.replace("dashboard.html");
+                }
+
+            } catch (error) {
+                const [fr, en] = getFirebaseError(error);
+                showMessage("error", fr, en);
+                googleButton.disabled = false;
+            }
+        });
+
+        /* Mot de passe oublié */
+        forgotPassword.addEventListener("click", async (event) => {
+            event.preventDefault();
+            clearMessage();
+
+            const email = document.getElementById("email").value.trim();
+
+            if (!email) {
+                showMessage(
+                    "error",
+                    "Entrez d'abord votre adresse e-mail.",
+                    "Enter your email address first."
+                );
+                document.getElementById("email").focus();
+                return;
+            }
+
+            try {
+                await sendPasswordResetEmail(auth, email);
+
+                showMessage(
+                    "success",
+                    "Un e-mail de réinitialisation vient d'être envoyé.",
+                    "A password reset email has been sent."
+                );
+            } catch (error) {
+                const [fr, en] = getFirebaseError(error);
+                showMessage("error", fr, en);
+            }
+        });
+
+        /* Afficher / masquer le mot de passe */
+        passwordToggle.addEventListener("click", () => {
+            const visible = passwordInput.type === "text";
+
+            passwordInput.type = visible ? "password" : "text";
+            passwordToggle.textContent = visible ? "◉" : "◌";
+            passwordToggle.setAttribute(
+                "aria-label",
+                visible
+                    ? t("Afficher le mot de passe", "Show password")
+                    : t("Masquer le mot de passe", "Hide password")
+            );
+        });
+
+        /* Les préférences sont contrôlées depuis index.html.
+           Login récupère automatiquement la langue et le thème enregistrés. */
+        function syncPreferences() {
+            currentLanguage = localStorage.getItem("zysell-language") || "fr";
+
+            document.documentElement.lang = currentLanguage;
+
+            document.querySelectorAll("[data-fr][data-en]").forEach((element) => {
+                element.textContent =
+                    currentLanguage === "en"
+                        ? element.dataset.en
+                        : element.dataset.fr;
+            });
+
+            const isDark = localStorage.getItem("zysell-theme") === "dark";
+            document.body.classList.toggle("dark", isDark);
+        }
+
+        syncPreferences();
+
+        /* Si la préférence est modifiée depuis un autre onglet,
+           Login se met à jour automatiquement. */
+        window.addEventListener("storage", syncPreferences);
+    </script>
+</body>
+</html>
