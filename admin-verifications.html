@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZySell — Vérifications</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f7fb;color:#111318;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:#0d0e11;color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+header b{font-size:18px}button{border:0;border-radius:11px;padding:11px 15px;font-weight:800;cursor:pointer}
+.logout{background:transparent;color:white;border:1px solid #444}.wrap{max-width:1050px;margin:auto;padding:25px 16px}
+.eyebrow{color:#1976ff;font-size:12px;font-weight:900;letter-spacing:.12em}.hero h1{margin:5px 0;font-size:31px}.muted{color:#737985;line-height:1.5}
+.panel,.request{background:white;border:1px solid #e4e7ec;border-radius:18px;padding:18px;margin-top:18px}
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900;background:#eaf2ff;color:#175cd3}
+.message{display:none;padding:13px;border-radius:12px;margin-top:16px}.message.show{display:block}.error{background:#fff1f0;color:#b42318}.success{background:#ecfdf3;color:#087443}
+.request h2{margin:0 0 5px}.request-head{display:flex;justify-content:space-between;gap:12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.field{border:1px solid #e4e7ec;border-radius:12px;padding:12px}.field strong{display:block;font-size:12px;color:#737985;margin-bottom:7px}.doc{width:100%;max-height:360px;object-fit:contain;background:#eef0f4;border-radius:10px;margin-top:8px}
+.actions{display:flex;gap:10px;margin-top:14px}.approve{background:#087443;color:white}.reject{background:#b42318;color:white}.secondary{background:#eef1f5}
+.empty{text-align:center;padding:30px;color:#737985}.hidden{display:none!important}
+dialog{border:0;border-radius:16px;max-width:500px;width:calc(100% - 30px);padding:20px}dialog::backdrop{background:#0008}
+textarea{width:100%;min-height:120px;padding:12px;border:1px solid #ddd;border-radius:10px;font:inherit}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.request-head{flex-direction:column}.hero h1{font-size:27px}}
+</style>
+</head>
+<body>
+<header><b>ZySell · Administration</b><button class="logout" id="logout">Se déconnecter</button></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">ESPACE SÉCURISÉ</div><h1>Vérifications des boutiques</h1><p class="muted">Gérez les demandes d'identité avant publication des boutiques.</p></section>
+<div id="msg" class="message"></div>
+<section id="admin" class="panel hidden"><b>Administrateur connecté</b> <span class="badge">ADMIN ACTIF</span> <span id="email" class="muted"></span></section>
+<section id="listPanel" class="panel hidden">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><b>Demandes en attente</b><button id="refresh" class="secondary">Actualiser</button></div>
+<div id="loading" class="empty">Chargement…</div><div id="list"></div><div id="empty" class="empty hidden">Aucune demande en attente.</div>
+</section>
+</main>
+<dialog id="dlg"><h2>Refuser la vérification</h2><p class="muted">Indiquez le motif du refus.</p><textarea id="reason" placeholder="Ex. La pièce d'identité est illisible…"></textarea><div class="actions" style="justify-content:flex-end"><button class="secondary" id="cancel">Annuler</button><button class="reject" id="confirm">Confirmer</button></div></dialog>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import{getAuth,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import{getFirestore,doc,getDoc,collection,query,where,orderBy,getDocs,updateDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig={apiKey:"AIzaSyCN2KKYwu_vTuxQ37O1aJWkQ_v-Dj_wRNs",authDomain:"zysell-4dccf.firebaseapp.com",projectId:"zysell-4dccf",storageBucket:"zysell-4dccf.firebasestorage.app",messagingSenderId:"471869632233",appId:"1:471869632233:web:fbcef0190964790a434a78",measurementId:"G-P19LD5WPCY"};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+const $=id=>document.getElementById(id);let rejectId=null;
+function msg(t,type="error"){$("msg").textContent=t;$("msg").className="message show "+type}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function denied(){document.body.innerHTML='<div style="min-height:100vh;display:grid;place-items:center;text-align:center;font-family:system-ui"><div><div style="font-size:50px">🔒</div><h1>Accès refusé</h1><p>Cette page est réservée aux administrateurs ZySell.</p></div></div>'}
+async function isAdmin(u){const s=await getDoc(doc(db,"adminUsers",u.uid));return s.exists()&&s.data().role==="admin"&&s.data().active===true}
+function card(id,d){
+ const name=d.storeName||d.shopName||"Boutique sans nom",owner=d.ownerName||d.fullName||"Non renseigné";
+ const uid=d.ownerUid||d.userId||"Non renseigné",idUrl=d.identityDocumentUrl||d.idDocumentUrl||"",photo=d.ownerPhotoUrl||d.ownerWithIdUrl||"";
+ const el=document.createElement("article");el.className="request";
+ el.innerHTML='<div class="request-head"><div><h2>'+esc(name)+'</h2><div class="muted">Propriétaire : '+esc(owner)+'<br>UID : '+esc(uid)+'</div></div><span class="badge">EN ATTENTE</span></div>'+
+ '<div class="grid"><div class="field"><strong>Pièce d’identité</strong>'+ (idUrl?'<a href="'+esc(idUrl)+'" target="_blank">Ouvrir le document</a><img class="doc" src="'+esc(idUrl)+'">':'<span class="muted">Non fournie</span>')+
+ '</div><div class="field"><strong>Photo du propriétaire avec la pièce</strong>'+ (photo?'<a href="'+esc(photo)+'" target="_blank">Ouvrir la photo</a><img class="doc" src="'+esc(photo)+'">':'<span class="muted">Non fournie</span>')+
+ '</div></div><div class="actions"><button class="approve">✓ Approuver</button><button class="reject">✕ Refuser</button></div>';
+ el.querySelector(".approve").onclick=()=>approve(id);el.querySelector(".reject").onclick=()=>{rejectId=id;$("reason").value="";$("dlg").showModal()};$("list").appendChild(el)
+}
+async function load(){
+ $("loading").classList.remove("hidden");$("empty").classList.add("hidden");$("list").innerHTML="";
+ try{const q=query(collection(db,"verificationRequests"),where("status","==","pending"),orderBy("createdAt","desc")),s=await getDocs(q);$("loading").classList.add("hidden");
+ if(s.empty){$("empty").classList.remove("hidden");return}s.forEach(x=>card(x.id,x.data()))
+ }catch(e){$("loading").classList.add("hidden");msg("La page admin est sécurisée, mais verificationRequests n’est pas encore autorisée dans les règles Firestore. Nous l’ajouterons ensuite.");console.error(e)}
+}
+async function approve(id){if(!confirm("Approuver cette vérification ?"))return;try{await updateDoc(doc(db,"verificationRequests",id),{status:"approved",reviewedBy:auth.currentUser.uid,reviewedAt:serverTimestamp(),rejectionReason:""});msg("Vérification approuvée.","success");load()}catch(e){msg("Impossible d’approuver. Les règles Firestore devront autoriser cette opération.")}}
+$("confirm").onclick=async()=>{const r=$("reason").value.trim();if(!r)return alert("Indiquez un motif.");try{await updateDoc(doc(db,"verificationRequests",rejectId),{status:"rejected",reviewedBy:auth.currentUser.uid,reviewedAt:serverTimestamp(),rejectionReason:r});$("dlg").close();msg("Vérification refusée.","success");load()}catch(e){msg("Impossible de refuser. Les règles Firestore devront autoriser cette opération.")}};
+$("cancel").onclick=()=>$("dlg").close();$("refresh").onclick=load;$("logout").onclick=()=>signOut(auth);
+onAuthStateChanged(auth,async u=>{if(!u)return denied();try{if(!(await isAdmin(u)))return denied();$("email").textContent=u.email?" · "+u.email:"";$("admin").classList.remove("hidden");$("listPanel").classList.remove("hidden");load()}catch(e){denied()}});
+</script>
+</body>
+</html>
