@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZySell | Créer une boutique</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.store-page{min-height:100vh;padding:34px 20px 60px;background:radial-gradient(circle at 50% 0%,rgba(37,115,255,.1),transparent 38%),#fff}
+body.dark .store-page{background:radial-gradient(circle at 50% 0%,rgba(37,115,255,.14),transparent 38%),#07090d}
+.store-shell{width:min(100%,760px);margin:auto}.store-top{text-align:center;margin-bottom:26px}
+.store-logo{width:64px;height:64px;object-fit:contain}.store-brand{margin:10px 0 6px;color:#1976ff;font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.store-title{margin:0;font-size:clamp(30px,7vw,44px);letter-spacing:-.045em;color:#101114}.store-subtitle{max-width:600px;margin:12px auto;color:#737780;line-height:1.6}
+body.dark .store-title{color:#f7f8fa}body.dark .store-subtitle{color:#a5aab4}
+.store-card{padding:28px;background:rgba(255,255,255,.94);border:1px solid #e7e8ec;border-radius:26px;box-shadow:0 22px 70px rgba(16,17,20,.1)}
+body.dark .store-card{background:rgba(15,17,22,.94);border-color:#282c34;box-shadow:0 24px 80px rgba(0,0,0,.3)}
+.section-title{margin:0 0 16px;font-size:18px;color:#16171a}body.dark .section-title{color:#f7f8fa}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.full{grid-column:1/-1}.field{display:grid;gap:8px}.field label{font-size:13px;font-weight:750;color:#24262b}body.dark .field label{color:#e8eaf0}
+.field input,.field select,.field textarea{width:100%;box-sizing:border-box;min-height:52px;padding:12px 14px;border:1px solid #dfe1e6;border-radius:14px;background:#fff;color:#111318;font:inherit;outline:none}
+.field textarea{min-height:125px;resize:vertical}body.dark .field input,body.dark .field select,body.dark .field textarea{background:#0b0d12;border-color:#30343d;color:#f7f8fa}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#1976ff;box-shadow:0 0 0 4px rgba(25,118,255,.1)}
+.hint{font-size:12px;color:#777b83;line-height:1.45}.detect-row{display:flex;gap:8px;align-items:center;margin-top:6px;font-size:12px;color:#1976ff}.detect-dot{width:7px;height:7px;border-radius:50%;background:#1976ff}
+.status-box{margin-top:22px;padding:16px;border:1px solid #e7e8ec;border-radius:16px;background:#fafbfc}body.dark .status-box{background:#0b0d12;border-color:#282c34}
+.status-line{display:flex;justify-content:space-between;gap:15px;align-items:center}.status-label{font-size:13px;font-weight:750}.draft-badge{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:800;background:#fff4cc;color:#8a6500}
+.verified-note{margin:10px 0 0;font-size:12px;line-height:1.5;color:#777b83}.actions{display:flex;gap:12px;margin-top:24px}
+.btn{flex:1;min-height:54px;border-radius:14px;font:inherit;font-weight:800;cursor:pointer;border:1px solid #dfe1e6;background:#fff;color:#16171a}.btn-primary{border:0;background:#0d0e11;color:#fff}.btn:disabled{opacity:.55;cursor:wait}
+body.dark .btn{background:#11141a;border-color:#30343d;color:#f7f8fa}body.dark .btn-primary{background:#fff;color:#0d0e11}
+.message{display:none;margin-bottom:16px;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.5}.message.show{display:block}.message.error{color:#a51d2d;background:#fff0f2;border:1px solid #ffd0d6}.message.success{color:#166534;background:#effdf4;border:1px solid #bbf7d0}
+.back{display:block;margin-top:18px;text-align:center;color:#777b83;text-decoration:none;font-size:13px}.back:hover{color:#1976ff}
+@media(max-width:650px){.store-page{padding:22px 16px 40px}.store-card{padding:20px 17px;border-radius:22px}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.actions{flex-direction:column}}
+</style>
+</head>
+<body>
+<main class="store-page">
+<section class="store-shell">
+<div style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:18px">
+<button id="languageToggle" type="button" style="border:1px solid #dfe1e6;border-radius:12px;background:#fff;padding:9px 12px;font-weight:800;cursor:pointer">FR / EN</button>
+<button id="themeToggle" type="button" style="border:1px solid #dfe1e6;border-radius:12px;background:#fff;padding:9px 12px;font-weight:800;cursor:pointer">☾</button>
+</div>
+<header class="store-top">
+<img class="store-logo" src="assets/logo.png" alt="ZySell">
+<p class="store-brand">ZySell</p>
+<h1 class="store-title"><span data-fr="Créer votre boutique." data-en="Create your store.">Créer votre boutique.</span></h1>
+<p class="store-subtitle"><span data-fr="Présentez votre activité sur ZySell. Votre boutique peut être publiée normalement. La certification <strong>ZySell Verified</strong> reste facultative." data-en="Present your business on ZySell. Your store can be published normally. ZySell Verified certification is optional.">Présentez votre activité sur ZySell. Votre boutique peut être publiée normalement. La certification <strong>ZySell Verified</strong> reste facultative.</span></p>
+</header>
+<div class="store-card">
+<div id="storeMessage" class="message" role="alert"></div>
+<form id="storeForm">
+<h2 class="section-title"><span data-fr="Informations de la boutique" data-en="Store information">Informations de la boutique</span></h2>
+<div class="form-grid">
+<div class="field full"><label for="storeName"><span data-fr="Nom de la boutique" data-en="Store name">Nom de la boutique</span></label><input id="storeName" type="text" maxlength="80" required placeholder="Ex. Venzy Digital"></div>
+<div class="field"><label for="storeSlug"><span data-fr="Identifiant public" data-en="Public handle">Identifiant public</span></label><input id="storeSlug" type="text" maxlength="40" required placeholder="venzy-digital"><span class="hint">Utilisé pour votre adresse publique ZySell.</span></div>
+<div class="field"><label for="category"><span data-fr="Catégorie" data-en="Category">Catégorie</span></label><select id="category" required><option value="">Choisir une catégorie</option><option>Produits numériques</option><option>Formation</option><option>Services</option><option>Mode</option><option>Technologie</option><option>Art & création</option><option>Autre</option></select></div>
+<div class="field full"><label for="description"><span data-fr="Description" data-en="Description">Description</span></label><textarea id="description" maxlength="600" required placeholder="Présentez brièvement votre boutique et ce que vous proposez."></textarea></div>
+<div class="field"><label for="country"><span data-fr="Pays" data-en="Country">Pays</span></label><select id="country" required><option value="">Détection...</option></select><div class="detect-row"><span class="detect-dot"></span>Détection automatique, modifiable</div></div>
+<div class="field"><label for="currency"><span data-fr="Devise" data-en="Currency">Devise</span></label><select id="currency" required><option value="">Sélectionnez votre devise</option><option value="XAF">XAF — Franc CFA BEAC</option><option value="XOF">XOF — Franc CFA BCEAO</option><option value="EUR">EUR — Euro</option><option value="USD">USD — Dollar américain</option><option value="GBP">GBP — Livre sterling</option><option value="CAD">CAD — Dollar canadien</option><option value="NGN">NGN — Naira nigérian</option><option value="GHS">GHS — Cedi ghanéen</option><option value="KES">KES — Shilling kényan</option><option value="ZAR">ZAR — Rand sud-africain</option></select></div>
+</div>
+<div class="status-box" style="margin-bottom:14px">
+<div class="status-line"><span class="status-label" data-fr="Vérification d’identité" data-en="Identity verification">Vérification d’identité</span><span class="draft-badge" style="background:#fff4cc;color:#8a6500" data-fr="À compléter" data-en="Required">À compléter</span></div>
+<p class="verified-note" data-fr="Requise avant la publication de la boutique : pièce d’identité valide + photo du propriétaire tenant la pièce." data-en="Required before store publication: valid ID + photo of the owner holding the ID.">Requise avant la publication de la boutique : pièce d’identité valide + photo du propriétaire tenant la pièce.</p>
+</div>
+<div class="status-box"><div class="status-line"><span class="status-label"><span data-fr="Statut de la boutique" data-en="Store status">Statut de la boutique</span></span><span class="draft-badge"><span data-fr="Brouillon" data-en="Draft">Brouillon</span></span></div><p class="verified-note"><span data-fr="Votre boutique peut être publiée sans ZySell Verified. Avant publication, l’identité du propriétaire doit toutefois être vérifiée avec une pièce d’identité valide et une photo du propriétaire tenant cette pièce. La certification ZySell Verified reste facultative."
+data-en="Your store can be published without ZySell Verified. Before publication, however, the owner’s identity must be verified with a valid ID and a photo of the owner holding that ID. ZySell Verified certification remains optional.">Votre boutique peut être publiée sans ZySell Verified. Avant publication, l’identité du propriétaire doit toutefois être vérifiée avec une pièce d’identité valide et une photo du propriétaire tenant cette pièce. La certification ZySell Verified reste facultative.</span></p></div>
+<div class="actions"><button type="button" class="btn" id="cancelButton"><span data-fr="Annuler" data-en="Cancel">Annuler</span></button><button type="submit" class="btn btn-primary" id="saveButton"><span data-fr="Enregistrer la boutique" data-en="Save store">Enregistrer la boutique</span></button></div>
+</form>
+<a class="back" href="dashboard.html"><span data-fr="← Retour au Dashboard" data-en="← Back to Dashboard">← Retour au Dashboard</span></a>
+</div>
+</section>
+</main>
+
+<script>
+(() => {
+    const applyUI = () => {
+        const lang = localStorage.getItem("zysell-language") || "fr";
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-fr][data-en]").forEach(el => {
+            const value = el.dataset[lang];
+            if (value !== undefined) el.innerHTML = value;
+        });
+        document.body.classList.toggle("dark", localStorage.getItem("zysell-theme") === "dark");
+    };
+    document.getElementById("languageToggle")?.addEventListener("click", () => {
+        const next = (localStorage.getItem("zysell-language") || "fr") === "fr" ? "en" : "fr";
+        localStorage.setItem("zysell-language", next);
+        applyUI();
+    });
+    document.getElementById("themeToggle")?.addEventListener("click", () => {
+        localStorage.setItem("zysell-theme", localStorage.getItem("zysell-theme") === "dark" ? "light" : "dark");
+        applyUI();
+    });
+    applyUI();
+    window.addEventListener("storage", applyUI);
+})();
+</script>
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import{getAuth,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import{getFirestore,doc,setDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyCN2KKYwu_vTuxQ37O1aJWkQ_v-Dj_wRNs",authDomain:"zysell-4dccf.firebaseapp.com",projectId:"zysell-4dccf",storageBucket:"zysell-4dccf.firebasestorage.app",messagingSenderId:"471869632233",appId:"1:471869632233:web:fbcef0190964790a434a78",measurementId:"G-P19LD5WPCY"};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+const form=document.getElementById("storeForm"),message=document.getElementById("storeMessage"),saveButton=document.getElementById("saveButton"),cancelButton=document.getElementById("cancelButton"),storeName=document.getElementById("storeName"),storeSlug=document.getElementById("storeSlug"),category=document.getElementById("category"),description=document.getElementById("description"),country=document.getElementById("country"),currency=document.getElementById("currency");
+let currentUser=null;
+function showMessage(type,text){message.className=`message show ${type}`;message.textContent=text}
+function slugify(v){return v.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40)}
+storeName.addEventListener("input",()=>{if(!storeSlug.dataset.edited)storeSlug.value=slugify(storeName.value)});
+storeSlug.addEventListener("input",()=>{storeSlug.dataset.edited="true";storeSlug.value=slugify(storeSlug.value)});
+const countries=[["CM","🇨🇲 Cameroun","XAF"],["TD","🇹🇩 Tchad","XAF"],["GA","🇬🇦 Gabon","XAF"],["CG","🇨🇬 Congo","XAF"],["CD","🇨🇩 RD Congo","USD"],["CI","🇨🇮 Côte d’Ivoire","XOF"],["SN","🇸🇳 Sénégal","XOF"],["BJ","🇧🇯 Bénin","XOF"],["TG","🇹🇬 Togo","XOF"],["FR","🇫🇷 France","EUR"],["BE","🇧🇪 Belgique","EUR"],["CA","🇨🇦 Canada","CAD"],["US","🇺🇸 États-Unis","USD"],["GB","🇬🇧 Royaume-Uni","GBP"],["NG","🇳🇬 Nigeria","NGN"],["GH","🇬🇭 Ghana","GHS"],["KE","🇰🇪 Kenya","KES"],["ZA","🇿🇦 Afrique du Sud","ZAR"]];
+function populateCountries(){country.innerHTML='<option value="">Choisir un pays</option>';countries.forEach(([code,label])=>{const o=document.createElement("option");o.value=code;o.textContent=label;country.appendChild(o)})}
+function applyCountry(code){const found=countries.find(x=>x[0]===code);if(found){country.value=found[0];currency.value=found[2]}}
+async function detectCountry(){populateCountries();try{const r=await fetch("https://ipapi.co/json/",{cache:"no-store"});if(!r.ok)throw new Error();const d=await r.json();applyCountry(d.country_code)}catch{applyCountry("CM")}}
+onAuthStateChanged(auth,user=>{if(!user){window.location.replace("login.html");return}currentUser=user});
+form.addEventListener("submit",async e=>{e.preventDefault();message.className="message";if(!currentUser){showMessage("error","Votre session n'est plus active. Veuillez vous reconnecter.");return}
+const name=storeName.value.trim(),slug=slugify(storeSlug.value),desc=description.value.trim();
+if(!name||!slug||!category.value||!desc||!country.value||!currency.value){showMessage("error","Veuillez remplir tous les champs.");return}
+try{saveButton.disabled=true;saveButton.textContent="Enregistrement...";
+await setDoc(doc(db,"stores",currentUser.uid),{ownerId:currentUser.uid,ownerEmail:currentUser.email||"",name,slug,description:desc,category:category.value,country:country.value,currency:currency.value,status:"draft",verified:false,verificationStatus:"not_submitted",published:false,createdAt:serverTimestamp(),updatedAt:serverTimestamp()},{merge:true});
+showMessage("success","Boutique enregistrée. Vérification d’identité requise avant publication.");setTimeout(()=>window.location.replace("verify-store.html"),900)
+}catch(err){console.error(err);showMessage("error","Impossible d'enregistrer la boutique pour le moment.");saveButton.disabled=false;saveButton.textContent="<span data-fr="Enregistrer la boutique" data-en="Save store">Enregistrer la boutique</span>"}});
+cancelButton.addEventListener("click",()=>window.location.replace("dashboard.html"));
+detectCountry();
+</script>
+</body>
+</html>
