@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZySell | Dashboard</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<style>
+:root{--bg:#f7f8fb;--card:#fff;--text:#111318;--muted:#747984;--border:#e2e4e9;--blue:#1976ff;--green:#168447;--yellow:#8a6500;--red:#b42332}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+body.dark{--bg:#07090d;--card:#101218;--text:#f5f7fa;--muted:#a5aab4;--border:#2a2e37}
+.page{min-height:100vh;padding:18px 16px 50px}.shell{max-width:920px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:10px}.brand img{width:42px;height:42px;object-fit:contain}.brand strong{font-size:20px}.actions{display:flex;gap:8px}.tool{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:9px 12px;font-weight:800;cursor:pointer}
+.hero{margin-bottom:22px}.eyebrow{font-size:12px;letter-spacing:.15em;color:var(--blue);font-weight:900}.hero h1{font-size:clamp(30px,7vw,46px);letter-spacing:-.05em;margin:6px 0}.hero p{color:var(--muted);line-height:1.6}
+.grid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:21px;box-shadow:0 18px 60px rgba(20,25,35,.07)}.card h2{margin:0 0 16px;font-size:18px}
+.store-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.store-name{font-size:25px;font-weight:900}.store-slug{font-size:12px;color:var(--muted);margin-top:4px}
+.pill{display:inline-flex;padding:7px 11px;border-radius:999px;font-size:12px;font-weight:900;white-space:nowrap}.draft{background:#eef1f5;color:#626874}.pending{background:#fff4cc;color:var(--yellow)}.approved{background:#e9f9ef;color:var(--green)}.rejected{background:#fff0f2;color:var(--red)}.blue{background:#e9f2ff;color:#1265d8}
+.status-list{display:grid;gap:10px;margin-top:18px}.status-row{display:flex;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--border)}.status-row:last-child{border-bottom:0}.label{font-size:12px;color:var(--muted)}.value{font-weight:800;font-size:13px;text-align:right}
+.notice{margin-top:16px;padding:14px;border-radius:14px;background:#eef5ff;border:1px solid #d9e7ff;font-size:12px;line-height:1.55}.dark .notice{background:#101a2b;border-color:#263a5c}
+.btn{width:100%;min-height:49px;border-radius:13px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-weight:850;cursor:pointer;margin-top:10px}.primary{background:#0d0e11;color:#fff;border-color:#0d0e11}.dark .primary{background:#fff;color:#0d0e11}.btn:disabled{opacity:.5;cursor:not-allowed}
+.empty{text-align:center;padding:35px 15px}.empty-icon{font-size:38px}.empty h2{margin:10px 0 7px}.empty p{color:var(--muted);font-size:13px;line-height:1.55}
+.account{display:flex;align-items:center;gap:12px;padding-bottom:15px;border-bottom:1px solid var(--border)}.avatar{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#111;color:#fff;font-weight:900}.email{font-size:12px;color:var(--muted);margin-top:3px;word-break:break-all}
+.loading{color:var(--muted);font-size:13px}.footer-link{display:block;text-align:center;color:var(--muted);text-decoration:none;font-size:13px;margin-top:18px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.store-head{flex-direction:column}.top{align-items:flex-start}.actions{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<main class="page"><section class="shell">
+<header class="top">
+<div class="brand"><img src="assets/logo.png" alt="ZySell"><strong>ZySell</strong></div>
+<div class="actions"><button class="tool" id="lang">FR / EN</button><button class="tool" id="theme">☾</button></div>
+</header>
+
+<section class="hero">
+<div class="eyebrow">ZYSELL</div>
+<h1 data-fr="Votre espace." data-en="Your workspace.">Votre espace.</h1>
+<p data-fr="Gérez votre boutique, suivez sa vérification et préparez sa publication depuis un seul endroit." data-en="Manage your store, track its verification and prepare its publication from one place.">Gérez votre boutique, suivez sa vérification et préparez sa publication depuis un seul endroit.</p>
+</section>
+
+<div class="grid">
+<section class="card" id="storeCard">
+<div class="loading" data-fr="Chargement de votre boutique..." data-en="Loading your store...">Chargement de votre boutique...</div>
+</section>
+
+<aside class="card">
+<h2 data-fr="Votre compte" data-en="Your account">Votre compte</h2>
+<div class="account"><div class="avatar" id="avatar">V</div><div><strong id="displayName">—</strong><div class="email" id="email">—</div></div></div>
+<button class="btn primary" id="createBtn" data-fr="Créer une boutique" data-en="Create a store">Créer une boutique</button>
+<button class="btn" id="logoutBtn" data-fr="Se déconnecter" data-en="Sign out">Se déconnecter</button>
+</aside>
+</div>
+
+<a class="footer-link" href="index.html" data-fr="← Retour à l'accueil" data-en="← Back to home">← Retour à l'accueil</a>
+</section></main>
+
+<script>
+const apply=()=>{const l=localStorage.getItem("zysell-language")||"fr";document.documentElement.lang=l;document.querySelectorAll("[data-fr][data-en]").forEach(e=>e.innerHTML=e.dataset[l]);document.body.classList.toggle("dark",localStorage.getItem("zysell-theme")==="dark")};
+document.getElementById("lang").onclick=()=>{localStorage.setItem("zysell-language",(localStorage.getItem("zysell-language")||"fr")==="fr"?"en":"fr");apply()};
+document.getElementById("theme").onclick=()=>{localStorage.setItem("zysell-theme",localStorage.getItem("zysell-theme")==="dark"?"light":"dark");apply()};apply();
+</script>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import{getAuth,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import{getFirestore,doc,getDoc,setDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig={apiKey:"AIzaSyCN2KKYwu_vTuxQ37O1aJWkQ_v-Dj_wRNs",authDomain:"zysell-4dccf.firebaseapp.com",projectId:"zysell-4dccf",storageBucket:"zysell-4dccf.firebasestorage.app",messagingSenderId:"471869632233",appId:"1:471869632233:web:fbcef0190964790a434a78",measurementId:"G-P19LD5WPCY"};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+const $=id=>document.getElementById(id);
+const setText=(id,v)=>$(id).textContent=v;
+
+function pill(text,type){return `<span class="pill ${type}">${text}</span>`}
+
+function renderNoStore(){
+ $("storeCard").innerHTML=`<div class="empty"><div class="empty-icon">🏪</div><h2 data-fr="Aucune boutique" data-en="No store yet">Aucune boutique</h2><p data-fr="Créez votre première boutique pour commencer à vendre sur ZySell." data-en="Create your first store to start selling on ZySell.">Créez votre première boutique pour commencer à vendre sur ZySell.</p><button class="btn primary" id="emptyCreate" data-fr="Créer une boutique" data-en="Create a store">Créer une boutique</button></div>`;
+ apply();$("emptyCreate").onclick=()=>location.href="create-store.html";
+}
+
+function renderStore(d){
+ const identity=d.verificationStatus||"not_started";
+ const published=d.published===true;
+ const verified=d.verified===true;
+ let publication=published?["Publiée","approved"]:identity==="approved"?["Prête à publier","approved"]:["En attente","pending"];
+ let identityLabel={not_started:["À compléter","draft"],pending:["En cours d'examen","pending"],approved:["Identité vérifiée","approved"],verified:["Identité vérifiée","approved"],rejected:["À corriger","rejected"]}[identity]||[identity,"draft"];
+ const verifiedLabel=verified?["✓ ZySell Verified","blue"]:["Non demandé","draft"];
+ $("storeCard").innerHTML=`
+ <div class="store-head"><div><div class="store-name">${escapeHtml(d.name||"Ma boutique")}</div><div class="store-slug">@${escapeHtml(d.slug||"")}</div></div>${pill(publication[0],publication[1])}</div>
+ <div class="status-list">
+ <div class="status-row"><span class="label" data-fr="Vérification d'identité" data-en="Identity verification">Vérification d'identité</span><span class="value">${pill(identityLabel[0],identityLabel[1])}</span></div>
+ <div class="status-row"><span class="label" data-fr="Publication" data-en="Publication">Publication</span><span class="value">${pill(publication[0],publication[1])}</span></div>
+ <div class="status-row"><span class="label">ZySell Verified</span><span class="value">${pill(verifiedLabel[0],verifiedLabel[1])}</span></div>
+ <div class="status-row"><span class="label" data-fr="Pays / devise" data-en="Country / currency">Pays / devise</span><span class="value">${escapeHtml([d.country,d.currency].filter(Boolean).join(" / ")||"—")}</span></div>
+ </div>
+ <div class="notice">${identity==="pending"?"<strong>Vérification en cours.</strong> Votre dossier est actuellement examiné par ZySell.":identity==="approved"&&!published?"<strong>Identité vérifiée.</strong> Votre boutique est prête à être publiée.":identity==="rejected"?"<strong>Action requise.</strong> Consultez la page de vérification pour corriger votre dossier.":published?"<strong>Boutique publiée.</strong> Votre boutique est maintenant publique.":"<strong>Vérification requise.</strong> Complétez votre vérification d'identité avant de publier votre boutique."}</div>
+ <button class="btn ${identity==="approved"&&!published?"primary":""}" id="verifyAction">${identity==="pending"?"Voir le statut":identity==="approved"?"Gérer la publication":"Vérifier mon identité"}</button>
+ ${identity==="approved"&&!published?'<button class="btn primary" id="publishAction">Publier la boutique</button>':""}
+ `;
+ apply();
+ $("verifyAction").onclick=()=>location.href="verify-store-zysell.html";
+ if($("publishAction")) $("publishAction").onclick=async()=>{try{await setDoc(doc(db,"stores",auth.currentUser.uid),{published:true,status:"published",updatedAt:serverTimestamp()},{merge:true});renderStore({...d,published:true,status:"published"})}catch(e){alert("Impossible de publier la boutique pour le moment.")}};
+}
+
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+
+onAuthStateChanged(auth,async user=>{
+ if(!user){location.replace("login.html");return}
+ setText("email",user.email||"");setText("displayName",user.displayName||user.email?.split("@")[0]||"Utilisateur");
+ $("avatar").textContent=(user.displayName||user.email||"U").charAt(0).toUpperCase();
+ try{
+  const snap=await getDoc(doc(db,"stores",user.uid));
+  if(snap.exists())renderStore(snap.data());else renderNoStore();
+ }catch(e){console.error(e);$("storeCard").innerHTML='<div class="empty"><h2>Erreur</h2><p>Impossible de charger les informations de votre boutique.</p></div>'}
+});
+$("createBtn").onclick=()=>location.href="create-store.html";
+$("logoutBtn").onclick=async()=>{await signOut(auth);location.replace("index.html")};
+</script>
+</body>
+</html>
