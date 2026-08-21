@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZySell | Vérification d'identité</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<style>
+:root{--blue:#1976ff;--bg:#f7f8fb;--card:#fff;--text:#111318;--muted:#747984;--border:#e2e4e9;--soft:#f1f5ff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+body.dark{--bg:#07090d;--card:#101218;--text:#f5f7fa;--muted:#a5aab4;--border:#2a2e37;--soft:#111a2b}
+.page{min-height:100vh;padding:20px 16px 50px}.shell{width:min(100%,780px);margin:auto}
+.tools{display:flex;justify-content:flex-end;gap:8px;margin-bottom:18px}.tool{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;padding:9px 12px;font-weight:800;cursor:pointer}
+.head{text-align:center;margin:12px auto 26px}.logo{width:58px;height:58px;object-fit:contain}.eyebrow{margin:8px 0;color:var(--blue);font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+h1{font-size:clamp(30px,7vw,46px);letter-spacing:-.05em;margin:0}.lead{max-width:650px;margin:12px auto;color:var(--muted);line-height:1.6}
+.card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:24px;box-shadow:0 20px 65px rgba(20,25,35,.08)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px}.step{padding:12px 8px;border-radius:12px;background:var(--soft);font-size:12px;font-weight:800;text-align:center;color:var(--muted)}.step.active{background:var(--blue);color:#fff}
+.notice{padding:14px 15px;border-radius:15px;background:var(--soft);border:1px solid #dce7ff;color:var(--text);font-size:13px;line-height:1.55;margin-bottom:22px}
+.section{margin-top:24px}.section h2{font-size:18px;margin:0 0 14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:grid;gap:8px}.field.full{grid-column:1/-1}.field label{font-size:13px;font-weight:800}.field select,.field input{width:100%;min-height:50px;border:1px solid var(--border);border-radius:13px;background:var(--card);color:var(--text);padding:11px 13px;font:inherit;outline:none}.field input:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(25,118,255,.1)}
+.upload{border:1.5px dashed #b9c0cb;border-radius:17px;padding:18px;background:rgba(25,118,255,.025)}body.dark .upload{border-color:#4a515e}
+.upload-title{font-weight:850;margin-bottom:5px}.upload-help{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:12px}
+.file{width:100%}.preview{display:none;margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#000;text-align:center}.preview.show{display:block}.preview img{max-width:100%;max-height:300px;object-fit:contain}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:12px;color:var(--muted);line-height:1.5}.check input{margin-top:3px;accent-color:var(--blue)}
+.status{margin-top:22px;border:1px solid var(--border);border-radius:17px;padding:16px}.status-row{display:flex;justify-content:space-between;align-items:center;gap:12px}.pill{padding:7px 11px;border-radius:999px;font-size:12px;font-weight:900;background:#fff4cc;color:#806000}.status p{margin:10px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
+.actions{display:flex;gap:12px;margin-top:22px}.btn{flex:1;min-height:53px;border-radius:14px;font:inherit;font-weight:850;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text)}.primary{background:#0d0e11;color:#fff;border:0}body.dark .primary{background:#fff;color:#0d0e11}.btn:disabled{opacity:.55;cursor:wait}
+.msg{display:none;padding:12px 14px;border-radius:12px;margin-bottom:15px;font-size:13px;line-height:1.5}.msg.show{display:block}.error{background:#fff0f2;border:1px solid #ffd0d6;color:#a51d2d}.success{background:#effdf4;border:1px solid #bbf7d0;color:#166534}
+.back{display:block;text-align:center;margin-top:18px;color:var(--muted);text-decoration:none;font-size:13px}
+@media(max-width:650px){.card{padding:19px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.actions{flex-direction:column}}
+</style>
+</head>
+<body>
+<main class="page"><section class="shell">
+<div class="tools"><button class="tool" id="lang">FR / EN</button><button class="tool" id="theme">☾</button></div>
+<header class="head"><img class="logo" src="assets/logo.png" alt="ZySell"><div class="eyebrow">ZySell</div><h1 data-fr="Vérifiez votre identité." data-en="Verify your identity.">Vérifiez votre identité.</h1>
+<p class="lead" data-fr="Cette vérification est nécessaire avant la publication de votre boutique. Elle est distincte de ZySell Verified, qui reste facultatif." data-en="This verification is required before your store can be published. It is separate from ZySell Verified, which remains optional.">Cette vérification est nécessaire avant la publication de votre boutique. Elle est distincte de ZySell Verified, qui reste facultatif.</p></header>
+
+<div class="card">
+<div class="steps"><div class="step active" data-fr="1 · Identité" data-en="1 · Identity">1 · Identité</div><div class="step" data-fr="2 · Examen" data-en="2 · Review">2 · Examen</div><div class="step" data-fr="3 · Publication" data-en="3 · Publish">3 · Publication</div></div>
+<div id="msg" class="msg"></div>
+
+<div class="notice" data-fr="<strong>Pourquoi cette étape ?</strong><br>Nous vérifions que le propriétaire de la boutique est une personne réelle et que les informations transmises sont cohérentes. Vos documents ne doivent être envoyés que via cette page sécurisée." data-en="<strong>Why this step?</strong><br>We verify that the store owner is a real person and that the submitted information is consistent. Your documents should only be submitted through this secure page."><strong>Pourquoi cette étape ?</strong><br>Nous vérifions que le propriétaire de la boutique est une personne réelle et que les informations transmises sont cohérentes. Vos documents ne doivent être envoyés que via cette page sécurisée.</div>
+
+<form id="verifyForm">
+<section class="section"><h2 data-fr="1. Pièce d'identité" data-en="1. Identity document">1. Pièce d'identité</h2>
+<div class="grid">
+<div class="field"><label for="docType" data-fr="Type de document" data-en="Document type">Type de document</label>
+<select id="docType" required><option value="" data-fr="Choisir" data-en="Choose">Choisir</option><option value="cni" data-fr="CNI / Carte d'identité" data-en="National ID card">CNI / Carte d'identité</option><option value="passport" data-fr="Passeport" data-en="Passport">Passeport</option><option value="license" data-fr="Permis de conduire" data-en="Driving licence">Permis de conduire</option></select></div>
+<div class="field"><label for="country" data-fr="Pays émetteur" data-en="Issuing country">Pays émetteur</label><select id="country" required><option value="CM">🇨🇲 Cameroun</option><option value="TD">🇹🇩 Tchad</option><option value="GA">🇬🇦 Gabon</option><option value="CG">🇨🇬 Congo</option><option value="CD">🇨🇩 RD Congo</option><option value="CI">🇨🇮 Côte d’Ivoire</option><option value="SN">🇸🇳 Sénégal</option><option value="BJ">🇧🇯 Bénin</option><option value="FR">🇫🇷 France</option><option value="US">🇺🇸 États-Unis</option><option value="GB">🇬🇧 Royaume-Uni</option><option value="NG">🇳🇬 Nigeria</option></select></div>
+<div class="field full"><div class="upload"><div class="upload-title" data-fr="Photo du document" data-en="Document photo">Photo du document</div><div class="upload-help" data-fr="Photo nette, document entier visible, sans reflet ni élément masqué. JPG, PNG ou WEBP." data-en="Clear photo, full document visible, with no glare or hidden areas. JPG, PNG or WEBP.">Photo nette, document entier visible, sans reflet ni élément masqué. JPG, PNG ou WEBP.</div><input id="documentFile" class="file" type="file" accept="image/jpeg,image/png,image/webp" capture="environment" required><div id="documentPreview" class="preview"><img alt="Aperçu du document"></div></div></div>
+</div></section>
+
+<section class="section"><h2 data-fr="2. Photo du propriétaire" data-en="2. Owner photo">2. Photo du propriétaire</h2>
+<div class="upload"><div class="upload-title" data-fr="Photo avec la pièce en main" data-en="Photo holding the document">Photo avec la pièce en main</div><div class="upload-help" data-fr="Votre visage doit être clairement visible et vous devez tenir la même pièce d'identité près de vous. Ne modifiez pas la photo." data-en="Your face must be clearly visible and you must hold the same identity document next to you. Do not edit the photo.">Votre visage doit être clairement visible et vous devez tenir la même pièce d'identité près de vous. Ne modifiez pas la photo.</div><input id="selfieFile" class="file" type="file" accept="image/jpeg,image/png,image/webp" capture="user" required><div id="selfiePreview" class="preview"><img alt="Aperçu de la photo"></div></div>
+<label class="check"><input id="consent" type="checkbox" required><span data-fr="Je confirme que ces documents sont les miens et que les informations fournies sont exactes. J'autorise ZySell à les examiner pour la vérification de mon identité." data-en="I confirm that these documents belong to me and that the information provided is accurate. I authorize ZySell to review them for identity verification.">Je confirme que ces documents sont les miens et que les informations fournies sont exactes. J'autorise ZySell à les examiner pour la vérification de mon identité.</span></label>
+</section>
+
+<div class="status"><div class="status-row"><strong data-fr="Statut de vérification" data-en="Verification status">Statut de vérification</strong><span class="pill" id="statusPill" data-fr="À compléter" data-en="Not submitted">À compléter</span></div><p id="statusText" data-fr="Votre dossier n'a pas encore été envoyé." data-en="Your verification request has not been submitted yet.">Votre dossier n'a pas encore été envoyé.</p></div>
+
+<div class="actions"><button type="button" class="btn" id="back">Annuler</button><button type="submit" class="btn primary" id="submit">Envoyer pour examen</button></div>
+</form>
+<a class="back" href="dashboard.html" data-fr="← Retour au Dashboard" data-en="← Back to Dashboard">← Retour au Dashboard</a>
+</div></section></main>
+
+<script>
+(function(){
+const apply=()=>{const l=localStorage.getItem("zysell-language")||"fr";document.documentElement.lang=l;document.querySelectorAll("[data-fr][data-en]").forEach(e=>e.innerHTML=e.dataset[l]);document.body.classList.toggle("dark",localStorage.getItem("zysell-theme")==="dark")};
+document.getElementById("lang").onclick=()=>{localStorage.setItem("zysell-language",(localStorage.getItem("zysell-language")||"fr")==="fr"?"en":"fr");apply()};
+document.getElementById("theme").onclick=()=>{localStorage.setItem("zysell-theme",localStorage.getItem("zysell-theme")==="dark"?"light":"dark");apply()};
+apply();
+function preview(input,id){input.addEventListener("change",()=>{const f=input.files[0],box=document.getElementById(id),img=box.querySelector("img");if(!f){box.classList.remove("show");return}img.src=URL.createObjectURL(f);box.classList.add("show")})}
+preview(document.getElementById("documentFile"),"documentPreview");preview(document.getElementById("selfieFile"),"selfiePreview");
+})();
+</script>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import{getAuth,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import{getFirestore,doc,setDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import{getStorage,ref,uploadBytes,getDownloadURL}from"https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
+
+const firebaseConfig={apiKey:"AIzaSyCN2KKYwu_vTuxQ37O1aJWkQ_v-Dj_wRNs",authDomain:"zysell-4dccf.firebaseapp.com",projectId:"zysell-4dccf",storageBucket:"zysell-4dccf.firebasestorage.app",messagingSenderId:"471869632233",appId:"1:471869632233:web:fbcef0190964790a434a78",measurementId:"G-P19LD5WPCY"};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),storage=getStorage(app);
+let user=null;
+const form=document.getElementById("verifyForm"),msg=document.getElementById("msg"),submit=document.getElementById("submit");
+const show=(type,text)=>{msg.className="msg show "+type;msg.textContent=text};
+onAuthStateChanged(auth,u=>{if(!u){location.replace("login.html");return}user=u});
+
+async function uploadFile(file,path){
+ if(!file)return null;
+ if(file.size>8*1024*1024)throw new Error("FILE_TOO_LARGE");
+ const allowed=["image/jpeg","image/png","image/webp"];
+ if(!allowed.includes(file.type))throw new Error("INVALID_TYPE");
+ const r=ref(storage,path);
+ await uploadBytes(r,file,{contentType:file.type});
+ return await getDownloadURL(r);
+}
+
+form.addEventListener("submit",async e=>{
+ e.preventDefault();msg.className="msg";
+ if(!user){show("error","Votre session n'est plus active. Veuillez vous reconnecter.");return}
+ const documentFile=document.getElementById("documentFile").files[0],selfieFile=document.getElementById("selfieFile").files[0];
+ if(!documentFile||!selfieFile||!document.getElementById("consent").checked){show("error","Veuillez compléter les documents et accepter la déclaration.");return}
+ try{
+  submit.disabled=true;submit.textContent="Envoi...";
+  const base=`verification/${user.uid}`;
+  const documentUrl=await uploadFile(documentFile,`${base}/identity-document`);
+  const selfieUrl=await uploadFile(selfieFile,`${base}/owner-selfie`);
+  await setDoc(doc(db,"storeVerifications",user.uid),{
+   ownerId:user.uid,ownerEmail:user.email||"",
+   documentType:document.getElementById("docType").value,
+   issuingCountry:document.getElementById("country").value,
+   documentUrl,selfieUrl,
+   status:"pending",submittedAt:serverTimestamp(),updatedAt:serverTimestamp()
+  },{merge:true});
+  await setDoc(doc(db,"stores",user.uid),{
+   verificationStatus:"pending",
+   verified:false,
+   published:false,
+   updatedAt:serverTimestamp()
+  },{merge:true});
+  show("success","Votre dossier a été envoyé. Statut : en cours d'examen.");
+  document.getElementById("statusPill").textContent="En cours d'examen";
+  document.getElementById("statusText").textContent="Votre demande a été reçue par ZySell. La publication reste bloquée jusqu'à la validation de votre identité.";
+  submit.textContent="Dossier envoyé";
+ }catch(err){
+  console.error(err);
+  const text=err.message==="FILE_TOO_LARGE"?"Chaque image doit faire moins de 8 Mo.":err.message==="INVALID_TYPE"?"Format accepté : JPG, PNG ou WEBP.":"Impossible d'envoyer le dossier pour le moment. Vérifiez la configuration Firebase Storage.";
+  show("error",text);submit.disabled=false;submit.textContent="Envoyer pour examen";
+ }
+});
+document.getElementById("back").onclick=()=>location.replace("dashboard.html");
+</script>
+</body>
+</html>
